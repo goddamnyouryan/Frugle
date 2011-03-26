@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>OmniauthDeviseExample</title>
+  <title>Frugle | <%= content_for?(:title) ? yield(:title) : "" %></title>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
 <body>
 	
-	<div id="user_nav">
+	<nav>
 	  <% if user_signed_in? %>
 	    Signed in as <%= current_user.email %>. Not you?
 	    <%= link_to "Sign out", destroy_user_session_path %>
 	  <% else %>
 	    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
 	  <% end %>
-	</div>
+	</nav>
 
-<%= yield %>
+	<div id="container">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
+      <%= content_tag :h2, yield(:title) if show_title? %>
+      <%= yield %>
+    </div>
 
 </body>
 </html>
