@@ -10,6 +10,7 @@ gem 'pg'
 gem 'devise', :git => 'git://github.com/plataformatec/devise', :branch => 'omniauth'
 #gem 'devise'
 gem 'omniauth'
+gem 'nifty-generators'
 
 # Use unicorn as the web server
 # gem 'unicorn'
