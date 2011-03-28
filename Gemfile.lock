@@ -56,9 +56,11 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    mocha (0.9.12)
     multi_json (0.0.5)
     multipart-post (1.0.1)
     net-ldap (0.1.1)
+    nifty-generators (0.4.5)
     nokogiri (1.4.3.1)
     oa-basic (0.1.6)
       multi_json (~> 0.0.2)
@@ -137,6 +139,8 @@ PLATFORMS
 
 DEPENDENCIES
   devise!
+  mocha
+  nifty-generators
   omniauth
   pg
   rails (= 3.0.0)

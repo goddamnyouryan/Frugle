@@ -1,4 +1,6 @@
 OmniauthDeviseExample::Application.routes.draw do
+  resources :businesses
+
   get "home/index"
 
   resources :monkeys

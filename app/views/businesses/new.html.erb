@@ -1,0 +1,17 @@
+<% title "New Business" %>
+
+
+
+<%= form_for @business, :remote => true do |f| %>
+<p>
+  <%= f.label :phone %><br />
+  <%= f.text_field :phone %>
+</p>
+
+<p><%= f.submit %></p>
+<% end %>
+
+<div id="business_form">
+</div>
+
+<p><%= link_to "Back to List", businesses_path %></p>

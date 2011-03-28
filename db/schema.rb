@@ -10,7 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110326211031) do
+ActiveRecord::Schema.define(:version => 20110328071647) do
+
+  create_table "businesses", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "zip"
+    t.string   "phone"
+    t.string   "website"
+    t.text     "info"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
 
   create_table "user_tokens", :force => true do |t|
     t.integer  "user_id"
