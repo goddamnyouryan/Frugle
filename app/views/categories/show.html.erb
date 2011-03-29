@@ -1,0 +1,34 @@
+<% title "Category" %>
+
+<p>
+  <strong>Title:</strong>
+  <%= @category.title %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_category_path(@category) %> |
+  <%= link_to "Destroy", @category, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", categories_path %>
+</p>
+
+<h2>New Subcategory</h2>
+
+<%= form_for(@subcategory, :url => category_subcategories_path(@category)) do |f| %>
+  <%= f.error_messages %>
+  <%= hidden_field(:category_id, @category.id) %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+
+<ul>
+<% for subcategory in @subcategories %>
+    <li>
+      <%= subcategory.title %> - 
+      <%= link_to "Show", category_subcategory_path(@category, subcategory) %> | 
+      <%= link_to "Delete", subcategory, :confirm => 'Are you sure?', :method => :delete %>
+    </tr>
+<% end %>
+</ul>

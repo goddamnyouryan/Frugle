@@ -1,0 +1,16 @@
+<% title "New Subcategory" %>
+
+<%= form_for @subcategory do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :category_id %><br />
+    <%= f.text_field :category_id %>
+  </p>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+
+

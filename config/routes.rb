@@ -1,4 +1,10 @@
 OmniauthDeviseExample::Application.routes.draw do
+  
+  resources :categories do
+    resources :subcategories
+  end
+
+  resources :subcategories
   resources :businesses
 
   get "home/index"

@@ -1,0 +1,16 @@
+<% title "New Category" %>
+
+<%= render 'form' %>
+
+<p><%= link_to "Back to List", categories_path %></p>
+
+<ul>
+<% for category in @categories %>
+    <li>
+      <%= category.title %> - 
+      <%= link_to "Show", category %> | 
+      <%= link_to "Edit", edit_category_path(category) %> | 
+      <%= link_to "Delete", category, :confirm => 'Are you sure?', :method => :delete %>
+    </tr>
+<% end %>
+</ul>
