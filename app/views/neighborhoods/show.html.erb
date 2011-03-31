@@ -1,0 +1,12 @@
+<% title "Neighborhood" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @neighborhood.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_neighborhood_path(@neighborhood) %> |
+  <%= link_to "Destroy", @neighborhood, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", neighborhoods_path %>
+</p>

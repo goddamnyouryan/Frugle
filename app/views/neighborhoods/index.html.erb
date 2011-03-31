@@ -1,0 +1,17 @@
+<% title "Neighborhoods" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for neighborhood in @neighborhoods %>
+    <tr>
+      <td><%= neighborhood.name %></td>
+      <td><%= link_to "Show", neighborhood %></td>
+      <td><%= link_to "Edit", edit_neighborhood_path(neighborhood) %></td>
+      <td><%= link_to "Destroy", neighborhood, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Neighborhood", new_neighborhood_path %></p>

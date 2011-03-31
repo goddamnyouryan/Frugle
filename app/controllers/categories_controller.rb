@@ -41,4 +41,5 @@ class CategoriesController < ApplicationController
     @category.destroy
     redirect_to categories_url, :notice => "Successfully destroyed category."
   end
+  
 end

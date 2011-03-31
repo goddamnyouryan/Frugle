@@ -1,15 +1,21 @@
 OmniauthDeviseExample::Application.routes.draw do
   
+  resources :neighborhoods
+
+  get "category/create"
+
+  get "category/destroy"
+
   resources :categories do
     resources :subcategories
   end
 
   resources :subcategories
   resources :businesses
+  resources :categorizations
+  resources :subcategorizations
 
   get "home/index"
-
-  resources :monkeys
 
   #devise_for :users
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
