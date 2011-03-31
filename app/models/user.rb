@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :user_tokens
+  belongs_to :neighborhood
   has_one :business
   
   has_many :categorizations

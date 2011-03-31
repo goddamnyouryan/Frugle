@@ -5,10 +5,13 @@ class NeighborhoodsController < ApplicationController
 
   def show
     @neighborhood = Neighborhood.find(params[:id])
+    @zipcodes = @neighborhood.zipcodes
+    @zipcode = @neighborhood.zipcodes.new
   end
 
   def new
     @neighborhood = Neighborhood.new
+    @neighborhoods = Neighborhood.all
   end
 
   def create
@@ -21,16 +24,19 @@ class NeighborhoodsController < ApplicationController
   end
 
   def edit
-    @neighborhood = Neighborhood.find(params[:id])
+    @all = Neighborhood.all
+    @neighborhoods = @all.map(&:name)
+    render :update do |page|
+	    page.replace_html "neighborhood", :partial => "neighborhoods/neighborhood"
+	  end
   end
 
   def update
-    @neighborhood = Neighborhood.find(params[:id])
-    if @neighborhood.update_attributes(params[:neighborhood])
-      redirect_to @neighborhood, :notice  => "Successfully updated neighborhood."
-    else
-      render :action => 'edit'
-    end
+    current_user.neighborhood_id = params[:user][:neighborhood_id]
+    current_user.save!
+      render :update do |page|
+  	    page.replace_html "neighborhood", "#{current_user.neighborhood.name} #{link_to "(change)", edit_neighborhood_path, :remote => true}"
+	    end
   end
 
   def destroy

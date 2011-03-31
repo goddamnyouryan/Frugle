@@ -10,6 +10,10 @@
 	
 	<h1>Frugle</h1>
 	
+	<% if user_signed_in? %>
+		<p id="neighborhood"><%= current_user.neighborhood.name %> <%= link_to "(change)", edit_neighborhood_path(current_user), :remote => true %></p>
+	<% end %>
+	
 	<nav>
 	  <% if user_signed_in? %>
 	    Signed in as <%= current_user.email %>.

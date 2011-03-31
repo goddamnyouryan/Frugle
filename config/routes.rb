@@ -1,9 +1,6 @@
 OmniauthDeviseExample::Application.routes.draw do
   
-  resources :neighborhoods
-
   get "category/create"
-
   get "category/destroy"
 
   resources :categories do
@@ -14,7 +11,9 @@ OmniauthDeviseExample::Application.routes.draw do
   resources :businesses
   resources :categorizations
   resources :subcategorizations
-
+  resources :neighborhoods
+  resources :zipcodes
+  
   get "home/index"
 
   #devise_for :users

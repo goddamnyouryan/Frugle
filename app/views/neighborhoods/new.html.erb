@@ -2,4 +2,13 @@
 
 <%= render 'form' %>
 
-<p><%= link_to "Back to List", neighborhoods_path %></p>
+<ul>
+<% for neighborhood in @neighborhoods %>
+    <li>
+      <%= neighborhood.name %> - 
+      <%= link_to "Show", neighborhood %> | 
+      <%= link_to "Edit", edit_neighborhood_path(neighborhood) %> | 
+      <%= link_to "Delete", neighborhood, :confirm => 'Are you sure?', :method => :delete %>
+    </tr>
+<% end %>
+</ul>

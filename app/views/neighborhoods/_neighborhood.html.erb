@@ -1,0 +1,6 @@
+
+<%= form_for(current_user, :url => neighborhood_path(current_user), :html => { :method => :put }, :remote => true) do |f| %>
+
+    <%= f.select(:neighborhood_id, Neighborhood.all.collect {|p| [ p.name, p.id ] } ) %>
+	<%= f.submit "Update" %>
+<% end %>

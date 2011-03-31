@@ -23,14 +23,22 @@ class BusinessesController < ApplicationController
   end
 
   def update
-    @business = Business.find(params[:id])
-    @user = User.create(:email => params[:business][:email], :password => params[:business][:password], :role => "business")
-    if @business.update_attributes(params[:business])
-      @business.user_id = @user.id
-      @business.save!
-      redirect_to @business, :notice  => "Successfully updated business."
+    @zipcode = Zipcode.find_by_zip(params[:business][:zip])
+    unless @zipcode == nil
+      @business = Business.find(params[:id])
+      @user = User.create(:email => params[:business][:email], :password => params[:business][:password], :role => "business")
+      if @business.update_attributes(params[:business])
+        @business.user_id = @user.id
+        @business.neighborhood_id = @zipcode.neighborhood.id
+        @business.save!
+        redirect_to @business, :notice  => "Successfully updated business."
+      else
+        render :action => 'edit'
+      end
     else
-      render :action => 'edit'
+      @business = Business.find(params[:id])
+      @business.destroy
+      redirect_to root_url, :notice => "We're sorry, we are currently not offering our services in your neighborhood."
     end
   end
 
