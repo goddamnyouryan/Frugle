@@ -8,7 +8,10 @@ OmniauthDeviseExample::Application.routes.draw do
   end
 
   resources :subcategories
-  resources :businesses
+  resources :businesses do
+    resources :frugles
+  end
+  resources :frugles
   resources :categorizations
   resources :subcategorizations
   resources :neighborhoods

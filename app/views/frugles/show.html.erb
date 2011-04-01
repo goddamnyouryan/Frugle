@@ -1,0 +1,48 @@
+<% title "Frugle" %>
+
+<p>
+  <strong>Business:</strong>
+  <%= @frugle.business_id %>
+</p>
+<p>
+  <strong>Type:</strong>
+  <%= @frugle.type %>
+</p>
+<p>
+  <strong>Details:</strong>
+  <%= @frugle.details %>
+</p>
+<p>
+  <strong>Mobile:</strong>
+  <%= @frugle.mobile %>
+</p>
+<p>
+  <strong>Quantity:</strong>
+  <%= @frugle.quantity %>
+</p>
+<p>
+  <strong>Views:</strong>
+  <%= @frugle.views %>
+</p>
+<p>
+  <strong>Start:</strong>
+  <%= @frugle.start %>
+</p>
+<p>
+  <strong>End:</strong>
+  <%= @frugle.end %>
+</p>
+<p>
+  <strong>Verification:</strong>
+  <%= @frugle.verification %>
+</p>
+<p>
+  <strong>Status:</strong>
+  <%= @frugle.status %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_frugle_path(@frugle) %> |
+  <%= link_to "Destroy", @frugle, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", frugles_path %>
+</p>

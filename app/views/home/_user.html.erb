@@ -1,0 +1,15 @@
+<ul id="categories">
+<% for category in @categories %>
+	<li id="category_<%= category.id %>">
+	<% if @user_categories.include?(category) %>
+		<%= link_to "#{category.title}", categorization_path(current_user.id, :category_id => category.id), :method => :delete, :remote => true, :style => "background-color:yellow;" %>
+	<% else %>
+		<%= link_to "#{category.title}", new_categorization_path(current_user.id, :category_id => category.id), :remote => true %>
+	<% end %>
+	</li>
+<% end %>
+</ul>
+
+<ul id="subcategories">
+	<%= render 'subcategories', :user_categories => @user_categories %>
+</ul>

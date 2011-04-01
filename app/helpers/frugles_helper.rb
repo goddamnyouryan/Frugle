@@ -1,0 +1,2 @@
+module FruglesHelper
+end

@@ -1,4 +1,8 @@
 class Business < ActiveRecord::Base
+  belongs_to :category
+  belongs_to :subcategory
+  has_many :frugles
+  
   belongs_to :user
   attr_accessible :name, :address, :zip, :phone, :website, :info
   
