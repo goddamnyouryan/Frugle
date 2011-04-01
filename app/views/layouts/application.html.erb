@@ -11,7 +11,9 @@
 	<h1>Frugle</h1>
 	
 	<% if user_signed_in? %>
+		<% unless current_user.role == "business" %>
 		<p id="neighborhood"><%= current_user.neighborhood.name %> <%= link_to "(change)", edit_neighborhood_path(current_user), :remote => true %></p>
+		<% end %>
 	<% end %>
 	
 	<nav>

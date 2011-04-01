@@ -30,6 +30,8 @@ class BusinessesController < ApplicationController
       if @business.update_attributes(params[:business])
         @business.user_id = @user.id
         @business.neighborhood_id = @zipcode.neighborhood.id
+        @business.category_id = params[:business][:category_id]
+        @business.subcategory_id = params[:business][:subcategory_id]
         @business.save!
         redirect_to @business, :notice  => "Successfully updated business."
       else
