@@ -1,6 +1,9 @@
 class FruglesController < ApplicationController
   def index
-    @frugles = Frugle.all
+    @frugles = Business.find :all, 
+               :joins => [:category, :subcategory], 
+               :conditions => ["categories.title LIKE ? OR subcategories.title LIKE ? OR name LIKE ? AND neighborhood_id = ?",
+               "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", current_user.neighborhood_id]
   end
 
   def show

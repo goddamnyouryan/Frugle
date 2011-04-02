@@ -1,6 +1,14 @@
 class NeighborhoodsController < ApplicationController
   def index
-    @neighborhoods = Neighborhood.all
+
+  end
+  
+  def initial
+    session[:neighborhood] = params[:neighborhood_id]
+    render :update do |page|
+	    page['sign_up'].show
+	    page['box'].hide
+	  end
   end
 
   def show

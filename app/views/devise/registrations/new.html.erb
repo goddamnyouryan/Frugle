@@ -1,36 +1,9 @@
-<% title "Sign Up" %>
-
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <p><%= f.label :first_name %><br />
-  <%= f.text_field :first_name %></p>
-
-  <p><%= f.label :last_name %><br />
-  <%= f.text_field :last_name %></p>
-
-  <p><%= f.label :sex %><br />
-  <%= f.radio_button :sex, "Male" %> Male
-  <%= f.radio_button :sex, "Female" %> Female</p>
-
-  <p><%= f.label :birthday %><br />
-    <%= f.date_select :birthday, 
-					  :start_year => Time.now.year,
-					  :end_year => 1900,
-					  :include_blank => true,
-					  :order => [:month, :day, :year]											
-	%></p>
-	
-  <p><%= f.label :email %><br />
-	  <%= f.email_field :email %></p>
-
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
-
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
-
-  <p><%= f.submit "Sign up" %></p>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+<div id="box">
+	<%= form_tag "/neighborhoods/initial", :remote => true do %>
+	  <%= select_tag(:neighborhood_id, options_from_collection_for_select(Neighborhood.all, "id", "name") ) %>
+	  <%= submit_tag "Choose Neighborhood" %>
+	<% end %>
+</div>
+<div id="sign_up" style="display:none;">
+<%= render :partial => 'sign_up' %>
+</div>	

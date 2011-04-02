@@ -1,35 +1,13 @@
 <% title "Frugles" %>
 
-<table>
-  <tr>
-    <th>Business</th>
-    <th>Type</th>
-    <th>Details</th>
-    <th>Mobile</th>
-    <th>Quantity</th>
-    <th>Views</th>
-    <th>Start</th>
-    <th>End</th>
-    <th>Verification</th>
-    <th>Status</th>
-  </tr>
-  <% for frugle in @frugles %>
-    <tr>
-      <td><%= frugle.business_id %></td>
-      <td><%= frugle.type %></td>
-      <td><%= frugle.details %></td>
-      <td><%= frugle.mobile %></td>
-      <td><%= frugle.quantity %></td>
-      <td><%= frugle.views %></td>
-      <td><%= frugle.start %></td>
-      <td><%= frugle.end %></td>
-      <td><%= frugle.verification %></td>
-      <td><%= frugle.status %></td>
-      <td><%= link_to "Show", frugle %></td>
-      <td><%= link_to "Edit", edit_frugle_path(frugle) %></td>
-      <td><%= link_to "Destroy", frugle, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
+<ul>
+  <% for business in @frugles %>
+	<% for frugle in business.frugles %>
+	<li>
+		<%= business.name %> - <%= frugle.id %>
+	</li>
+    <% end %>
   <% end %>
-</table>
+</ul>
 
 <p><%= link_to "New Frugle", new_frugle_path %></p>

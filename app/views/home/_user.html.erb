@@ -1,3 +1,10 @@
+<% form_tag frugles_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
 <ul id="categories">
 <% for category in @categories %>
 	<li id="category_<%= category.id %>">
@@ -13,8 +20,6 @@
 <ul id="subcategories">
 	<%= render 'subcategories', :user_categories => @user_categories %>
 </ul>
-
-<h2>Frugles</h2>
 
 <ul id="frugles">
 	<%= render :partial => 'frugles' %>

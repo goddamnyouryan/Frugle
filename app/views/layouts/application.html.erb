@@ -9,7 +9,7 @@
 </head>
 <body>
 	
-	<h1>Frugle</h1>
+	<h1><%= link_to "Frugle", root_path%></h1>
 	
 	<% if user_signed_in? %>
 		<% unless current_user.role == "business" %>
