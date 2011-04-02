@@ -1,5 +1,7 @@
 <% for category in @user_categories %>
-	<% for subcategory in category.subcategories %>
+<% @businesses = Business.find :all, :include => :frugles, :conditions => ["category_id = ? AND frugles.id IS NOT NULL", category.id] %>
+<% @subcategories = @businesses.map(&:subcategory).uniq %>
+	<% for subcategory in @subcategories %>
 		<li id="subcategory_<%= subcategory.id %>">
 		<% @user_subcategories = current_user.subcategories %>
 		<% if @user_subcategories.include?(subcategory) %>

@@ -7,15 +7,16 @@
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
 @category = Category.all
-@category.each do |sub|
-  Subcategory.create(:title => "Subcategory 1", :category_id => sub.id)
-  Subcategory.create(:title => "Subcategory 2", :category_id => sub.id)
-  Subcategory.create(:title => "Subcategory 3", :category_id => sub.id)
-  Subcategory.create(:title => "Subcategory 4", :category_id => sub.id)
-  Subcategory.create(:title => "Subcategory 5", :category_id => sub.id)
-  Subcategory.create(:title => "Subcategory 6", :category_id => sub.id)
-  Subcategory.create(:title => "Subcategory 7", :category_id => sub.id)
-  Subcategory.create(:title => "Subcategory 8", :category_id => sub.id)
-  Subcategory.create(:title => "Subcategory 9", :category_id => sub.id)
-  Subcategory.create(:title => "Subcategory 10", :category_id => sub.id)
+
+#@category.each do |sub|
+#  Subcategory.create(:title => "Subcategory 1", :category_id => sub.id)
+# Subcategory.create(:title => "Subcategory 2", :category_id => sub.id)
+#  Subcategory.create(:title => "Subcategory 3", :category_id => sub.id)
+#  Subcategory.create(:title => "Subcategory 4", :category_id => sub.id)
+#  Subcategory.create(:title => "Subcategory 5", :category_id => sub.id)
+#  Subcategory.create(:title => "Subcategory 6", :category_id => sub.id)
+#  Subcategory.create(:title => "Subcategory 7", :category_id => sub.id)
+#  Subcategory.create(:title => "Subcategory 8", :category_id => sub.id)
+#  Subcategory.create(:title => "Subcategory 9", :category_id => sub.id)
+#  Subcategory.create(:title => "Subcategory 10", :category_id => sub.id)
 end

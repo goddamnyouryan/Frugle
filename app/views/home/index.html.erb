@@ -1,62 +1,7 @@
 <% title "Home" %>
 
 <% if current_user.role == "business" %>
-	<%= link_to "Add New Frugle", new_frugle_path %>
-	
-	<h3>Active Frugles</h3>
-	<table>
-	  <tr>
-	    <th>Type</th>
-		<th>Cost</th>
-	    <th>Mobile</th>
-	    <th>Quantity</th>
-	    <th>Views</th>
-	    <th>Start</th>
-	    <th>End</th>
-	  </tr>
-	  <% for frugle in @active_frugles %>
-	    <tr>
-	      <td><%= frugle.discount %></td>
-	      <td><%= frugle.cost %></td>
-	      <td><%= frugle.mobile %></td>
-	      <td><%= frugle.quantity %></td>
-	      <td><%= frugle.views %></td>
-	      <td><%= frugle.start %></td>
-	      <td><%= frugle.end %></td>
-	      <td><%= link_to "Show", frugle %></td>
-	      <td><%= link_to "Edit", edit_frugle_path(frugle) %></td>
-	      <td><%= link_to "Destroy", frugle, :confirm => 'Are you sure?', :method => :delete %></td>
-	    </tr>
-	  <% end %>
-	</table>
-	
-	<h3>Expired Frugles</h3>
-	<table>
-	  <tr>
-	    <th>Type</th>
-		<th>Cost</th>
-	    <th>Mobile</th>
-	    <th>Quantity</th>
-	    <th>Views</th>
-	    <th>Start</th>
-	    <th>End</th>
-	  </tr>
-	  <% for frugle in @expired_frugles %>
-	    <tr>
-	      <td><%= frugle.discount %></td>
-	      <td><%= frugle.cost %></td>
-	      <td><%= frugle.mobile %></td>
-	      <td><%= frugle.quantity %></td>
-	      <td><%= frugle.views %></td>
-	      <td><%= frugle.start %></td>
-	      <td><%= frugle.end %></td>
-	      <td><%= link_to "Show", frugle %></td>
-	      <td><%= link_to "Edit", edit_frugle_path(frugle) %></td>
-	      <td><%= link_to "Destroy", frugle, :confirm => 'Are you sure?', :method => :delete %></td>
-	    </tr>
-	  <% end %>
-	</table>
-	
+	<%= render :partial => 'business' %>
 <% else %>
 	<%= render :partial => 'user' %>
 <% end %>

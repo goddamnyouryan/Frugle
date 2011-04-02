@@ -11,8 +11,8 @@ class HomeController < ApplicationController
         @user_categories = current_user.categories
         @user_subcategories = current_user.subcategories
         @results = Array.new
-        @user_categories.each do |s|
-          @search = Frugle.find :all, :include => :business, :conditions => [ "businesses.category_id = ? AND businesses.neighborhood_id = ?", s.id, current_user.neighborhood_id]
+        @user_subcategories.each do |s|
+          @search = Frugle.find :all, :include => :business, :conditions => [ "businesses.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, current_user.neighborhood_id]
           @results = @results | @search
         end
       end
