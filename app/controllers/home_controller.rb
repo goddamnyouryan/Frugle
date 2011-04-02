@@ -16,8 +16,7 @@ class HomeController < ApplicationController
           @results = @results | @search
         end
       end
-    else
-      redirect_to new_user_registration_path
+
     end
   end
 

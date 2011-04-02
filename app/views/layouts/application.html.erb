@@ -15,6 +15,11 @@
 		<% unless current_user.role == "business" %>
 		<p id="neighborhood"><%= current_user.neighborhood.name %> <%= link_to "(change)", edit_neighborhood_path(current_user), :remote => true %></p>
 		<% end %>
+	<% else %>
+		<% if session[:neighborhood]%>
+			<% @neighborhood = Neighborhood.find session[:neighborhood] %>
+			<p id="neighborhood"><%= @neighborhood.name %> <%= link_to "(change)", edit_neighborhood_path(@neighborhood), :remote => true %></p>
+		<% end %>
 	<% end %>
 	
 	<nav>

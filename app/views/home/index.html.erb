@@ -1,8 +1,16 @@
 <% title "Home" %>
 
-<% if current_user.role == "business" %>
-	<%= render :partial => 'business' %>
+<% if user_signed_in? %>
+
+	<% if current_user.role == "business" %>
+		<%= render :partial => 'business' %>
+	<% else %>
+		<%= render :partial => 'user' %>
+	<% end %>
+	
 <% else %>
-	<%= render :partial => 'user' %>
+
+	Hello non-signed in user
+
 <% end %>
 

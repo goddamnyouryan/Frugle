@@ -12,7 +12,8 @@ class BusinessesController < ApplicationController
   end
 
   def create
-    @business = Business.find_or_create_by_phone(params[:business][:phone])
+    @phone_number = [params[:business][:phone][:area_code], params[:business][:phone][:first_three_digits], params[:business][:phone][:second_four_digits]].reject(&:blank?).join('.')
+    @business = Business.find_or_create_by_phone("#{@phone_number}")
     render :update do |page|
 			page.replace_html "business_form", :partial => "form"
 	  end

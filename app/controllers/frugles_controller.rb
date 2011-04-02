@@ -13,6 +13,9 @@ class FruglesController < ApplicationController
   def new
     @frugle = Frugle.new
   end
+  
+  def update_cost
+  end
 
   def create
     @frugle = current_user.business.frugles.new(params[:frugle])

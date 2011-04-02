@@ -2,11 +2,15 @@
   <%= f.error_messages %>
   <p>
     <%= f.label :discount %><br />
-    <%= f.text_field :discount %>
+	<% @frugle_discount_options = [['% Off', 'percent'], ['$ Off', 'dollar'], ['$ For', 'flat'], ['Free with Purchase Of', 'bonus'], ['Buy One Get One Free', 'bogo']] %>
+    <%= f.select :discount, options_for_select(@frugle_discount_options) %>
+	<%= observe_field(:discount, :url => { :action => :update_cost },
+	                  :update => :cost_div,
+	                  :with => :discount
+	            	 ) %>
   </p>
-  <p>
-    <%= f.label :cost %><br />
-    <%= f.text_field :cost %>
+  <p id="cost_div">
+    <%= render :partial => 'cost', :locals => { :f => f } %>
   </p>
   <p>
     <%= f.label :details %><br />
@@ -21,12 +25,12 @@
     <%= f.text_field :quantity %>
   </p>
   <p>
-    <%= f.label :start %><br />
-    <%= f.datetime_select :start %>
+    <%= f.label :start_date %><br />
+    <%= f.date_select :start, :order => [:day, :month, :year] %>
   </p>
   <p>
-    <%= f.label :end %><br />
-    <%= f.datetime_select :end %>
+    <%= f.label :end_date %><br />
+    <%= f.date_select :end, :default =>3.months.from_now, :order => [:day, :month, :year] %>
   </p>
   <p><%= f.submit %></p>
 <% end %>
