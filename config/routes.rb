@@ -16,6 +16,9 @@ OmniauthDeviseExample::Application.routes.draw do
   resources :subcategorizations
   resources :neighborhoods
   resources :zipcodes
+  resources :javascripts
+  
+  match 'javascripts/dynamic_subcategories', :to => 'javascripts#dynamic_subcategories'
   
   get "home/index"
 

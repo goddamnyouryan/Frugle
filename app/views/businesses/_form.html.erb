@@ -20,13 +20,18 @@
     <%= f.label :info %><br />
     <%= f.text_area :info %>
   </p>
+<script type="text/javascript">
+$('business_category_id').observe("change",function(){
+	categorySelected();
+});
+</script>
   <p>
     <%= f.label :category %><br />
-    <%= f.select(:category_id, Category.all.collect {|p| [ p.title, p.id ] } ) %>
+	<%= f.collection_select :category_id, Category.find(:all), :id, :title, :prompt => "Select a Category" %>
   </p>
-  <p>
+  <p id="subcategory_field">
     <%= f.label :subcategory %><br />
-    <%= f.select(:subcategory_id, Subcategory.all.collect {|p| [ p.title, p.id ] } ) %>
+	<%= f.collection_select :subcategory_id, Subcategory.find(:all), :id, :title, :prompt => "Select a Subcategory" %>
   </p>
 
 <% unless user_signed_in? %>
