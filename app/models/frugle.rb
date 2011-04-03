@@ -3,6 +3,8 @@ class Frugle < ActiveRecord::Base
   
   belongs_to :business
   
+  has_many :saveds
+  
   attr_writer :percentage, :product
 
   before_save :create_discount

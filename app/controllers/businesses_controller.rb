@@ -5,6 +5,8 @@ class BusinessesController < ApplicationController
 
   def show
     @business = Business.find(params[:id])
+    @frugles = @business.frugles
+    @follow = Follow.find_by_user_id_and_business_id(current_user.id, @business.id)
   end
 
   def new

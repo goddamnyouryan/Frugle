@@ -1,23 +1,9 @@
-<% title "Business" %>
+<% title "#{@business.name}" %>
 
 <p>
-  <strong>Name:</strong>
-  <%= @business.name %>
-</p>
-<p>
-  <strong>Address:</strong>
-  <%= @business.address %>
-</p>
-<p>
-  <strong>Zip:</strong>
-  <%= @business.zip %>
-</p>
-<p>
-  <strong>Phone:</strong>
-  <%= @business.phone %>
-</p>
-<p>
-  <strong>Website:</strong>
+  <%= @business.address %><br />
+  <%= @business.zip %><br />
+  <%= @business.phone %><br />
   <%= @business.website %>
 </p>
 <p>
@@ -25,8 +11,27 @@
   <%= @business.info %>
 </p>
 
+<p id="follow">
+	<% if @follow == nil %>
+		<%= link_to "Follow #{@business.name}", new_follow_path(current_user.id, :business_id => @business.id), :remote => true %>
+	<% else %>
+		<%= link_to "Unfollow #{@business.name}", follow_path(current_user.id, :business_id => @business.id), :method => :delete, :remote => true %>
+	<% end %>
+</p>
+
+<% if current_user.id == @business.user_id %>
 <p>
   <%= link_to "Edit", edit_business_path(@business) %> |
   <%= link_to "Destroy", @business, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", businesses_path %>
 </p>
+<% end %>
+
+<h2>Frugles(<%= @frugles.count %>)</h2>
+<ul>
+	<% for frugle in @frugles%>
+	  <li>
+		<%= link_to "#{frugle.cost}", frugle_path(frugle) %>
+	  </li>
+	<% end %>
+</ul>

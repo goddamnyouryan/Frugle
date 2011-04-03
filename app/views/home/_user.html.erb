@@ -5,6 +5,23 @@
   </p>
 <% end %>
 
+<h2>Frugles from Businesses you are Following</h2>
+<ul id="saves">
+	<% for follow in current_user.follows %>
+	<% for frugle in follow.business.frugles %>
+		<li><%= link_to "#{frugle.cost} - #{follow.business.name}", business_path(follow.business) %></li>
+	<% end %>
+	<% end %>
+</ul>
+
+<h2>Your Saved Frugles</h2>
+<ul id="follows">
+	<% for save in current_user.saveds %>
+		<li><%= link_to "#{save.frugle.cost} - #{save.frugle.business.name}", business_path(save.frugle.business) %></li>
+	<% end %>
+</ul>
+
+<h2>Browse By Category</h2>
 <ul id="categories">
 <% for category in @categories %>
 	<li id="category_<%= category.id %>">
@@ -17,10 +34,12 @@
 <% end %>
 </ul>
 
+<h2>Subcategories</h2>
 <ul id="subcategories">
 	<%= render 'subcategories', :user_categories => @user_categories %>
 </ul>
 
+<h2>Frugles</h2>
 <ul id="frugles">
 	<%= render :partial => 'frugles' %>
 </ul>

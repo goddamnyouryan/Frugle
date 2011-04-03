@@ -1,5 +1,13 @@
 OmniauthDeviseExample::Application.routes.draw do
   
+  get "saves/new"
+
+  get "saves/destroy"
+
+  get "follows/create"
+
+  get "follows/destroy"
+
   get "category/create"
   get "category/destroy"
 
@@ -17,6 +25,8 @@ OmniauthDeviseExample::Application.routes.draw do
   resources :neighborhoods
   resources :zipcodes
   resources :javascripts
+  resources :follows
+  resource :saveds
   
   match 'javascripts/dynamic_subcategories', :to => 'javascripts#dynamic_subcategories'
   

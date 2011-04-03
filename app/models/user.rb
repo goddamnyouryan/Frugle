@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   has_many :subcategorizations
   has_many :subcategories, :through => :subcategorizations
   
+  has_many :follows
+  has_many :saveds
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,

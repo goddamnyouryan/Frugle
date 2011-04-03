@@ -1,12 +1,8 @@
-<% title "Frugle" %>
+<% title "#{@frugle.business.name}" %>
+
 
 <p>
-  <strong>Business:</strong>
-  <%= @frugle.business_id %>
-</p>
-<p>
-  <strong>Type:</strong>
-  <%= @frugle.type %>
+  <%= @frugle.cost %>
 </p>
 <p>
   <strong>Details:</strong>
@@ -26,11 +22,11 @@
 </p>
 <p>
   <strong>Start:</strong>
-  <%= @frugle.start %>
+  <%= @frugle.start.to_date %>
 </p>
 <p>
   <strong>End:</strong>
-  <%= @frugle.end %>
+  <%= @frugle.end.to_date %>
 </p>
 <p>
   <strong>Verification:</strong>
@@ -41,8 +37,18 @@
   <%= @frugle.status %>
 </p>
 
+<p id="save">
+	<% if @save == nil %>
+		<%= link_to "Save this Frugle", new_saveds_path(current_user.id, :frugle_id => @frugle.id), :remote => true %>
+	<% else %>
+		<%= link_to "Unsave this Frugle", saveds_path(current_user.id, :frugle_id => @frugle.id), :method => :delete, :remote => true %>
+	<% end %>
+</p>
+
+<% if current_user.id == @frugle.business.user_id %>
 <p>
   <%= link_to "Edit", edit_frugle_path(@frugle) %> |
   <%= link_to "Destroy", @frugle, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", frugles_path %>
 </p>
+<% end %>

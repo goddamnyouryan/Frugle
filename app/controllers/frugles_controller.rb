@@ -8,6 +8,7 @@ class FruglesController < ApplicationController
 
   def show
     @frugle = Frugle.find(params[:id])
+    @save = Saved.find_by_user_id_and_frugle_id(current_user.id, @frugle.id)
   end
 
   def new
