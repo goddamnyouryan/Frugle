@@ -1,13 +1,9 @@
 OmniauthDeviseExample::Application.routes.draw do
   
   get "saves/new"
-
   get "saves/destroy"
-
   get "follows/create"
-
   get "follows/destroy"
-
   get "category/create"
   get "category/destroy"
 
