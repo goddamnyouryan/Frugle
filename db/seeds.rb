@@ -315,5 +315,3 @@ Subcategory.create(:title => "Tours", :category_id => 18)
 Subcategory.create(:title => "Transportation", :category_id => 18)
 Subcategory.create(:title => "Travel Services", :category_id => 18)
 Subcategory.create(:title => "Vacation Rental Agents", :category_id => 18)
-
-end
