@@ -15,6 +15,14 @@ class HomeController < ApplicationController
           @search = Frugle.find :all, :include => :business, :conditions => [ "businesses.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, current_user.neighborhood_id]
           @results = @results | @search
         end
+        @map = GMap.new("map_div")
+        @map.control_init(:large_map => true,:map_type => true)
+        @map.center_zoom_init([34.0412085, -118.442596],10)
+        unless @results == nil
+          for frugle in @results
+            @map.overlay_init(GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "#{frugle.business.name} <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}"))
+          end
+        end
       end
     else
       unless session[:neighborhood]

@@ -17,10 +17,20 @@ class CategorizationsController < ApplicationController
       @search = Frugle.find :all, :include => :business, :conditions => [ "businesses.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, current_user.neighborhood_id]
       @results = @results | @search
     end
+     @map = Variable.new("map")
+      @markers = Array.new
+      for frugle in @results
+        @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "#{frugle.business.name} <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}")
+        @markers << @marker
+      end
     render :update do |page|
 			page.replace_html "category_#{params[:category_id]}", "#{link_to "#{@category.title}", categorization_path(current_user.id, :category_id => @category.id), :method => :delete, :remote => true, :style => "background-color:yellow;"}"
 	    page.replace_html "subcategories", :partial => 'home/subcategories', :user_categories => @user_categories
 	    page.replace_html "frugles", :partial => 'home/frugles', :results => @results
+	    page << @map.clear_overlays
+			for marker in @markers
+			  page << @map.add_overlay(marker)
+	    end
 	  end
   end
   
@@ -43,10 +53,20 @@ class CategorizationsController < ApplicationController
       @search = Frugle.find :all, :include => :business, :conditions => [ "businesses.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, current_user.neighborhood_id]
       @results = @results | @search
     end
+     @map = Variable.new("map")
+      @markers = Array.new
+      for frugle in @results
+        @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "#{frugle.business.name} <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}")
+        @markers << @marker
+      end
     render :update do |page|
 			page.replace_html "category_#{params[:category_id]}", "#{link_to "#{@category.title}", new_categorization_path(current_user.id, :category_id => @category.id), :remote => true, :style => "background-color:white;"}"
 	    page.replace_html "subcategories", :partial => 'home/subcategories', :user_categories => @user_categories
 	    page.replace_html "frugles", :partial => 'home/frugles', :results => @results
+	    page << @map.clear_overlays
+			for marker in @markers
+			  page << @map.add_overlay(marker)
+	    end
 	  end
   end
   

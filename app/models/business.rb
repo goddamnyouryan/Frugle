@@ -12,6 +12,13 @@ class Business < ActiveRecord::Base
   validates_format_of :phone,
                       :message => "must be a valid telephone number.",
                       :with => /^[\(\)0-9\- \+\.]{10,20}$/
+                      
+  geocoded_by :full_address
+  after_validation :geocode
+
+  def full_address
+    [address, zip].compact.join(', ')
+  end
 
   def email
     user.email if user

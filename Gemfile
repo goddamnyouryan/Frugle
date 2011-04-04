@@ -11,6 +11,7 @@ gem 'devise', :git => 'git://github.com/plataformatec/devise', :branch => 'omnia
 #gem 'devise'
 gem 'omniauth'
 gem 'nifty-generators'
+gem 'geocoder'
 
 # Use unicorn as the web server
 # gem 'unicorn'
