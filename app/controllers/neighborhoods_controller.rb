@@ -48,6 +48,14 @@ class NeighborhoodsController < ApplicationController
   	    page.replace_html "neighborhood", "#{current_user.neighborhood.name} #{link_to "(change)", edit_neighborhood_path, :remote => true}"
 	    end
   end
+  
+  def update_signed_out
+    session[:neighborhood] = params[:neighborhood_id]
+    @neighborhood = Neighborhood.find session[:neighborhood]
+    render :update do |page|
+	    page.replace_html "neighborhood", "#{@neighborhood.name} #{link_to "(change)", edit_neighborhood_path(@neighborhood), :remote => true}"
+    end
+  end
 
   def destroy
     @neighborhood = Neighborhood.find(params[:id])

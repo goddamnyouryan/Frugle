@@ -1,5 +1,6 @@
 <% for result in @results %>
 	<li>
-		<%= result.business.name %> - <%= result.id %>
+		<strong><%= link_to result.business.name, business_path(result.business) %></strong><br />
+		<%= link_to "#{result.cost}", business_path(result.business) %>
 	</li>
 <% end %>

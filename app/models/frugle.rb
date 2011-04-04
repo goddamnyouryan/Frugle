@@ -20,7 +20,7 @@ class Frugle < ActiveRecord::Base
   protected
 
   def create_discount
-    discount = "#{@percentage}% Off #{@product}" unless @product.nil? || @percentage.nil?
+    self.cost = "#{@percentage}% Off #{@product}" unless @product.nil? || @percentage.nil?
   end
   
 end

@@ -24,8 +24,10 @@ class FruglesController < ApplicationController
     @frugle.verification = (0...6).map{ charset.to_a[rand(charset.size)] }.join
     @frugle.status = "active"
     @frugle.views = 0
-    @frugle.cost = params[:frugle][:cost]
     @frugle.discount = params[:frugle][:discount]
+    if @frugle.discount == "percent"
+      @frugle.cost = [params[:frugle][:percentage], params[:frugle][:product]].join(" % Off ")
+    end
     if @frugle.save
       redirect_to root_path, :notice => "Successfully created frugle."
     else

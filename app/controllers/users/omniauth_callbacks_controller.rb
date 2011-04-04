@@ -22,7 +22,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           #create a new user
           unless omniauth.recursive_find_by_key("email").blank?
             user = User.find_or_initialize_by_email(:email => omniauth.recursive_find_by_key("email"))
-            user.neighborhood_id = session[:neighborhood]
+            if session[:neighborhood]
+              user.neighborhood_id = session[:neighborhood]
+            end
           else
             user = User.new
           end

@@ -1,0 +1,16 @@
+<h2>Search</h2>
+<% form_tag frugles_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+<h2>Browse Frugles</h2>
+
+<ul id="frugles">
+	<%= render :partial => 'frugles' %>
+</ul>
+
+<h2>Map</h2>
+<%= raw(@map.div(:width => 600, :height => 400)) %>

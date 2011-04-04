@@ -8,6 +8,9 @@
 			<%= raw(GMap.header) %>
 			<%= raw(@map.to_html) %>
 		<% end %>
+	<% else %>
+		<%= raw(GMap.header) %>
+		<%= raw(@map.to_html) %>		
 	<% end %>
 	<% end %>
   <%= stylesheet_link_tag :all %>
