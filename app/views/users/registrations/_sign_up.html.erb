@@ -1,7 +1,8 @@
-<% title "Edit #{resource_name.to_s.humanize}"%>
+<% title "Sign Up" %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
+	<%= hidden_field(:neighborhood_id, session[:neighborhood]) %>
 
   <p><%= f.label :first_name %><br />
   <%= f.text_field :first_name %></p>
@@ -20,25 +21,17 @@
 					  :include_blank => true,
 					  :order => [:month, :day, :year]											
 	%></p>
-
+	
   <p><%= f.label :email %><br />
-  <%= f.email_field :email %></p>
+	  <%= f.email_field :email %></p>
 
-  <p><%= f.label :new_password %> <i>(leave blank if you don't want to change it)</i><br />
+  <p><%= f.label :password %><br />
   <%= f.password_field :password %></p>
 
   <p><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></p>
 
-  <p><%= f.submit "Update" %></p>
+  <p><%= f.submit "Sign up" %></p>
 <% end %>
 
-Add some omniauth goodness:
-
 <%= render :partial => "devise/shared/links" %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
-
-<%= link_to "Back", :back %>

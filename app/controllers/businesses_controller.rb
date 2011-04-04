@@ -44,7 +44,7 @@ class BusinessesController < ApplicationController
         @business.category_id = params[:business][:category_id]
         @business.subcategory_id = params[:business][:subcategory_id]
         @business.save!
-        redirect_to @business, :notice  => "Successfully updated business."
+        sign_in_and_redirect(:user, @user)
       else
         render :action => 'edit'
       end
