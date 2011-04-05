@@ -9,7 +9,10 @@
 <ul id="saves">
 	<% for follow in current_user.follows %>
 	<% for frugle in follow.business.frugles %>
-		<li><%= link_to "#{frugle.cost} - #{follow.business.name}", business_path(follow.business) %></li>
+		<li>
+			<strong><%= link_to frugle.business.name, business_path(frugle.business) %></strong><br />
+			<%= link_to "#{frugle.cost}", business_path(frugle.business) %>
+		</li>
 	<% end %>
 	<% end %>
 </ul>
@@ -17,7 +20,10 @@
 <h2>Your Saved Frugles</h2>
 <ul id="follows">
 	<% for save in current_user.saveds %>
-		<li><%= link_to "#{save.frugle.cost} - #{save.frugle.business.name}", business_path(save.frugle.business) %></li>
+	<li>
+		<strong><%= link_to frugle.business.name, business_path(frugle.business) %></strong><br />
+		<%= link_to "#{frugle.cost}", business_path(frugle.business) %>
+	</li>
 	<% end %>
 </ul>
 

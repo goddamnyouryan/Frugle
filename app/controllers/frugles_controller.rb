@@ -1,4 +1,6 @@
 class FruglesController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index, :verified]
+  
   def index
     if user_signed_in?
       @frugles = Business.find :all, 

@@ -34,4 +34,9 @@
   <p><%= f.submit "Sign up" %></p>
 <% end %>
 
-<%= render :partial => "devise/shared/links" %>
+Sign Up With 
+<%- resource_class.omniauth_providers.each do |provider| %>
+	<%= link_to image_tag("facebook.png"), omniauth_authorize_path(resource_name, provider), :id => "facebook" %>
+<% end -%>
+
+<%= link_to "Skip this for Now", root_path %>

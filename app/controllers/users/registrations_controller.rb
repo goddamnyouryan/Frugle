@@ -1,4 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  layout "splash"
 
   def create
     @user = User.new(params[:user])

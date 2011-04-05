@@ -22,6 +22,15 @@
 </p>
 <% end %>
 
+<h2>Frugles(<%= @frugles.count %>)</h2>
+<ul>
+	<% for frugle in @frugles%>
+	  <li>
+		<%= link_to "#{frugle.cost}", frugle_path(frugle) %>
+	  </li>
+	<% end %>
+</ul>
+
 <% if current_user.id == @business.user_id %>
 <p>
   <%= link_to "Edit", edit_business_path(@business) %> |
@@ -32,12 +41,3 @@
 <% end %>
 
 <%= raw(@map.div(:width => 600, :height => 400)) %>
-
-<h2>Frugles(<%= @frugles.count %>)</h2>
-<ul>
-	<% for frugle in @frugles%>
-	  <li>
-		<%= link_to "#{frugle.cost}", frugle_path(frugle) %>
-	  </li>
-	<% end %>
-</ul>

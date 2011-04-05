@@ -1,4 +1,4 @@
-body { background-color: #000; color: #ccc; width:960px;margin:0 auto;}
+body { background-color: #000; color: #ccc; width:575px;margin:0 auto;}
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -23,7 +23,7 @@ pre {
 #container a:visited { color: #666; }
 #container a:hover { color:#5378A6; }
 
-a { color: #fff; }
+a { color: #000; }
 a:hover { color: #5378A6; }
 
 div.field, div.actions {
@@ -74,60 +74,30 @@ h1 {
 	float:left;
 }
 
-h1 a { text-decoration:none; }
-
-h2 { color: #666; }
-
-label { color: #000;}
-
-nav {
-	float:right;
-	margin:20px 0 0 0;
-}
-
-#neighborhood {
-	float:left;
-	margin:20px 0 0 20px;
-}
+h1 a { text-decoration:none; color: #fff }
+h1 a:hover { color: #5378A6; }
 
 #container {
 	background:#fff;
-	padding: 10px;
+	margin:0 auto;
+	padding:50px 25px;
+	width:300px;
 	color: #000;
+	float: left;
 }
 
-footer {
-	float: right;
-	margin: 10px 0;
-	font-size: 10px;
+#right_menu {
+	float: left;
 }
 
-ul#categories {
-	
+#business_owners, #login {
+	background: #fff;
+	color: #000;
+	margin:0 0 25px 25px;
+	padding:10px;
 }
 
-ul#categories li {
-	display:inline;
-	font-family:georgia;
-	font-size:18px;
-	margin-left:10px;
-}
-
-ul#subcategories {
-	
-}
-
-ul#subcategories li {
-	display:inline;
-	font-family:georgia;
-	margin-left:10px;
-}
-
-ul#frugles {
-	
-}
-
-ul#frugles li {
-	list-style-type:none;
-	margin-bottom:10px;
+#facebook {
+	position:relative;
+	top:10px;
 }
