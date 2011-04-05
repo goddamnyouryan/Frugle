@@ -1,4 +1,6 @@
-<% title "Edit #{resource_name.to_s.humanize}"%>
+<% title "Account Settings" %>
+
+<h2>1. Personal Settings </h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -30,15 +32,56 @@
   <p><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></p>
 
+<h2>2. Email Settings</h2>
+<p>
+  <%= f.label :newsletter %><br />
+  <%= f.check_box :newsletter %>
+</p>
+<p>
+  <%= f.label :send_me_email_of_new_frugles %><br />
+  <%= f.check_box :new_frugles %>
+</p>
+<p>
+	<% @interval_options = [['As It Happens', 'instant'], ['Daily', 'daily'], ['Weekly', 'weekly'], ['Monthly', 'monthly']] %>
+    <%= f.select :interval, options_for_select(@interval_options) %>
+<p>
+  <%= f.label :local_businesses_I_am_following %><br />
+  <%= f.check_box :businesses_following %>
+</p>
+<p>
+  <%= f.label :categories_I_am_following %><br />
+  <%= f.check_box :categories_following %>
+</p>
+<p>
+  <%= f.label :recommended_for_me %><br />
+  <%= f.check_box :recommendations %>
+</p>
+
+<h2>3. Following</h2>
+<h3>Local Businesses</h3>
+<ul>
+	<% for follow in current_user.follows %>
+		<li>
+			<%= follow.business.name %>
+		</li>
+	<% end %>
+</ul>
+
+<h3>Categories</h3>
+<ul>
+	<% for category in current_user.categories %>
+		<li>
+			<%= category.title %>
+		</li>
+	<% end %>
+</ul>
+
   <p><%= f.submit "Update" %></p>
 <% end %>
 
-Add some omniauth goodness:
+<!--Add some omniauth goodness:
 
-<%= render :partial => "devise/shared/links" %>
+<%= render :partial => "devise/shared/links" %> -->
 
-<h3>Cancel my account</h3>
+<%= link_to "Delete my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
-
-<%= link_to "Back", :back %>

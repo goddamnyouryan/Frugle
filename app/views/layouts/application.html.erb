@@ -36,7 +36,7 @@
 	<nav>
 	  <% if user_signed_in? %>
 	    Signed in as <%= current_user.email %>.
-		<%= link_to "Edit Profile", edit_user_registration_path %> or
+		<%= link_to "Account Settings", edit_user_registration_path %> or
 		<% if current_user.role == "business" %>
 			<%= link_to "Verify a Frugle", verify_path %> or <%= link_to "Edit Business Info", edit_business_path(current_user.business) %> or 
 		<% end %>
@@ -59,6 +59,11 @@
 	<footer>
 		&copy;2011 Frugle
 	</footer>
+	
+	<% if ENV["RAILS_ENV"] == "development" %>
+		<%= request.session_options[:id] %>
+		<%= debug(params) %>
+	<% end %>
 
 </body>
 </html>

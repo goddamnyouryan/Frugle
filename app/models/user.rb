@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   
   has_many :follows
   has_many :saveds
+  has_one :settings, :class_name => "User"
+  accepts_nested_attributes_for :settings, :allow_destroy => true
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
@@ -19,6 +21,16 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :sex, :birthday, :role
+  
+  #attr_accessor :newsletter, :new_frugles, :businesses_following, :categories_following, :recommendations, :interval
+  
+  after_save :create_settings
+  
+  def create_settings
+    unless self.role == "business"
+      Settings.create(:user_id => self.id, :newsletter => 1)
+    end
+  end
   
   def self.new_with_session(params, session)
     super.tap do |user|

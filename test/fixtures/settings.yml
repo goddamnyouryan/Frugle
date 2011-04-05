@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  newsletter: false
+  new_frugles: false
+  interval: MyString
+  businesses_following: false
+  categories_following: false
+  recommendations: false
+
+two:
+  newsletter: false
+  new_frugles: false
+  interval: MyString
+  businesses_following: false
+  categories_following: false
+  recommendations: false
