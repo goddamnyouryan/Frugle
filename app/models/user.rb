@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   
   has_many :follows
   has_many :saveds
-  has_one :settings, :class_name => "User"
+  has_one :settings
   accepts_nested_attributes_for :settings, :allow_destroy => true
   
   # Include default devise modules. Others available are:
@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :sex, :birthday, :role
   
-  #attr_accessor :newsletter, :new_frugles, :businesses_following, :categories_following, :recommendations, :interval
+  attr_accessor :newsletter, :new_frugles, :businesses_following, :categories_following, :recommendations, :interval
   
   after_save :create_settings
   

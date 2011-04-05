@@ -33,29 +33,31 @@
   <%= f.password_field :password_confirmation %></p>
 
 <h2>2. Email Settings</h2>
+<%= f.fields_for :settings do |s| %>
 <p>
-  <%= f.label :newsletter %><br />
-  <%= f.check_box :newsletter %>
+  <%= s.label :newsletter %><br />
+  <%= s.check_box :newsletter %>
 </p>
 <p>
-  <%= f.label :send_me_email_of_new_frugles %><br />
-  <%= f.check_box :new_frugles %>
+  <%= s.label :send_me_email_of_new_frugles %><br />
+  <%= s.check_box :new_frugles %>
 </p>
 <p>
 	<% @interval_options = [['As It Happens', 'instant'], ['Daily', 'daily'], ['Weekly', 'weekly'], ['Monthly', 'monthly']] %>
-    <%= f.select :interval, options_for_select(@interval_options) %>
+    <%= s.select :interval, options_for_select(@interval_options) %>
 <p>
-  <%= f.label :local_businesses_I_am_following %><br />
-  <%= f.check_box :businesses_following %>
+  <%= s.label :local_businesses_I_am_following %><br />
+  <%= s.check_box :businesses_following %>
 </p>
 <p>
-  <%= f.label :categories_I_am_following %><br />
-  <%= f.check_box :categories_following %>
+  <%= s.label :categories_I_am_following %><br />
+  <%= s.check_box :categories_following %>
 </p>
 <p>
-  <%= f.label :recommended_for_me %><br />
-  <%= f.check_box :recommendations %>
+  <%= s.label :recommended_for_me %><br />
+  <%= s.check_box :recommendations %>
 </p>
+<% end %>
 
 <h2>3. Following</h2>
 <h3>Local Businesses</h3>
