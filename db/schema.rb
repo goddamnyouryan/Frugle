@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110405051454) do
+ActiveRecord::Schema.define(:version => 20110405070010) do
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(:version => 20110405051454) do
     t.datetime "birthday"
     t.string   "role",                                :default => "user"
     t.integer  "neighborhood_id",                     :default => 1
+    t.string   "logged_out"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
