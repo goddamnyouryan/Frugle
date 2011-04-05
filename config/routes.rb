@@ -24,7 +24,7 @@ OmniauthDeviseExample::Application.routes.draw do
   resources :follows
   resource :saveds
   
-  match 'javascripts/dynamic_subcategories', :to => 'javascripts#dynamic_subcategories'
+  match 'verify', :to => "frugles#verify"
   
   get "home/index"
 

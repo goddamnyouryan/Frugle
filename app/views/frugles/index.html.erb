@@ -1,10 +1,18 @@
 <% title "Frugles" %>
+<h2>Search</h2>
+<% form_tag frugles_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
 
 <ul>
   <% for business in @frugles %>
 	<% for frugle in business.frugles %>
 	<li>
-		<%= business.name %> - <%= frugle.id %>
+		<strong><%= link_to frugle.business.name, business_path(frugle.business) %></strong><br />
+		<%= link_to "#{frugle.cost}", business_path(frugle.business) %>
 	</li>
     <% end %>
   <% end %>

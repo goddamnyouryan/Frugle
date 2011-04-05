@@ -6,7 +6,7 @@
     <%= f.select :discount, options_for_select(@frugle_discount_options) %>
   </p>
   <p id="cost_div">
-    <%= render :partial => 'cost', :locals => { :f => f } %>
+		<%= f.text_field :percentage, :size => 3 %> % Off <%= f.text_field :product, :size => 15 %>
   </p>
   <p>
     <%= f.label :details %><br />

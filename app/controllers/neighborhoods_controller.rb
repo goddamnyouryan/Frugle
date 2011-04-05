@@ -44,16 +44,55 @@ class NeighborhoodsController < ApplicationController
   def update
     current_user.neighborhood_id = params[:user][:neighborhood_id]
     current_user.save!
+    #if params[:controller] = "home" && params[:action] == "index"
+      @user_categories = current_user.categories
+      @user_subcategories = current_user.subcategories
+      @results = Array.new
+      @user_subcategories.each do |s|
+        @search = Frugle.find :all, :include => :business, :conditions => [ "businesses.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, current_user.neighborhood_id]
+        @results = @results | @search
+      end
+       @map = Variable.new("map")
+        @markers = Array.new
+        for frugle in @results
+          @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "#{frugle.business.name} <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}")
+          @markers << @marker
+        end
+      #end
       render :update do |page|
   	    page.replace_html "neighborhood", "#{current_user.neighborhood.name} #{link_to "(change)", edit_neighborhood_path, :remote => true}"
+  	    #if params[:controller] = "home" && params[:action] == "index"
+  	      page.replace_html "subcategories", :partial => 'home/subcategories', :user_categories => @user_categories
+  	      page.replace_html "frugles", :partial => 'home/frugles', :results => @results
+  	      page << @map.clear_overlays
+  			  for marker in @markers
+  			    page << @map.add_overlay(marker)
+  	      end
+	      #end
 	    end
   end
   
   def update_signed_out
     session[:neighborhood] = params[:neighborhood_id]
     @neighborhood = Neighborhood.find session[:neighborhood]
+      #if params[:controller] = "home" && params[:action] == "index"
+      @results = Frugle.find :all, :include => :business, :conditions => [ "businesses.neighborhood_id = ?", session[:neighborhood]]
+      @map = Variable.new("map")
+        @markers = Array.new
+        for frugle in @results
+          @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "#{frugle.business.name} <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}")
+          @markers << @marker
+        end
+      #end
     render :update do |page|
 	    page.replace_html "neighborhood", "#{@neighborhood.name} #{link_to "(change)", edit_neighborhood_path(@neighborhood), :remote => true}"
+	    #if params[:controller] = "home" && params[:action] == "index"
+	      page.replace_html "frugles", :partial => 'home/frugles', :results => @results
+	      page << @map.clear_overlays
+			  for marker in @markers
+			    page << @map.add_overlay(marker)
+	      end
+      #end
     end
   end
 

@@ -1,9 +1,16 @@
 class FruglesController < ApplicationController
   def index
-    @frugles = Business.find :all, 
-               :joins => [:category, :subcategory], 
-               :conditions => ["categories.title LIKE ? OR subcategories.title LIKE ? OR name LIKE ? AND neighborhood_id = ?",
-               "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", current_user.neighborhood_id]
+    if user_signed_in?
+      @frugles = Business.find :all, 
+                 :joins => [:category, :subcategory], 
+                 :conditions => ["categories.title LIKE ? OR subcategories.title LIKE ? OR name LIKE ? AND neighborhood_id = ?",
+                 "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", current_user.neighborhood_id]
+    else
+      @frugles = Business.find :all, 
+                 :joins => [:category, :subcategory], 
+                 :conditions => ["categories.title LIKE ? OR subcategories.title LIKE ? OR name LIKE ? AND neighborhood_id = ?",
+                 "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", params[:neighborhood]]
+    end       
   end
 
   def show
@@ -27,6 +34,14 @@ class FruglesController < ApplicationController
     @frugle.discount = params[:frugle][:discount]
     if @frugle.discount == "percent"
       @frugle.cost = [params[:frugle][:percentage], params[:frugle][:product]].join(" % Off ")
+    elsif @frugle.discount == "dollar"
+      @frugle.cost = ["$#{params[:frugle][:percentage]}", params[:frugle][:product]].join(" Off ")
+    elsif @frugle.discount == "flat"
+      @frugle.cost = "$#{params[:frugle][:percentage]} For #{params[:frugle][:product]}"
+    elsif @frugle.discount == "bonus"
+      @frugle.cost = "#{params[:frugle][:percentage]} With Purchase Of #{params[:frugle][:product]}"
+    elsif @frugle.discount == "bogo"
+      @frugle.cost = "Buy One #{params[:frugle][:percentage]} Get One #{params[:frugle][:product]} Free"
     end
     if @frugle.save
       redirect_to root_path, :notice => "Successfully created frugle."
@@ -37,6 +52,18 @@ class FruglesController < ApplicationController
 
   def edit
     @frugle = Frugle.find(params[:id])
+  end
+  
+  def verified
+    @frugle = Frugle.find_by_verification(params[:search])
+    render :update do |page|
+      if @frugle == nil
+        page.replace_html "status", "This frugle doesn't exist."
+      else
+        page.replace_html "status", "This frugle is #{@frugle.status}."
+        page.replace_html "details","<h2>#{@frugle.business.name}<br />#{@frugle.cost}</h2>"
+      end
+    end
   end
 
   def update
