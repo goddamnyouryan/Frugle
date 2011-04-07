@@ -21,6 +21,7 @@
 	<% end %>
 </p>
 <% end %>
+<% end %>
 
 <h2>Frugles(<%= @frugles.count %>)</h2>
 <ul>
@@ -37,7 +38,6 @@
   <%= link_to "Destroy", @business, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", businesses_path %>
 </p>
-<% end %>
 <% end %>
 
 <%= raw(@map.div(:width => 600, :height => 400)) %>
