@@ -37,6 +37,11 @@ class BusinessesController < ApplicationController
     @zipcode = Zipcode.find_by_zip(params[:business][:zip])
     unless @zipcode == nil
       @business = Business.find(params[:id])
+      unless @business.user.nil?
+        if @business.update_attributes(params[:business])
+          redirect_to root_path, :notice  => "Successfully updated business info."
+        end
+      else
       @user = User.create(:email => params[:business][:email], :password => params[:business][:password], :role => "business")
       if @business.update_attributes(params[:business])
         @business.user_id = @user.id
@@ -48,6 +53,7 @@ class BusinessesController < ApplicationController
       else
         render :action => 'edit'
       end
+    end
     else
       @business = Business.find(params[:id])
       @business.destroy

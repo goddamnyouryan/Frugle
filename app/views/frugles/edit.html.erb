@@ -1,8 +1,45 @@
 <% title "Edit Frugle" %>
+<% javascript 'poop' %>
 
-<%= render 'form' %>
+<%= form_for @frugle do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :discount %><br />
+    <%= f.select :discount, options_for_select(@frugle_discount_options) %>
+  </p>
+  <p id="cost_div">
+		<% if @frugle.discount == "percent" %>
+			<%= f.text_field :percentage, :size => 3 %> % Off <%= f.text_field :product, :size => 15 %>
+		<% elsif @frugle.discount == "dollar" %>
+			$<%= f.text_field :percentage, :size => 3 %> Off <%= f.text_field :product, :size => 15 %>
+		<% elsif @frugle.discount == "flat" %>
+			$<%= f.text_field :percentage, :size => 3 %> For <%= f.text_field :product, :size => 15 %>
+		<% elsif @frugle.discount == "bonus" %>
+			Free <%= f.text_field :percentage, :size => 10 %> With Purchase Of <%= f.text_field :product, :size => 10 %>
+		<% elsif @frugle.discount == "bogo" %>
+			Buy One <%= f.text_field :percentage, :size => 10 %> Get One<%= f.text_field :product, :size => 10 %> Free
+		<% end %>
+  </p>
+  <p>
+    <%= f.label :details %><br />
+    <%= f.text_area :details %>
+  </p>
+  <p>
+    <%= f.label :mobile %><br />
+    <%= f.check_box :mobile %>
+  </p>
+  <p>
+    <%= f.label :quantity %><br />
+    <%= f.text_field :quantity %>
+  </p>
+  <p>
+    <%= f.label :start_date %><br />
+    <%= f.date_select :start, :order => [:day, :month, :year] %>
+  </p>
+  <p>
+    <%= f.label :end_date %><br />
+    <%= f.date_select :end, :default =>3.months.from_now, :order => [:day, :month, :year] %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
 
-<p>
-  <%= link_to "Show", @frugle %> |
-  <%= link_to "View All", frugles_path %>
-</p>
