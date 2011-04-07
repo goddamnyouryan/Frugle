@@ -81,6 +81,15 @@
   <p><%= f.submit "Update" %></p>
 <% end %>
 
+<%- if devise_mapping.omniauthable? %>
+	<ul id="social-icons">
+	  <%- resource_class.omniauth_providers.each do |provider| %>
+		<li><%= link_to "Connect Your Facebook Account", omniauth_authorize_path(resource_name, provider) %></li>
+	  <% end -%>
+	</ul>
+	<div class="clear"></div>
+<% end -%>
+
 <!--Add some omniauth goodness:
 
 <%= render :partial => "devise/shared/links" %> -->

@@ -4,12 +4,16 @@
 <%= form_for @business do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :name %><br />
+    <%= f.label :business_name %><br />
     <%= f.text_field :name %>
   </p>
   <p>
     <%= f.label :address %><br />
     <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.label :address_2 %><br />
+    <%= f.text_field :address2 %>
   </p>
   <p>
     <%= f.label :zip %><br />
