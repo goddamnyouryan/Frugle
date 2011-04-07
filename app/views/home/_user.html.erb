@@ -19,7 +19,7 @@
 
 <h2>Your Saved Frugles</h2>
 <ul id="follows">
-	<% for save in current_user.saveds %>
+	<% current_user.frugles.each do |frugle| %>
 	<li>
 		<strong><%= link_to frugle.business.name, business_path(frugle.business) %></strong><br />
 		<%= link_to "#{frugle.cost}", business_path(frugle.business) %>

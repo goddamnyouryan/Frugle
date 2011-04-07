@@ -4,6 +4,7 @@ class Frugle < ActiveRecord::Base
   belongs_to :business
   
   has_many :saveds
+  has_many :users, :through => :saveds
   
   attr_writer :percentage, :product
 

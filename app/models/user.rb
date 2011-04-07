@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   
   has_many :follows
   has_many :saveds
+  has_many :frugles, :through => :saveds
   has_one :settings
   accepts_nested_attributes_for :settings, :allow_destroy => true
   
