@@ -3,11 +3,9 @@
 <head>
   <title>Frugle | <%= content_for?(:title) ? yield(:title) : "" %></title>
 	<% if (params[:controller] == "businesses" && params[:action] == "show") || (params[:controller] == "home" && params[:action] == "index")  %>
-	<% if user_signed_in? %>
 		<% unless current_user.role =="business" %>
 			<%= raw(GMap.header) %>
 			<%= raw(@map.to_html) %>
-		<% end %>
 	<% else %>
 		<%= raw(GMap.header) %>
 		<%= raw(@map.to_html) %>		
@@ -38,7 +36,7 @@
 	    Signed in as <%= current_user.email %>.
 		<%= link_to "Account Settings", edit_user_registration_path %> or
 		<% if current_user.role == "business" %>
-			<%= link_to "Verify a Frugle", verify_path %> or <%= link_to "Edit Business Info", edit_business_path(current_user.business) %> or 
+			<%= link_to "Verify a Frugle", verify_path %> or 
 		<% end %>
 	    <%= link_to "Sign out", destroy_user_session_path %>
 	  <% else %>

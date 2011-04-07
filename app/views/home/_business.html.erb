@@ -1,4 +1,14 @@
-<%= link_to "Add New Frugle", new_frugle_path %>
+<% title "Home" %>
+<h3><%= @business.name %></h3>
+<p><%= @business.address %><br>
+	 <%= @business.zip %><br />
+	 <%= @business.phone %><br />
+	 <%= link_to "Edit Business Info", edit_business_path(current_user.business) %>
+</p>
+	 
+<%= raw(@map.div(:width => 600, :height => 400)) %>	
+
+<p><%= link_to "Add New Frugle", new_frugle_path %></p>
 
 <h3>Active Frugles</h3>
 <table>
@@ -18,8 +28,8 @@
       <td><%= frugle.mobile %></td>
       <td><%= frugle.quantity %></td>
       <td><%= frugle.views %></td>
-      <td><%= frugle.start %></td>
-      <td><%= frugle.end %></td>
+      <td><%= frugle.start.to_date %></td>
+      <td><%= frugle.end.to_date %></td>
       <td><%= link_to "Show", frugle %></td>
       <td><%= link_to "Edit", edit_frugle_path(frugle) %></td>
       <td><%= link_to "Destroy", frugle, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -45,8 +55,8 @@
       <td><%= frugle.mobile %></td>
       <td><%= frugle.quantity %></td>
       <td><%= frugle.views %></td>
-      <td><%= frugle.start %></td>
-      <td><%= frugle.end %></td>
+      <td><%= frugle.start.to_date %></td>
+      <td><%= frugle.end.to_date %></td>
       <td><%= link_to "Show", frugle %></td>
       <td><%= link_to "Edit", edit_frugle_path(frugle) %></td>
       <td><%= link_to "Destroy", frugle, :confirm => 'Are you sure?', :method => :delete %></td>
