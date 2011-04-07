@@ -17,7 +17,7 @@
 	
 	<% if user_signed_in? %>
 		<% unless current_user.role == "business" %>
-		<	p id="neighborhood"><%= current_user.neighborhood.name %> <%= link_to "(change)", edit_neighborhood_path(current_user), :remote => true %></p>
+		<p id="neighborhood"><%= current_user.neighborhood.name %> <%= link_to "(change)", edit_neighborhood_path(current_user), :remote => true %></p>
 		<% end %>
 	<% else %>
 		<% if session[:neighborhood]%>
