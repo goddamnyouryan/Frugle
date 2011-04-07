@@ -5,7 +5,7 @@
   <%= f.error_messages %>
   <p>
     <%= f.label :discount %><br />
-    <%= f.select :discount, options_for_select(@frugle_discount_options) %>
+    <%= f.select :discount, options_for_select(@frugle_discount_options, @frugle.discount) %>
   </p>
   <p id="cost_div">
 		<% if @frugle.discount == "percent" %>
