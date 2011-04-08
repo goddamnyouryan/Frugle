@@ -18,11 +18,13 @@ OmniauthDeviseExample::Application.routes.draw do
   resources :frugles
   resources :categorizations
   resources :subcategorizations
+  match '/:id' => "neighborhoods#show"
   resources :neighborhoods
   resources :zipcodes
   resources :javascripts
   resources :follows
   resource :saveds
+
   
   match 'verify', :to => "frugles#verify"
   

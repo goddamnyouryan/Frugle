@@ -26,8 +26,8 @@ class CategorizationsController < ApplicationController
         end
       render :update do |page|
 		  	page.replace_html "category_#{params[:category_id]}", "#{link_to "#{@category.title}", categorization_path(current_user.id, :category_id => @category.id), :method => :delete, :remote => true, :style => "background-color:yellow;"}"
-	      page.replace_html "subcategories", :partial => 'home/subcategories', :user_categories => @user_categories
-	      page.replace_html "frugles", :partial => 'home/frugles', :results => @results
+	      page.replace_html "subcategories", :partial => 'neighborhoods/subcategories', :user_categories => @user_categories
+	      page.replace_html "frugles", :partial => 'neighborhoods/frugles', :results => @results
 	      page << @map.clear_overlays
 		  	for marker in @markers
 		  	  page << @map.add_overlay(marker)
@@ -60,8 +60,8 @@ class CategorizationsController < ApplicationController
         end
       render :update do |page|
 		  	page.replace_html "category_#{params[:category_id]}", "#{link_to "#{@category.title}", categorization_path(@user.id, :category_id => @category.id), :method => :delete, :remote => true, :style => "background-color:yellow;"}"
-	      page.replace_html "subcategories", :partial => 'home/subcategories', :user_categories => @user_categories
-	      page.replace_html "frugles", :partial => 'home/frugles', :results => @results
+	      page.replace_html "subcategories", :partial => 'neighborhoods/subcategories', :user_categories => @user_categories
+	      page.replace_html "frugles", :partial => 'neighborhoods/frugles', :results => @results
 	      page << @map.clear_overlays
 		  	for marker in @markers
 		  	  page << @map.add_overlay(marker)
@@ -98,8 +98,8 @@ class CategorizationsController < ApplicationController
         end
       render :update do |page|
 		  	page.replace_html "category_#{params[:category_id]}", "#{link_to "#{@category.title}", new_categorization_path(current_user.id, :category_id => @category.id), :remote => true, :style => "background-color:white;"}"
-	      page.replace_html "subcategories", :partial => 'home/subcategories', :user_categories => @user_categories
-	      page.replace_html "frugles", :partial => 'home/frugles', :results => @results
+	      page.replace_html "subcategories", :partial => 'neighborhoods/subcategories', :user_categories => @user_categories
+	      page.replace_html "frugles", :partial => 'neighborhoods/frugles', :results => @results
 	      page << @map.clear_overlays
 		  	for marker in @markers
 		  	  page << @map.add_overlay(marker)
@@ -134,8 +134,8 @@ class CategorizationsController < ApplicationController
         end
       render :update do |page|
 		  	page.replace_html "category_#{params[:category_id]}", "#{link_to "#{@category.title}", new_categorization_path(@user.id, :category_id => @category.id), :remote => true, :style => "background-color:white;"}"
-	      page.replace_html "subcategories", :partial => 'home/subcategories', :user_categories => @user_categories
-	      page.replace_html "frugles", :partial => 'home/frugles', :results => @results
+	      page.replace_html "subcategories", :partial => 'neighborhoods/subcategories', :user_categories => @user_categories
+	      page.replace_html "frugles", :partial => 'neighborhoods/frugles', :results => @results
 	      page << @map.clear_overlays
 		  	for marker in @markers
 		  	  page << @map.add_overlay(marker)

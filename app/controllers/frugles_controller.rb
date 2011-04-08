@@ -4,14 +4,14 @@ class FruglesController < ApplicationController
   def index
     if user_signed_in?
       @frugles = Business.find :all, 
-                 :joins => [:category, :subcategory], 
-                 :conditions => ["categories.title LIKE ? OR subcategories.title LIKE ? OR name LIKE ? AND neighborhood_id = ?",
-                 "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", current_user.neighborhood_id]
+                 :joins => [:category, :subcategory, :frugles], 
+                 :conditions => ["LOWER(categories.title) LIKE ? OR LOWER(subcategories.title) LIKE ? OR LOWER(name) LIKE ? OR LOWER(frugles.cost) LIKE ? AND neighborhood_id = ?",
+                 "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", current_user.neighborhood_id]
     else
       @frugles = Business.find :all, 
-                 :joins => [:category, :subcategory], 
-                 :conditions => ["categories.title LIKE ? OR subcategories.title LIKE ? OR name LIKE ? AND neighborhood_id = ?",
-                 "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", params[:neighborhood]]
+                 :joins => [:category, :subcategory, :frugle], 
+                 :conditions => ["LOWER(categories.title) LIKE ? OR LOWER(subcategories.title) LIKE ? OR LOWER(name) LIKE ? AND neighborhood_id = ?",
+                 "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", params[:neighborhood]]
     end       
   end
 

@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Frugle | <%= content_for?(:title) ? yield(:title) : "" %></title>
-	<% if (params[:controller] == "businesses" && params[:action] == "show") || (params[:controller] == "home" && params[:action] == "index")  %>
+	<% if (params[:controller] == "businesses" && params[:action] == "show") || (params[:controller] == "neighborhoods" && params[:action] == "show") || (params[:controller] == "home" && params[:action] == "index")  %>
 			<%= raw(GMap.header) %>
 			<%= raw(@map.to_html) %>
 	<% end %>

@@ -19,7 +19,7 @@ class SubcategorizationsController < ApplicationController
       end
       render :update do |page|
 		  	page.replace_html "subcategory_#{params[:subcategory_id]}", "#{link_to "#{@subcategory.title}", subcategorization_path(current_user.id, :subcategory_id => @subcategory.id), :method => :delete, :remote => true, :style => "background-color:yellow;"}"
-		  	page.replace_html "frugles", :partial => 'home/frugles', :results => @results
+		  	page.replace_html "frugles", :partial => 'neighborhoods/frugles', :results => @results
 		  	page << @map.clear_overlays
 		  	for marker in @markers
 		  	  page << @map.add_overlay(marker)
@@ -45,7 +45,7 @@ class SubcategorizationsController < ApplicationController
       end
       render :update do |page|
 		  	page.replace_html "subcategory_#{params[:subcategory_id]}", "#{link_to "#{@subcategory.title}", subcategorization_path(@user.id, :subcategory_id => @subcategory.id), :method => :delete, :remote => true, :style => "background-color:yellow;"}"
-		  	page.replace_html "frugles", :partial => 'home/frugles', :results => @results
+		  	page.replace_html "frugles", :partial => 'neighborhoods/frugles', :results => @results
 		  	page << @map.clear_overlays
 		  	for marker in @markers
 		  	  page << @map.add_overlay(marker)
@@ -74,7 +74,7 @@ class SubcategorizationsController < ApplicationController
       end
       render :update do |page|
 		  	page.replace_html "subcategory_#{params[:subcategory_id]}", "#{link_to "#{@subcategory.title}", new_subcategorization_path(current_user.id, :subcategory_id => @subcategory.id), :remote => true, :style => "background-color:white;"}"
-		  	page.replace_html "frugles", :partial => 'home/frugles', :results => @results
+		  	page.replace_html "frugles", :partial => 'neighborhoods/frugles', :results => @results
 		  	page << @map.clear_overlays
 		  	for marker in @markers
 		  	  page << @map.add_overlay(marker)
@@ -101,7 +101,7 @@ class SubcategorizationsController < ApplicationController
       end
       render :update do |page|
 		  	page.replace_html "subcategory_#{params[:subcategory_id]}", "#{link_to "#{@subcategory.title}", new_subcategorization_path(@user.id, :subcategory_id => @subcategory.id), :remote => true, :style => "background-color:white;"}"
-		  	page.replace_html "frugles", :partial => 'home/frugles', :results => @results
+		  	page.replace_html "frugles", :partial => 'neighborhoods/frugles', :results => @results
 		  	page << @map.clear_overlays
 		  	for marker in @markers
 		  	  page << @map.add_overlay(marker)

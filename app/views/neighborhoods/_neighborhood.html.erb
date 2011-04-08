@@ -1,13 +1,13 @@
 <% if user_signed_in? %>
 
-<%= form_for(current_user, :url => neighborhood_path(current_user), :html => { :method => :put }, :remote => true) do |f| %>
+<%= form_for(current_user, :url => neighborhood_path(current_user), :html => { :method => :put }) do |f| %>
 	<%= f.select(:neighborhood_id, Neighborhood.all.collect {|p| [ p.name, p.id ] } ) %>
 	<%= f.submit "Update" %>
 <% end %>
 
 <% else %>
 
-<%= form_tag "/neighborhoods/update_signed_out", :remote => true do %>
+<%= form_tag "/neighborhoods/update_signed_out" do %>
   <%= select_tag(:neighborhood_id, options_from_collection_for_select(Neighborhood.all, "id", "name") ) %>
   <%= submit_tag "Choose Neighborhood" %>
 <% end %>

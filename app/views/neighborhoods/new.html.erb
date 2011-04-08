@@ -6,7 +6,7 @@
 <% for neighborhood in @neighborhoods %>
     <li>
       <%= neighborhood.name %> - 
-      <%= link_to "Show", neighborhood %> | 
+      <%= link_to "Show", :controller => "neighborhoods", :action => "show", :id => neighborhood.friendly_id %> | 
       <%= link_to "Edit", edit_neighborhood_path(neighborhood) %> | 
       <%= link_to "Delete", neighborhood, :confirm => 'Are you sure?', :method => :delete %>
     </tr>

@@ -1,34 +1,16 @@
-<% title "Neighborhood" %>
+<% title "Home" %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @neighborhood.name %>
-</p>
+<% if user_signed_in? %>
 
-<p>
-  <%= link_to "Edit", edit_neighborhood_path(@neighborhood) %> |
-  <%= link_to "Destroy", @neighborhood, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", neighborhoods_path %>
-</p>
+	<% if current_user.role == "business" %>
+		<%= render :partial => 'business' %>
+	<% else %>
+		<%= render :partial => 'user' %>
+	<% end %>
+	
+<% else %>
 
+	<%= render :partial => 'logged_out' %>
 
-<h2>New zipcode</h2>
-
-<%= form_for @zipcode do |f| %>
-  <%= f.error_messages %>
-  <%= hidden_field(:neighborhood_id, @neighborhood.id) %>
-  <p>
-    <%= f.label :zip %><br />
-    <%= f.text_field :zip %>
-  </p>
-  <p><%= f.submit %></p>
 <% end %>
 
-<ul>
-<% for zipcode in @zipcodes %>
-    <li>
-      <%= zipcode.zip %> - 
-      <%= link_to "Delete", zipcode, :confirm => 'Are you sure?', :method => :delete %>
-    </tr>
-<% end %>
-</ul>
