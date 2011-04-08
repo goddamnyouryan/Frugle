@@ -5,8 +5,8 @@ class Frugle < ActiveRecord::Base
   
   has_many :saveds
   has_many :users, :through => :saveds
-  
-  def to_param
-		"#{id}-#{cost.gsub(/\W/, '-').downcase}"
-	end
+	
+	def to_param
+  		"#{id}-#{cost.slice(0..40).gsub(/\W/, '-').downcase.gsub(/-{2,}/,'-')}"
+  	end
 end
