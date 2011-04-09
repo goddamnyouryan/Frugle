@@ -5,6 +5,21 @@
   <%= @frugle.cost %>
 </p>
 <p>
+	<% if @frugle.other_offer %>
+		Not valid with any other offer. 
+	<% end %>
+	<% if @frugle.visit %>
+		Limit one per visit. 
+	<% end %>
+	<% if @frugle.altered %>
+		Coupon void if altered. 
+	<% end %>
+	<% if @frugle.customers == "New" %>
+		New customers only. 
+	<% elsif @frugle.customers == "Returning" %>
+		Returning customers only. 
+	<% end %>
+<p>
   <strong>Details:</strong>
   <%= @frugle.details %>
 </p>

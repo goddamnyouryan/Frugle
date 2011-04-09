@@ -11,6 +11,22 @@
 		<%= f.text_field :percentage, :size => 3 %> % Off <%= f.text_field :product, :size => 15 %>
   </p>
   <p>
+    <%= f.label :not_valid_with_any_other_offer %><br />
+    <%= f.check_box :other_offer %>
+  </p>
+  <p>
+    <%= f.label :limit_one_per_visit %><br />
+    <%= f.check_box :visit %>
+  </p>
+  <p>
+    <%= f.label :coupon_void_if_altered %><br />
+    <%= f.check_box :altered %>
+  </p>
+	<p>
+		<%= f.radio_button :customers, "New" %> New Customers Only
+	  <%= f.radio_button :customers, "Returning" %> Returning Customers Only</p>
+	</p>
+  <p>
     <%= f.label :details %><br />
     <%= f.text_area :details %>
   </p>
