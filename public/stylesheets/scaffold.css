@@ -157,3 +157,5 @@ ul#frugles li div p {
 	float: left;
 	margin:0 30px;
 }
+form#new_frugle { float: left; width: 500px;}
+#preview { float: left; width:400px; }

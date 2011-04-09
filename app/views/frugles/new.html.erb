@@ -35,18 +35,29 @@
     <%= f.check_box :mobile %>
   </p>
   <p>
-    <%= f.label :quantity %><br />
+    <%= f.label :quantity %> (Leave blank if Unlimited)<br />
     <%= f.text_field :quantity %>
   </p>
   <p>
     <%= f.label :start_date %><br />
-    <%= f.date_select :start, :order => [:day, :month, :year] %>
+    <%= f.date_select :start, :order => [:month, :day, :year] %>
   </p>
   <p>
     <%= f.label :end_date %><br />
-    <%= f.date_select :end, :default =>3.months.from_now, :order => [:day, :month, :year] %>
+    <%= f.date_select :end, :default =>3.months.from_now, :order => [:month, :day, :year] %>
   </p>
   <p><%= f.submit %></p>
 <% end %>
 
+<div id="preview">
+	<h2>Preview</h2>
+	<p id="discount"><span id="percentage"></span>% Off <span id="product"></span></p>
+	<p><span id="other_offer"></span> <span id="visit"></span> <span id="altered"></span> <span id="customers"></span></p>
+	<p id="details"></p>
+	<p id="mobile"></p>
+	<p id="quantity"></p>
+	<p id="start"><span id="start"></p>
+	<p id="end"></p>
+</div>
 
+<div class="clear"></div>
