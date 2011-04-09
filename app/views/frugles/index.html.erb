@@ -7,13 +7,8 @@
   </p>
 <% end %>
 
-<ul>
+<ul id="frugles">
   <% for business in @frugles %>
-	<% for frugle in business.frugles %>
-	<li>
-		<strong><%= link_to frugle.business.name, business_path(frugle.business) %></strong><br />
-		<%= link_to "#{frugle.cost}", business_path(frugle.business) %>
-	</li>
-    <% end %>
+		<%= render :partial => 'neighborhoods/frugle', :collection => business.frugles, :as => :frugle %>
   <% end %>
 </ul>

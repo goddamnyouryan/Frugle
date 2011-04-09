@@ -1,0 +1,21 @@
+<li>
+		<%= link_to image_tag("filler-medium.jpg"), business_frugle_path(frugle.business, frugle) %>
+		<div>
+			<h3><%= link_to "#{frugle.cost}", business_frugle_path(frugle.business, frugle) %></h3>
+			<p><%= link_to frugle.business.name, business_path(frugle.business) %></p>
+			<p><%= frugle.business.address %></p>
+			<p>Expires: <%= frugle.end.to_date %></p>
+			<p id="save_<%= frugle.id %>">
+				<% if user_signed_in? %>
+					<% @save = Saved.find_by_user_id_and_frugle_id(current_user.id, frugle.id) %>
+					<% if @save == nil %>
+						<%= link_to "Save", new_saveds_path(current_user.id, :frugle_id => frugle.id), :remote => true %>
+					<% else %>
+						<%= link_to "Unsave", saveds_path(current_user.id, :frugle_id => frugle.id), :method => :delete, :remote => true %>
+					<% end %>
+				<% end %>
+			</p>
+		</div>
+</li>
+
+<div class="clear"></div>

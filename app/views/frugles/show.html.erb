@@ -37,7 +37,7 @@
   <%= @frugle.status %>
 </p>
 
-<p id="save">
+<p id="save_<%= @frugle.id %>">
 	<% if @save == nil %>
 		<%= link_to "Save this Frugle", new_saveds_path(current_user.id, :frugle_id => @frugle.id), :remote => true %>
 	<% else %>

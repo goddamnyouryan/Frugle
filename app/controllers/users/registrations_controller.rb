@@ -1,5 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  layout "splash"
+  layout "splash", :only => :new
 
   def create
     @user = User.new(params[:user])
@@ -10,6 +10,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       render :action => "new"
     end
+  end
+  
+  def edit
+    render :layout => "application"
   end
 
 end

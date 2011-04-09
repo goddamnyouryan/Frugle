@@ -6,25 +6,15 @@
 <% end %>
 
 <h2>Frugles from Businesses you are Following</h2>
-<ul id="saves">
+<ul id="frugles">
 	<% for follow in current_user.follows %>
-	<% for frugle in follow.business.frugles %>
-		<li>
-			<strong><%= link_to frugle.business.name, business_path(frugle.business) %></strong><br />
-			<%= link_to "#{frugle.cost}", business_path(frugle.business) %>
-		</li>
-	<% end %>
+		<%= render :partial => 'frugle', :collection => follow.business.frugles, :as => :frugle %>
 	<% end %>
 </ul>
 
 <h2>Your Saved Frugles</h2>
-<ul id="follows">
-	<% current_user.frugles.each do |frugle| %>
-	<li>
-		<strong><%= link_to frugle.business.name, business_path(frugle.business) %></strong><br />
-		<%= link_to "#{frugle.cost}", business_path(frugle.business) %>
-	</li>
-	<% end %>
+<ul id="frugles">
+	<%= render :partial => 'frugle', :collection => current_user.frugles, :as => :frugle %>
 </ul>
 
 <h2>Browse By Category</h2>
@@ -47,7 +37,7 @@
 
 <h2>Frugles</h2>
 <ul id="frugles">
-	<%= render :partial => 'frugles' %>
+	<%= render :partial => 'frugle', :collection => @results, :as => :frugle %>
 </ul>
 
 <h2>Map</h2>

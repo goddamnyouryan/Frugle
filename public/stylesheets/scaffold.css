@@ -129,5 +129,31 @@ ul#frugles {
 
 ul#frugles li {
 	list-style-type:none;
-	margin-bottom:10px;
+	margin-top:20px;
+}
+
+ul#frugles li img {
+	float: left;
+	border: 1px solid black;
+}
+
+ul#frugles li div {
+	float: left;
+	margin-left: 10px;
+}
+
+ul#frugles li div h3 {
+	margin: 0;
+}
+
+ul#frugles li div h3 a { text-decoration:none; }
+
+ul#frugles li div p {
+	margin: 0;
+}
+
+.frugle_business_point {
+	width: 250px;
+	float: left;
+	margin:0 30px;
 }

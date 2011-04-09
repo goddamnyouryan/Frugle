@@ -24,12 +24,8 @@
 <% end %>
 
 <h2>Frugles(<%= @frugles.count %>)</h2>
-<ul>
-	<% for frugle in @frugles%>
-	  <li>
-		<%= link_to "#{frugle.cost}", business_frugle_path(frugle.business, frugle) %>
-	  </li>
-	<% end %>
+<ul id="frugles">
+	<%= render :partial => 'neighborhoods/frugle', :collection => @frugles, :as => :frugle %>
 </ul>
 
 <%= raw(@map.div(:width => 600, :height => 400)) %>

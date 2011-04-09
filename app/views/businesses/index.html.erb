@@ -1,27 +1,43 @@
-<% title "Businesses" %>
+<% title "Frugle for Local Business" %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Address</th>
-    <th>Zip</th>
-    <th>Phone</th>
-    <th>Website</th>
-    <th>Info</th>
-  </tr>
-  <% for business in @businesses %>
-    <tr>
-      <td><%= business.name %></td>
-      <td><%= business.address %></td>
-      <td><%= business.zip %></td>
-      <td><%= business.phone %></td>
-      <td><%= business.website %></td>
-      <td><%= business.info %></td>
-      <td><%= link_to "Show", business %></td>
-      <td><%= link_to "Edit", edit_business_path(business) %></td>
-      <td><%= link_to "Destroy", business, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="frugle_business_point">
+	<%= image_tag "filler-large.jpg" %>
+	<h3>Create Local Frugles</h3>
+	<p>If you have a coupon, promotion, or deal coming up, let everyone in you neighborhood know about it by creating your own Frugles.</p>
+</div>
 
-<p><%= link_to "New Business", new_business_path %></p>
+<div class="frugle_business_point">
+	<%= image_tag "filler-large.jpg" %>
+	<h3>Drive Traffic to your Store</h3>
+	<p>Every month, thousands of local customers search for deals on the products/services you offer in their neighborhood.  Frugle puts you and them in touch.</p>
+</div>
+
+<div class="frugle_business_point">
+	<%= image_tag "filler-large.jpg" %>
+	<h3>View Trends</h3>
+	<p>Unlike traditional mailers and advertising, you can view detailed statistics about your Frugles, and add/edit as you deem necessary.</p>
+</div>
+
+<div class="clear"></div>
+
+<h2>How to Sign Up</h2>
+
+<div class="frugle_business_point">
+	<%= image_tag "filler-large.jpg" %>
+	<h3>Find Your Business</h3>
+	<p>Search your phone number to find your business.  Chances are we've already listed it.  If not, feel free to  <%= link_to "add it yourself", new_business_path%>, or <a href="mailto:contact@frugle.me">contact us</a> and we'll change that.</p>
+</div>
+
+<div class="frugle_business_point">
+	<%= image_tag "filler-large.jpg" %>
+	<h3>Verify</h3>
+	<p>We have to confirm you are the business owner.  We'll autocall you with a special code to verify your listing.</p>
+</div>
+
+<div class="frugle_business_point">
+	<%= image_tag "filler-large.jpg" %>
+	<h3>Login and manage your Frugles</h3>
+	<p>Once you verify, we'll send you an email with login information so you can manage your existing Frugles, create your own.</p>
+</div>
+	
+<div class="clear"></div>

@@ -6,6 +6,8 @@ OmniauthDeviseExample::Application.routes.draw do
   get "follows/destroy"
   get "category/create"
   get "category/destroy"
+  
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations", :sessions => 'users/sessions' }
 
   resources :categories do
     resources :subcategories
@@ -18,12 +20,12 @@ OmniauthDeviseExample::Application.routes.draw do
   resources :frugles
   resources :categorizations
   resources :subcategorizations
-  match '/:id' => "neighborhoods#show"
-  resources :neighborhoods
   resources :zipcodes
   resources :javascripts
   resources :follows
   resource :saveds
+  match '/:id' => "neighborhoods#show"
+  resources :neighborhoods
 
   
   match 'verify', :to => "frugles#verify"
@@ -31,7 +33,6 @@ OmniauthDeviseExample::Application.routes.draw do
   get "home/index"
 
   #devise_for :users
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations", :sessions => 'users/sessions' }
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
