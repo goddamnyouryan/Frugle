@@ -14,6 +14,8 @@ OmniauthDeviseExample::Application.routes.draw do
   end
 
   match 'subcategories_toggle', :to => 'subcategories#toggle'
+  match 'follows_unfollow', :to => 'follows#unfollow'
+  match 'categorizations_unfollow', :to => 'categorizations#unfollow'
   match 'verify', :to => "frugles#verify"
 
   resources :subcategories

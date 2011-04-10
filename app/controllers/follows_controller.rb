@@ -15,5 +15,13 @@ class FollowsController < ApplicationController
 			page.replace_html "follow", "#{link_to "Follow #{@business.name}", new_follow_path(current_user.id, :business_id => @business.id), :remote => true }"
 	  end
   end
+  
+  def unfollow
+    @follow = Follow.find_by_user_id_and_business_id(current_user.id, params[:business_id])
+    @follow.destroy
+    render :update do |page|
+      page.replace_html "businesses_following", :partial => 'users/registrations/businesses_following'
+    end
+  end
 
 end

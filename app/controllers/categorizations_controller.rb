@@ -144,4 +144,12 @@ class CategorizationsController < ApplicationController
 	  end 
   end
   
+  def unfollow
+    @categorization = Categorization.find_by_user_id_and_category_id(current_user.id, params[:category_id])
+    @categorization.destroy
+    render :update do |page|
+      page.replace_html "categories_following", :partial => 'users/registrations/categories_following'
+    end
+  end
+  
 end

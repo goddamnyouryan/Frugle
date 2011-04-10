@@ -61,21 +61,13 @@
 
 <h2>3. Following</h2>
 <h3>Local Businesses</h3>
-<ul>
-	<% for follow in current_user.follows %>
-		<li>
-			<%= follow.business.name %>
-		</li>
-	<% end %>
+<ul id="businesses_following">
+	<%= render :partial => 'businesses_following' %>
 </ul>
 
 <h3>Categories</h3>
-<ul>
-	<% for category in current_user.categories %>
-		<li>
-			<%= category.title %>
-		</li>
-	<% end %>
+<ul id="categories_following">
+	<%= render :partial => 'categories_following' %>
 </ul>
 
   <p><%= f.submit "Update" %></p>
