@@ -1,5 +1,5 @@
 <% current_user.follows.each do |follow| %>
 	<li>
-		<%= follow.business.name %> <%= link_to "(x)", follows_unfollow_path(:business_id => follow.business.id), :remote => true %>
+		<%= link_to follow.business.name, business_path(follow.business) %> <%= link_to "(x)", follows_unfollow_path(:business_id => follow.business.id), :remote => true %>
 	</li>
 <% end %>
