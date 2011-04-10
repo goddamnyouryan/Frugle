@@ -38,6 +38,7 @@ GEM
       activemodel (= 3.0.0)
       activesupport (= 3.0.0)
     activesupport (3.0.0)
+    acts-as-taggable-on (2.0.6)
     addressable (2.2.2)
     arel (1.0.1)
       activesupport (~> 3.0.0)
@@ -142,6 +143,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on
   devise!
   friendly_id (~> 3.2.1)
   geocoder

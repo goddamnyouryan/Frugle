@@ -13,6 +13,7 @@ gem 'omniauth'
 gem 'nifty-generators'
 gem 'geocoder'
 gem "friendly_id", "~> 3.2.1"
+gem 'acts-as-taggable-on'
 
 # Use unicorn as the web server
 # gem 'unicorn'

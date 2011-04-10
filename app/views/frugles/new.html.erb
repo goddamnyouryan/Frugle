@@ -46,6 +46,10 @@
     <%= f.label :end_date %><br />
     <%= f.text_field :end %>
   </p>
+  <p>
+    <%= f.label :tags %> (seperate with a comma)<br />
+    <%= f.text_field :tag_list %>
+  </p>
   <p><%= f.submit %></p>
 <% end %>
 
@@ -58,6 +62,7 @@
 	<p id="quantity"></p>
 	<p>Start Date: <span id="start"></span></p>
 	<p>End Date: <span id="end"></span></p>
+	<p>Tags: <span id="tags"</span></p>
 </div>
 
 <div class="clear"></div>

@@ -101,6 +101,11 @@ document.observe('dom:loaded', function() {
 		$("customers").innerHTML = "Returning Customers Only"
 	});
 	
+	$("frugle_tag_list").observe('change', function() {
+		value = $("frugle_tag_list").getValue();
+		$("tags").innerHTML = value
+	});
+	
 	$("cost_div").observe('change', function(event) {
 	    if (event.target.id == "frugle_percentage") {
 				value = $("frugle_percentage").getValue(); 
