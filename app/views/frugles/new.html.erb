@@ -40,11 +40,11 @@
   </p>
   <p>
     <%= f.label :start_date %><br />
-    <%= f.date_select :start, :order => [:month, :day, :year] %>
+    <%= f.text_field :start %>
   </p>
   <p>
     <%= f.label :end_date %><br />
-    <%= f.date_select :end, :default =>3.months.from_now, :order => [:month, :day, :year] %>
+    <%= f.text_field :end %>
   </p>
   <p><%= f.submit %></p>
 <% end %>
@@ -56,8 +56,8 @@
 	<p id="details"></p>
 	<p id="mobile"></p>
 	<p id="quantity"></p>
-	<p id="start"><span id="start"></p>
-	<p id="end"></p>
+	<p>Start Date: <span id="start"></span></p>
+	<p>End Date: <span id="end"></span></p>
 </div>
 
 <div class="clear"></div>

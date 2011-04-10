@@ -22,11 +22,27 @@ function changeCost(){
 	}
 };
 
+jQuery(function() {
+  jQuery("#frugle_start").datepicker();
+	jQuery("#frugle_end").datepicker();
+	
+	jQuery('#frugle_start').change(function() {
+		value = jQuery('#frugle_start').val();
+	  jQuery('#start').text(value)
+	});
+	
+	jQuery('#frugle_end').change(function() {
+		value = jQuery('#frugle_end').val();
+	  jQuery('#end').text(value)
+	});
+	
+});
+
 document.observe('dom:loaded', function() {
 	$("frugle_discount").observe('change', changeCost);
 	
 	$("frugle_details").observe('change', function() {
-		value = $("frugle_details").getValue();
+		var value = $("frugle_details").getValue();
 		$("details").innerHTML = value
 	});
 	
