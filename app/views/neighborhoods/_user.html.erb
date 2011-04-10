@@ -34,6 +34,7 @@
 <ul id="subcategories">
 	<%= render 'subcategories', :user_categories => @user_categories %>
 </ul>
+<%= link_to "Hide", subcategories_toggle_path, :remote => true %>
 
 <h2>Frugles</h2>
 <ul id="frugles">

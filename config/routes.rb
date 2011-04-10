@@ -13,6 +13,9 @@ OmniauthDeviseExample::Application.routes.draw do
     resources :subcategories
   end
 
+  match 'subcategories_toggle', :to => 'subcategories#toggle'
+  match 'verify', :to => "frugles#verify"
+
   resources :subcategories
   resources :businesses do
     resources :frugles
@@ -28,7 +31,6 @@ OmniauthDeviseExample::Application.routes.draw do
   resources :neighborhoods
 
   
-  match 'verify', :to => "frugles#verify"
   
   get "home/index"
 

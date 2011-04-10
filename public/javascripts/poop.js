@@ -41,7 +41,7 @@ jQuery(function() {
 document.observe('dom:loaded', function() {
 	$("frugle_discount").observe('change', changeCost);
 	
-	$("frugle_details").observe('change', function() {
+	$("frugle_details").observe('keyup', function() {
 		var value = $("frugle_details").getValue();
 		$("details").innerHTML = value
 	});
@@ -101,19 +101,19 @@ document.observe('dom:loaded', function() {
 		$("customers").innerHTML = "Returning Customers Only"
 	});
 	
-	$("frugle_tag_list").observe('change', function() {
+	$("frugle_tag_list").observe('keyup', function() {
 		value = $("frugle_tag_list").getValue();
 		$("tags").innerHTML = value
 	});
 	
-	$("cost_div").observe('change', function(event) {
+	$("cost_div").observe('keyup', function(event) {
 	    if (event.target.id == "frugle_percentage") {
 				value = $("frugle_percentage").getValue(); 
 				$("percentage").innerHTML = value;
 			}
 	});
 	
-	$("cost_div").observe('change', function(event) {
+	$("cost_div").observe('keyup', function(event) {
 	    if (event.target.id == "frugle_product") {
 				value = $("frugle_product").getValue(); 
 				$("product").innerHTML = value;

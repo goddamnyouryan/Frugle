@@ -22,4 +22,11 @@ class SubcategoriesController < ApplicationController
     @subcategory.destroy
     redirect_to root_url, :notice => "Successfully destroyed subcategory."
   end
+  
+  def toggle
+    render :update do |page|
+      page.visual_effect :toggle_blind, 'subcategories'
+    end
+  end
+  
 end
