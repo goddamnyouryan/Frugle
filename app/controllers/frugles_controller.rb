@@ -9,7 +9,7 @@ class FruglesController < ApplicationController
                  "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", current_user.neighborhood_id]
     else
       @frugles = Business.find :all, 
-                 :joins => [:category, :subcategory, :frugle], 
+                 :joins => [:category, :subcategory, :frugles], 
                  :conditions => ["LOWER(categories.title) LIKE ? OR LOWER(subcategories.title) LIKE ? OR LOWER(name) LIKE ? AND neighborhood_id = ?",
                  "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", params[:neighborhood]]
     end       
