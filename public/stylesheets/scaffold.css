@@ -123,32 +123,32 @@ ul#subcategories li {
 	margin-left:10px;
 }
 
-ul#frugles {
+ul.frugles {
 	
 }
 
-ul#frugles li {
+ul.frugles li {
 	list-style-type:none;
 	margin-top:20px;
 }
 
-ul#frugles li img {
+ul.frugles li img {
 	float: left;
 	border: 1px solid black;
 }
 
-ul#frugles li div {
+ul.frugles li div {
 	float: left;
 	margin-left: 10px;
 }
 
-ul#frugles li div h3 {
+ul.frugles li div h3 {
 	margin: 0;
 }
 
-ul#frugles li div h3 a { text-decoration:none; }
+ul.frugles li div h3 a { text-decoration:none; }
 
-ul#frugles li div p {
+ul.frugles li div p {
 	margin: 0;
 }
 

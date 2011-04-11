@@ -7,7 +7,7 @@
   </p>
 <% end %>
 
-<ul id="frugles">
+<ul class="frugles">
   <% for business in @frugles %>
 		<%= render :partial => 'neighborhoods/frugle', :collection => business.frugles, :as => :frugle %>
   <% end %>

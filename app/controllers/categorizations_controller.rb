@@ -6,10 +6,10 @@ class CategorizationsController < ApplicationController
       @categorization = Categorization.create(:user_id => current_user.id, :category_id => params[:category_id])
       @businesses = Business.find :all, :include => :frugles, :conditions => ["category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", @category.id, current_user.neighborhood_id]
       unless @businesses.empty?
-      @subcategories = @businesses.map(&:subcategory).uniq
-      @subcategories.each do |s|
-          @subcategorization = Subcategorization.create(:user_id => current_user.id, :subcategory_id => s.id)
-      end
+        @subcategories = @businesses.map(&:subcategory).uniq
+        @subcategories.each do |s|
+            @subcategorization = Subcategorization.create(:user_id => current_user.id, :subcategory_id => s.id)
+        end
       end
       @user_categories = current_user.categories
       @user_subcategories = current_user.subcategories

@@ -29,7 +29,7 @@ class NeighborhoodsController < ApplicationController
         end
         @map = GMap.new("map_div")
         @map.control_init(:large_map => true,:map_type => true)
-        @map.center_zoom_init([34.0412085, -118.442596],13)
+        @map.center_zoom_init([@neighborhood.latitude, @neighborhood.longitude],13)
         unless @results == nil
           for frugle in @results
             @map.overlay_init(GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "#{frugle.business.name} <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}"))
@@ -71,8 +71,11 @@ class NeighborhoodsController < ApplicationController
     @neighborhoods = Neighborhood.all
   end
 
-  def create
+  def butthole
     @neighborhood = Neighborhood.new(params[:neighborhood])
+    @geocode = Geocoder.coordinates(params[:neighborhood][:address])
+    @neighborhood.latitude = @geocode[0]
+    @neighborhood.longitude = @geocode[1]
     if @neighborhood.save
       redirect_to new_neighborhood_path, :notice => "Successfully created neighborhood."
     else
@@ -80,12 +83,28 @@ class NeighborhoodsController < ApplicationController
     end
   end
 
-  def edit
+  def change
     @all = Neighborhood.all
     @neighborhoods = @all.map(&:name)
     render :update do |page|
 	    page.replace_html "neighborhood", :partial => "neighborhoods/neighborhood"
 	  end
+  end
+  
+  def edit
+    @neighborhood = Neighborhood.find(params[:id])
+  end
+  
+  def poophole
+    @neighborhood = Neighborhood.find_by_name(params[:neighborhood][:name])
+    @geocode = Geocoder.coordinates(params[:neighborhood][:address])
+    @neighborhood.latitude = @geocode[0]
+    @neighborhood.longitude = @geocode[1]
+    if @neighborhood.update_attributes(params[:category])
+      redirect_to new_neighborhood_path, :notice => "Successfully updated neighborhood."
+    else
+      render :action => 'edit'
+    end
   end
 
   def update

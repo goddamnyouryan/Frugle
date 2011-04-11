@@ -17,6 +17,9 @@ OmniauthDeviseExample::Application.routes.draw do
   match 'follows_unfollow', :to => 'follows#unfollow'
   match 'categorizations_unfollow', :to => 'categorizations#unfollow'
   match 'verify', :to => "frugles#verify"
+  match 'butthole', :to => "neighborhoods#butthole"
+  match 'poophole', :to => "neighborhoods#poophole"
+  match 'change_neighborhood', :to => "neighborhoods#change"
 
   resources :subcategories
   resources :businesses do

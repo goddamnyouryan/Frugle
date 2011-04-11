@@ -6,14 +6,14 @@
 <% end %>
 
 <h2>Frugles from Businesses you are Following</h2>
-<ul id="frugles">
+<ul class="frugles">
 	<% for follow in current_user.follows %>
 		<%= render :partial => 'frugle', :collection => follow.business.frugles, :as => :frugle %>
 	<% end %>
 </ul>
 
 <h2>Your Saved Frugles</h2>
-<ul id="frugles">
+<ul class="frugles">
 	<%= render :partial => 'frugle', :collection => current_user.frugles, :as => :frugle %>
 </ul>
 
@@ -37,7 +37,7 @@
 <%= link_to "Hide", subcategories_toggle_path, :remote => true %>
 
 <h2>Frugles</h2>
-<ul id="frugles">
+<ul id="frugles" class="frugles">
 	<%= render :partial => 'frugle', :collection => @results, :as => :frugle %>
 </ul>
 

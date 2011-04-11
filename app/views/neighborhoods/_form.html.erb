@@ -1,8 +1,12 @@
-<%= form_for @neighborhood do |f| %>
+<%= form_for @neighborhood, :url => butthole_path do |f| %>
   <%= f.error_messages %>
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
+	<p>
+		Enter the Full Address where you want the map for this neighborhood to be centered:<br />
+		<%= f.text_field :address %>
+	</p>
   <p><%= f.submit %></p>
 <% end %>
