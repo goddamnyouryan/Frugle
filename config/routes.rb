@@ -25,7 +25,11 @@ OmniauthDeviseExample::Application.routes.draw do
   resources :businesses do
     resources :frugles
   end
-  resources :frugles
+  resources :frugles do
+    member do
+      get 'print'
+    end
+  end
   resources :categorizations
   resources :subcategorizations
   resources :zipcodes

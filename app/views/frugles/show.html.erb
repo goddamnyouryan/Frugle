@@ -1,5 +1,7 @@
 <% title "#{@frugle.business.name}" %>
 
+<%= link_to "Print This Frugle", print_frugle_path(@frugle) %>
+
 <p>
   <%= @frugle.cost %>
 </p>
@@ -51,6 +53,7 @@
   <%= @frugle.status %>
 </p>
 
+<% if user_signed_in? %>
 <p id="save_<%= @frugle.id %>">
 	<% if @save == nil %>
 		<%= link_to "Save this Frugle", new_saveds_path(current_user.id, :frugle_id => @frugle.id), :remote => true %>
@@ -58,15 +61,18 @@
 		<%= link_to "Unsave this Frugle", saveds_path(current_user.id, :frugle_id => @frugle.id), :method => :delete, :remote => true %>
 	<% end %>
 </p>
+<% end %>
 
 <p><%= link_to "View All Frugles from #{@frugle.business.name}", business_path(@frugle.business) %></p>
 
 <iframe src="http://www.facebook.com/plugins/like.php?href=<%= request.url %>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font&amp;colorscheme=light&amp;height=30" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:30px;" allowTransparency="true"></iframe>
 
+<% if user_signed_in? %>
 <% if current_user.id == @frugle.business.user_id %>
 <p>
   <%= link_to "Edit", edit_frugle_path(@frugle) %> |
   <%= link_to "Destroy", @frugle, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", frugles_path %>
 </p>
+<% end %>
 <% end %>

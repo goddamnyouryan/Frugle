@@ -1,5 +1,6 @@
 class FruglesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :verified]
+  before_filter :authenticate_user!, :except => [:index, :verified, :show]
+  after_filter :increase_views, :only => :print
   
   def index
     if user_signed_in?
@@ -17,7 +18,14 @@ class FruglesController < ApplicationController
 
   def show
     @frugle = Frugle.find(params[:id])
-    @save = Saved.find_by_user_id_and_frugle_id(current_user.id, @frugle.id)
+    if user_signed_in?
+      @save = Saved.find_by_user_id_and_frugle_id(current_user.id, @frugle.id)
+    end
+  end
+  
+  def print
+    @frugle = Frugle.find(params[:id])
+    render :layout => "print"
   end
 
   def new
@@ -55,7 +63,6 @@ class FruglesController < ApplicationController
 
   def edit
     @frugle = Frugle.find(params[:id])
-    
     @frugle_discount_options = {'% Off' => 'percent', '$ Off' => 'dollar', '$ For' => 'flat', 'Free with Purchase Of' => 'bonus', 'Buy One Get One Free' => 'bogo' }
   end
   
@@ -85,4 +92,13 @@ class FruglesController < ApplicationController
     @frugle.destroy
     redirect_to root_path, :notice => "Successfully destroyed frugle."
   end
+  
+  private
+  
+  def increase_views
+    @frugle = Frugle.find(params[:id])
+    @frugle.views = @frugle.views + 1
+    @frugle.save
+  end
+  
 end

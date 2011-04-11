@@ -1,0 +1,36 @@
+<% title "Print Frugle" %>
+<p>A coupon from www.frugle.me</p>
+
+<h1><%= @frugle.verification %></h1>
+
+<h2><%= @frugle.cost %></h2>
+
+<h3><%= @frugle.business.name %></h3>
+
+<p>
+	<% if @frugle.other_offer %>
+		Not valid with any other offer. 
+	<% end %>
+	<% if @frugle.visit %>
+		Limit one per visit. 
+	<% end %>
+	<% if @frugle.altered %>
+		Coupon void if altered. 
+	<% end %>
+	<% if @frugle.customers == "New" %>
+		New customers only. 
+	<% elsif @frugle.customers == "Returning" %>
+		Returning customers only. 
+	<% end %>
+<p>
+	
+<% if @frugle.mobile %>
+	<p>You may present this frugle on your phone to redeem it.</p>
+<% end %>
+	
+<p>
+	<strong>Expires:</strong>
+	<%= @frugle.end.to_date %>
+</p>
+
+<p>000<%= @frugle.views%></p>
