@@ -32,7 +32,9 @@ class NeighborhoodsController < ApplicationController
         @map.center_zoom_init([@neighborhood.latitude, @neighborhood.longitude],13)
         unless @results == nil
           for frugle in @results
-            @map.overlay_init(GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "#{frugle.business.name} <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}"))
+            @overlay = Frugle.find :all, :conditions => ["business_id = ?", frugle.business.id], :limit => 5
+            @map.overlay_init(GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", 
+                              :info_window => "#{frugle.business.name} <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}"))
           end
         end
       end

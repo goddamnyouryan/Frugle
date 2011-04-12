@@ -17,8 +17,8 @@ class Business < ActiveRecord::Base
   after_validation :geocode
   
 	def to_param
-  		"#{id}-#{name.slice(0..40).gsub(/\W/, '-').downcase.gsub(/-{2,}/,'-')}"
-  	end
+    "#{id}-#{name.slice(0..40).gsub(/\W/, '-').downcase.gsub(/-{2,}/,'-')}"
+  end
 
   def full_address
     [address, zip].compact.join(', ')

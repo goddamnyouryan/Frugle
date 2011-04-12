@@ -9,6 +9,10 @@ OmniauthDeviseExample::Application.routes.draw do
   
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations", :sessions => 'users/sessions' }
 
+  resources :businesses do
+    resources :frugles
+  end
+
   resources :categories do
     resources :subcategories
   end
@@ -22,9 +26,6 @@ OmniauthDeviseExample::Application.routes.draw do
   match 'change_neighborhood', :to => "neighborhoods#change"
 
   resources :subcategories
-  resources :businesses do
-    resources :frugles
-  end
   resources :frugles do
     member do
       get 'print'
