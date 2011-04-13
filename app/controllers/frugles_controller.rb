@@ -8,13 +8,13 @@ class FruglesController < ApplicationController
                  :joins => [:category, :subcategory, :frugles], 
                  :conditions => ["LOWER(categories.title) LIKE ? OR LOWER(subcategories.title) LIKE ? OR LOWER(name) LIKE ? OR LOWER(frugles.cost) LIKE ? AND neighborhood_id = ?",
                  "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", current_user.neighborhood_id]
-      @frugles = @frugles | Frugle.find_tagged_with(params[:search])
+      @frugles = @frugles | Frugle.tagged_with(params[:search])
     else
       @frugles = Business.find :all, 
                  :joins => [:category, :subcategory, :frugles], 
                  :conditions => ["LOWER(categories.title) LIKE ? OR LOWER(subcategories.title) LIKE ? OR LOWER(name) LIKE ? AND neighborhood_id = ?",
                  "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", params[:neighborhood]] 
-      @frugles = @frugles | Frugle.find_tagged_with(params[:search])
+      @frugles = @frugles | Frugle.tagged_with(params[:search])
     end       
   end
 
