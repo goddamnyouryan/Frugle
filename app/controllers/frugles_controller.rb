@@ -4,7 +4,7 @@ class FruglesController < ApplicationController
   
   def index
     @frugles = Frugle.find :all, 
-               :joins => [:category, :subcategory, :business], 
+               :include => [:category, :subcategory, :business], 
                :conditions => ["LOWER(categories.title) LIKE ? OR LOWER(subcategories.title) LIKE ? OR LOWER(businesses.name) LIKE ? OR LOWER(cost) LIKE ?",
                "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%"]
     @frugles = @frugles | Frugle.tagged_with(params[:search])
