@@ -3,19 +3,11 @@ class FruglesController < ApplicationController
   after_filter :increase_views, :only => :print
   
   def index
-    if user_signed_in?
-      @frugles = Business.find :all, 
-                 :joins => [:category, :subcategory, :frugles], 
-                 :conditions => ["LOWER(categories.title) LIKE ? OR LOWER(subcategories.title) LIKE ? OR LOWER(name) LIKE ? OR LOWER(frugles.cost) LIKE ? AND neighborhood_id = ?",
-                 "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", current_user.neighborhood_id]
-      @frugles = @frugles | Frugle.tagged_with(params[:search])
-    else
-      @frugles = Business.find :all, 
-                 :joins => [:category, :subcategory, :frugles], 
-                 :conditions => ["LOWER(categories.title) LIKE ? OR LOWER(subcategories.title) LIKE ? OR LOWER(name) LIKE ? AND neighborhood_id = ?",
-                 "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", params[:neighborhood]] 
-      @frugles = @frugles | Frugle.tagged_with(params[:search])
-    end       
+    @frugles = Frugle.find :all, 
+               :joins => [:category, :subcategory, :business], 
+               :conditions => ["LOWER(categories.title) LIKE ? OR LOWER(subcategories.title) LIKE ? OR LOWER(businesses.name) LIKE ? OR LOWER(cost) LIKE ?",
+               "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%"]
+    @frugles = @frugles | Frugle.tagged_with(params[:search])
   end
 
   def show
@@ -44,6 +36,8 @@ class FruglesController < ApplicationController
     @frugle.verification = (0...6).map{ charset.to_a[rand(charset.size)] }.join
     @frugle.status = "active"
     @frugle.views = 0
+    @frugle.category_id = @frugle.business.category_id
+    @frugle.subcategory_id = @frugle.business.subcategory_id
     @frugle.discount = params[:frugle][:discount]
     if @frugle.discount == "percent"
       @frugle.cost = [params[:frugle][:percentage], params[:frugle][:product]].join(" % Off ")
@@ -56,6 +50,7 @@ class FruglesController < ApplicationController
     elsif @frugle.discount == "bogo"
       @frugle.cost = "Buy One #{params[:frugle][:percentage]} Get One #{params[:frugle][:product]} Free"
     end
+    @frugle.tag_list = params[:frugle][:tag_list]
     if @frugle.save
       redirect_to root_path, :notice => "Successfully created frugle."
     else

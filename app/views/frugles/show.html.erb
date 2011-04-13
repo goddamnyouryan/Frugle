@@ -53,6 +53,15 @@
   <%= @frugle.status %>
 </p>
 
+<% unless @frugle.tag_list.empty? %>
+<p>
+  <strong>Tags:</strong>
+		<% @frugle.tag_counts.each do |tag| %>
+			<%= link_to tag.name, { :controller => 'frugles', :action => 'index', :search => tag.name } %>
+		<% end %>
+</p>
+<% end %>
+
 <% if user_signed_in? %>
 <p id="save_<%= @frugle.id %>">
 	<% if @save == nil %>

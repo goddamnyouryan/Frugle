@@ -6,6 +6,9 @@ class Frugle < ActiveRecord::Base
   has_many :saveds
   has_many :users, :through => :saveds
   
+  belongs_to :category
+  belongs_to :subcategory
+  
   acts_as_taggable
 	
 	def to_param

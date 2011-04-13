@@ -8,7 +8,5 @@
 <% end %>
 
 <ul class="frugles">
-  <% for business in @frugles %>
-		<%= render :partial => 'neighborhoods/frugle', :collection => business.frugles, :as => :frugle %>
-  <% end %>
+		<%= render :partial => 'neighborhoods/frugle', :collection => @frugles, :as => :frugle %>
 </ul>
