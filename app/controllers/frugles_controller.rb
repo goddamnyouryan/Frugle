@@ -46,7 +46,7 @@ class FruglesController < ApplicationController
     elsif @frugle.discount == "flat"
       @frugle.cost = "$#{params[:frugle][:percentage]} For #{params[:frugle][:product]}"
     elsif @frugle.discount == "bonus"
-      @frugle.cost = "#{params[:frugle][:percentage]} With Purchase Of #{params[:frugle][:product]}"
+      @frugle.cost = "Free #{params[:frugle][:percentage]} With Purchase Of #{params[:frugle][:product]}"
     elsif @frugle.discount == "bogo"
       @frugle.cost = "Buy One #{params[:frugle][:percentage]} Get One #{params[:frugle][:product]} Free"
     end
