@@ -20,6 +20,7 @@ class NeighborhoodsController < ApplicationController
         redirect_to home_path
       else
         @categories = Category.find :all, :order => "title ASC"
+        @featured = Frugle.find :all, :order => "views ASC", :limit => 3, :include => :business, :conditions => [ "businesses.neighborhood_id = ?", current_user.neighborhood_id]
         @user_categories = current_user.categories
         @user_subcategories = current_user.subcategories
         @results = Array.new
@@ -50,6 +51,7 @@ class NeighborhoodsController < ApplicationController
         @user.save
       end
       @categories = Category.find :all, :order => "title ASC"
+      @featured = Frugle.find :all, :order => "views ASC", :limit => 3, :include => :business, :conditions => [ "businesses.neighborhood_id = ?", session[:neighborhood]]
       @user_categories = @user.categories
       @user_subcategories = @user.subcategories
       @results = Array.new

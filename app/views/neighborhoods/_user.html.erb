@@ -17,6 +17,11 @@
 	<%= render :partial => 'frugle', :collection => current_user.frugles, :as => :frugle %>
 </ul>
 
+<h2>Featured Frugles</h2>
+<ul class="frugles">
+	<%= render :partial => 'frugle', :collection => @featured, :as => :frugle %>
+</ul>
+
 <h2>Browse By Category</h2>
 <ul id="categories">
 <% for category in @categories %>

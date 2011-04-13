@@ -1,5 +1,5 @@
 class FruglesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :verified, :show]
+  before_filter :authenticate_user!, :except => [:index, :verified, :show, :verify]
   after_filter :increase_views, :only => :print
   
   def index
