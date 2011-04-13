@@ -58,6 +58,22 @@ $('business_category_id').observe("change",function(){
   <%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %>
   </p>
+  <p>
+  	<%= f.label :contact_name %><br />
+		<%= f.text_field :contact_name %>
+  </p>
+  <p>
+		<%= f.label :contact_phone_number %><br />
+	  <%= f.fields_for :contact_number do |phone| %><br />
+	  	<%= phone.text_field :contact_area_code, :size => 3 %>
+			<%= phone.text_field :contact_first_three_digits, :size => 3 %>
+			<%= phone.text_field :contact_second_four_digits, :size => 4 %>
+	  <% end %>
+  </p>
+  <p>
+    <%= f.label :your_role %><br />
+    <%= f.select :role, options_for_select(@business_role_options) %>
+  </p>
 <% end %>
   <p><%= f.submit %></p>
 <% end %>

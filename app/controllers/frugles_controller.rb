@@ -70,7 +70,7 @@ class FruglesController < ApplicationController
     @frugle = Frugle.find_by_verification(params[:search])
     render :update do |page|
       if @frugle == nil
-        page.replace_html "status", "This frugle doesn't exist."
+        page.replace_html "status", "This frugle doesn’t exist.  Either the code you entered is wrong, or the merchant canceled this frugle."
       else
         page.replace_html "status", "This frugle is #{@frugle.status}."
         page.replace_html "details","<h2>#{@frugle.business.name}<br />#{@frugle.cost}</h2>"

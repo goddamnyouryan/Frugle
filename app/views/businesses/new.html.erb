@@ -7,8 +7,8 @@
   <%= f.label :phone_number %>
   <%= f.fields_for :phone do |phone| %><br />
   	<%= phone.text_field :area_code, :size => 3 %>
-	<%= phone.text_field :first_three_digits, :size => 3 %>
-	<%= phone.text_field :second_four_digits, :size => 4 %>
+		<%= phone.text_field :first_three_digits, :size => 3 %>
+		<%= phone.text_field :second_four_digits, :size => 4 %>
   <% end %>
 
 </p>

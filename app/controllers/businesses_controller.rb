@@ -24,8 +24,9 @@ class BusinessesController < ApplicationController
   def create
     @phone_number = [params[:business][:phone][:area_code], params[:business][:phone][:first_three_digits], params[:business][:phone][:second_four_digits]].reject(&:blank?).join('.')
     @business = Business.find_or_create_by_phone("#{@phone_number}")
-    @business.name = " "
+    @business.name = ""
     @frugle_hear_about_options = [['From a Local Frugle Rep', 'rep'], ['Spoke to another local business owner', 'owner'], ['Searching the Internet', 'internet'], ['Flyer or brochure', 'flyer'], ['Saw a window sticker', 'sticker'], ['Other', 'other']]
+    @business_role_options = [['Store Owner', 'owner'], ['Store Employee', 'employee'], ['Other', 'other']]
     render :update do |page|
 			page.replace_html "business_form", :partial => "businesses/form", :locals => { :business => @business }
 	  end
@@ -51,6 +52,11 @@ class BusinessesController < ApplicationController
         @business.neighborhood_id = @zipcode.neighborhood.id
         @business.category_id = params[:business][:category_id]
         @business.subcategory_id = params[:business][:subcategory_id]
+        @business.address2 = params[:business][:address2]
+        @business.hear_about = params[:business][:hear_about]
+        @business.contact_name = params[:business][:contact_name]
+        @business.contact_number = [params[:business][:contact_number][:contact_area_code], params[:business][:contact_number][:contact_first_three_digits], params[:business][:contact_number][:contact_second_four_digits]].reject(&:blank?).join('.')
+        @business.role = params[:business][:role]
         @business.save!
         sign_in_and_redirect(:user, @user)
       else
