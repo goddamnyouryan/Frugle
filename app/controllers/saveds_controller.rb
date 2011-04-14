@@ -3,7 +3,9 @@ class SavedsController < ApplicationController
     @follow = Saved.create(:user_id => current_user.id, :frugle_id => params[:frugle_id])
     @frugle = Frugle.find params[:frugle_id]
     render :update do |page|
-			page.replace_html "save_#{@frugle.id}", "#{link_to "Unsave", saveds_path(current_user.id, :frugle_id => @frugle.id), :method => :delete, :remote => true }"
+      page.select(".save_#{@frugle.id}").each do |element| 
+        page.replace_html element, "#{link_to "Unsave", saveds_path(current_user.id, :frugle_id => @frugle.id), :method => :delete, :remote => true }"
+	    end
 	  end
   end
 
@@ -12,7 +14,9 @@ class SavedsController < ApplicationController
     @save.destroy
     @frugle = Frugle.find(params[:frugle_id])
     render :update do |page|
-			page.replace_html "save_#{@frugle.id}", "#{link_to "Save", new_saveds_path(current_user.id, :frugle_id => @frugle.id), :remote => true }"
+      page.select(".save_#{@frugle.id}").each do |element| 
+			  page.replace_html element, "#{link_to "Save", new_saveds_path(current_user.id, :frugle_id => @frugle.id), :remote => true }"
+		  end
 	  end
   end
 
