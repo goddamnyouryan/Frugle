@@ -5,6 +5,7 @@ class Business < ActiveRecord::Base
   has_many :follows
   
   belongs_to :user
+  belongs_to :neighborhood
   attr_accessible :name, :address, :zip, :phone, :website, :info
   
   attr_accessor :area_code, :first_three_digits, :second_four_digits

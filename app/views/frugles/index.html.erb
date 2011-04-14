@@ -7,6 +7,32 @@
   </p>
 <% end %>
 
+<% if params[:search] %>
+	<h3>You searched "<%= params[:search] %>"
+<% end %>
+
+<% unless @businesses.count == 0 %>
+	<h3>Businesses - <%= pluralize(@businesses.count, "result") %></h3>
+	<ul>
+		<% @businesses.each do |business| %>
+			<li>
+				<h4><%= business.name %> - <%= business.frugles.count %> Frugles</h4>
+				<p>
+					<%= business.address %><br />
+					<% if business.address2? %>
+						<%= business.address2 %><br />
+					<% end %>
+					<%= business.neighborhood.name %>, <%= business.zip%><br />
+					<%= business.phone %>
+				</p>
+			</li>
+		<% end %>
+	</ul>
+<% end %>
+					
+<% unless @frugles.count == 0 %>
+<h3>Frugles - <%= pluralize(@frugles.count, "result") %></h3>
 <ul class="frugles">
 		<%= render :partial => 'neighborhoods/frugle', :collection => @frugles, :as => :frugle %>
 </ul>
+<% end %>

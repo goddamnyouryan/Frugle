@@ -3,9 +3,12 @@ class FruglesController < ApplicationController
   after_filter :increase_views, :only => :print
   
   def index
+    @businesses = Business.find :all,
+                  :conditions => ["LOWER(name) LIKE ?","%#{params[:search].to_s.downcase}%"]
+                  
     @frugles = Frugle.find :all, 
-               :include => [:category, :subcategory, :business], 
-               :conditions => ["LOWER(categories.title) LIKE ? OR LOWER(subcategories.title) LIKE ? OR LOWER(businesses.name) LIKE ? OR LOWER(cost) LIKE ?",
+               :include => [:category, :subcategory], 
+               :conditions => ["LOWER(categories.title) LIKE ? OR LOWER(subcategories.title) LIKE ? OR LOWER(details) LIKE ? OR LOWER(cost) LIKE ?",
                "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%"]
     @frugles = @frugles | Frugle.tagged_with(params[:search])
   end
