@@ -5,7 +5,14 @@
 
 <h2><%= @frugle.cost %></h2>
 
-<h3><%= @frugle.business.name %></h3>
+<h3>
+	<%= @frugle.business.name %><br />
+	<%= @frugle.business.address %><br />
+	<% if @frugle.business.address2? %><br />
+		<% @frugle.business.address2 %>
+	<% end %>
+	<%= @frugle.business.neighborhood.name %>, <%= @frugle.business.zip %>
+</h3>
 
 <p>
 	<% if @frugle.other_offer %>
@@ -30,7 +37,11 @@
 	
 <p>
 	<strong>Expires:</strong>
-	<%= @frugle.end.to_date %>
+	<%= l @frugle.end.to_date, :format => :default %>
 </p>
 
 <p>000<%= @frugle.views%></p>
+
+<p>Verify this Frugle by going to www.frugle.me/verify</p>
+
+<%= raw(@map.div(:width => 600, :height => 400)) %>

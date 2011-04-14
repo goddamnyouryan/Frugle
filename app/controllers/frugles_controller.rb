@@ -15,13 +15,22 @@ class FruglesController < ApplicationController
 
   def show
     @frugle = Frugle.find(params[:id])
+    @business = @frugle.business
     if user_signed_in?
       @save = Saved.find_by_user_id_and_frugle_id(current_user.id, @frugle.id)
+      unless current_user.role == "business"
+        @follow = Follow.find_by_user_id_and_business_id(current_user.id, @business.id)
+      end
     end
   end
   
   def print
     @frugle = Frugle.find(params[:id])
+    @business = @frugle.business
+    @map = GMap.new("map_div")
+              @map.control_init(:large_map => true,:map_type => true)
+              @map.center_zoom_init([@business.latitude,@business.longitude],15)
+              @map.overlay_init(GMarker.new([@business.latitude,@business.longitude],:title => "#{@business.name}", :info_window => "#{@business.name} <br /> #{@business.address}<br />#{@business.zip}<br />#{@business.phone}"))
     render :layout => "print"
   end
 

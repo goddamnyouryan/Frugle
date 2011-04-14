@@ -15,6 +15,7 @@ class NeighborhoodsController < ApplicationController
 
   def show
     @neighborhood = Neighborhood.find(params[:id])
+    @frugle_count = Frugle.find :all, :include => :business, :conditions => ["businesses.neighborhood_id = ?", @neighborhood.id ]
     if user_signed_in?
       if current_user.role == "business"
         redirect_to home_path

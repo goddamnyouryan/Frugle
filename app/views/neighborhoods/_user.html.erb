@@ -5,22 +5,30 @@
   </p>
 <% end %>
 
+<% unless current_user.follows.count == 0 %>
 <h2>Frugles from Businesses you are Following</h2>
 <ul class="frugles">
 	<% for follow in current_user.follows %>
 		<%= render :partial => 'frugle', :collection => follow.business.frugles, :as => :frugle %>
 	<% end %>
 </ul>
+<% end %>
 
+<% unless current_user.frugles.count == 0 %>
 <h2>Your Saved Frugles</h2>
 <ul class="frugles">
 	<%= render :partial => 'frugle', :collection => current_user.frugles, :as => :frugle %>
 </ul>
+<% end %>
 
 <h2>Featured Frugles</h2>
 <ul class="frugles">
 	<%= render :partial => 'frugle', :collection => @featured, :as => :frugle %>
 </ul>
+
+<% if current_user.sign_in_count == 1 %>
+<h3>Choose a category to see all the Frugles for <%= @neighborhood.name %></h3>
+<% end %>
 
 <h2>Browse By Category</h2>
 <ul id="categories">

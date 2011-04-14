@@ -1,7 +1,11 @@
 <% title "New Business" %>
 <% javascript 'dynamic' %>
 
-<h3>Step 1: Enter Business Phone Number</h3>
+<ol>
+	<li>Enter your phone number so that we can verify that only neighborhood stores are registering</li>
+	<li>Tell your neighbors where they can find you and what you sell</li>
+	<li>Enter a username and password to keep your info safe (we will never sell your information, see our <%= link_to "privacy policy" %>)</li>
+
 <%= form_for @business, :remote => true do |f| %>
 <p>
   <%= f.label :phone_number %>

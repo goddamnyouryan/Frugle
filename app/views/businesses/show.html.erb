@@ -10,6 +10,14 @@
   <strong>Info:</strong>
   <%= @business.info %>
 </p>
+<p>
+  <strong>Category:</strong>
+  <%= @business.category.title %>
+</p>
+<p>
+  <strong>Subcategory:</strong>
+  <%= @business.subcategory.title %>
+</p>
 
 <% if user_signed_in? %>
 <% unless current_user.role == "business" %>
@@ -22,6 +30,8 @@
 </p>
 <% end %>
 <% end %>
+
+<p><%= link_to "Back to #{@business.neighborhood.name}", :controller => "neighborhoods", :action => "show", :id => @business.neighborhood.friendly_id %></p>
 
 <h2>Frugles(<%= @frugles.count %>)</h2>
 <ul class="frugles">

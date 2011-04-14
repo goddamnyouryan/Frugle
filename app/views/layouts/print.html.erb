@@ -6,6 +6,8 @@
   <%= javascript_include_tag :defaults %>
 	<%= csrf_meta_tag %>
   <%= yield(:head) %>
+	<%= raw(GMap.header) %>
+	<%= raw(@map.to_html) %>
 </head>
 <body Onload="print()">
 	

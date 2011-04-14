@@ -5,7 +5,10 @@
 	 <%= @business.phone %><br />
 	 <%= link_to "Edit Business Info", edit_business_path(current_user.business) %>
 </p>
-	 
+
+<p><%= link_to "Sign Out", destroy_user_session_path %></p>
+<p><%= link_to "Verify a Frugle", verify_path %></p>	 
+	
 <%= raw(@map.div(:width => 600, :height => 400)) %>	
 
 <p><%= link_to "Add New Frugle", new_frugle_path %></p>

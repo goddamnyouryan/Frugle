@@ -1,5 +1,17 @@
 <% title "#{@frugle.business.name}" %>
 
+<p id="follow">
+<% if user_signed_in? %>
+	<% if @follow == nil %>
+		<%= link_to "Follow #{@business.name}", new_follow_path(current_user.id, :business_id => @business.id), :remote => true %>
+	<% else %>
+		<%= link_to "Unfollow #{@business.name}", follow_path(current_user.id, :business_id => @business.id), :method => :delete, :remote => true %>
+	<% end %>
+<% else %>
+<%= link_to "Follow #{@business.name}", new_user_session_path %>
+<% end %>
+</p>
+
 <%= link_to "Print This Frugle", print_frugle_path(@frugle) %>
 
 <p>
@@ -63,16 +75,22 @@
 <% end %>
 
 <% if user_signed_in? %>
-<p id="save_<%= @frugle.id %>">
+<p class="save_<%= @frugle.id %>">
 	<% if @save == nil %>
-		<%= link_to "Save this Frugle", new_saveds_path(current_user.id, :frugle_id => @frugle.id), :remote => true %>
+		<%= link_to "Save this Frugle", new_saveds_path(:frugle_id => @frugle.id), :remote => true %>
 	<% else %>
-		<%= link_to "Unsave this Frugle", saveds_path(current_user.id, :frugle_id => @frugle.id), :method => :delete, :remote => true %>
+		<%= link_to "Unsave this Frugle", saveds_path(:frugle_id => @frugle.id), :method => :delete, :remote => true %>
 	<% end %>
+</p>
+<% else %>
+<p class="save_<%= @frugle.id %>">
+	<%= link_to "Save this Frugle", new_user_session_path, :return_to => request.request_uri %>
 </p>
 <% end %>
 
 <p><%= link_to "View All Frugles from #{@frugle.business.name}", business_path(@frugle.business) %></p>
+
+<p><%= link_to "View All #{@frugle.category.title} Frugles", :controller => "frugles", :action => "index", :search => "#{@frugle.category.title}" %></p>
 
 <iframe src="http://www.facebook.com/plugins/like.php?href=<%= request.url %>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font&amp;colorscheme=light&amp;height=30" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:30px;" allowTransparency="true"></iframe>
 
