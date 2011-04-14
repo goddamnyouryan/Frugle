@@ -12,9 +12,8 @@ class User < ActiveRecord::Base
   has_many :follows
   has_many :saveds
   has_many :frugles, :through => :saveds
-  has_one :settings
-  accepts_nested_attributes_for :settings, :allow_destroy => true
-  
+  has_one :email_setting
+  accepts_nested_attributes_for :email_setting, :allow_destroy => true
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,
@@ -25,11 +24,11 @@ class User < ActiveRecord::Base
   
   attr_accessor :newsletter, :new_frugles, :businesses_following, :categories_following, :recommendations, :interval
   
-  after_save :create_settings
+  after_create :create_email_setting
   
-  def create_settings
+  def create_email_setting
     unless self.role == "business"
-      Settings.create(:user_id => self.id, :newsletter => 1)
+      EmailSetting.create(:user_id => self.id, :newsletter => 1)
     end
   end
   

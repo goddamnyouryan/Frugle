@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110413061029) do
+ActiveRecord::Schema.define(:version => 20110414065619) do
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(:version => 20110413061029) do
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "email_settings", :force => true do |t|
+    t.boolean  "newsletter"
+    t.boolean  "new_frugles"
+    t.string   "interval"
+    t.boolean  "businesses_following"
+    t.boolean  "recommendations"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "categories_following"
   end
 
   create_table "follows", :force => true do |t|
@@ -89,18 +101,6 @@ ActiveRecord::Schema.define(:version => 20110413061029) do
   create_table "saveds", :force => true do |t|
     t.integer  "user_id"
     t.integer  "frugle_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "settings", :force => true do |t|
-    t.boolean  "newsletter"
-    t.boolean  "new_frugles"
-    t.string   "interval"
-    t.boolean  "businesses_following"
-    t.boolean  "categories_following"
-    t.boolean  "recommendations"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

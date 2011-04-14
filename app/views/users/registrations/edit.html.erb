@@ -33,7 +33,7 @@
   <%= f.password_field :password_confirmation %></p>
 
 <h2>2. Email Settings</h2>
-<%= f.fields_for :settings do |s| %>
+<%= f.fields_for :email_setting do |s| %>
 <p>
   <%= s.label :newsletter %><br />
   <%= s.check_box :newsletter %>
@@ -43,8 +43,7 @@
   <%= s.check_box :new_frugles %>
 </p>
 <p>
-	<% @interval_options = [['As It Happens', 'instant'], ['Daily', 'daily'], ['Weekly', 'weekly'], ['Monthly', 'monthly']] %>
-    <%= s.select :interval, options_for_select(@interval_options) %>
+    <%= s.select :interval, options_for_select(@interval_options, resource.email_setting.interval) %>
 <p>
   <%= s.label :local_businesses_I_am_following %><br />
   <%= s.check_box :businesses_following %>
