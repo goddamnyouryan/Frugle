@@ -16,9 +16,9 @@
 	<li id="category_<%= category.id %>">
 	<% if @user_categories.include?(category) %>
 		<% @categorization = Categorization.find_by_user_id_and_category_id(@user.id, category.id) %>
-		<%= link_to "#{category.title}", categorization_path(@categorization), :method => :delete, :remote => true, :style => "background-color:yellow;" %>
+		<%= link_to "#{category.title}", out_destroy_categorization_path(:id => @categorization.id), :remote => true, :style => "background-color:yellow;" %>
 	<% else %>
-		<%= link_to "#{category.title}", new_categorization_path(:category_id => category.id), :remote => true %>
+		<%= link_to "#{category.title}", out_new_categorization_path(:category_id => category.id), :remote => true %>
 	<% end %>
 	</li>
 <% end %>

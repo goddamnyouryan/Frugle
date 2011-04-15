@@ -24,6 +24,8 @@ OmniauthDeviseExample::Application.routes.draw do
   match 'butthole', :to => "neighborhoods#butthole"
   match 'poophole', :to => "neighborhoods#poophole"
   match 'change_neighborhood', :to => "neighborhoods#change"
+  match 'out_new_categorization', :to => "categorizations#out_new"
+  match 'out_destroy_categorization', :to => "categorizations#out_destroy"
 
   resources :subcategories
   resources :frugles do
