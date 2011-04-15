@@ -1,4 +1,4 @@
-page.replace_html "category_#{@category.id}", "#{link_to @category.title, new_categorization_path(:category_id => @category.id), :remote => true, :style => "background-color:white;"}"
+page.replace_html "category_#{@category.id}", "#{link_to @category.title, new_categorization_path(:category_id => @category.id), :remote => true, :method => :post, :style => "background-color:white;"}"
 page.replace_html "subcategories", :partial => 'neighborhoods/subcategories', :user_categories => @user_categories
 page.replace_html "frugles", :partial => 'neighborhoods/frugle', :collection => @results, :as => :frugle
 page << @map.clear_overlays

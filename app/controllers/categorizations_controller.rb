@@ -86,6 +86,7 @@ class CategorizationsController < ApplicationController
       @markers << @marker
     end
     respond_to do |format|
+      format.html { redirect_to root_url }
     	format.js
     end
   end
@@ -118,6 +119,7 @@ class CategorizationsController < ApplicationController
       @markers << @marker
     end
     respond_to do |format|
+      format.html { redirect_to root_url }
     	format.js
     end
   end
