@@ -25,7 +25,7 @@ class CategorizationsController < ApplicationController
           @markers << @marker
         end
       render :update do |page|
-		  	page.replace_html "category_#{params[:category_id]}", "#{link_to @category.title, categorization_path(:category_id => @category.id), :method => :delete, :remote => true, :style => "background-color:yellow;"}"
+		  	page.replace_html "category_#{params[:category_id]}", "#{link_to @category.title, categorization_path(@categorization), :method => :delete, :remote => true, :style => "background-color:yellow;"}"
 	      page.replace_html "subcategories", :partial => 'neighborhoods/subcategories', :user_categories => @user_categories
 	      page.replace_html "frugles", :partial => 'neighborhoods/frugle', :collection => @results, :as => :frugle
 	      page << @map.clear_overlays
@@ -59,7 +59,7 @@ class CategorizationsController < ApplicationController
           @markers << @marker
         end
       render :update do |page|
-		  	page.replace_html "category_#{params[:category_id]}", "#{link_to @category.title, categorization_path(:category_id => @category.id), :method => :delete, :remote => true, :style => "background-color:yellow;"}"
+		  	page.replace_html "category_#{@category.id}", "#{link_to @category.title, categorization_path(@categorization), :method => :delete, :remote => true, :style => "background-color:yellow;"}"
 	      page.replace_html "subcategories", :partial => 'neighborhoods/subcategories', :user_categories => @user_categories
 	      page.replace_html "frugles", :partial => 'neighborhoods/frugle', :collection => @results, :as => :frugle
 	      page << @map.clear_overlays
@@ -72,9 +72,9 @@ class CategorizationsController < ApplicationController
   
   def destroy
     if user_signed_in?
-      @categorization = Categorization.find_by_user_id_and_category_id(current_user.id, params[:category_id])
+      @categorization = Categorization.find params[:id]
+      @category = Category.find(@categorization.category_id)
       @categorization.destroy
-      @category = Category.find(params[:category_id])
       @businesses = Business.find :all, :include => :frugles, :conditions => ["businesses.category_id = ? AND frugles.id IS NOT NULL", @category.id]
       @subcategories = @businesses.map(&:subcategory).uniq
       @subcategories.each do |s|
@@ -97,7 +97,7 @@ class CategorizationsController < ApplicationController
           @markers << @marker
         end
       render :update do |page|
-		  	page.replace_html "category_#{params[:category_id]}", "#{link_to @category.title, new_categorization_path(:category_id => @category.id), :remote => true, :style => "background-color:white;"}"
+		  	page.replace_html "category_#{@category.id}", "#{link_to @category.title, new_categorization_path(:category_id => @category.id), :remote => true, :style => "background-color:white;"}"
 	      page.replace_html "subcategories", :partial => 'neighborhoods/subcategories', :user_categories => @user_categories
 	      page.replace_html "frugles", :partial => 'neighborhoods/frugle', :collection => @results, :as => :frugle
 	      page << @map.clear_overlays
@@ -108,9 +108,9 @@ class CategorizationsController < ApplicationController
     else
       @session_id = request.session_options[:id]
       @user = User.find_by_logged_out("#{@session_id}")
-      @categorization = Categorization.find_by_user_id_and_category_id(@user.id, params[:category_id])
+      @categorization = Categorization.find params[:id]
+      @category = Category.find(@categorization.category_id)
       @categorization.destroy
-      @category = Category.find(params[:category_id])
       @businesses = Business.find :all, :include => :frugles, :conditions => ["businesses.category_id = ? AND frugles.id IS NOT NULL", @category.id]
       @subcategories = @businesses.map(&:subcategory).uniq
       @subcategories.each do |s|
@@ -133,7 +133,7 @@ class CategorizationsController < ApplicationController
           @markers << @marker
         end
       render :update do |page|
-		  	page.replace_html "category_#{params[:category_id]}", "#{link_to @category.title, new_categorization_path(:category_id => @category.id), :remote => true, :style => "background-color:white;"}"
+		  	page.replace_html "category_#{@category.id}", "#{link_to @category.title, new_categorization_path(:category_id => @category.id), :remote => true, :style => "background-color:white;"}"
 	      page.replace_html "subcategories", :partial => 'neighborhoods/subcategories', :user_categories => @user_categories
 	      page.replace_html "frugles", :partial => 'neighborhoods/frugle', :collection => @results, :as => :frugle
 	      page << @map.clear_overlays
