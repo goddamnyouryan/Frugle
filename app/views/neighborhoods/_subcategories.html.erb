@@ -7,9 +7,9 @@
 		<li id="subcategory_<%= subcategory.id %>">
 		<% @user_subcategories = current_user.subcategories %>
 		<% if @user_subcategories.include?(subcategory) %>
-			<%= link_to "#{subcategory.title}", subcategorization_path(current_user.id, :subcategory_id => subcategory.id), :method => :delete, :remote => true, :style => "background-color:yellow;" %>
+			<%= link_to subcategory.title, subcategorization_path(current_user, :subcategory_id => subcategory.id), :method => :delete, :remote => true, :style => "background-color:yellow;" %>
 		<% else %>
-			<%= link_to "#{subcategory.title}", new_subcategorization_path(current_user.id, :subcategory_id => subcategory.id), :remote => true %>
+			<%= link_to subcategory.title, new_subcategorization_path(:subcategory_id => subcategory.id), :remote => true %>
 		<% end %>
 		</li>
 	<% end %>
@@ -24,9 +24,9 @@
 		<li id="subcategory_<%= subcategory.id %>">
 		<% @user_subcategories = @user.subcategories %>
 		<% if @user_subcategories.include?(subcategory) %>
-			<%= link_to "#{subcategory.title}", subcategorization_path(@user.id, :subcategory_id => subcategory.id), :method => :delete, :remote => true, :style => "background-color:yellow;" %>
+			<%= link_to subcategory.title, out_destroy_subcategorization_path(:subcategory_id => subcategory.id), :remote => true, :style => "background-color:yellow;" %>
 		<% else %>
-			<%= link_to "#{subcategory.title}", new_subcategorization_path(@user.id, :subcategory_id => subcategory.id), :remote => true %>
+			<%= link_to subcategory.title, out_new_subcategorization_path(:subcategory_id => subcategory.id), :remote => true %>
 		<% end %>
 		</li>
 	<% end %>

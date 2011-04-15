@@ -1,0 +1,6 @@
+page.replace_html "subcategory_#{@subcategory.id}", "#{link_to @subcategory.title, subcategorization_path(current_user, :subcategory_id => @subcategory.id), :method => :delete, :remote => true, :style => "background-color:yellow;"}"
+page.replace_html "frugles", :partial => 'neighborhoods/frugle', :collection => @results, :as => :frugle
+page << @map.clear_overlays
+for marker in @markers
+  page << @map.add_overlay(marker)
+end

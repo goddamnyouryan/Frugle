@@ -26,6 +26,8 @@ OmniauthDeviseExample::Application.routes.draw do
   match 'change_neighborhood', :to => "neighborhoods#change"
   match 'out_new_categorization', :to => "categorizations#out_new"
   match 'out_destroy_categorization', :to => "categorizations#out_destroy"
+  match 'out_new_subcategorization', :to => "subcategorizations#out_new"
+  match 'out_destroy_subcategorization', :to => "subcategorizations#out_destroy"
 
   resources :subcategories
   resources :frugles do
