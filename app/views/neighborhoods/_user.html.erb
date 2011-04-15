@@ -45,10 +45,10 @@
 </ul>
 
 <h2>Subcategories</h2>
-<ul id="subcategories">
+<ul id="subcategories" style="display:none;">
 	<%= render 'subcategories', :user_categories => @user_categories %>
 </ul>
-<%= link_to "Hide", subcategories_toggle_path, :remote => true %>
+<%= link_to "Show", subcategories_toggle_path, :remote => true %>
 
 <h2>Frugles</h2>
 <ul id="frugles" class="frugles">
