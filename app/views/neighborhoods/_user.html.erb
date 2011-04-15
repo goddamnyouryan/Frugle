@@ -38,7 +38,7 @@
 		<% @categorization = Categorization.find_by_user_id_and_category_id(current_user.id, category.id) %>
 		<%= link_to "#{category.title}", categorization_path(@categorization), :method => :delete, :remote => true, :style => "background-color:yellow;" %>
 	<% else %>
-		<%= link_to "#{category.title}", new_categorization_path(:category_id => category.id), :remote => true %>
+		<%= link_to "#{category.title}", new_categorization_path(:category_id => category.id), :remote => true, :method => :post %>
 	<% end %>
 	</li>
 <% end %>
