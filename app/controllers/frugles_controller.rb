@@ -1,6 +1,8 @@
 class FruglesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :verified, :show, :verify]
-  after_filter :increase_views, :only => :print
+  after_filter :increase_prints, :only => :print
+  after_filter :increase_views, :only => :show
+  after_filter :decrease_quantity, :only => :print
   
   def index
     @businesses = Business.find :all,
@@ -104,10 +106,27 @@ class FruglesController < ApplicationController
   
   private
   
+  def increase_prints
+    @frugle = Frugle.find(params[:id])
+    @frugle.prints = @frugle.prints + 1
+    @frugle.save
+  end
+  
   def increase_views
     @frugle = Frugle.find(params[:id])
     @frugle.views = @frugle.views + 1
     @frugle.save
+  end
+  
+  def decrease_quantity
+    @frugle = Frugle.find(params[:id])
+    unless @frugle.quantity == nil
+      @frugle.quantity = @frugle.quantity - 1
+      if @frugle.quantity == 0 
+        @frugle.status = "expired"
+      end
+      @frugle.save
+    end
   end
   
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110414065619) do
+ActiveRecord::Schema.define(:version => 20110416031223) do
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20110414065619) do
     t.string   "customers"
     t.integer  "category_id"
     t.integer  "subcategory_id"
+    t.integer  "prints",         :default => 0
   end
 
   create_table "neighborhoods", :force => true do |t|

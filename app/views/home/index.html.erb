@@ -21,6 +21,7 @@
     <th>Mobile</th>
     <th>Quantity</th>
     <th>Views</th>
+		<th>Prints</th>
     <th>Start</th>
     <th>End</th>
   </tr>
@@ -31,6 +32,7 @@
       <td><%= frugle.mobile %></td>
       <td><%= frugle.quantity %></td>
       <td><%= frugle.views %></td>
+			<td><%= frugle.prints %></td>
       <td><%= frugle.start.to_date %></td>
       <td><%= frugle.end.to_date %></td>
       <td><%= link_to "Show", frugle %></td>
@@ -44,10 +46,11 @@
 <table>
   <tr>
     <th>Type</th>
-	<th>Cost</th>
+		<th>Cost</th>
     <th>Mobile</th>
     <th>Quantity</th>
     <th>Views</th>
+		<th>Prints</th>
     <th>Start</th>
     <th>End</th>
   </tr>
@@ -56,8 +59,13 @@
       <td><%= frugle.discount %></td>
       <td><%= frugle.cost %></td>
       <td><%= frugle.mobile %></td>
-      <td><%= frugle.quantity %></td>
+			<% if frugle.quantity == nil %>
+				<td>unlimited</td>
+			<% else %>
+      	<td><%= frugle.quantity %></td>
+			<% end%>
       <td><%= frugle.views %></td>
+			<td><%= frugle.prints %></td>
       <td><%= frugle.start.to_date %></td>
       <td><%= frugle.end.to_date %></td>
       <td><%= link_to "Show", frugle %></td>
