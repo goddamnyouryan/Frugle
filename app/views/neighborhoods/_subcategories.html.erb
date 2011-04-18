@@ -4,10 +4,10 @@
 <% @businesses = Business.find :all, :include => :frugles, :conditions => ["businesses.category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, current_user.neighborhood_id] %>
 <% @subcategories = @businesses.map(&:subcategory).uniq %>
 	<% for subcategory in @subcategories %>
-		<li id="subcategory_<%= subcategory.id %>">
+		<li class="fl" id="subcategory_<%= subcategory.id %>">
 		<% @user_subcategories = current_user.subcategories %>
 		<% if @user_subcategories.include?(subcategory) %>
-			<%= link_to subcategory.title, subcategorization_path(current_user, :subcategory_id => subcategory.id), :method => :delete, :remote => true, :style => "background-color:yellow;" %>
+			<%= link_to subcategory.title, subcategorization_path(current_user, :subcategory_id => subcategory.id), :method => :delete, :remote => true, :style => "background:#ffc90e;" %>
 		<% else %>
 			<%= link_to subcategory.title, new_subcategorization_path(:subcategory_id => subcategory.id), :remote => true %>
 		<% end %>
@@ -21,10 +21,10 @@
 <% @businesses = Business.find :all, :include => :frugles, :conditions => ["businesses.category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, session[:neighborhood]] %>
 <% @subcategories = @businesses.map(&:subcategory).uniq %>
 	<% for subcategory in @subcategories %>
-		<li id="subcategory_<%= subcategory.id %>">
+		<li class="fl" id="subcategory_<%= subcategory.id %>">
 		<% @user_subcategories = @user.subcategories %>
 		<% if @user_subcategories.include?(subcategory) %>
-			<%= link_to subcategory.title, out_destroy_subcategorization_path(:subcategory_id => subcategory.id), :remote => true, :style => "background-color:yellow;" %>
+			<%= link_to subcategory.title, out_destroy_subcategorization_path(:subcategory_id => subcategory.id), :remote => true, :style => "background:#ffc90e;" %>
 		<% else %>
 			<%= link_to subcategory.title, out_new_subcategorization_path(:subcategory_id => subcategory.id), :remote => true %>
 		<% end %>

@@ -1,42 +1,69 @@
 <% title "Sign Up" %>
 
+  <div class="caption">New User Registration</div>
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 	<%= hidden_field(:neighborhood_id, session[:neighborhood]) %>
 
-  <p><%= f.label :first_name %><br />
-  <%= f.text_field :first_name %></p>
+<div class="reg_row">
+	<div class="reg_col_left">First Name</div>
+  <div class="reg_col_right"><%= f.text_field :first_name, :class => "reg_bar" %></div>
+  	<div class="clr"></div>
+</div>
+<div class="reg_row">
+	<div class="reg_col_left">Last Name</div>
+  <div class="reg_col_right"><%= f.text_field :last_name, :class => "reg_bar" %></div>
+  	<div class="clr"></div>
+</div>
+<div class="reg_row">
+	<div class="reg_col_left">Sex</div>
+  <div class="reg_col_right">
+  	<%= f.radio_button :sex, "Male" %> Male
+	  <%= f.radio_button :sex, "Female" %> Female
+  </div>
+  <div class="clr"></div>
+</div>
+<div class="reg_row">
+	<div class="reg_col_left">Birth Day</div>
+  <div class="reg_col_right">
+  	<div class="fl">
+    	<%= f.date_select :birthday, 
+						  :start_year => Time.now.year,
+						  :end_year => 1900,
+						  :include_blank => true,
+						  :order => [:month, :day, :year]											
+		%>
+    </div>
+    <div class="clr"></div>
+  </div>
+  	<div class="clr"></div>
+</div>
+<div class="reg_row">
+	<div class="reg_col_left">Email</div>
+  <div class="reg_col_right"><%= f.email_field :email, :class => "reg_bar" %></div>
+  <div class="clr"></div>
+</div>
+<div class="reg_row">
+	<div class="reg_col_left">Password</div>
+  <div class="reg_col_right"><%= f.password_field :password, :class => "reg_bar" %></div>
+  <div class="clr"></div>
+</div>
+<div class="reg_row">
+	<div class="reg_col_left">Confirm Password</div>
+  <div class="reg_col_right"><%= f.password_field :password_confirmation, :class => "reg_bar" %></div>
+  <div class="clr"></div>
+</div>
 
-  <p><%= f.label :last_name %><br />
-  <%= f.text_field :last_name %></p>
-
-  <p><%= f.label :sex %><br />
-  <%= f.radio_button :sex, "Male" %> Male
-  <%= f.radio_button :sex, "Female" %> Female</p>
-
-  <p><%= f.label :birthday %><br />
-    <%= f.date_select :birthday, 
-					  :start_year => Time.now.year,
-					  :end_year => 1900,
-					  :include_blank => true,
-					  :order => [:month, :day, :year]											
-	%></p>
-	
-  <p><%= f.label :email %><br />
-	  <%= f.email_field :email %></p>
-
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
-
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
-
-  <p><%= f.submit "Sign up" %></p>
+<div class="hide_button"><%= f.submit "Sign up" %></div>
 <% end %>
-
+<div class="form_row">
 Sign Up With 
 <%- resource_class.omniauth_providers.each do |provider| %>
-	<%= link_to image_tag("facebook.png"), omniauth_authorize_path(resource_name, provider), :id => "facebook" %>
+	<%= link_to image_tag("facebook.png"), omniauth_authorize_path(resource_name, provider), :style => "position:relative;top:10px;" %>
 <% end -%>
+</div>
 
+<div class="form_row">
 <%= link_to "Skip this for Now", root_path %>
+</div>
+

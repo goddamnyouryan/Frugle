@@ -1,89 +1,101 @@
 <% title "Account Settings" %>
 
-<h2>1. Personal Settings </h2>
+<h2 class="yellow_strip">Account Settings</h2>
 
+<div class="form_box_col">
+  <div class="form_box">
+    <div class="caption">1. Personal Settings</div>
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <p><%= f.label :first_name %><br />
-  <%= f.text_field :first_name %></p>
-
-  <p><%= f.label :last_name %><br />
-  <%= f.text_field :last_name %></p>
-
-  <p><%= f.label :sex %><br />
-  <%= f.radio_button :sex, "Male" %> Male
-  <%= f.radio_button :sex, "Female" %> Female</p>
-
-  <p><%= f.label :birthday %><br />
-    <%= f.date_select :birthday, 
-					  :start_year => Time.now.year,
-					  :end_year => 1900,
-					  :include_blank => true,
-					  :order => [:month, :day, :year]											
-	%></p>
-
-  <p><%= f.label :email %><br />
-  <%= f.email_field :email %></p>
-
-  <p><%= f.label :new_password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password %></p>
-
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
-
-<h2>2. Email Settings</h2>
-<%= f.fields_for :email_setting do |s| %>
-<p>
-  <%= s.label :newsletter %><br />
-  <%= s.check_box :newsletter %>
-</p>
-<p>
-  <%= s.label :send_me_email_of_new_frugles %><br />
-  <%= s.check_box :new_frugles %>
-</p>
-<p>
-    <%= s.select :interval, options_for_select(@interval_options, resource.email_setting.interval) %>
-<p>
-  <%= s.label :local_businesses_I_am_following %><br />
-  <%= s.check_box :businesses_following %>
-</p>
-<p>
-  <%= s.label :categories_I_am_following %><br />
-  <%= s.check_box :categories_following %>
-</p>
-<p>
-  <%= s.label :recommended_for_me %><br />
-  <%= s.check_box :recommendations %>
-</p>
+    	<div class="reg_row">
+      	<div class="reg_col_left">Email:</div>
+        <div class="reg_col_right"><%= f.email_field :email, :class => "reg_bar" %></div>
+        	<div class="clr"></div>
+    <div class="reg_row">
+      	<div class="reg_col_left">New Password:</div>
+        <div class="reg_col_right"><span><%= f.password_field :password, :class => "reg_bar"	 %></span>
+        </div>
+        	<div class="clr"></div>
+    </div>
+    <div class="reg_row">
+      	<div class="reg_col_left">Confirm New Password:</div>
+        <div class="reg_col_right"><span><%= f.password_field :password_confirmation, :class => "reg_bar"	 %></span>
+        </div>
+        	<div class="clr"></div>
+    </div>
+    <div class="reg_row">
+      	<div class="reg_col_left">Your neighorhood:</div>
+        <div class="reg_col_right"><%= f.select(:neighborhood_id, Neighborhood.all.collect {|p| [ p.name, p.id ] } ) %>
+        </div>
+        <div class="clr"></div>
+    </div>
+		<%= f.fields_for :email_setting do |s| %>
+		<div class="caption">2. Email Settings</div>
+    <div class="marg-left">
+    	<div class="fl"><%= s.check_box :newsletter %></div>
+      <div class="fl">Recive monthly Frugle newsletter</div>
+      	<div class="clr"></div>
+    </div>
+    <div class="marg-left">
+    	<div class="fl"><span><%= s.check_box :new_frugles %></span>
+      <span>Send me email of new Frugles from: </span></div>
+      <div class="fl">
+				<%= s.select :interval, options_for_select(@interval_options, resource.email_setting.interval) %>	
+      </div>
+      	<div class="clr"></div>
+    </div>
+    <div class="marg-left">
+    	<div class="fl"><%= s.check_box :businesses_following %></div>
+      <div class="fl">Local businesses I'm following</div>
+      	<div class="clr"></div>
+    </div>
+    <div class="marg-left">
+    	<div class="fl"><%= s.check_box :categories_following %></div>
+      <div class="fl">Categories I'm following
+</div>
+      	<div class="clr"></div>
+    </div>
+    <div class="marg-left">
+    	<div class="fl"><%= s.check_box :recommendations %></div>
+      <div class="fl">Recommended for me	</div>
+      	<div class="clr"></div>
+    </div>
+		<% end %>
+    <div class="caption"><div>3. Following</div>
+    	<div class="black_bar" style="margin-top:10px;">Local businesses</div>
+    </div>
+    
+    <ul class="marg-left">
+			<%= render :partial => 'businesses_following' %>
+       	<div class="clr"></div>
+    </ul>
+    <div class="caption"><div class="black_bar	">Categories</div></div>
+    <ul class="marg-left">
+			<%= render :partial => 'categories_following' %>
+       	<div class="clr"></div>
+    </ul>
+       	<div class="clr"></div>
+    </div>
+    <div class="hide_button"><%= f.submit "Save Settings", :class => "hide_button" %></div>
 <% end %>
+  </div>
+  <div class="tag_border_bottom fl" style="margin-top:-6px;"><%= image_tag "box_bottom.jpg" %></div>
+  </div>
+  <div class="clr"></div>
+	<%- if devise_mapping.omniauthable? %>
+		<ul id="social-icons">
+		  <%- resource_class.omniauth_providers.each do |provider| %>
+			<li><%= link_to "Connect Your Facebook Account", omniauth_authorize_path(resource_name, provider) %></li>
+		  <% end -%>
+		</ul>
+		<div class="clear"></div>
+	<% end -%>
 
-<h2>3. Following</h2>
-<h3>Local Businesses</h3>
-<ul id="businesses_following">
-	<%= render :partial => 'businesses_following' %>
-</ul>
+	<!--Add some omniauth goodness:
 
-<h3>Categories</h3>
-<ul id="categories_following">
-	<%= render :partial => 'categories_following' %>
-</ul>
+	<%= render :partial => "devise/shared/links" %> -->
 
-  <p><%= f.submit "Update" %></p>
-<% end %>
+	<%= link_to "Delete my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
 
-<%- if devise_mapping.omniauthable? %>
-	<ul id="social-icons">
-	  <%- resource_class.omniauth_providers.each do |provider| %>
-		<li><%= link_to "Connect Your Facebook Account", omniauth_authorize_path(resource_name, provider) %></li>
-	  <% end -%>
-	</ul>
-	<div class="clear"></div>
-<% end -%>
 
-<!--Add some omniauth goodness:
-
-<%= render :partial => "devise/shared/links" %> -->
-
-<%= link_to "Delete my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
+</div>
 

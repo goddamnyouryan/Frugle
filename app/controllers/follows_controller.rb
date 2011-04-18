@@ -3,7 +3,7 @@ class FollowsController < ApplicationController
     @follow = Follow.create(:user_id => current_user.id, :business_id => params[:business_id])
     @business = Business.find params[:business_id]
     render :update do |page|
-			page.replace_html "follow", "#{link_to "Unfollow #{@business.name}", follow_path(current_user.id, :business_id => @business.id), :method => :delete, :remote => true }"
+			page.replace_html "follow", :partial => "frugles/follow", :business => @business
 	  end
   end
 
@@ -12,7 +12,7 @@ class FollowsController < ApplicationController
     @follow.destroy
     @business = Business.find(params[:business_id])
     render :update do |page|
-			page.replace_html "follow", "#{link_to "Follow #{@business.name}", new_follow_path(current_user.id, :business_id => @business.id), :remote => true }"
+			page.replace_html "follow", :partial => "frugles/follow", :business => @business
 	  end
   end
   

@@ -1,0 +1,15 @@
+<% if user_signed_in? %>
+	<% if current_user.businesses.include?(@business) %>
+		<%= link_to follow_path(current_user.id, :business_id => @business.id), :method => :delete, :remote => true, :class => "button negative" do %>
+			<span class='cross icon'></span>
+			Unfollow <%= @business.name %>
+		<% end %>
+	<% else %>
+		<%= link_to new_follow_path(current_user.id, :business_id => @business.id), :remote => true, :class => "button negative" do %>
+			<span class='plus icon'></span>
+			Follow <%= @business.name %>
+		<% end %>
+	<% end %>
+<% else %>
+<%= link_to "Follow #{@business.name}", new_user_session_path %>
+<% end %>

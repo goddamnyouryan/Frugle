@@ -18,6 +18,9 @@ OmniauthDeviseExample::Application.routes.draw do
   end
 
   match 'subcategories_toggle', :to => 'subcategories#toggle'
+  match 'map_toggle', :to => 'neighborhoods#map_toggle'
+  match 'frugles_toggle', :to => 'frugles#toggle'
+  match 'neighborhood_personalizaton', :to => 'neighborhoods#personalization'
   match 'follows_unfollow', :to => 'follows#unfollow'
   match 'categorizations_unfollow', :to => 'categorizations#unfollow'
   match 'verify', :to => "frugles#verify"
@@ -28,6 +31,14 @@ OmniauthDeviseExample::Application.routes.draw do
   match 'out_destroy_categorization', :to => "categorizations#out_destroy"
   match 'out_new_subcategorization', :to => "subcategorizations#out_new"
   match 'out_destroy_subcategorization', :to => "subcategorizations#out_destroy"
+  match 'select_all_categories', :to => "categorizations#select_all"
+  match 'select_none_categories', :to => "categorizations#select_none"
+  match 'out_select_all_categories', :to => "categorizations#out_select_all"
+  match 'out_select_none_categories', :to => "categorizations#out_select_none"
+  match 'select_all_subcategories', :to => "subcategorizations#select_all"
+  match 'select_none_subcategories', :to => "subcategorizations#select_none"
+  match 'out_select_all_subcategories', :to => "subcategorizations#out_select_all"
+  match 'out_select_none_subcategories', :to => "subcategorizations#out_select_none"
 
   resources :subcategories
   resources :frugles do

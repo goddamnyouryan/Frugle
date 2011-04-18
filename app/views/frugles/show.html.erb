@@ -1,22 +1,19 @@
 <% title "#{@frugle.business.name}" %>
 
-<p id="follow">
-<% if user_signed_in? %>
-	<% if @follow == nil %>
-		<%= link_to "Follow #{@business.name}", new_follow_path(current_user.id, :business_id => @business.id), :remote => true %>
-	<% else %>
-		<%= link_to "Unfollow #{@business.name}", follow_path(current_user.id, :business_id => @business.id), :method => :delete, :remote => true %>
-	<% end %>
-<% else %>
-<%= link_to "Follow #{@business.name}", new_user_session_path %>
-<% end %>
-</p>
+<h2 class="black_bar"><%= @frugle.business.name %>
+	<span id="follow">
+		<%= render :partial => 'follow', :business => @business %>
+	</span>	
+</h2>
 
-<%= link_to "Print This Frugle", print_frugle_path(@frugle) %>
 
-<p>
+
+<p style="margin: 25px 0;">
   <%= @frugle.cost %>
 </p>
+
+<p style="margin:0 0 25px 0;"><%= link_to "Print This Frugle", print_frugle_path(@frugle), :class => "big button", :target => "_parent" %></p>
+
 <p>
 	<% if @frugle.other_offer %>
 		Not valid with any other offer. 
@@ -32,7 +29,7 @@
 	<% elsif @frugle.customers == "Returning" %>
 		Returning customers only. 
 	<% end %>
-<p>
+<p style="margin-top:10px;">
   <strong>Details:</strong>
   <%= @frugle.details %>
 </p>
@@ -45,61 +42,29 @@
   <%= @frugle.quantity %>
 </p>
 <p>
-  <strong>Views:</strong>
-  <%= @frugle.views %>
-</p>
-<p>
-  <strong>Start:</strong>
-  <%= @frugle.start.to_date %>
-</p>
-<p>
-  <strong>End:</strong>
+  <strong>Expires:</strong>
   <%= @frugle.end.to_date %>
-</p>
-<p>
-  <strong>Verification:</strong>
-  <%= @frugle.verification %>
-</p>
-<p>
-  <strong>Status:</strong>
-  <%= @frugle.status %>
 </p>
 
 <% unless @frugle.tag_list.empty? %>
 <p>
   <strong>Tags:</strong>
 		<% @frugle.tag_counts.each do |tag| %>
-			<%= link_to tag.name, { :controller => 'frugles', :action => 'index', :search => tag.name } %>
+			<%= link_to frugles_path(:search => tag.name), :target => "_parent", :class => "button" do %>
+				<span class="icon tag"></span>
+				<%= tag.name %>
+			<% end %>
 		<% end %>
 </p>
 <% end %>
 
-<% if user_signed_in? %>
-<p class="save_<%= @frugle.id %>">
-	<% if @save == nil %>
-		<%= link_to "Save this Frugle", new_saveds_path(:frugle_id => @frugle.id), :remote => true %>
-	<% else %>
-		<%= link_to "Unsave this Frugle", saveds_path(:frugle_id => @frugle.id), :method => :delete, :remote => true %>
-	<% end %>
+<p class="save_<%= @frugle.id %>" style="margin: 15px 0;">
+<%= render :partial => 'save', :frugle => @frugle %>
+
 </p>
-<% else %>
-<p class="save_<%= @frugle.id %>">
-	<%= link_to "Save this Frugle", new_user_session_path, :return_to => request.request_uri %>
-</p>
-<% end %>
 
-<p><%= link_to "View All Frugles from #{@frugle.business.name}", business_path(@frugle.business) %></p>
+<p><%= link_to "View All Frugles from #{@frugle.business.name}", business_path(@frugle.business), :target => "_parent" %></p>
 
-<p><%= link_to "View All #{@frugle.category.title} Frugles", :controller => "frugles", :action => "index", :search => "#{@frugle.category.title}" %></p>
+<p><%= link_to "View All #{@frugle.category.title} Frugles", frugles_path(:search => "#{@frugle.category.title}"), :target => "_parent" %></p>
 
-<iframe src="http://www.facebook.com/plugins/like.php?href=<%= request.url %>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font&amp;colorscheme=light&amp;height=30" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:30px;" allowTransparency="true"></iframe>
-
-<% if user_signed_in? %>
-<% if current_user.id == @frugle.business.user_id %>
-<p>
-  <%= link_to "Edit", edit_frugle_path(@frugle) %> |
-  <%= link_to "Destroy", @frugle, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", frugles_path %>
-</p>
-<% end %>
-<% end %>
+<span style="float:left;margin:5px 0 0 200px;"><iframe src="http://www.facebook.com/plugins/like.php?href=<%= request.url %>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font&amp;colorscheme=light&amp;height=30" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:30px;" allowTransparency="true"></iframe></span>

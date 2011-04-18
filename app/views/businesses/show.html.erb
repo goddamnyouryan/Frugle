@@ -1,41 +1,51 @@
 <% title "#{@business.name}" %>
 
-<p>
-  <%= @business.address %><br />
-  <%= @business.zip %><br />
-  <%= @business.phone %><br />
-  <%= @business.website %>
-</p>
-<p>
-  <strong>Info:</strong>
-  <%= @business.info %>
-</p>
-<p>
-  <strong>Category:</strong>
-  <%= @business.category.title %>
-</p>
-<p>
-  <strong>Subcategory:</strong>
-  <%= @business.subcategory.title %>
-</p>
+<div class="yellow_strip"><%= @business.name %></div>
+	<div class="form_box_col">
+  <div class="form_box">
+    <div class="caption"><%= @business.name %></div>
+    
+    	<div class="marg-left">
+          <p class="fl">
+						<%= @business.address %><br />
+            <% unless @business.address2.nil? %>
+            	<%= @business.address2 %><br />
+						<% end %>
+						<%= @business.neighborhood.name %>, <%= @business.zip %><br />
+						<%= @business.phone %><br />
+          Web: <%= @business.website %> </p>
+					<div class="fr">
+						<% if user_signed_in? %>
+						<% unless current_user.role == "business" %>
+						<p id="follow">
+							<%= render :partial => 'frugles/follow', :business => @business %>
+						</p>
+						<div class="clr"></div>
+						<% end %>
+						<% end %>
+						<p class="fr big_button"><%= link_to "Back to #{@business.neighborhood.name}", :controller => "neighborhoods", :action => "show", :id => @business.neighborhood.friendly_id %></p>
+					</div>
+					<div class="clr"></div>
+    </div>
+   	<div class="caption">Company Description </div>
+    <div class="marg-left">
+      <p> <%= @business.info %></p>
+    </div>
+</div>
+<div class="tag_border_bottom fl" style="margin-top:-7px;"><%= image_tag "box_bottom.jpg" %></div>
+</div>
+<div class="form_box_col2_plain">
+<div align="center">
+  <p><%= raw(@map.div(:width => 345, :height => 245)) %>	</p>
+</div>
+</div>
+<div class="clr"></div>
 
-<% if user_signed_in? %>
-<% unless current_user.role == "business" %>
-<p id="follow">
-	<% if @follow == nil %>
-		<%= link_to "Follow #{@business.name}", new_follow_path(current_user.id, :business_id => @business.id), :remote => true %>
-	<% else %>
-		<%= link_to "Unfollow #{@business.name}", follow_path(current_user.id, :business_id => @business.id), :method => :delete, :remote => true %>
-	<% end %>
-</p>
-<% end %>
-<% end %>
-
-<p><%= link_to "Back to #{@business.neighborhood.name}", :controller => "neighborhoods", :action => "show", :id => @business.neighborhood.friendly_id %></p>
-
-<h2>Frugles(<%= @frugles.count %>)</h2>
-<ul class="frugles">
-	<%= render :partial => 'neighborhoods/frugle', :collection => @frugles, :as => :frugle %>
+<div class="black_bar">
+<div>Frugles - <%= @frugles.count %></div>
+</div>
+<ul class="frugles tag_box" style="float:left">
+	<%= render :partial => 'neighborhoods/small_frugle', :collection => @frugles, :as => :frugle %>
 </ul>
-
-<%= raw(@map.div(:width => 600, :height => 400)) %>
+<div class="clr"></div>
+<div class="tag_border_bottom" style="position:relative;top:-6px;"><%= image_tag "tag_box_bottom.png" %></div>

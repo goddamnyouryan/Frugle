@@ -2,12 +2,12 @@
 <html>
 <head>
   <title>Frugle | <%= content_for?(:title) ? yield(:title) : "" %></title>
+	<%= raw(GMap.header) %>
+	<%= raw(@map.to_html) %>
   <%= stylesheet_link_tag "print" %>
   <%= javascript_include_tag :defaults %>
 	<%= csrf_meta_tag %>
   <%= yield(:head) %>
-	<%= raw(GMap.header) %>
-	<%= raw(@map.to_html) %>
 </head>
 <body Onload="print()">
 	

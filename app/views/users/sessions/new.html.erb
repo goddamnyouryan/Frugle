@@ -1,18 +1,43 @@
 <% title "Sign In" %>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <p><%= f.label :email %><br />
-  <%= f.email_field :email %></p>
+<div class="yellow_strip">Sign In</div>
+ <div class="form_box_col">
+  <div class="form_box" style="padding:10px !important;">
+      <div class="form_row">
+			<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+				<div class="reg_row">
+					<div class="reg_col_left">Email</div>
+				  <div class="reg_col_right"><%= f.email_field :email, :class => "reg_bar" %></div>
+				  	<div class="clr"></div>
+				</div>
+				<div class="reg_row">
+					<div class="reg_col_left">Password</div>
+				  <div class="reg_col_right"><%= f.password_field :password, :class => "reg_bar" %></div>
+				  	<div class="clr"></div>
+				</div>
 
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
+		  <% if devise_mapping.rememberable? -%>
+			<div class="reg_row">
+				<div class="reg_col_left">Remember Me</div>
+			  <div class="reg_col_right"><%= f.check_box :remember_me %></div>
+			  	<div class="clr"></div>
+			</div>
+		  <% end -%>
+			<div class="hide_button"><%= f.submit "Sign In" %></div>
+		<% end %>
+		<div class="form_row">
+			<%= render :partial => "users/shared/links" %>
+		</div>
+		<div class="form_row">
+		Sign In With 
+		<%- resource_class.omniauth_providers.each do |provider| %>
+			<%= link_to image_tag("facebook.png"), omniauth_authorize_path(resource_name, provider), :style => "position:relative;top:10px;" %>
+		<% end -%>
+		</div>
+    </div>
+  </div>
+  <div class="tag_border_bottom fl" style="margin-top:-7px;"><%= image_tag "box_bottom.jpg" %></div>
+</div>
 
-  <% if devise_mapping.rememberable? -%>
-    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
-  <% end -%>
 
-<%= f.submit "Sign In" %>
-	
-<% end %>
 
-<%= render :partial => "users/shared/links" %>

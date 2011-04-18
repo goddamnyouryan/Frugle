@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
   has_many :user_tokens
   belongs_to :neighborhood
+  has_many :follows
   has_one :business
+  has_many :businesses, :through => :follows
   
   has_many :categorizations
   has_many :categories, :through => :categorizations
@@ -9,7 +11,6 @@ class User < ActiveRecord::Base
   has_many :subcategorizations
   has_many :subcategories, :through => :subcategorizations
   
-  has_many :follows
   has_many :saveds
   has_many :frugles, :through => :saveds
   has_one :email_setting

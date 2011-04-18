@@ -25,7 +25,8 @@ class SubcategoriesController < ApplicationController
   
   def toggle
     render :update do |page|
-      page.visual_effect :toggle_blind, 'subcategories'
+      page.visual_effect :toggle_blind, 'toggle_subcategories'
+      page.visual_effect :toggle_blind, 'show_subcategories'
     end
   end
   

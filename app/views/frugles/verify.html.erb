@@ -1,13 +1,23 @@
 <% title "Verify a Frugle" %>
-<h3>Type in the code from the Frugle the customer gave you</h3>
 
-<%= form_tag '/frugles/verified', :remote => true do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search" %>
-  </p>
-<% end %>
+<div class="yellow_strip">Frugle Verification</div>
+  <div class="verify_box">
+  	<div class="caption" style="text-align:center;">Type in the code from the Frugle the customer gave you and click "Verify".</div>
+  	<div class="verify_row">
+    	<div class="cat_box_row1">Enter the 6 digit code on the Frugle below:</div>
+			<%= form_tag '/frugles/verified', :remote => true do %>
+      	<div class="form_row"><%= text_field_tag :search, params[:search], :class => "form_bar" %></div>
+      	<div class="hide_button"><%= submit_tag "Verify", :class => "hide_button" %></div>
+			<% end %>
+      
+    </div>
+  </div>
+  <div class="tag_border_bottom" style="margin-top:-7px;"><img src="images/tag_box_bottom.png" alt="0" border="0" /></div>
 
-<h2 id="status"></h2>
 
-<div id="details"></div>
+<h2 id="status" class="caption" style="text-align:center;"></h2>
+
+<ul id="details" style="margin:25px auto;width:270px;"></ul>
+
+<div class="clr"></div>
+

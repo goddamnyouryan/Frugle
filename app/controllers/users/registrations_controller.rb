@@ -19,6 +19,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
   def update
     super
+    resource.neighborhood_id = params[:user][:neighborhood_id]
     resource.email_setting.newsletter = params[:user][:email_setting_attributes][:newsletter]
     resource.email_setting.new_frugles = params[:user][:email_setting_attributes][:new_frugles]
     resource.email_setting.interval = params[:user][:email_setting_attributes][:interval]
@@ -26,6 +27,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.email_setting.categories_following = params[:user][:email_setting_attributes][:categories_following]
     resource.email_setting.recommendations = params[:user][:email_setting_attributes][:recommendations]
     resource.email_setting.save!
+    resource.save!
   end
 
 end

@@ -1,10 +1,10 @@
-<% title "Frugles" %>
-<h2>Search</h2>
+<% title "Search Frugles" %>
 <% form_tag frugles_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </p>
+<div class="search_row">
+	<div class="search_bar_bg"><%= text_field_tag :search, params[:search], :class => "search_bar" %></div>
+  <div class="fl"><%= submit_tag "Search", :name => nil, :id => "search_button" %></div>
+  	<div class="clr"></div>
+</div>
 <% end %>
 
 <% if params[:search] %>

@@ -21,7 +21,7 @@ class NeighborhoodsController < ApplicationController
         redirect_to home_path
       else
         @categories = Category.find :all, :order => "title ASC"
-        @featured = Frugle.find :all, :order => "views ASC", :limit => 3, :include => :business, :conditions => [ "businesses.neighborhood_id = ?", current_user.neighborhood_id]
+        @featured = Frugle.find :all, :order => "prints ASC", :limit => 3, :include => :business, :conditions => [ "businesses.neighborhood_id = ?", current_user.neighborhood_id]
         @user_categories = current_user.categories
         @user_subcategories = current_user.subcategories
         @results = Array.new
@@ -130,4 +130,19 @@ class NeighborhoodsController < ApplicationController
     @neighborhood.destroy
     redirect_to neighborhoods_url, :notice => "Successfully destroyed neighborhood."
   end
+  
+  def personalization
+    render :update do |page|
+      page.visual_effect :toggle_blind, 'personalizations'
+      page.visual_effect :toggle_blind, 'personalizations_show'
+    end
+  end
+  
+  def map_toggle
+    render :update do |page|
+      page.visual_effect :toggle_blind, 'map_toggle'
+      page.visual_effect :toggle_blind, 'map_show'
+    end
+  end
+  
 end

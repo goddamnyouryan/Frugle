@@ -1,0 +1,15 @@
+<% if user_signed_in? %>
+	<% if current_user.frugles.include?(@frugle) %>
+		<%= link_to saveds_path(:frugle_id => @frugle.id), :method => :delete, :remote => true, :class => "button negative" do %>
+			<span class="icon trash"></span>
+			Unsave this Frugle
+		<% end %>
+	<% else %>
+		<%= link_to new_saveds_path(:frugle_id => @frugle.id), :remote => true, :class => "button" do %>
+			<span class="icon heart"></span>
+			Save this Frugle
+		<% end %>
+	<% end %>
+<% else %>
+	<%= link_to "Save this Frugle", new_user_session_path, :return_to => request.request_uri %>
+<% end %>

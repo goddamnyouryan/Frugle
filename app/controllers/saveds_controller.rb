@@ -4,7 +4,7 @@ class SavedsController < ApplicationController
     @frugle = Frugle.find params[:frugle_id]
     render :update do |page|
       page.select(".save_#{@frugle.id}").each do |element| 
-        page.replace_html element, "#{link_to "Unsave", saveds_path(current_user.id, :frugle_id => @frugle.id), :method => :delete, :remote => true }"
+        page.replace_html element, :partial => 'frugles/save', :frugle => @frugle
 	    end
 	  end
   end
@@ -15,7 +15,7 @@ class SavedsController < ApplicationController
     @frugle = Frugle.find(params[:frugle_id])
     render :update do |page|
       page.select(".save_#{@frugle.id}").each do |element| 
-			  page.replace_html element, "#{link_to "Save", new_saveds_path(current_user.id, :frugle_id => @frugle.id), :remote => true }"
+			  page.replace_html element, :partial => 'frugles/save', :frugle => @frugle
 		  end
 	  end
   end

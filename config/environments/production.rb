@@ -51,8 +51,8 @@ OmniauthDeviseExample::Application.configure do
     :address              => "smtp.sendgrid.net",
     :port                 => 25,
     :domain               => 'frugle.heroku.com',
-    :user_name            => 'ryan.macinnes@gmail.com',
-    :password             => 'garbage',
+    :user_name            => 'taylor@frugle.me',
+    :password             => 'e@lance',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
   config.action_mailer.default_url_options = { :host => 'frugle.heroku.com' }

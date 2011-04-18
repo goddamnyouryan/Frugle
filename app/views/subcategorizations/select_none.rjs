@@ -1,0 +1,6 @@
+@subcategories.each do |subcategory|
+  page.replace_html "subcategory_#{subcategory.id}", "#{link_to subcategory.title, new_subcategorization_path(:subcategory_id => subcategory.id), :remote => true}"
+end
+page.replace_html "frugles", ""
+page.replace_html "frugles_count", "Frugles - #{pluralize(@results.count, 'result')}"
+page << @map.clear_overlays

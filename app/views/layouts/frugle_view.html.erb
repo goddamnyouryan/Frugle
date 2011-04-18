@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Frugle | <%= content_for?(:title) ? yield(:title) : "" %></title>
+  <%= stylesheet_link_tag "frugle_view" %>
+	<%= stylesheet_link_tag "css3buttons" %>
+  <%= javascript_include_tag :defaults %>
+
+	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
+	
+	<%= javascript_include_tag "jquery.fancybox-1.3.4.js" %>
+	<%= stylesheet_link_tag "fancybox/jquery.fancybox-1.3.4.css" %>
+	
+	<%= csrf_meta_tag %>
+	<script>
+		jQuery.noConflict();
+	</script>
+	<script>
+	jQuery(document).ready(function() {
+		jQuery(".iframe").fancybox({
+			height: 500,
+			width: 700,
+			hideOnContentClick: true
+		});
+	});
+	</script>
+  <%= yield(:head) %>
+</head>
+<body>
+
+	<div id="body_container">
+		<div id="body_content">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
+      <!--<%= content_tag :h2, yield(:title) if show_title? %> -->
+      <%= yield %>
+      </div>
+      <div class="clr"></div>
+    </div>
+
+</div>
+</div>
+	
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-22646449-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 <% current_user.categories.each do |category| %>
-	<li>
+	<li class="follwing_col2">
 		<%= category.title %> <%= link_to "(x)", categorizations_unfollow_path(:category_id => category.id), :remote => true %>
 	</li>
 <% end %>

@@ -1,76 +1,98 @@
-<% title "Home" %>
-<h3><%= @business.name %></h3>
-<p><%= @business.address %><br>
-	 <%= @business.zip %><br />
-	 <%= @business.phone %><br />
-	 <%= link_to "Edit Business Info", edit_business_path(current_user.business) %>
-</p>
+<% title "#{@business.name} Home"%>
+<div class="yellow_strip"><%= @business.name %> Home</div>
+	<div class="form_box_col">
+  <div class="form_box">
+    <div class="caption"><%= @business.name %></div>
+    
+    	<div class="marg-left">
+          <p class="fl">
+						<%= @business.address %><br />
+            <% unless @business.address2.nil? %>
+            	<%= @business.address2 %><br />
+						<% end %>
+						<%= @business.neighborhood.name %>, <%= @business.zip %><br />
+						<%= @business.phone %><br />
+          Web: <%= @business.website %> </p>
+					<div class="fr">
+          <p class="fr big_button"><%= link_to "Add New Frugle", new_frugle_path %></p>
+					<div class="clr"></div>
+					<p class="fr big_button"><%= link_to "Verify a Frugle", verify_path %></p>
+					<div class="clr"></div>
+					<p class="fr big_button"><%= link_to "Sign Out", destroy_user_session_path %></p>
+					
+					</div>
+					<div class="clr"></div>
+    </div>
+   	<div class="caption">Company Description <%= link_to "Edit Business Info", edit_business_path(current_user.business), :class => "link-blue" %></div>
+    <div class="marg-left">
+      <p> <%= @business.info %></p>
+    </div>
+</div>
+<div class="tag_border_bottom fl" style="margin-top:-7px;"><img src="images/box_bottom.jpg" alt="0" border="0" /></div>
+</div>
+<div class="form_box_col2_plain">
+<div align="center">
+  <p><%= raw(@map.div(:width => 345, :height => 245)) %>	</p>
+</div>
+</div>
+<div class="clr"></div>
 
-<p><%= link_to "Sign Out", destroy_user_session_path %></p>
-<p><%= link_to "Verify a Frugle", verify_path %></p>	 
-	
-<%= raw(@map.div(:width => 600, :height => 400)) %>	
+<div class="black_bar">
+<div>Active Frugles - <%= @active_frugles.count %></div>
+</div>
 
-<p><%= link_to "Add New Frugle", new_frugle_path %></p>
-
-<h3>Active Frugles</h3>
-<table>
+<div class="tag_box">
+<table width="98%" border="0" cellpadding="5" cellspacing="2" class="border-table" style="margin:auto">
   <tr>
-    <th>Type</th>
-	<th>Cost</th>
-    <th>Mobile</th>
-    <th>Quantity</th>
-    <th>Views</th>
-		<th>Prints</th>
-    <th>Start</th>
-    <th>End</th>
+    <td align="center" class="border-table bg-dark">Date Created</td>
+    <td align="center" class="border-table bg-dark">Date to Expire</td>
+    <td align="center" class="border-table bg-dark">Deal</td>
+    <td align="center" class="border-table bg-dark">Qty. left</td>
+    <td align="center" class="border-table bg-dark">Views</td>
+    <td align="center" class="border-table bg-dark">Prints</td>
+    <td align="center" class="border-table bg-dark">&nbsp;</td>
   </tr>
-  <% for frugle in @active_frugles %>
-    <tr>
-      <td><%= frugle.discount %></td>
-      <td><%= frugle.cost %></td>
-      <td><%= frugle.mobile %></td>
-      <td><%= frugle.quantity %></td>
-      <td><%= frugle.views %></td>
-			<td><%= frugle.prints %></td>
-      <td><%= frugle.start.to_date %></td>
-      <td><%= frugle.end.to_date %></td>
-      <td><%= link_to "Show", frugle %></td>
-      <td><%= link_to "Edit", edit_frugle_path(frugle) %></td>
-      <td><%= link_to "Destroy", frugle, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
-
-<h3>Expired Frugles</h3>
-<table>
+<% for frugle in @active_frugles %>
   <tr>
-    <th>Type</th>
-		<th>Cost</th>
-    <th>Mobile</th>
-    <th>Quantity</th>
-    <th>Views</th>
-		<th>Prints</th>
-    <th>Start</th>
-    <th>End</th>
+    <td align="center" class="border-table"><%= frugle.start.to_date %></td>
+    <td align="center" class="border-table"><%= frugle.end.to_date %></td>
+    <td align="center" class="border-table"><%= frugle.cost %></td>
+    <td align="center" class="border-table"><%= frugle.quantity %></td>
+    <td align="center" class="border-table"><%= frugle.views %></td>
+    <td align="center" class="border-table"><%= frugle.prints %></td>
+    <td align="center" class="border-table"><%= link_to "Edit", edit_frugle_path(frugle), :class => "link-blue" %></td>
   </tr>
-  <% for frugle in @expired_frugles %>
-    <tr>
-      <td><%= frugle.discount %></td>
-      <td><%= frugle.cost %></td>
-      <td><%= frugle.mobile %></td>
-			<% if frugle.quantity == nil %>
-				<td>unlimited</td>
-			<% else %>
-      	<td><%= frugle.quantity %></td>
-			<% end%>
-      <td><%= frugle.views %></td>
-			<td><%= frugle.prints %></td>
-      <td><%= frugle.start.to_date %></td>
-      <td><%= frugle.end.to_date %></td>
-      <td><%= link_to "Show", frugle %></td>
-      <td><%= link_to "Edit", edit_frugle_path(frugle) %></td>
-      <td><%= link_to "Destroy", frugle, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
+<% end %>
 </table>
+</div>
+<div class="tag_border_bottom" style="margin-top:-7px;"><img src="images/tag_box_bottom.png" alt="0" border="0" /></div>
+
+<div class="black_bar">
+<div class="red_text">Inactive Frugles - <%= @expired_frugles.count %></div>
+</div>
+
+<div class="tag_box">
+<table width="98%" border="0" cellpadding="5" cellspacing="2" class="border-table" style="margin:auto">
+  <tr>
+    <td align="center" class="border-table bg-dark">Date Created</td>
+    <td align="center" class="border-table bg-dark">Date to Expire</td>
+    <td align="center" class="border-table bg-dark">Deal</td>
+    <td align="center" class="border-table bg-dark">Qty. left</td>
+    <td align="center" class="border-table bg-dark">Views</td>
+    <td align="center" class="border-table bg-dark">Prints</td>
+    <td align="center" class="border-table bg-dark">&nbsp;</td>
+  </tr>
+<% for frugle in @expired_frugles %>
+  <tr>
+    <td align="center" class="border-table"><%= frugle.start.to_date %></td>
+    <td align="center" class="border-table"><%= frugle.end.to_date %></td>
+    <td align="center" class="border-table"><%= frugle.cost %></td>
+    <td align="center" class="border-table"><%= frugle.quantity %></td>
+    <td align="center" class="border-table"><%= frugle.views %></td>
+    <td align="center" class="border-table"><%= frugle.prints %></td>
+    <td align="center" class="border-table"><%= link_to "Edit", edit_frugle_path(frugle), :class => "link-blue" %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+<div class="tag_border_bottom" style="margin-top:-7px;"><img src="images/tag_box_bottom.png" alt="0" border="0" /></div>
