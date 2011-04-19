@@ -2,23 +2,23 @@ function changeCost(){
 	value = $("frugle_discount").getValue();
 	if (value == "percent") {
 		$("discount").innerHTML = "<span id=\"percentage\"></span>% Off <span id=\"product\"></span>";
-		$("cost_div").innerHTML = "<input id=\"frugle_percentage\" name=\"frugle[percentage]\" size=\"3\" type=\"text\" /> % Off <input id=\"frugle_product\" name=\"frugle[product]\" size=\"15\" type=\"text\" />";
+		$("cost_div").innerHTML = "<input id=\"frugle_percentage\" name=\"frugle[percentage]\" size=\"3\" type=\"text\" class=\"reg_bar_phone\" /> % Off <input id=\"frugle_product\" name=\"frugle[product]\" size=\"15\" type=\"text\" class=\"reg_bar_phone\" />";
 	}
 	else if (value == "dollar") {
 		$("discount").innerHTML = "$<span id=\"percentage\"></span> Off <span id=\"product\"></span>";
-		$("cost_div").innerHTML = "$<input id=\"frugle_percentage\" name=\"frugle[percentage]\" size=\"3\" type=\"text\" /> Off <input id=\"frugle_product\" name=\"frugle[product]\" size=\"15\" type=\"text\" />";
+		$("cost_div").innerHTML = "$<input id=\"frugle_percentage\" name=\"frugle[percentage]\" size=\"3\" type=\"text\" class=\"reg_bar_phone\" /> Off <input id=\"frugle_product\" name=\"frugle[product]\" size=\"15\" type=\"text\" class=\"reg_bar_phone\" />";
 	}
 	else if (value == "flat") {
 		$("discount").innerHTML = "$<span id=\"percentage\"></span> For <span id=\"product\"></span>";
-		$("cost_div").innerHTML = "$<input id=\"frugle_percentage\" name=\"frugle[percentage]\" size=\"3\" type=\"text\" /> For <input id=\"frugle_product\" name=\"frugle[product]\" size=\"15\" type=\"text\" />";
+		$("cost_div").innerHTML = "$<input id=\"frugle_percentage\" name=\"frugle[percentage]\" size=\"3\" type=\"text\" class=\"reg_bar_phone\" /> For <input id=\"frugle_product\" name=\"frugle[product]\" size=\"15\" type=\"text\" class=\"reg_bar_phone\" />";
 	}
 	else if (value == "bonus") {
 		$("discount").innerHTML = "Free <span id=\"percentage\"></span> With Purchase Of <span id=\"product\"></span>";
-		$("cost_div").innerHTML = "Free <input id=\"frugle_percentage\" name=\"frugle[percentage]\" size=\"10\" type=\"text\" /> With Purchase of <input id=\"frugle_product\" name=\"frugle[product]\" size=\"10\" type=\"text\" />";
+		$("cost_div").innerHTML = "Free <input id=\"frugle_percentage\" name=\"frugle[percentage]\" size=\"10\" type=\"text\" class=\"reg_bar_phone\" /> With Purchase of <input id=\"frugle_product\" name=\"frugle[product]\" size=\"10\" type=\"text\" class=\"reg_bar_phone\" />";
 	}
 	else if (value == "bogo") {
 		$("discount").innerHTML = "Buy One <span id=\"percentage\"></span> Get One <span id=\"product\"></span> Free";
-		$("cost_div").innerHTML = "Buy One <input id=\"frugle_percentage\" name=\"frugle[percentage]\" size=\"10\" type=\"text\" /> Get One <input id=\"frugle_product\" name=\"frugle[product]\" size=\"10\" type=\"text\" /> Free";
+		$("cost_div").innerHTML = "Buy One <input id=\"frugle_percentage\" name=\"frugle[percentage]\" size=\"10\" type=\"text\" class=\"reg_bar_phone\" /> Get One <input id=\"frugle_product\" name=\"frugle[product]\" size=\"10\" type=\"text\" class=\"reg_bar_phone\" /> Free";
 	}
 };
 
@@ -48,7 +48,7 @@ document.observe('dom:loaded', function() {
 	
 	$("frugle_quantity").observe('change', function() {
 		value = $("frugle_quantity").getValue();
-		$("details").innerHTML = "Quantity: " + value
+		$("quantity").innerHTML = "Quantity: " + value
 	});
 	
 	$("frugle_other_offer").observe('change', function() {
@@ -87,7 +87,7 @@ document.observe('dom:loaded', function() {
 			$("mobile").innerHTML = "We will accept this Frugle printed out or on a phone."
 		}
 		else {
-			$("mobile").innerHTML = "We will only accept this Frugle when it is printed out"
+			$("mobile").innerHTML = "We will only accept this Frugle when it is printed out."
 		}
 	});
 	
@@ -126,4 +126,16 @@ document.observe('dom:loaded', function() {
 	});
 	
 });
+
+var name = "#preview";
+var menuYloc = null;
+
+jQuery(document).ready(function(){
+    menuYloc = parseInt(jQuery(name).css("top").substring(0,jQuery(name).css("top").indexOf("px")))
+    jQuery(window).scroll(function () {
+        var offset = menuYloc+jQuery(document).scrollTop()+"px";
+        jQuery(name).animate({top:offset},{duration:500,queue:false});
+    });
+});
+
 

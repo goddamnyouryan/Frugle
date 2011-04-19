@@ -1,45 +1,156 @@
 <% title "Edit Frugle" %>
+<% javascript 'jquery.dimensions.pack' %>
 <% javascript 'poop' %>
+
+<h2 class="yellow_strip">Edit Your Frugle</h2>
+
+<div class="form_box_col">
+  <div class="form_box" style="padding:10px !important;">
+	
+	<h3 class="caption">First, choose the type of discount your Frugle will offer:</h3>
 
 <%= form_for @frugle do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :discount %><br />
-    <%= f.select :discount, options_for_select(@frugle_discount_options, @frugle.discount) %>
-  </p>
-  <p id="cost_div">
-		<% if @frugle.discount == "percent" %>
-			<%= f.text_field :percentage, :size => 3 %> % Off <%= f.text_field :product, :size => 15 %>
-		<% elsif @frugle.discount == "dollar" %>
-			$<%= f.text_field :percentage, :size => 3 %> Off <%= f.text_field :product, :size => 15 %>
-		<% elsif @frugle.discount == "flat" %>
-			$<%= f.text_field :percentage, :size => 3 %> For <%= f.text_field :product, :size => 15 %>
-		<% elsif @frugle.discount == "bonus" %>
-			Free <%= f.text_field :percentage, :size => 10 %> With Purchase Of <%= f.text_field :product, :size => 10 %>
-		<% elsif @frugle.discount == "bogo" %>
-			Buy One <%= f.text_field :percentage, :size => 10 %> Get One<%= f.text_field :product, :size => 10 %> Free
-		<% end %>
-  </p>
-  <p>
-    <%= f.label :details %><br />
-    <%= f.text_area :details %>
-  </p>
-  <p>
-    <%= f.label :mobile %><br />
-    <%= f.check_box :mobile %>
-  </p>
-  <p>
-    <%= f.label :quantity %><br />
-    <%= f.text_field :quantity %>
-  </p>
-  <p>
-    <%= f.label :start_date %><br />
-    <%= f.date_select :start, :order => [:day, :month, :year] %>
-  </p>
-  <p>
-    <%= f.label :end_date %><br />
-    <%= f.date_select :end, :default =>3.months.from_now, :order => [:day, :month, :year] %>
-  </p>
-  <p><%= f.submit %></p>
+
+	<div class="reg_row" style="margin:30px 0;">
+	  <span style="float:left">
+			<%= f.select :discount, options_for_select(@frugle_discount_options, @frugle.discount) %>
+	  </span>
+	  	<div class="clr"></div>
+	</div>
+	
+	<h3 class="caption">Then fill out the details for this frugle:</h3>
+	
+	<div class="reg_row">
+	  <div style="float:left;" id="cost_div">
+	<% if @frugle.discount == "percent" %>
+		<%= f.text_field :percentage, :size => 3, :class => "reg_bar_phone" %> % Off <%= f.text_field :product, :size => 15, :class => "reg_bar_phone" %>
+	<% elsif @frugle.discount == "dollar" %>
+		$<%= f.text_field :percentage, :size => 3, :class => "reg_bar_phone" %> Off <%= f.text_field :product, :size => 15, :class => "reg_bar_phone" %>
+	<% elsif @frugle.discount == "flat" %>
+		$<%= f.text_field :percentage, :size => 3, :class => "reg_bar_phone" %> For <%= f.text_field :product, :size => 15, :class => "reg_bar_phone" %>
+	<% elsif @frugle.discount == "bonus" %>
+		Free <%= f.text_field :percentage, :size => 10, :class => "reg_bar_phone" %> With Purchase Of <%= f.text_field :product, :size => 10, :class => "reg_bar_phone" %>
+	<% elsif @frugle.discount == "bogo" %>
+		Buy One <%= f.text_field :percentage, :size => 10, :class => "reg_bar_phone" %> Get One<%= f.text_field :product, :size => 10, :class => "reg_bar_phone" %> Free
+	<% end %>
+	</div>
+	  	<div class="clr"></div>
+	</div>
+	
+	<div class="reg_row">
+	  <div style="float:left;" id="cost_div"><%= f.check_box :other_offer %> Not valid with any other offer</div>
+	  	<div class="clr"></div>
+	</div>
+	
+	<div class="reg_row">
+	  <div style="float:left;" id="cost_div"><%= f.check_box :visit %> Limit one per visit</div>
+	  	<div class="clr"></div>
+	</div>
+	
+	<div class="reg_row">
+	  <div style="float:left;" id="cost_div"><%= f.check_box :altered %> Void If Altered</div>
+	  	<div class="clr"></div>
+	</div>
+	
+	<div class="reg_row">
+	  <div style="float:left;" id="cost_div"><%= f.check_box :mobile %> Customers may present this frugle on their phone</div>
+	  	<div class="clr"></div>
+	</div>
+	
+	<div class="reg_row">
+	  <div style="float:left;" id="cost_div">
+			<%= f.radio_button :customers, "New" %> New Customers Only<br />
+		  <%= f.radio_button :customers, "Returning" %> Returning Customers Only<br />
+			<%= f.radio_button :customers, "Anyone" %> Anyone
+		</div>
+	  	<div class="clr"></div>
+	</div>
+
+	<div class="reg_row">
+		<div class="reg_col_left">Additional Detials</div>
+	  <div class="reg_col_right"><%= f.text_area :details, :class => "reg_bar", :style => "height: 80px;width:205px;" %></div>
+	  	<div class="clr"></div>
+	</div>
+
+	<div class="reg_row">
+		<div class="reg_col_left">Quantity (Leave Blank if Unlimited)</div>
+	  <div class="reg_col_right"><%= f.text_field :quantity, :class => "reg_bar_phone", :size => 6 %></div>
+	  	<div class="clr"></div>
+	</div>
+	
+	<div class="reg_row">
+		<div class="reg_col_left">Start Date</div>
+	  <div class="reg_col_right"><%= f.text_field :start, :class => "reg_bar_phone", :size => 10 %></div>
+	  	<div class="clr"></div>
+	</div>
+	
+	<div class="reg_row">
+		<div class="reg_col_left">End Date</div>
+	  <div class="reg_col_right"><%= f.text_field :end, :class => "reg_bar_phone", :size => 10 %></div>
+	  	<div class="clr"></div>
+	</div>
+	
+	<div class="reg_row">
+		<div class="reg_col_left">Tags (separate with a comma)</div>
+	  <div class="reg_col_right"><%= f.text_field :tag_list, :class => "reg_bar" %></div>
+	  	<div class="clr"></div>
+	</div>
+	
+  <%= f.submit "Create Frugle", :class => "button", :style=> "margin-left:190px;" %>
 <% end %>
 
+</div>
+</div>
+<div class="tag_border_bottom fl" style="margin-top:-7px;"><%= image_tag "box_bottom.jpg" %></div>
+
+<div id="preview">
+	<h2>Preview</h2>
+	<div id="preview_content">
+	<h3 id="discount" style="margin-bottom:20px;">
+		<% if @frugle.discount == "percent" %>
+			 <span id="percentage"><%= @frugle.percentage %></span>% Off <span id="product"><%= @frugle.product %></span>
+		<% elsif @frugle.discount == "dollar" %>
+			$<span id="percentage"><%= @frugle.percentage %></span> Off <span id="product"><%= @frugle.product %></span>
+		<% elsif @frugle.discount == "flat" %>
+			$<span id="percentage"><%= @frugle.percentage %></span> For <span id="product"><%= @frugle.product %></span>
+		<% elsif @frugle.discount == "bonus" %>
+			Free <span id="percentage"><%= @frugle.percentage %></span> With Purchase Of <span id="product"><%= @frugle.product %></span>
+		<% elsif @frugle.discount == "bogo" %>
+			Buy One <span id="percentage"><%= @frugle.percentage %></span> Get One <span id="product"><%= @frugle.product %></span> Free
+		<% end %>
+	</h3>
+	<p style="margin:10px 0;">
+		<span id="other_offer">
+			<% if @frugle.other_offer %>
+				Not valid with any other offer. 
+			<% end %>
+		</span> 
+		<span id="visit">
+			<% if @frugle.visit %>
+				Limit one per visit. 
+			<% end %>
+		</span> 
+		<span id="altered">
+			<% if @frugle.altered %>
+				Coupon void if altered. 
+			<% end %>
+		</span> 
+		<span id="customers">
+			<% if @frugle.customers == "New" %>
+				New customers only. 
+			<% elsif @frugle.customers == "Returning" %>
+				Returning customers only. 
+			<% end %>
+		</span>
+	</p>
+	<p id="details" style="margin:10px 0;"><%= @frugle.details%></p>
+	<p id="mobile" style="margin:10px 0;"></p>
+	<p id="quantity" style="margin:10px 0;"><strong>Quantity:</strong> <%= @frugle.details%></p>
+	<p style="margin:10px 0;"><strong>Start Date:</strong> <span id="start"><%= @frugle.start.to_date %></span></p>
+	<p style="margin:10px 0;"><strong>End Date:</strong> <span id="end"><%= @frugle.end.to_date %></span></p>
+	<p style="margin:10px 0;"><strong>Tags:</strong> <span id="tags"><%= @frugle.tag_list %></span></p>
+	</div>
+</div>
+
+<div class="clr"></div>

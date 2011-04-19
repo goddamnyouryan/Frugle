@@ -8,15 +8,15 @@
 <% end %>
 
 <% if params[:search] %>
-	<h3>You searched "<%= params[:search] %>"
+	<h3 class="yellow_strip">You searched "<%= params[:search] %>"
 <% end %>
 
 <% unless @businesses.count == 0 %>
-	<h3>Businesses - <%= pluralize(@businesses.count, "result") %></h3>
+	<h3 class="black_bar">Business - <%= pluralize(@businesses.count, "result") %></h3>
 	<ul>
 		<% @businesses.each do |business| %>
-			<li>
-				<h4><%= business.name %> - <%= business.frugles.count %> Frugles</h4>
+			<li style="list-style-type:none; margin: 25px 0;">
+				<h4><%= link_to "#{business.name} - #{business.frugles.count} Frugles", business %></h4>
 				<p>
 					<%= business.address %><br />
 					<% if business.address2? %>
@@ -28,11 +28,13 @@
 			</li>
 		<% end %>
 	</ul>
+	<div class="clr"></div>
 <% end %>
 					
 <% unless @frugles.count == 0 %>
-<h3>Frugles - <%= pluralize(@frugles.count, "result") %></h3>
+<h3 class="black_bar">Frugles - <%= pluralize(@frugles.count, "result") %></h3>
 <ul class="frugles">
-		<%= render :partial => 'neighborhoods/frugle', :collection => @frugles, :as => :frugle %>
+		<%= render :partial => 'neighborhoods/small_frugle', :collection => @frugles, :as => :frugle %>
 </ul>
+<div class="clr"></div>
 <% end %>

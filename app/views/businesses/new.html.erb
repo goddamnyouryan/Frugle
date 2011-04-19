@@ -1,24 +1,46 @@
 <% title "New Business" %>
 <% javascript 'dynamic' %>
 
-<ol>
+<h2 class="yellow_strip">New Business</h2>
+
+<div class="form_box_col">
+  <div class="form_box" style="padding:10px !important;">
+
+
+<h3 class="caption">Just Follow these three easy steps to get your business running on Frugle!</h3>
+<ol style="margin: 10px 10px 10px 20px;">
 	<li>Enter your phone number so that we can verify that only neighborhood stores are registering</li>
 	<li>Tell your neighbors where they can find you and what you sell</li>
 	<li>Enter a username and password to keep your info safe (we will never sell your information, see our <%= link_to "privacy policy" %>)</li>
+</ol>
 
 <%= form_for @business, :remote => true do |f| %>
-<p>
-  <%= f.label :phone_number %>
-  <%= f.fields_for :phone do |phone| %><br />
-  	<%= phone.text_field :area_code, :size => 3 %>
-		<%= phone.text_field :first_three_digits, :size => 3 %>
-		<%= phone.text_field :second_four_digits, :size => 4 %>
-  <% end %>
+<div class="reg_row" style="margin:30px 0;">
+	<span class="reg_col_left">Business Phone Number</span>
+  <span style="float:left">
+	<script>
+	function moveOnMax(field,nextFieldID){
+	  if(field.value.length >= field.maxLength){
+	    document.getElementById(nextFieldID).focus();
+	  }
+	}
+	</script>
+  	<%= f.fields_for :phone do |phone| %>
+	  	<%= phone.text_field :area_code, :size => 3, :class => "reg_bar_phone", :maxlength => 3, :onkeyup => "moveOnMax(this,'business_phone_first_three_digits')"  %>
+			<%= phone.text_field :first_three_digits, :size => 3, :class => "reg_bar_phone", :maxlength => 3, :onkeyup => "moveOnMax(this,'business_phone_second_four_digits')"  %>
+			<%= phone.text_field :second_four_digits, :size => 4, :class => "reg_bar_phone", :maxlength => 4, :onkeyup => "moveOnMax(this,'business_submit')"  %>
+	  <% end %>
+  </span>
+<%= f.submit "Create Business", :class => "button", :style=> "float:left;margin:2px 0 0 14px;" %>
+  	<div class="clr"></div>
+</div>
 
-</p>
-
-<p><%= f.submit %></p>
 <% end %>
 
 <div id="business_form">
 </div>
+
+</div>
+</div>
+<div class="tag_border_bottom fl" style="margin-top:-7px;"><%= image_tag "box_bottom.jpg" %></div>
+<div class="clr"></div>

@@ -14,11 +14,23 @@
 						<%= @business.phone %><br />
           Web: <%= @business.website %> </p>
 					<div class="fr">
-          <p class="fr big_button"><%= link_to "Add New Frugle", new_frugle_path %></p>
+          <p><%= link_to new_frugle_path, :class => "big button", :style => "float:right;margin-bottom: 10px;" do %>
+							<span class="icon plus"></span>
+							Add New Frugle
+						<% end %>
+					</p>
 					<div class="clr"></div>
-					<p class="fr big_button"><%= link_to "Verify a Frugle", verify_path %></p>
+					<p><%= link_to verify_path, :class => "big button", :style => "float:right;margin-bottom: 10px;" do %>
+							<span class="icon check"></span>
+							Verify a Frugle
+						<% end %>
+					</p>
 					<div class="clr"></div>
-					<p class="fr big_button"><%= link_to "Sign Out", destroy_user_session_path %></p>
+					<p><%= link_to destroy_user_session_path, :class => "big button negative", :style => "float:right;" do %>
+							<span class="icon trash"></span>
+							Sign Out
+						<% end%>
+					</p>
 					
 					</div>
 					<div class="clr"></div>

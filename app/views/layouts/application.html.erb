@@ -72,8 +72,8 @@
 						<% end %>
             <div class="fr"><%= link_to "Sign out", destroy_user_session_path %></div>
 					<% else%>
-						<div class="fr"><%= link_to "Sign Up", new_user_registration_path %></div>
-          	<div class="fr"><%= link_to "Sign In", new_user_session_path %></div>
+						<div class="fr"><%= link_to "Sign In", new_user_session_path %></div>
+						<div class="fr"><%= link_to "Register", new_user_registration_path %></div>
 					<% end %>
              	<div class="clr"></div>            
           </div>

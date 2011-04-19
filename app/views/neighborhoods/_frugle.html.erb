@@ -2,17 +2,7 @@
 	<div class="product_col_left"><%= link_to image_tag("shirt.png"), business_frugle_path(frugle.business, frugle), :class => "iframe" %></div>
   <div class="product_col_right">
   	<div class="product_caption"><%= link_to "#{frugle.cost}", business_frugle_path(frugle.business, frugle), :class => "iframe" %></div>
-    <div><%= frugle.business.address %></div>
-    <div><%= link_to frugle.business.name, business_path(frugle.business) %>
-		<span class="save_<%= frugle.id %>">
-			<% if user_signed_in? %>
-				<% @save = Saved.find_by_user_id_and_frugle_id(current_user.id, frugle.id) %>
-				<% if @save == nil %>
-					<%= link_to "Save", new_saveds_path(current_user.id, :frugle_id => frugle.id), :remote => true %>
-				<% else %>
-					<%= link_to "Unsave", saveds_path(current_user.id, :frugle_id => frugle.id), :method => :delete, :remote => true %>
-				<% end %>
-			<% end %>
-		</span>
+    <div class="frugle_address"><%= frugle.business.address %></div>
+    <div class="frugle_business"><%= link_to frugle.business.name, business_path(frugle.business) %>
   </div>
 </li>

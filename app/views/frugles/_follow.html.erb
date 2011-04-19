@@ -5,7 +5,7 @@
 			Unfollow <%= @business.name %>
 		<% end %>
 	<% else %>
-		<%= link_to new_follow_path(current_user.id, :business_id => @business.id), :remote => true, :class => "button negative" do %>
+		<%= link_to new_follow_path(current_user.id, :business_id => @business.id), :remote => true, :class => "button" do %>
 			<span class='plus icon'></span>
 			Follow <%= @business.name %>
 		<% end %>

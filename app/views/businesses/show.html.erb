@@ -17,13 +17,13 @@
 					<div class="fr">
 						<% if user_signed_in? %>
 						<% unless current_user.role == "business" %>
-						<p id="follow">
+						<p id="follow" class="fr">
 							<%= render :partial => 'frugles/follow', :business => @business %>
 						</p>
 						<div class="clr"></div>
 						<% end %>
 						<% end %>
-						<p class="fr big_button"><%= link_to "Back to #{@business.neighborhood.name}", :controller => "neighborhoods", :action => "show", :id => @business.neighborhood.friendly_id %></p>
+						<p class="fr hide_button"><%= link_to "Back to #{@business.neighborhood.name}", :controller => "neighborhoods", :action => "show", :id => @business.neighborhood.friendly_id %></p>
 					</div>
 					<div class="clr"></div>
     </div>

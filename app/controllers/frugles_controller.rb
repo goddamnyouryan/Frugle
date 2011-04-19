@@ -93,7 +93,7 @@ class FruglesController < ApplicationController
   def update
     @frugle = Frugle.find(params[:id])
     if @frugle.update_attributes(params[:frugle])
-      redirect_to @frugle, :notice  => "Successfully updated frugle."
+      redirect_to root_path, :notice  => "Successfully updated frugle."
     else
       render :action => 'edit'
     end
