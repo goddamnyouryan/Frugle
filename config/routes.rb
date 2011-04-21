@@ -40,6 +40,7 @@ OmniauthDeviseExample::Application.routes.draw do
   match 'out_select_all_subcategories', :to => "subcategorizations#out_select_all"
   match 'out_select_none_subcategories', :to => "subcategorizations#out_select_none"
 
+  resources :twilio
   resources :subcategories
   resources :frugles do
     member do
