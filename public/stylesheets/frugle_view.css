@@ -45,8 +45,7 @@
 			a:hover { color: #990000;}
 			
 			.hide_button{
-				text-align:center;
-				line-height:28px;}
+				text-align:center;}
 
 			.hide_button a, input.hide_button {
 				text-decoration:none;
@@ -62,4 +61,38 @@
 
 			.hide_button a:hover, input.hide_button:hover {
 				background:#990000;}	
-			
+				
+				
+				.verify_box{
+					-moz-border-radius: 10px;
+				  border-radius: 10px;
+					padding:15px 20px 0px 20px;
+					background:#f3f3f3;	}
+				.verify_row{
+					text-align:center;
+					font-size:12px;
+					margin-top:50px;}
+					
+					.cat_box_row1{
+						}
+					.cat_box_row1 .fl{
+						list-style-type: none;
+						padding-right:18px;
+						padding:0px 8px;
+						margin:2px 0px;}
+
+					.cat_box_row1 .fl a{
+						text-decoration:none;
+						color:#000000;
+						padding:0px 2px;}
+					.cat_box_row1 .fl a:hover{
+						background:#ffc90e;
+						padding:2px 2px;}
+						.form_row{
+							margin-top:20px;}
+							
+							.form_bar {
+							font-size:20px;
+							height:30px;
+							width:300px;
+							}

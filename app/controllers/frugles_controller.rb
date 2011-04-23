@@ -82,6 +82,10 @@ class FruglesController < ApplicationController
     @frugle_discount_options = {'% Off' => 'percent', '$ Off' => 'dollar', '$ For' => 'flat', 'Free with Purchase Of' => 'bonus', 'Buy One Get One Free' => 'bogo' }
   end
   
+  def verify
+    render :layout => "frugle_view"
+  end
+  
   def verified
     @frugle = Frugle.find_by_verification(params[:search].upcase)
     render :update do |page|
