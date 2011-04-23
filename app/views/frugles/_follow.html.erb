@@ -11,5 +11,8 @@
 		<% end %>
 	<% end %>
 <% else %>
-<%= link_to "Follow #{@business.name}", new_user_session_path %>
+<%= link_to new_user_session_path, :target => "_parent", :class => "button" do %>
+	<span class='plus icon'></span>
+	Follow <%= @business.name %>
+<% end %>
 <% end %>

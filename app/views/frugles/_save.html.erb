@@ -11,5 +11,8 @@
 		<% end %>
 	<% end %>
 <% else %>
-	<%= link_to "Save this Frugle", new_user_session_path, :return_to => request.request_uri %>
+	<%= link_to new_user_session_path, :return_to => request.request_uri, :class => "button", :target => "_parent" do %>
+		<span class="icon heart"></span>
+		Save this Frugle
+	<% end %>
 <% end %>
