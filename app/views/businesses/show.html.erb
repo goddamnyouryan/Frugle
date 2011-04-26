@@ -4,27 +4,24 @@
 	<div class="form_box_col">
   <div class="form_box">
     <div class="caption"><%= @business.name %></div>
-    
     	<div class="marg-left">
-          <p class="fl">
+				<% if user_signed_in? %>
+				<% unless current_user.role == "business" %>
+				<p id="follow">
+					<%= render :partial => 'frugles/follow', :business => @business %>
+				</p>
+				<% end %>
+				<% end %>
+				<p class="hide_button fl"><%= link_to "Back to #{@business.neighborhood.name}", :controller => "neighborhoods", :action => "show", :id => @business.neighborhood.friendly_id %></p>
+		<div class="clr"></div>
+          <p class="fl" style="margin-top:15px;">
 						<%= @business.address %><br />
             <% unless @business.address2.nil? %>
             	<%= @business.address2 %><br />
 						<% end %>
 						<%= @business.neighborhood.name %>, <%= @business.zip %><br />
 						<%= @business.phone %><br />
-          Web: <%= @business.website %> </p>
-					<div class="fr">
-						<% if user_signed_in? %>
-						<% unless current_user.role == "business" %>
-						<p id="follow" class="fr">
-							<%= render :partial => 'frugles/follow', :business => @business %>
-						</p>
-						<div class="clr"></div>
-						<% end %>
-						<% end %>
-						<p class="fr hide_button"><%= link_to "Back to #{@business.neighborhood.name}", :controller => "neighborhoods", :action => "show", :id => @business.neighborhood.friendly_id %></p>
-					</div>
+          	<%= @business.website %> </p>
 					<div class="clr"></div>
     </div>
    	<div class="caption">Company Description </div>

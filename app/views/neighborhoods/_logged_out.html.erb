@@ -1,33 +1,14 @@
 <% javascript "jquery.multipleelements.cycle.min" %>
-
-<h2 class="yellow_strip" style="margin-top:25px; margin-bottom:0;">Featured Frugles</h2>
-<script type="text/javascript">
-	jQuery(document).ready(function() {
-		jQuery("#plainDemo-3").multipleElementsCycle({
-			prev: '#cycleElementsLeft-3',
-			start: 0,	
-			next: '#cycleElementsRight-3'
-			});
-	});
-</script>
-		<div class="cycle_nav" style="float:left;">
-			<a href="#" id="cycleElementsLeft-3"><img src="images/bottom_sliderarrow_left.png" alt="0" border="0" /></a>
-		</div>
-		<div class="cycleElementsContainer" id="plainDemo-3">
-			<div id="cycleElements">
-				<ul>
-					<%= render :partial => 'frugle', :collection => @featured, :as => :frugle %>
-				</ul>
-			</div>
-		</div>
-		<div class="cycle_nav" style="float:right;">
-			<a href="#" id="cycleElementsRight-3"><img src="images/bottom_sliderarrow_right.png" alt="0" border="0" /></a>
-		</div>
-<div class="clr"></div>
 	
 <% if @user.sign_in_count == 1 %>
 <h3>Choose a category to see all the Frugles for <%= @neighborhood.name %></h3>
 <% end %>
+
+<div id="begin">
+	<%= @frugle_count.count %> deals from<br />
+	<%= @business_count.count %> <%= @neighborhood.name %> stores<br />
+	<%= image_tag "picksomecategoriestobegin.png" %>
+</div>
 
 <% form_tag frugles_path, :method => 'get' do %>
 <div class="search_row">
@@ -37,10 +18,12 @@
 </div>
 <% end %>
 
-<div class="black_bar">
-	<div class="yellow2 fl">Select: </div>
-  <div class="fl"><%= link_to "All", out_select_all_categories_path, :remote => true %> | <%= link_to "None", out_select_none_categories_path, :remote => true %> </div>
-  	<div class="clr"></div>
+<div id="select_all_categories">
+	<%= image_tag "bar.png", :style => "float:right;" %> 
+	<div style="float:right;margin:28px 5px 0 0;">
+	<%= link_to "all", out_select_all_categories_path, :remote => true %><br />
+	<%= link_to "none", out_select_none_categories_path, :remote => true %>
+	</div>
 </div>
 
 <div class="cat_box">
@@ -49,7 +32,7 @@
 <li class="fl" id="category_<%= category.id %>">
 	<% if @user_categories.include?(category) %>
 		<% @categorization = Categorization.find_by_user_id_and_category_id(@user.id, category.id) %>
-		<%= link_to "#{category.title}", out_destroy_categorization_path(:id => @categorization.id), :remote => true, :style => "background:#ffc90e;" %>
+		<%= link_to "#{category.title}", out_destroy_categorization_path(:id => @categorization.id), :remote => true, :style => "background:#FFBA5F;" %>
 	<% else %>
 		<%= link_to "#{category.title}", out_new_categorization_path(:category_id => category.id), :remote => true, :method => :post %>
 	<% end %>
@@ -75,28 +58,40 @@
 
 <div class="hide_button" id="show_subcategories"><%= link_to "Show Subcategories", subcategories_toggle_path, :remote => true %></div>
 
+<h2 class="yellow_strip" style="margin-top:25px; margin-bottom:0;">All Frugles</h2>
+
+<div id="view_frugles_here">
+	<%= image_tag "viewfrugleshere.png" %>
+</div>
+
+<h3 id="featured">Featured</h3>
+				<ul id="featured">
+					<%= render :partial => 'frugle', :collection => @featured, :as => :frugle %>
+				</ul>
+<div class="clr"></div>
+
+<div id="merchant_click_here">
+	<%= link_to image_tag("merchantclickhere.png"), businesses_path %>
+</div>
+
 <div id="frugle_results">
-<h2 class="yellow_strip" style="margin-top:30px; margin-bottom:0px;" id="frugles_count">Frugles - <%= pluralize(@results.count, "result") %></h2>
 <ul id="frugles" class="tag_box" style="float:left;">
 	<%= render :partial => 'small_frugle', :collection => @results, :as => :frugle %>
-	<div class="clr"></div>
-	<div class="hide_button" style="margin-bottom:10px;"><%= link_to "Hide Frugles", frugles_toggle_path, :remote => true %></div>
 	<div class="clr"></div>
 	
 </ul>
 </div>
-<div class="hide_button" id="frugles_show" style="display:none;"><%= link_to "Show Frugles", frugles_toggle_path, :remote => true %></div>
 <div class="clr"></div>
-<div class="tag_border_bottom" style="position:relative;top:-6px;"><img src="images/tag_box_bottom.png" alt="0" border="0" /></div>
+<div class="tag_border_bottom" style="position:relative;top:-8px;"><img src="images/tag_box_bottom.png" alt="0" border="0" /></div>
 
 <div class="clr"></div>
 
 <div id="map_toggle">
 <h2 class="yellow_strip" style="margin-top:30px; margin-bottom:0px;">Map</h2>
 <div class="map_box">
-	<%= raw(@map.div(:width => 920, :height => 490)) %>
+	<%= raw(@map.div(:width => 735, :height => 490)) %>
 	<div class="hide_button"><%= link_to "Hide Map", map_toggle_path, :remote => true %></div>
 </div>
 </div>
 <div class="hide_button" id="map_show" style="display:none;"><%= link_to "Show Map", map_toggle_path, :remote => true %></div>
-<div class="tag_border_bottom" style="position:relative;top:-6px;"><img src="images/tag_box_bottom.png" alt="0" border="0" /></div>
+<div class="tag_border_bottom" style="position:relative;top:-8px;"><img src="images/tag_box_bottom.png" alt="0" border="0" /></div>

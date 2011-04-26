@@ -1,10 +1,9 @@
 @categories.each do |category|
   @categorization = Categorization.find_by_user_id_and_category_id(@user.id, category.id)
-  page.replace_html "category_#{category.id}", "#{link_to category.title, @categorization, :method => :delete, :remote => true, :style => "background:#ffc90e;"}"
+  page.replace_html "category_#{category.id}", "#{link_to category.title, @categorization, :method => :delete, :remote => true, :style => "background:#FFBA5F;"}"
 end
 page.replace_html "subcategories", :partial => 'neighborhoods/all_subcategories', :user_subcategories => @user_subcategories
 page.replace_html "frugles", :partial => 'neighborhoods/small_frugle', :collection => @results, :as => :frugle
-page.replace_html "frugles_count", "Frugles - #{pluralize(@results.count, 'result')}"
 page << @map.clear_overlays
 for marker in @markers
   page << @map.add_overlay(marker)

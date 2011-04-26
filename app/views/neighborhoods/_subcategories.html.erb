@@ -7,7 +7,7 @@
 		<li class="fl" id="subcategory_<%= subcategory.id %>">
 		<% @user_subcategories = current_user.subcategories %>
 		<% if @user_subcategories.include?(subcategory) %>
-			<%= link_to subcategory.title, subcategorization_path(current_user, :subcategory_id => subcategory.id), :method => :delete, :remote => true, :style => "background:#ffc90e;" %>
+			<%= link_to subcategory.title, subcategorization_path(current_user, :subcategory_id => subcategory.id), :method => :delete, :remote => true, :style => "background:#FFBA5F;" %>
 		<% else %>
 			<%= link_to subcategory.title, new_subcategorization_path(:subcategory_id => subcategory.id), :remote => true %>
 		<% end %>
@@ -24,7 +24,7 @@
 		<li class="fl" id="subcategory_<%= subcategory.id %>">
 		<% @user_subcategories = @user.subcategories %>
 		<% if @user_subcategories.include?(subcategory) %>
-			<%= link_to subcategory.title, out_destroy_subcategorization_path(:subcategory_id => subcategory.id), :remote => true, :style => "background:#ffc90e;" %>
+			<%= link_to subcategory.title, out_destroy_subcategorization_path(:subcategory_id => subcategory.id), :remote => true, :style => "background:#FFBA5F;" %>
 		<% else %>
 			<%= link_to subcategory.title, out_new_subcategorization_path(:subcategory_id => subcategory.id), :remote => true %>
 		<% end %>

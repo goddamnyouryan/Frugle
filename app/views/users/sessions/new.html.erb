@@ -1,10 +1,7 @@
 <% title "Sign In" %>
-
-<div class="yellow_strip">Sign In</div>
- <div class="form_box_col">
-  <div class="form_box" style="padding:10px !important;">
+	<div id="splash_main_signup">
+		<h2 class="scrollable_frugles_header" style="margin: 20px 0; text-align:center;">Enter Your Info to Login</h2>
       <div class="form_row">
-			<h3 class="caption">Enter Your Info to Login</h3>
 			<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 				<div class="reg_row">
 					<div class="reg_col_left">Email</div>
@@ -24,21 +21,21 @@
 			  	<div class="clr"></div>
 			</div>
 		  <% end -%>
-			<div class="hide_button"><%= f.submit "Sign In", :class => "button" %></div>
+			<div class="hide_button"><%= f.submit "Sign In", :class => "orange_button" %></div>
 		<% end %>
-		<div class="form_row">
+		<div class="form_row" style="text-align:center; font-size:14px;">
 			<%= render :partial => "users/shared/links" %>
+			Sign In With 
+			<%- resource_class.omniauth_providers.each do |provider| %>
+				<%= link_to image_tag("facebook.png"), omniauth_authorize_path(resource_name, provider), :style => "position:relative;top:10px;" %>
+			<% end -%>
 		</div>
-		<div class="form_row">
-		Sign In With 
-		<%- resource_class.omniauth_providers.each do |provider| %>
-			<%= link_to image_tag("facebook.png"), omniauth_authorize_path(resource_name, provider), :style => "position:relative;top:10px;" %>
-		<% end -%>
-		</div>
-    </div>
-  </div>
-  <div class="tag_border_bottom fl" style="margin-top:-7px;"><%= image_tag "box_bottom.jpg" %></div>
+
+<div style="margin: 0 0 -14px -10px;"><%= image_tag "bottomgrass.png" %></div>
 </div>
 
+</div>
+
+<div class="clr"></div>
 
 

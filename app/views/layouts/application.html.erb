@@ -31,11 +31,8 @@
 	</script>
   <%= yield(:head) %>
 </head>
-<body>
-	
-	<div id="body_wraper">
-  	<div id="container">
-    	<div id="header">
+<body id="applicationbg">
+    	<div id="header">	
     		<h1 class="logo"><%= link_to "Frugle", root_path%></h1>
 
 				<% if user_signed_in? %>
@@ -94,7 +91,6 @@
     </div>
 <div class="clr"></div>
 
-</div>
 </div>
 <div class="clr"></div>
 	

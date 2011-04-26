@@ -1,6 +1,6 @@
 <% title "Sign Up" %>
 
-  <div class="caption">New User Registration</div>
+  <div class="scrollable_frugles_header" style="text-align:center;margin:20px 0;">Sign Up</div>
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 	<%= hidden_field(:neighborhood_id, session[:neighborhood]) %>
@@ -54,7 +54,10 @@
   <div class="clr"></div>
 </div>
 
-<div class="hide_button"><%= f.submit "Sign up" %></div>
+<div class="hide_button"><%= f.submit "Sign up", :class => "orange_button" %></div>
+
+<div style="text-align:center;font-size:14px;">
+
 <% end %>
 <div class="form_row">
 Sign Up With 
@@ -64,6 +67,8 @@ Sign Up With
 </div>
 
 <div class="form_row">
-<%= link_to "Skip this for Now", root_path %>
+<%= link_to "Skip this for Now", root_path, :style => "font-weight:bold;" %>
+</div>
+
 </div>
 

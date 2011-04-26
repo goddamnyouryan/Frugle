@@ -1,18 +1,14 @@
-<div class="yellow_strip">Sign Up for Frugle</div>
- <div class="form_box_col">
-  <div class="form_box" style="padding:10px !important;">
-    <div class="caption">Choose Your Neighborhood</div>
-    <div class="form">
-      <div class="form_row" id="box">
+	<div id="splash_main_signup">
+      <div id="box">
+				<h2 class="scrollable_frugles_header" style="margin: 20px 0">Choose Your Neighborhood</h2>
 				<%= form_tag "/neighborhoods/initial", :remote => true do %>
 				  <%= select_tag(:neighborhood_id, options_from_collection_for_select(Neighborhood.all, "id", "name") ) %>
-				  <%= submit_tag "Choose Neighborhood" %>
+				  <%= submit_tag "Choose Neighborhood", :class => "orange_button" %>
 				<% end %>
+				<p style="margin: 20px 0;font-size:14px;">Already have an Account? <%= link_to "Sign In!", new_user_session_path, :style => "font-weight:bold;" %></p>
       </div>
-    </div>
 		<div id="sign_up" style="display:none;">
 		<%= render :partial => 'sign_up' %>
 		</div>
+		<div style="margin: 0 0 -14px -10px;"><%= image_tag "bottomgrass.png" %></div>
   </div>
-  <div class="tag_border_bottom fl" style="margin-top:-7px;"><%= image_tag "box_bottom.jpg" %></div>
-</div>
