@@ -1,12 +1,10 @@
 <% javascript "jquery.multipleelements.cycle.min" %>
-	
-<% if @user.sign_in_count == 1 %>
-<h3>Choose a category to see all the Frugles for <%= @neighborhood.name %></h3>
-<% end %>
 
 <div id="begin">
-	<%= @frugle_count.count %> deals from<br />
-	<%= @business_count.count %> <%= @neighborhood.name %> stores<br />
+	<div id="angled">
+		<%= @frugle_count.count %> deals from<br />
+		<%= @business_count.count %> <%= @neighborhood.name %> stores<br />
+	</div>
 	<%= image_tag "picksomecategoriestobegin.png" %>
 </div>
 
@@ -29,7 +27,7 @@
 <div class="cat_box">
 	<ul class="cat_box_row1">
 <% for category in @categories %>
-<li class="fl" id="category_<%= category.id %>">
+<li id="category_<%= category.id %>">
 	<% if @user_categories.include?(category) %>
 		<% @categorization = Categorization.find_by_user_id_and_category_id(@user.id, category.id) %>
 		<%= link_to "#{category.title}", out_destroy_categorization_path(:id => @categorization.id), :remote => true, :style => "background:#FFBA5F;" %>
@@ -75,19 +73,15 @@
 </div>
 
 <div id="frugle_results">
-<ul id="frugles" class="tag_box" style="float:left;">
+<ul id="frugles" style="float:left;">
 	<%= render :partial => 'small_frugle', :collection => @results, :as => :frugle %>
 	<div class="clr"></div>
 	
 </ul>
 </div>
 <div class="clr"></div>
-<div class="tag_border_bottom" style="position:relative;top:-8px;"><img src="images/tag_box_bottom.png" alt="0" border="0" /></div>
-
-<div class="clr"></div>
 
 <div id="map_toggle">
-<h2 class="yellow_strip" style="margin-top:30px; margin-bottom:0px;">Map</h2>
 <div class="map_box">
 	<%= raw(@map.div(:width => 735, :height => 490)) %>
 	<div class="hide_button"><%= link_to "Hide Map", map_toggle_path, :remote => true %></div>

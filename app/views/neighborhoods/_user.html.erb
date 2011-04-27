@@ -1,7 +1,7 @@
 <% unless current_user.follows.count == 0 && current_user.frugles.count == 0 %>
 <% javascript "jquery.multipleelements.cycle.min" %>
 <div id="personalizations">
-	<h2 class="yellow_strip" style="margin-top:25px; margin-bottom:0;">Your Frugles</h2>
+	<h2 class="yellow_strip" style="margin-top:-15px; margin-bottom:0;">Your Frugles</h2>
 <% unless current_user.follows.count == 0 %>
 <h3 class="scrollable_frugles_header">Frugles from businesses you're following:</h3>
 <script type="text/javascript">
@@ -66,14 +66,12 @@
 	<div class="hide_button" id="personalizations_show" style="display:none;"><%= link_to "Show Your Frugles", neighborhood_personalizaton_path, :remote => true %></div>
 	
 <% end %>
-	
-<% if current_user.sign_in_count == 1 %>
-<h3>Choose a category to see all the Frugles for <%= @neighborhood.name %>.</h3>
-<% end %>
 
 <div id="begin">
-	<%= @frugle_count.count %> deals from<br />
-	<%= @business_count.count %> <%= @neighborhood.name %> stores<br />
+	<div id="angled">
+		<%= @frugle_count.count %> deals from<br />
+		<%= @business_count.count %> <%= @neighborhood.name %> stores<br />
+	</div>
 	<%= image_tag "picksomecategoriestobegin.png" %>
 </div>
 
@@ -97,7 +95,7 @@
 <div class="cat_box">
 	<ul class="cat_box_row1">
 <% for category in @categories %>
-<li class="fl" id="category_<%= category.id %>">
+<li id="category_<%= category.id %>">
 	<% if @user_categories.include?(category) %>
 		<% @categorization = Categorization.find_by_user_id_and_category_id(current_user.id, category.id) %>
 		<%= link_to "#{category.title}", categorization_path(@categorization), :method => :delete, :remote => true, :style => "background:#FFBA5F;" %>
@@ -124,9 +122,9 @@
 <div class="tag_border_bottom" style="margin-top:-6px;"><img src="images/tag_box_bottom.png" alt="0" border="0" /></div>
 
 
-<div class="hide_button" id="show_subcategories"><%= link_to "Show Subcategories", subcategories_toggle_path, :remote => true %></div>
+<div class="hide_button" id="show_subcategories" style="margin-top: -15px;"><%= link_to "Show Subcategories", subcategories_toggle_path, :remote => true %></div>
 
-<h2 class="yellow_strip" style="margin-top:25px; margin-bottom:0;">All Frugles</h2>
+<h2 class="yellow_strip" style="margin-top:10px; margin-bottom:0;">All Frugles</h2>
 
 <div id="view_frugles_here">
 	<%= image_tag "viewfrugleshere.png" %>
@@ -144,15 +142,12 @@
 
 <div id="frugle_results">
 	
-<ul id="frugles" class="tag_box" style="float:left;">
+<ul id="frugles" style="float:left;">
 	<%= render :partial => 'small_frugle', :collection => @results, :as => :frugle %>
 	<div class="clr"></div>
 	
 </ul>
 </div>
-<div class="clr"></div>
-<div class="tag_border_bottom" style="position:relative;top:-8px;"><img src="images/tag_box_bottom.png" alt="0" border="0" /></div>
-
 <div class="clr"></div>
 
 <div id="map_toggle">

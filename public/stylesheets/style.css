@@ -42,7 +42,7 @@ a:hover { color: #990000;}
 .logo{
 	background:url("../images/title.png") no-repeat;
 	float:left;
-	height:49px;
+	height:53px;
 	text-indent:-99999px;
 	width:200px;}
 	
@@ -158,16 +158,24 @@ body#applicationbg {
 
 .splash_bottom_box h3 {
 	border-bottom:1px solid grey;
+	font-size:20px;
 	font-weight:normal;
+	letter-spacing:2px;
 	line-height:45px;
 	margin-bottom:10px;
-	text-align:center;
 } 
 	
 .scrollable_frugles_header {
 	font-weight:normal;
 	letter-spacing:2px;
 	margin-left:40px;
+}
+
+#angled {
+	-webkit-transform: rotate(-20deg); 
+	-moz-transform: rotate(-20deg);
+	position:relative;
+	top:-15px;
 }
 	
 .search_row{
@@ -206,20 +214,22 @@ body#applicationbg {
 	text-decoration:none;}
 .cat_box{
 	margin:20px 0px 15px 0px;
-	font-size:24px;}
+	font-size:20px;}
 .cat_box_row1{
+	text-align: center;
 	}
-.cat_box_row1 .fl{
+.cat_box_row1 li {
+	display: inline;
 	list-style-type: none;
 	padding-right:18px;
 	padding:0px 8px;
 	margin:2px 0px;}
 
-.cat_box_row1 .fl a{
+.cat_box_row1 li a{
 	text-decoration:none;
 	color:#000000;
 	padding:0px 2px;}
-.cat_box_row1 .fl a:hover{
+.cat_box_row1 li a:hover{
 	background:#FFBA5F;
 	padding:2px 2px;}
 
