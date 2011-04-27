@@ -1,23 +1,42 @@
 <% title "New Business" %>
 <% javascript 'dynamic' %>
 
-<h2 class="yellow_strip">New Business</h2>
+<h2 class="yellow_strip">List Your Business In 3 Easy Steps:</h2>
 
-<div class="form_box_col">
-  <div class="form_box" style="padding:10px !important;">
+<ul id="new_business_signup_steps">
+	<li>
+		<%= image_tag "1.png" %>
+			<h3>Phone Number</h3>
+			<p>Enter your phone number so that we can verify that only neighborhood stores are registering</p>
+		<div class="clr"></div>
+	</li>
+	
+	<li>
+		<%= image_tag "2.png" %>
+			<h3>Listing Info</h3>
+			<p>Tell your neighbors where they can find you and what you sell</p>
+		<div class="clr"></div>
+	</li>
+	
+	<li>
+		<%= image_tag "3.png" %>
+			<h3>Email & Password</h3>
+			<p>Enter an email and password to keep your info safe (we will never sell your information, see our <%= link_to "privacy policy" %>)</p>
+		<div class="clr"></div>
+	</li>
+</ul>
+<div class="clr"></div>
 
+<div id="get_started_here">
+	<%= image_tag "getstartedhere.png" %>
+</div>
 
-<h3 class="caption">Just Follow these three easy steps to get your business running on Frugle!</h3>
-<ol style="margin: 10px 10px 10px 20px;">
-	<li>Enter your phone number so that we can verify that only neighborhood stores are registering</li>
-	<li>Tell your neighbors where they can find you and what you sell</li>
-	<li>Enter a username and password to keep your info safe (we will never sell your information, see our <%= link_to "privacy policy" %>)</li>
-</ol>
+<div>
+
 
 <%= form_for @business, :remote => true do |f| %>
-<div class="reg_row" style="margin:30px 0;">
-	<span class="reg_col_left">Business Phone Number</span>
-  <span style="float:left">
+<div class="new_business_box">
+	<h3>Enter Your Business Phone Number:</h3>
 	<script>
 	function moveOnMax(field,nextFieldID){
 	  if(field.value.length >= field.maxLength){
@@ -31,8 +50,7 @@
 			<%= phone.text_field :second_four_digits, :size => 4, :class => "reg_bar_phone", :maxlength => 4, :onkeyup => "moveOnMax(this,'business_submit')"  %>
 	  <% end %>
   </span>
-<%= f.submit "Create Business", :class => "button", :style=> "float:left;margin:2px 0 0 14px;" %>
-  	<div class="clr"></div>
+<%= f.submit "Next", :class => "button", :style=> "margin:2px 0 0 14px;" %>
 </div>
 
 <% end %>
@@ -41,6 +59,5 @@
 </div>
 
 </div>
-</div>
-<div class="tag_border_bottom fl" style="margin-top:-7px;"><%= image_tag "box_bottom.jpg" %></div>
+
 <div class="clr"></div>

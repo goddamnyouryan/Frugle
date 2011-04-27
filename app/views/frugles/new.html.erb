@@ -4,105 +4,96 @@
 
 <h2 class="yellow_strip">Create A New Frugle</h2>
 
-<div class="form_box_col">
-  <div class="form_box" style="padding:10px !important;">
-	
-	<h3 class="caption">First, choose the type of discount your Frugle will offer:</h3>
-
 <%= form_for @frugle do |f| %>
   <%= f.error_messages %>
 
-	<div class="reg_row" style="margin:30px 0;">
-	  <span style="float:left">
-			<%= f.select :discount, options_for_select(@frugle_discount_options) %>
-	  </span>
-	  	<div class="clr"></div>
+<div class="new_frugle_form_item">
+	<%= image_tag "1_frugle.png" %>
+	<div>
+		<h3>Choose the discount type:</h3>
+		<%= f.select :discount, options_for_select(@frugle_discount_options) %>
 	</div>
-	
-	<h3 class="caption">Then fill out the details for this frugle:</h3>
-	
-	<div class="reg_row">
-	  <div style="float:left;" id="cost_div"><%= f.text_field :percentage, :size => 3, :class => "reg_bar_phone" %> % Off <%= f.text_field :product, :size => 15, :class => "reg_bar_phone" %></div>
-	  	<div class="clr"></div>
-	</div>
-	
-	<div class="reg_row">
-	  <div style="float:left;" id="cost_div"><%= f.check_box :other_offer %> Not valid with any other offer</div>
-	  	<div class="clr"></div>
-	</div>
-	
-	<div class="reg_row">
-	  <div style="float:left;" id="cost_div"><%= f.check_box :visit %> Limit one per visit</div>
-	  	<div class="clr"></div>
-	</div>
-	
-	<div class="reg_row">
-	  <div style="float:left;" id="cost_div"><%= f.check_box :altered %> Void If Altered</div>
-	  	<div class="clr"></div>
-	</div>
-	
-	<div class="reg_row">
-	  <div style="float:left;" id="cost_div"><%= f.check_box :mobile %> Customers may present this frugle on their phone</div>
-	  	<div class="clr"></div>
-	</div>
-	
-	<div class="reg_row">
-	  <div style="float:left;" id="cost_div">
-			<%= f.radio_button :customers, "New" %> New Customers Only<br />
-		  <%= f.radio_button :customers, "Returning" %> Returning Customers Only<br />
-			<%= f.radio_button :customers, "Anyone" %> Anyone
-		</div>
-	  	<div class="clr"></div>
-	</div>
+</div>
+<div class="clr"></div>
 
-	<div class="reg_row">
-		<div class="reg_col_left">Additional Detials</div>
-	  <div class="reg_col_right"><%= f.text_area :details, :class => "reg_bar", :style => "height: 80px;width:205px;" %></div>
-	  	<div class="clr"></div>
+<div class="new_frugle_form_item">
+	<%= image_tag "2_frugle.png" %>
+	<div>
+		<h3>Enter the details for this discount:<br /><span>(This Will Be The Headline)</span></h3>
+		<div id="cost_div"><%= f.text_field :percentage, :size => 3, :class => "reg_bar_phone" %> % Off <%= f.text_field :product, :size => 15, :class => "reg_bar_phone" %></div>
 	</div>
+</div>
+<div class="clr"></div>
 
-	<div class="reg_row">
-		<div class="reg_col_left">Quantity (Leave Blank if Unlimited)</div>
-	  <div class="reg_col_right"><%= f.text_field :quantity, :class => "reg_bar_phone", :size => 6 %></div>
-	  	<div class="clr"></div>
+<div class="new_frugle_form_item">
+	<%= image_tag "3_frugle.png" %>
+	<div>
+		<h3>Add some details:<br /><span>(Explain the discount in your own words)</span></h3>
+		<%= f.text_area :details, :class => "reg_bar", :style => "height: 80px;width:205px;" %>
 	</div>
-	
-	<div class="reg_row">
-		<div class="reg_col_left">Start Date</div>
-	  <div class="reg_col_right"><%= f.text_field :start, :class => "reg_bar_phone", :size => 10 %></div>
-	  	<div class="clr"></div>
+</div>
+<div class="clr"></div>
+
+<div class="new_frugle_form_item">
+	<%= image_tag "4_frugle.png" %>
+	<div>
+		<h3>Who qualifies for this discount?</h3>
+		<%= f.radio_button :customers, "New" %> New Customers Only<br />
+	  <%= f.radio_button :customers, "Returning" %> Returning Customers Only<br />
+		<%= f.radio_button :customers, "Anyone" %> Anyone
 	</div>
-	
-	<div class="reg_row">
-		<div class="reg_col_left">End Date</div>
-	  <div class="reg_col_right"><%= f.text_field :end, :class => "reg_bar_phone", :size => 10 %></div>
-	  	<div class="clr"></div>
+</div>
+<div class="clr"></div>
+
+<div class="new_frugle_form_item">
+	<%= image_tag "5_frugle.png" %>
+	<div>
+		<h3>May customers present this<br /> Frugle on their phone?</h3>
+		<%= f.check_box :mobile %> Yes
 	</div>
-	
-	<div class="reg_row">
-		<div class="reg_col_left">Tags (separate with a comma)</div>
-	  <div class="reg_col_right"><%= f.text_field :tag_list, :class => "reg_bar" %></div>
-	  	<div class="clr"></div>
+</div>
+<div class="clr"></div>
+
+<div class="new_frugle_form_item">
+	<%= image_tag "6_frugle.png" %>
+	<div>
+		<h3>Any Restrictions?</h3>
+		<p style="margin-bottom: 10px;"><%= f.text_field :quantity, :class => "reg_bar_phone", :size => 6 %> Quantity Allowed (Leave Blank if Unlimited)</p>
+		<p style="margin-bottom: 10px;"><%= f.text_field :start, :class => "reg_bar_phone", :size => 10 %> Start Date </p>
+		<p style="margin-bottom: 10px;"><%= f.text_field :end, :class => "reg_bar_phone", :size => 10 %> End Date </p>
+		<p style="margin-bottom: 10px;"><%= f.check_box :other_offer %> Not valid with any other offer</p>
+		<p style="margin-bottom: 10px;"><%= f.check_box :visit %> Limit one per visit</p>
+		<p style="margin-bottom: 10px;"><%= f.check_box :altered %> Void If Altered</p>
 	</div>
+</div>
+<div class="clr"></div>
+
+<div class="new_frugle_form_item">
+	<%= image_tag "7_frugle.png" %>
+	<div>
+		<h3>Tag this frugle:<br /><span>(ex: dry cleaning, coffee, DJ, etc...)</span></h3>
+		<%= f.text_field :tag_list, :class => "reg_bar" %>
+	</div>
+</div>
+<div class="clr"></div>
 	
-  <%= f.submit "Create Frugle", :class => "button", :style=> "margin-left:190px;" %>
+  <%= f.submit "Run This Frugle!", :class => "button", :style=> "margin:25px 0 0 50px;" %>
 <% end %>
 
-</div>
-</div>
-<div class="tag_border_bottom fl" style="margin-top:-7px;"><%= image_tag "box_bottom.jpg" %></div>
 
 <div id="preview">
 	<h2>Preview</h2>
 	<div id="preview_content">
 	<h3 id="discount" style="margin-bottom:20px;"><span id="percentage"></span>% Off <span id="product"></span></h3>
-	<p style="margin:10px 0;"><span id="other_offer"></span> <span id="visit"></span> <span id="altered"></span> <span id="customers"></span></p>
+	<span style="float:left"><%= category_icon_business(@business) %></span> <span style="float:left; margin: 5px 0 0 5px;"><%= @business.name %></span>
+	<div class="clr"></div>
 	<p id="details" style="margin:10px 0;"></p>
-	<p id="mobile" style="margin:10px 0;"></p>
-	<p id="quantity" style="margin:10px 0;"></p>
 	<p style="margin:10px 0;"><strong>Start Date:</strong> <span id="start"></span></p>
 	<p style="margin:10px 0;"><strong>End Date:</strong> <span id="end"></span></p>
+	<p id="quantity" style="margin:10px 0;"></p>
 	<p style="margin:10px 0;"><strong>Tags:</strong> <span id="tags"></span></p>
+	<p id="mobile" style="margin:10px 0;"></p>
+	<p style="margin:10px 0;"><span id="other_offer"></span> <span id="visit"></span> <span id="altered"></span> <span id="customers"></span></p>
 	</div>
 </div>
 

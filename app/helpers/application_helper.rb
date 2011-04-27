@@ -58,4 +58,46 @@ module ApplicationHelper
     end
   end
   
+  def category_icon_business(business)
+    if business.category_id == 1
+      image_tag('auto.png')
+    elsif business.category_id == 2
+      image_tag('bodyandbeauty.png')
+    elsif business.category_id == 3
+      image_tag('cleaning.png')
+    elsif business.category_id == 4
+      image_tag('entertainment.png')
+    elsif business.category_id == 5
+      image_tag('family.png')
+    elsif business.category_id == 6
+      image_tag('financialservices.png')
+    elsif business.category_id == 7
+      image_tag('food.png')
+    elsif business.category_id == 8
+      image_tag('health.png')
+    elsif business.category_id == 9
+      image_tag('home.png')
+    elsif business.category_id == 10
+      image_tag('nightlife.png')
+    elsif business.category_id == 11
+      image_tag('partiesandevents.png')
+    elsif business.category_id == 12
+      image_tag('pets.png')
+    elsif business.category_id == 13
+      image_tag('professionalservices.png')
+    elsif business.category_id == 14
+      image_tag('food.png')
+    elsif business.category_id == 15
+      image_tag('schooling.png')
+    elsif business.category_id == 16
+      image_tag('shopping.png')
+    elsif business.category_id == 17
+      image_tag('sports.png')
+    elsif business.category_id == 18
+      image_tag('travel.png')
+    else
+      image_tag('auto.png')
+    end
+  end
+  
 end

@@ -43,6 +43,7 @@ class FruglesController < ApplicationController
 
   def new
     @frugle = Frugle.new
+    @business = Business.find params[:business_id]
     @frugle_discount_options = [['% Off', 'percent'], ['$ Off', 'dollar'], ['$ For', 'flat'], ['Free with Purchase Of', 'bonus'], ['Buy One Get One Free', 'bogo']]
   end
   

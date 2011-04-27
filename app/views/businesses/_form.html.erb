@@ -1,33 +1,36 @@
 <%= form_for @business do |f| %>
   <%= f.error_messages %>
+<div class="new_business_box">
+	<h3>Enter Your Business Listing Info:</h3>
+
 	<div class="reg_row">
-		<div class="reg_col_left">Business Name</div>
-	  <div class="reg_col_right"><%= f.text_field :name, :class => "reg_bar" %></div>
+		<div class="new_business_col_left">Business Name</div>
+	  <div class="fl"><%= f.text_field :name, :class => "reg_bar" %></div>
 	  	<div class="clr"></div>
 	</div>
 	<div class="reg_row">
-		<div class="reg_col_left">Address</div>
-	  <div class="reg_col_right"><%= f.text_field :address, :class => "reg_bar" %></div>
+		<div class="new_business_col_left">Address</div>
+	  <div class="fl"><%= f.text_field :address, :class => "reg_bar" %></div>
 	  	<div class="clr"></div>
 	</div>
 	<div class="reg_row">
-		<div class="reg_col_left">Address 2</div>
-	  <div class="reg_col_right"><%= f.text_field :address2, :class => "reg_bar" %></div>
+		<div class="new_business_col_left">Address 2</div>
+	  <div class="fl"><%= f.text_field :address2, :class => "reg_bar" %></div>
 	  	<div class="clr"></div>
 	</div>
 	<div class="reg_row">
-		<div class="reg_col_left">Zip Code</div>
-	  <div class="reg_col_right"><%= f.text_field :zip, :class => "reg_bar" %></div>
+		<div class="new_business_col_left">Zip Code</div>
+	  <div class="fl"><%= f.text_field :zip, :class => "reg_bar" %></div>
 	  	<div class="clr"></div>
 	</div>
 	<div class="reg_row">
-		<div class="reg_col_left">Website URL</div>
-	  <div class="reg_col_right"><%= f.text_field :website, :class => "reg_bar" %></div>
+		<div class="new_business_col_left">Website URL</div>
+	  <div class="fl"><%= f.text_field :website, :class => "reg_bar" %></div>
 	  	<div class="clr"></div>
 	</div>
 	<div class="reg_row">
-		<div class="reg_col_left">Business Info</div>
-	  <div class="reg_col_right"><%= f.text_area :info, :class => "reg_bar", :style => "height: 80px;width:205px;" %></div>
+		<div class="new_business_col_left">Business Info</div>
+	  <div class="fl"><%= f.text_area :info, :class => "reg_bar", :style => "height: 80px;width:205px;" %></div>
 	  	<div class="clr"></div>
 	</div>
 <script type="text/javascript">
@@ -36,53 +39,56 @@ $('business_category_id').observe("change",function(){
 });
 </script>
 <div class="reg_row">
-	<div class="reg_col_left">Category</div>
-  <div class="reg_col_right"><%= f.collection_select :category_id, Category.find(:all), :id, :title, :prompt => "Select a Category" %></div>
+	<div class="new_business_col_left">Category</div>
+  <div class="fl"><%= f.collection_select :category_id, Category.find(:all), :id, :title, :prompt => "Select a Category" %></div>
   	<div class="clr"></div>
 </div>
 
 <div class="reg_row">
-	<div class="reg_col_left">Subcategory</div>
-  <div class="reg_col_right" id="subcategory_field"><%= f.collection_select :subcategory_id, Subcategory.find(:all), :id, :title, :prompt => "Select a Subcategory" %></div>
+	<div class="new_business_col_left">Subcategory</div>
+  <div class="fl" id="subcategory_field"><%= f.collection_select :subcategory_id, Subcategory.find(:all), :id, :title, :prompt => "Select a Subcategory" %></div>
   	<div class="clr"></div>
 </div>
 
 <div class="reg_row">
-	<div class="reg_col_left">How Did You Hear About Frugle?</div>
-  <div class="reg_col_right"><%= f.select :hear_about, options_for_select(@frugle_hear_about_options) %></div>
+	<div class="new_business_col_left">How Did You Hear About Frugle?</div>
+  <div class="fl"><%= f.select :hear_about, options_for_select(@frugle_hear_about_options) %></div>
   	<div class="clr"></div>
+</div>
+
 </div>
 
 <% unless user_signed_in? %>
-  <h2 class="caption">Use the following email and password to login next time</h2>
+<div class="new_business_box">
+  <h3>Use the following email & password to login:</h2>
 
 	<div class="reg_row">
-		<div class="reg_col_left">Email Address</div>
-	  <div class="reg_col_right"><%= f.email_field :email, :class => "reg_bar" %></div>
+		<div class="new_business_col_left">Email Address</div>
+	  <div class="fl"><%= f.email_field :email, :class => "reg_bar" %></div>
 	  	<div class="clr"></div>
 	</div>
 	
 	<div class="reg_row">
-		<div class="reg_col_left">Password</div>
-	  <div class="reg_col_right"><%= f.password_field :password, :class => "reg_bar" %></div>
+		<div class="new_business_col_left">Password</div>
+	  <div class="fl"><%= f.password_field :password, :class => "reg_bar" %></div>
 	  	<div class="clr"></div>
 	</div>
 	
 	<div class="reg_row">
-		<div class="reg_col_left">Confirm Password</div>
-	  <div class="reg_col_right"><%= f.password_field :password_confirmation, :class => "reg_bar" %></div>
+		<div class="new_business_col_left">Confirm Password</div>
+	  <div class="fl"><%= f.password_field :password_confirmation, :class => "reg_bar" %></div>
 	  	<div class="clr"></div>
 	</div>
 	
 	<div class="reg_row">
-		<div class="reg_col_left">Contact Name</div>
-	  <div class="reg_col_right"><%= f.text_field :contact_name, :class => "reg_bar" %></div>
+		<div class="new_business_col_left">Contact Name</div>
+	  <div class="fl"><%= f.text_field :contact_name, :class => "reg_bar" %></div>
 	  	<div class="clr"></div>
 	</div>
 	
 	<div class="reg_row">
-		<div class="reg_col_left" style="margin-top:20px;">Contact Phone Number</div>
-	  <div class="reg_col_right">
+		<div class="new_business_col_left" style="margin-top:20px;">Contact Phone Number</div>
+	  <div class="fl">
 			<script>
 			function moveOnMax(field,nextFieldID){
 			  if(field.value.length >= field.maxLength){
@@ -100,11 +106,11 @@ $('business_category_id').observe("change",function(){
 	</div>
 	
 	<div class="reg_row">
-		<div class="reg_col_left">Your Role</div>
-	  <div class="reg_col_right"><%= f.select :role, options_for_select(@business_role_options) %></div>
+		<div class="new_business_col_left">Your Role</div>
+	  <div class="fl"><%= f.select :role, options_for_select(@business_role_options) %></div>
 	  	<div class="clr"></div>
 	</div>
-
+</div>
 <% end %>
   <p><%= f.submit "Sign Up!", :class => "button", :style => "margin-left:190px;" %></p>
 <% end %>

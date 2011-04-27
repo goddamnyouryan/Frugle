@@ -1,47 +1,49 @@
 <% title "#{@business.name} Home"%>
 <div class="yellow_strip"><%= @business.name %> Home</div>
-	<div class="form_box_col">
-  <div class="form_box">
-    <div class="caption"><%= @business.name %></div>
-    
-    	<div class="marg-left">
-          <p class="fl">
-						<%= @business.address %><br />
-            <% unless @business.address2.nil? %>
-            	<%= @business.address2 %><br />
-						<% end %>
-						<%= @business.neighborhood.name %>, <%= @business.zip %><br />
-						<%= @business.phone %><br />
-          Web: <%= @business.website %> </p>
-					<div class="fr">
-          <p><%= link_to new_frugle_path, :class => "big button", :style => "float:right;margin-bottom: 10px;" do %>
-							<span class="icon plus"></span>
-							Add New Frugle
-						<% end %>
-					</p>
-					<div class="clr"></div>
-					<p><%= link_to verify_path, :class => "big button iframe", :style => "float:right;margin-bottom: 10px;" do %>
-							<span class="icon check"></span>
-							Verify a Frugle
-						<% end %>
-					</p>
-					<div class="clr"></div>
-					<p><%= link_to destroy_user_session_path, :class => "big button negative", :style => "float:right;" do %>
-							<span class="icon trash"></span>
-							Sign Out
-						<% end%>
-					</p>
+
+<p><%= link_to "Sign Out", destroy_user_session_path, :style => "float: right; margin: -15px 0pt 15px;" %></p>
+
+<div class="clr"></div>
+
+<div id="business_info">
+
+<div class="fl">
+	<h2><%= @business.name %></h2>
+	
+	<div style="margin: 15px 0;">
+		<span style="float:left;"><%= category_icon_business(@business) %></span>
+		<h3 style="float: left; font-size: 12px; margin-left: 5px;">Category: <br /><%= @business.category.title %></h3>
+	</div>
+	<div class="clr"></div>
+	
+	<p style="margin-top:15px;">
+		<%= @business.address %><br />
+    <% unless @business.address2.nil? %>
+    	<%= @business.address2 %><br />
+		<% end %>
+		<%= @business.neighborhood.name %>, <%= @business.zip %><br />
+		<%= @business.phone %><br />
+  Web: <%= @business.website %> 
+	</p>
+</div>
+
+<div class="fr">
+<div class="hide_button"><%= link_to "Add New Frugle", new_frugle_path(:business_id => @business.id) %></div>
+<div class="clr"></div>
+<div class="hide_button"><%= link_to "Verify a Frugle", verify_path, :class => "iframe" %></div>
+<div class="clr"></div>
+<p style="margin-top:10px;font-size:12px;text-align:center;"><%= link_to "Edit Business Info", edit_business_path(current_user.business) %></p>
+
+</div>
 					
-					</div>
-					<div class="clr"></div>
-    </div>
-   	<div class="caption">Company Description <%= link_to "Edit Business Info", edit_business_path(current_user.business), :class => "link-blue" %></div>
-    <div class="marg-left">
-      <p> <%= @business.info %></p>
-    </div>
+<div class="clr"></div>
+<div class="fl">
+<h2>Company Description</h2>
+<p> <%= @business.info %></p>
 </div>
-<div class="tag_border_bottom fl" style="margin-top:-7px;"><img src="images/box_bottom.jpg" alt="0" border="0" /></div>
+
 </div>
+
 <div class="form_box_col2_plain">
 <div align="center">
   <p><%= raw(@map.div(:width => 345, :height => 245)) %>	</p>
@@ -68,7 +70,7 @@
   <tr>
     <td align="center" class="border-table"><%= frugle.start.to_date %></td>
     <td align="center" class="border-table"><%= frugle.end.to_date %></td>
-    <td align="center" class="border-table"><%= frugle.cost %></td>
+    <td align="center" class="border-table"><%= link_to frugle.cost, frugle, :class => "iframe" %></td>
     <td align="center" class="border-table"><%= frugle.quantity %></td>
     <td align="center" class="border-table"><%= frugle.views %></td>
     <td align="center" class="border-table"><%= frugle.prints %></td>
@@ -78,6 +80,8 @@
 </table>
 </div>
 <div class="tag_border_bottom" style="margin-top:-7px;"><img src="images/tag_box_bottom.png" alt="0" border="0" /></div>
+
+<% unless @expired_frugles.count == 0%>
 
 <div class="black_bar">
 <div class="red_text">Inactive Frugles - <%= @expired_frugles.count %></div>
@@ -98,7 +102,7 @@
   <tr>
     <td align="center" class="border-table"><%= frugle.start.to_date %></td>
     <td align="center" class="border-table"><%= frugle.end.to_date %></td>
-    <td align="center" class="border-table"><%= frugle.cost %></td>
+    <td align="center" class="border-table"><%= link_to frugle.cost, frugle, :class => "iframe" %></td>
     <td align="center" class="border-table"><%= frugle.quantity %></td>
     <td align="center" class="border-table"><%= frugle.views %></td>
     <td align="center" class="border-table"><%= frugle.prints %></td>
@@ -108,3 +112,5 @@
 </table>
 </div>
 <div class="tag_border_bottom" style="margin-top:-7px;"><img src="images/tag_box_bottom.png" alt="0" border="0" /></div>
+
+<% end %>
