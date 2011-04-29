@@ -51,7 +51,7 @@
 </div>
 <div class="clr"></div>
 
-<div class="black_bar">
+<div class="black_bar" style="margin-top:50px;">
 <div>Active Frugles - <%= @active_frugles.count %></div>
 </div>
 
@@ -68,8 +68,8 @@
   </tr>
 <% for frugle in @active_frugles %>
   <tr>
-    <td align="center" class="border-table"><%= frugle.start.to_date %></td>
-    <td align="center" class="border-table"><%= frugle.end.to_date %></td>
+    <td align="center" class="border-table"><%= l frugle.start.to_date, :format => :default %></td>
+    <td align="center" class="border-table"><%= l frugle.end.to_date, :format => :default %></td>
     <td align="center" class="border-table"><%= link_to frugle.cost, frugle, :class => "iframe" %></td>
     <td align="center" class="border-table"><%= frugle.quantity %></td>
     <td align="center" class="border-table"><%= frugle.views %></td>
@@ -100,8 +100,8 @@
   </tr>
 <% for frugle in @expired_frugles %>
   <tr>
-    <td align="center" class="border-table"><%= frugle.start.to_date %></td>
-    <td align="center" class="border-table"><%= frugle.end.to_date %></td>
+    <td align="center" class="border-table"><%= l frugle.start.to_date, :format => :default %></td>
+    <td align="center" class="border-table"><%= l frugle.end.to_date, :format => :default %></td>
     <td align="center" class="border-table"><%= link_to frugle.cost, frugle, :class => "iframe" %></td>
     <td align="center" class="border-table"><%= frugle.quantity %></td>
     <td align="center" class="border-table"><%= frugle.views %></td>

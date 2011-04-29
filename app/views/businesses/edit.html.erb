@@ -2,40 +2,42 @@
 <% javascript 'dynamic' %>
 
 <h2 class="yellow_strip">Edit Business Info</h2>
+<div style="margin: -33px 0pt 0pt; z-index: -10;"><%= image_tag "topgrass.png" %></div>
 
-<div class="form_box_col">
-  <div class="form_box" style="padding:10px !important;">
-	<h3 class="caption">Go Ahead and alter your business info</h3>
+<div style="width:500px; margin: 0 auto;">
 <%= form_for @business do |f| %>
   <%= f.error_messages %>
+<div class="new_business_box">
+	<h3>Edit Your Business Listing Info:</h3>
+
 	<div class="reg_row">
-		<div class="reg_col_left">Business Name</div>
-	  <div class="reg_col_right"><%= f.text_field :name, :class => "reg_bar" %></div>
+		<div class="new_business_col_left">Business Name</div>
+	  <div class="fl"><%= f.text_field :name, :class => "reg_bar" %></div>
 	  	<div class="clr"></div>
 	</div>
 	<div class="reg_row">
-		<div class="reg_col_left">Address</div>
-	  <div class="reg_col_right"><%= f.text_field :address, :class => "reg_bar" %></div>
+		<div class="new_business_col_left">Address</div>
+	  <div class="fl"><%= f.text_field :address, :class => "reg_bar" %></div>
 	  	<div class="clr"></div>
 	</div>
 	<div class="reg_row">
-		<div class="reg_col_left">Address 2</div>
-	  <div class="reg_col_right"><%= f.text_field :address2, :class => "reg_bar" %></div>
+		<div class="new_business_col_left">Address 2</div>
+	  <div class="fl"><%= f.text_field :address2, :class => "reg_bar" %></div>
 	  	<div class="clr"></div>
 	</div>
 	<div class="reg_row">
-		<div class="reg_col_left">Zip Code</div>
-	  <div class="reg_col_right"><%= f.text_field :zip, :class => "reg_bar" %></div>
+		<div class="new_business_col_left">Zip Code</div>
+	  <div class="fl"><%= f.text_field :zip, :class => "reg_bar" %></div>
 	  	<div class="clr"></div>
 	</div>
 	<div class="reg_row">
-		<div class="reg_col_left">Website URL</div>
-	  <div class="reg_col_right"><%= f.text_field :website, :class => "reg_bar" %></div>
+		<div class="new_business_col_left">Website URL</div>
+	  <div class="fl"><%= f.text_field :website, :class => "reg_bar" %></div>
 	  	<div class="clr"></div>
 	</div>
 	<div class="reg_row">
-		<div class="reg_col_left">Business Info</div>
-	  <div class="reg_col_right"><%= f.text_area :info, :class => "reg_bar", :style => "height: 80px;width:205px;" %></div>
+		<div class="new_business_col_left">Business Info</div>
+	  <div class="fl"><%= f.text_area :info, :class => "reg_bar", :style => "height: 80px;width:205px;" %></div>
 	  	<div class="clr"></div>
 	</div>
 <script type="text/javascript">
@@ -44,21 +46,19 @@ $('business_category_id').observe("change",function(){
 });
 </script>
 <div class="reg_row">
-	<div class="reg_col_left">Category</div>
-  <div class="reg_col_right"><%= f.collection_select :category_id, Category.find(:all), :id, :title, :prompt => "Select a Category" %></div>
+	<div class="new_business_col_left">Category</div>
+  <div class="fl"><%= f.collection_select :category_id, Category.find(:all), :id, :title, :prompt => "Select a Category" %></div>
   	<div class="clr"></div>
 </div>
 
 <div class="reg_row">
-	<div class="reg_col_left">Subcategory</div>
-  <div class="reg_col_right" id="subcategory_field"><%= f.collection_select :subcategory_id, Subcategory.find(:all), :id, :title, :prompt => "Select a Subcategory" %></div>
+	<div class="new_business_col_left">Subcategory</div>
+  <div class="fl" id="subcategory_field"><%= f.collection_select :subcategory_id, Subcategory.find(:all), :id, :title, :prompt => "Select a Subcategory" %></div>
   	<div class="clr"></div>
 </div>
-
-  <p><%= f.submit "Make Changes!", :class => "button", :style => "margin-left:190px;" %></p>
+<p><%= f.submit "Edit Business Info", :class => "button", :style => "margin-left:160px;" %></p>
+</div>
 <% end %>
+</div>
 
-</div>
-</div>
-<div class="tag_border_bottom fl" style="margin-top:-7px;"><%= image_tag "box_bottom.jpg" %></div>
-<div class="clr"></div>
+<div style="margin:0 0 -28px -17px;"><%= image_tag "skyline_bottom.png" %></div>

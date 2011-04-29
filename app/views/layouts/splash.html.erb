@@ -28,7 +28,8 @@
 		<%= link_to businesses_path do %>
 		<div class="splash_bottom_box">
 			<h3>What's Frugle?</h3>
-			<p>Learn how Frugle helps you connect with new customers directly from your neighborhood. It's 100% free to get your business listed</p>
+			<p>Frugle is the only place to find exclusive savings in your neighborhood,
+			exclusively for your neighborhood. Learn more about Frugle here.</p>
 		</div>
 		<% end %>
 		
@@ -40,6 +41,21 @@
 		<% end %>
 		
 		</div>
+		
+		<div class="clr"></div>
+		
+		<footer style="width:600px;">
+			<ul>
+				<li><%= link_to "© #{Time.now.year} Frugle.me", root_path %></li>
+				<li><%= link_to "About Us", about_path %></li>
+				<li><%= link_to "Verify Frugle", verify_path, :class => 'iframe' %></li>
+				<li><%= link_to "Login", new_user_session_path %></li>
+				<li><%= link_to "Merchants", businesses_path %></li>
+				<li><a href="mailto:jobs@frugle.me">Jobs</a></li>
+				<li><%= link_to "Terms", terms_path %></li>
+				<li><%= link_to "Contact", contact_path %></li>
+			</ul>
+		</footer>
 		
 	
 	<script type="text/javascript">

@@ -1,36 +1,51 @@
 <% title "#{@business.name}" %>
 
 <div class="yellow_strip"><%= @business.name %></div>
-	<div class="form_box_col">
-  <div class="form_box">
-    <div class="caption"><%= @business.name %></div>
-    	<div class="marg-left">
-				<% if user_signed_in? %>
-				<% unless current_user.role == "business" %>
-				<p id="follow">
-					<%= render :partial => 'frugles/follow', :business => @business %>
-				</p>
-				<% end %>
-				<% end %>
-				<p class="hide_button fl"><%= link_to "Back to #{@business.neighborhood.name}", :controller => "neighborhoods", :action => "show", :id => @business.neighborhood.friendly_id %></p>
-		<div class="clr"></div>
-          <p class="fl" style="margin-top:15px;">
-						<%= @business.address %><br />
-            <% unless @business.address2.nil? %>
-            	<%= @business.address2 %><br />
-						<% end %>
-						<%= @business.neighborhood.name %>, <%= @business.zip %><br />
-						<%= @business.phone %><br />
-          	<%= @business.website %> </p>
-					<div class="clr"></div>
-    </div>
-   	<div class="caption">Company Description </div>
-    <div class="marg-left">
-      <p> <%= @business.info %></p>
-    </div>
+<div id="business_info">
+
+<div class="fl">
+	<h2><%= @business.name %></h2>
+	
+	<div style="margin: 15px 0;">
+		<span style="float:left;"><%= category_icon_business(@business) %></span>
+		<h3 style="float: left; font-size: 12px; margin-left: 5px;">Category: <br /><%= @business.category.title %></h3>
+	</div>
+	<div class="clr"></div>
+	
+	<p style="margin-top:15px;">
+		<%= @business.address %><br />
+    <% unless @business.address2.nil? %>
+    	<%= @business.address2 %><br />
+		<% end %>
+		<%= @business.neighborhood.name %>, <%= @business.zip %><br />
+		<%= @business.phone %><br />
+  Web: <%= @business.website %> 
+	</p>
 </div>
-<div class="tag_border_bottom fl" style="margin-top:-7px;"><%= image_tag "box_bottom.jpg" %></div>
+
+<div class="fr">
+	<% if user_signed_in? %>
+	<% unless current_user.role == "business" %>
+	<p id="follow">
+		<%= render :partial => 'frugles/follow', :business => @business %>
+	</p>
+	<% end %>
+	<% end %>
+<div class="clr"></div>
+<div class="hide_button"><%= link_to "Back to #{@business.neighborhood.name}", :controller => "neighborhoods", :action => "show", :id => @business.neighborhood.friendly_id %></div>
+<div class="clr"></div>
+<p style="margin-top:10px;font-size:12px;text-align:center;"><%= link_to "Edit Business Info", edit_business_path(current_user.business) %></p>
+
 </div>
+					
+<div class="clr"></div>
+<div class="fl">
+<h2>Company Description</h2>
+<p> <%= @business.info %></p>
+</div>
+
+</div>
+
 <div class="form_box_col2_plain">
 <div align="center">
   <p><%= raw(@map.div(:width => 345, :height => 245)) %>	</p>

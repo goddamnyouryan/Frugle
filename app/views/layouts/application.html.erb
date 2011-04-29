@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Frugle | <%= content_for?(:title) ? yield(:title) : "" %></title>
-	<% if (params[:controller] == "businesses" && params[:action] == "show") || (params[:controller] == "neighborhoods" && params[:action] == "show") || (params[:controller] == "home" && params[:action] == "index")  %>
+	<% if (params[:controller] == "businesses" && params[:action] == "show") || (params[:controller] == "neighborhoods" && params[:action] == "show") || (params[:controller] == "home" && params[:action] == "index") || (params[:controller] == "frugles" && params[:action] == "print")  %>
 			<%= raw(GMap.header) %>
 			<%= raw(@map.to_html) %>
 	<% end %>
@@ -93,6 +93,19 @@
 
 </div>
 <div class="clr"></div>
+
+<footer>
+	<ul>
+		<li><%= link_to "© #{Time.now.year} Frugle.me", root_path %></li>
+		<li><%= link_to "About Us", about_path %></li>
+		<li><%= link_to "Verify Frugle", verify_path, :class => 'iframe' %></li>
+		<li><%= link_to "Login", new_user_session_path %></li>
+		<li><%= link_to "Merchants", businesses_path %></li>
+		<li><a href="mailto:jobs@frugle.me">Jobs</a></li>
+		<li><%= link_to "Terms", terms_path %></li>
+		<li><%= link_to "Contact", contact_path %></li>
+	</ul>
+</footer>
 	
 	<script type="text/javascript">
 

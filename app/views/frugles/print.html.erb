@@ -1,19 +1,37 @@
 <% title "Print Frugle" %>
-<p>A coupon from www.frugle.me</p>
 
-<h1><%= @frugle.verification %></h1>
+<h1 class="logo"><%= link_to "Frugle", root_path %></h1>
 
-<h2><%= @frugle.cost %></h2>
+<div class="fr">
+	<h2>000<%= @frugle.prints %></h2>
+	<h2><%= @frugle.verification %></h2>
+	<p>Verify this Frugle by going to www.frugle.me/verify</p>
+</div>
 
-<h3>
-	<%= @frugle.business.name %><br />
+<div class="clr"></div>
+
+
+<h2 style="font-size:32px;"><%= category_icon(@frugle) %><%= @frugle.cost %></h2>
+
+<h3 style="margin: 0;"><%= @frugle.business.name %></h3>
+
+<h3 style="font-weight:normal;margin:0;">
 	<%= @frugle.business.address %><br />
-	<% if @frugle.business.address2? %><br />
-		<% @frugle.business.address2 %>
+	<% unless @frugle.business.address2 == nil %>
+		<%= @frugle.business.address2 %><br />
 	<% end %>
 	<%= @frugle.business.neighborhood.name %>, <%= @frugle.business.zip %><br />
 	<%= @business.phone %>
 </h3>
+
+<p>
+	<strong>Expires:
+	<%= l @frugle.end.to_date, :format => :default %></strong>
+</p>
+
+<%= raw(@map.to_html) %>
+
+<%= raw(@map.div(:width => 600, :height => 400)) %>
 
 <p>
 	<% if @frugle.other_offer %>
@@ -35,14 +53,3 @@
 <% if @frugle.mobile %>
 	<p>You may present this frugle on your phone to redeem it.</p>
 <% end %>
-	
-<p>
-	<strong>Expires:</strong>
-	<%= l @frugle.end.to_date, :format => :default %>
-</p>
-
-<p>000<%= @frugle.prints %></p>
-
-<p>Verify this Frugle by going to www.frugle.me/verify</p>
-
-<%= raw(@map.div(:width => 600, :height => 400)) %>

@@ -14,6 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
   def edit
     @interval_options = [['As It Happens', 'instant'], ['Daily', 'daily'], ['Weekly', 'weekly'], ['Monthly', 'monthly']]
+    @facebook = UserToken.find_by_user_id(current_user.id)
     render :layout => "application"
   end
   

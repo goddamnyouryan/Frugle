@@ -2,8 +2,10 @@
 <html>
 <head>
   <title>Frugle | <%= content_for?(:title) ? yield(:title) : "" %></title>
-	<%= raw(GMap.header) %>
-	<%= raw(@map.to_html) %>
+	<% if params[:controller] == "frugles" && params[:action] == "print" %>
+			<%= raw(GMap.header) %>
+			<%= raw(@map.to_html) %>
+	<% end %>
   <%= stylesheet_link_tag "print" %>
   <%= javascript_include_tag :defaults %>
 	<%= csrf_meta_tag %>
@@ -13,7 +15,7 @@
 	
 	<div class="clear"></div>
 
-	<div id="container" style="text-align:center;width:100%">
+	<div id="container">
       <%= yield %>
   </div>
 	

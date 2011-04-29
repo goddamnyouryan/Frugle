@@ -72,7 +72,7 @@ a:hover { color: #990000;}
 	
 .header_col_right{
 	float:right;
-	padding-top:12px;}
+	padding-top:20px;}
 
 .header_right_link1 {
 	float:left;
@@ -108,13 +108,11 @@ a:hover { color: #990000;}
 }
 
 #neighborhood {
-	position: absolute;
-	left: 0;
-	top: 0;
+	margin:6px 0 0 10px;
 }
 
 body#splashbg {
-	background:url(../images/coffeeshop.jpg) fixed center;
+	background:url(../images/coffeeshop.jpg) fixed center top;
 }
 
 body#applicationbg {
@@ -198,7 +196,7 @@ body#applicationbg {
 
 #control_how_often {
 	position: absolute;
-	left:-55px;
+	left:-3px;
 }
 
 #get_started_here {
@@ -209,7 +207,7 @@ body#applicationbg {
 
 #youll_be_alerted {
 	position: absolute;
-	right: -55px;
+	right: -3px;
 }
 	
 .search_row{
@@ -331,6 +329,11 @@ body#applicationbg {
 	text-align:center;
 	margin-top:20px;
 	line-height:28px;}
+	
+	input.hide_button {
+		text-align:center;
+		margin-top:20px;
+	}
 	
 .hide_button a, input.hide_button {
 	text-decoration:none;
@@ -466,9 +469,9 @@ ul#featured li {
 	padding:18px 10px 25px 13px;}
 .offer_box{
 	float:left;
-	width:325px;
-	margin:0px 33px 15px 20px;
 	list-style-type:none;
+	margin:0 20px 15px;
+	width:340px;
 }
 .offer_col_1{
 	float:left;
@@ -498,7 +501,7 @@ ul#featured li {
 .map_box{
 	margin-top:15px;
 	background:#f3f3f3;
-	padding:14px 0 14px 14px;}
+	padding:14px 0 2px 14px;}
 	
 /**********neighborhood**********/
 
@@ -621,7 +624,7 @@ ul#featured li {
 	-moz-border-radius: 10px;
   border-radius: 10px;
 	padding:15px 20px 0px 20px;
-	background:#f3f3f3;	}
+	z-index:8888	}
 .verify_row{
 	text-align:center;
 	font-size:12px;
@@ -913,7 +916,7 @@ ul#new_business_signup_steps li p {
 }
 
 form#new_business, form.edit_business {
-	width: 490px;
+	width: 491px;
 	margin-top:25px;
 }
 
@@ -961,4 +964,31 @@ form#new_business, form.edit_business {
 
 form#new_frugle {
 	width: 420px;
+}
+
+#user_remember_me { margin-top: 9px;}
+
+p.about {
+	font-family:Tahoma,Geneva,Kalimati,sans-serif;
+	font-size:14px;
+	margin: 13px auto;
+	width:600px;
+}
+
+footer { 
+	width: 800px; 
+	margin: 10px auto;
+	font-family:Tahoma,Geneva,Kalimati,sans-serif;
+	font-size: 12px;
+}
+
+footer a { color: #fff;}
+
+footer ul {
+		text-align: right;
+}
+
+footer ul li {
+	display:inline;
+	margin-left: 10px;
 }

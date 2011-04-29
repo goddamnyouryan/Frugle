@@ -82,11 +82,11 @@
 
 <div class="box">
 	
+	<div id="youll_be_alerted">
+		<%= image_tag "youllbealerted.png" %>
+	</div>
+	
 		<% unless current_user.follows.count == 0 %>
-		
-		<div id="youll_be_alerted">
-			<%= image_tag "youllbealerted.png" %>
-		</div>
 
     <div class="black_bar" style="margin-top:10px;">Local businesses</div>
     
@@ -110,10 +110,12 @@
 </div>
 
 
-    <div class="hide_button"><%= f.submit "Save Settings", :class => "hide_button" %></div>
+    <div style="text-align:center;"><%= f.submit "Save Settings", :class => "button" %></div>
 <% end %>
 
   <div class="clr"></div>
+
+<% if @facebook == nil %>
 	<%- if devise_mapping.omniauthable? %>
 		<ul id="social-icons">
 		  <%- resource_class.omniauth_providers.each do |provider| %>
@@ -122,9 +124,10 @@
 		</ul>
 		<div class="clear"></div>
 	<% end -%>
+<% end %>
 
 	<!--Add some omniauth goodness:
-
+	
 	<%= render :partial => "devise/shared/links" %> -->
 
 	<%= link_to "Delete my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
@@ -132,4 +135,3 @@
 <div style="margin:0 0 -28px -17px;"><%= image_tag "skyline_bottom.png" %></div>
 
 </div>
-

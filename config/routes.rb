@@ -7,7 +7,7 @@ OmniauthDeviseExample::Application.routes.draw do
   get "category/create"
   get "category/destroy"
   
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations", :sessions => 'users/sessions' }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations", :sessions => 'users/sessions', :passwords => "users/passwords" }
 
   resources :businesses do
     resources :frugles
@@ -17,6 +17,9 @@ OmniauthDeviseExample::Application.routes.draw do
     resources :subcategories
   end
 
+  match 'about', :to => 'frugles#about'
+  match 'terms', :to => 'frugles#terms'
+  match 'contact', :to => 'frugles#contact'
   match 'subcategories_toggle', :to => 'subcategories#toggle'
   match 'map_toggle', :to => 'neighborhoods#map_toggle'
   match 'frugles_toggle', :to => 'frugles#toggle'

@@ -12,7 +12,11 @@
   <%= @frugle.cost %>
 </p>
 
-<p style="margin:0 0 25px 0;"><%= link_to "Print This Frugle", print_frugle_path(@frugle), :class => "big button" %></p>
+<% if user_signed_in? %>
+	<p style="margin:0 0 25px 0;"><%= link_to "Print This Frugle", print_frugle_path(@frugle), :class => "big button", :target => "_parent" %></p>
+<% else %>
+	<p style="margin:0 0 25px 0;"><%= link_to "Print This Frugle", new_user_session_path, :class => "big button", :target => "_parent" %></p>
+<% end %>
 
 <p>
 	<% if @frugle.other_offer %>
@@ -43,7 +47,7 @@
 </p>
 <p>
   <strong>Expires:</strong>
-  <%= @frugle.end.to_date %>
+	<%= l @frugle.end.to_date, :format => :default %>
 </p>
 
 <% unless @frugle.tag_list.empty? %>

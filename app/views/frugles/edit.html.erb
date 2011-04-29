@@ -123,8 +123,8 @@
 	<p id="details" style="margin:10px 0;"><%= @frugle.details%></p>
 	<p id="mobile" style="margin:10px 0;"></p>
 	<p id="quantity" style="margin:10px 0;"><strong>Quantity:</strong> <%= @frugle.quantity %></p>
-	<p style="margin:10px 0;"><strong>Start Date:</strong> <span id="start"><%= @frugle.start.to_date %></span></p>
-	<p style="margin:10px 0;"><strong>End Date:</strong> <span id="end"><%= @frugle.end.to_date %></span></p>
+	<p style="margin:10px 0;"><strong>Start Date:</strong> <span id="start"><%= l @frugle.start.to_date, :format => :default %></span></p>
+	<p style="margin:10px 0;"><strong>End Date:</strong> <span id="end"><%= l @frugle.end.to_date, :format => :default %></span></p>
 	<p style="margin:10px 0;"><strong>Tags:</strong> <span id="tags"><%= @frugle.tag_list %></span></p>
 	</div>
 </div>
