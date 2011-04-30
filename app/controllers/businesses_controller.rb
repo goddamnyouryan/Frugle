@@ -24,7 +24,6 @@ class BusinessesController < ApplicationController
   def create
     @phone_number = [params[:business][:phone][:area_code], params[:business][:phone][:first_three_digits], params[:business][:phone][:second_four_digits]].reject(&:blank?).join('.')
     @business = Business.find_or_create_by_phone("#{@phone_number}")
-    @business.name = ""
     @frugle_hear_about_options = [['From a Local Frugle Rep', 'rep'], ['Spoke to another local business owner', 'owner'], ['Searching the Internet', 'internet'], ['Flyer or brochure', 'flyer'], ['Saw a window sticker', 'sticker'], ['Other', 'other']]
     @business_role_options = [['Store Owner', 'owner'], ['Store Employee', 'employee'], ['Other', 'other']]
     render :update do |page|
