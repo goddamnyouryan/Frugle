@@ -5,6 +5,7 @@ body{
 	background:#b7e2fc;
 	font-family:Georgia, "Times New Roman", Times, serif;
 	padding-bottom:50px;
+	color: #808080;
 	}
 *{
 	margin:0px;
@@ -35,18 +36,18 @@ body{
 	color:#000;
 	text-decoration:none;}
 
-a { color: #000; text-decoration: none;}
+a { color: #808080; text-decoration: none;}
 a:hover { color: #990000;}
 
 
 .logo{
 	background:url("../images/title.png") no-repeat;
 	float:left;
-	height:53px;
+	height:54px;
 	text-indent:-99999px;
 	width:200px;}
 	
-.logo a { display: block; height: 49px;}
+.logo a { display: block; height: 54px;}
 
 .header_col_left{
 	float:left;
@@ -991,4 +992,14 @@ footer ul {
 footer ul li {
 	display:inline;
 	margin-left: 10px;
+}
+
+#orange_bar_business_text {
+	float:left; 
+	width:250px;
+	font-family:Tahoma,Geneva,Kalimati,sans-serif;
+	font-size: 14px;
+	letter-spacing: 2px;
+	line-height:20px;
+	margin-left: 5px;
 }
