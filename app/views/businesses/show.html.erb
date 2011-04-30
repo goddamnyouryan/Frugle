@@ -26,13 +26,13 @@
 <div class="fr">
 	<% if user_signed_in? %>
 	<% unless current_user.role == "business" %>
-	<p id="follow" class="hide_button">
+	<p id="follow" class="hide_button" style="float:right;margin-top:0;">
 		<%= render :partial => 'frugles/follow', :business => @business %>
 	</p>
 	<div class="clr"></div>
 	<% end %>
 	<% end %>
-<div class="hide_button"><%= link_to "Back to #{@business.neighborhood.name}", :controller => "neighborhoods", :action => "show", :id => @business.neighborhood.friendly_id %></div>
+<div class="hide_button" style="float:right;margin-top:0;"><%= link_to "Back to #{@business.neighborhood.name}", :controller => "neighborhoods", :action => "show", :id => @business.neighborhood.friendly_id %></div>
 <div class="clr"></div>
 
 </div>
