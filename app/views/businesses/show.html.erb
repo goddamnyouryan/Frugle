@@ -29,9 +29,9 @@
 	<p id="follow">
 		<%= render :partial => 'frugles/follow', :business => @business %>
 	</p>
+	<div class="clr"></div>
 	<% end %>
 	<% end %>
-<div class="clr"></div>
 <div class="hide_button"><%= link_to "Back to #{@business.neighborhood.name}", :controller => "neighborhoods", :action => "show", :id => @business.neighborhood.friendly_id %></div>
 <div class="clr"></div>
 
