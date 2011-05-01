@@ -1,5 +1,11 @@
 <% title "Verify a Frugle" %>
 
+<script>
+jQuery(document).ready(function() {
+    $(".iframe").trigger('click');
+});
+</script>
+
 <div style="margin:-33px 0 0 -50px; z-index: -10;"><%= image_tag "topgrass.png" %></div>
 
 <h2>Frugle Verification</h2>
@@ -18,7 +24,7 @@
 
 <h2 id="status" class="caption" style="text-align:center;z-index:4535;"></h2>
 
-<ul id="details" style="margin:25px auto;width:270px;"></ul>
+<ul id="details" style="margin:25px auto;width:270px;list-style:none;"></ul>
 
 <div class="clr"></div>
 

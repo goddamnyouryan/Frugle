@@ -1003,3 +1003,8 @@ footer ul li {
 	line-height:20px;
 	margin-left: 5px;
 }
+
+#socialicons {
+	margin-top:170px;
+	position:absolute;
+}

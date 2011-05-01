@@ -6,9 +6,9 @@ class Business < ActiveRecord::Base
   
   belongs_to :user
   belongs_to :neighborhood
-  attr_accessible :name, :address, :zip, :phone, :website, :info
+  attr_accessible :name, :address, :zip, :phone, :website, :info, :terms
   
-  attr_accessor :area_code, :first_three_digits, :second_four_digits
+  attr_accessor :area_code, :first_three_digits, :second_four_digits, :terms
   
   validates_format_of :phone,
                       :message => "must be a valid telephone number.",
