@@ -17,7 +17,7 @@
 
 		<div id="splash">
       <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <%= content_tag :div, msg, :id => "flash_notice" %>
       <% end %>
       <!--<%= content_tag :h2, yield(:title) if show_title? %> -->
       <%= yield %>

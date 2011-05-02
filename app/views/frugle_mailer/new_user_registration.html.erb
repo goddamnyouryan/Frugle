@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<link href="http://frugle.heroku.com/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1><a href="<%= root_url %>"><img src="http://frugle.heroku.com/images/title.png" alt="Frugle"></a></h1>
+    <p>
+      Dear <%= @user.first_name %>,
+    </p>
+    <p>
+      Thank you for signing up for Frugle.me! You can now take advantage of frugles from all the local stores in your neighborhood.  It’s 100% free for you to redeem frugles at local businesses, and it always will be. 
+    </p>
+	
+		<p><%= link_to "Visit the Site", root_url %></p>
+		
+		<p>Happy Savings!<br />
+			The Frugle Team</p>
+
+  </body>
+</html>
+

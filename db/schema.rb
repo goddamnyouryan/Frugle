@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110416031223) do
+ActiveRecord::Schema.define(:version => 20110502000245) do
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
@@ -49,14 +49,12 @@ ActiveRecord::Schema.define(:version => 20110416031223) do
 
   create_table "email_settings", :force => true do |t|
     t.boolean  "newsletter"
-    t.boolean  "new_frugles"
-    t.string   "interval"
-    t.boolean  "businesses_following"
-    t.boolean  "recommendations"
+    t.string   "businesses_following"
+    t.string   "recommendations"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "categories_following"
+    t.string   "categories_following"
   end
 
   create_table "follows", :force => true do |t|

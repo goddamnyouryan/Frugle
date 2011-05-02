@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<link href="http://frugle.heroku.com/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1><a href="<%= root_url %>"><img src="http://frugle.heroku.com/images/title.png" alt="Frugle"></a></h1>
+    <p>
+      Dear <%= @user.first_name %>,
+    </p>
+    <p>
+			There is a new Frugle in the category <%= @category.title %> that you are following:
+    </p>
+		<div class="product_box3">
+		  <div class="product_col_right">
+		  	<div class="product_caption"><%= link_to @frugle.business.name, business_url(@frugle.business) %></div>
+		  </div>
+		<div class="clr"></div>
+			<div class="product_offer"><%= link_to "#{@frugle.cost}", business_url(@frugle.business) %></div>
+		</div> 
+		
+		<p>Too many Frugles in your inbox?  Remember, you can control your email preferences and frequency on your <%= link_to "account settings page here.", edit_user_registration_url %></p>
+		
+		<p>Happy Savings!<br />
+			The Frugle Team</p>
+
+  </body>
+</html>
+

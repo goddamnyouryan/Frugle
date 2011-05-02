@@ -47,31 +47,27 @@
 		
     <div class="marg-left">
     	<div class="fl"><%= s.check_box :newsletter %></div>
-      <div class="fl">Recive monthly Frugle newsletter</div>
+      <div class="fl">Receive monthly Frugle newsletter</div>
       	<div class="clr"></div>
     </div>
     <div class="marg-left">
-    	<div class="fl"><span><%= s.check_box :new_frugles %></span>
-      <span>Send me email of new Frugles from: </span></div>
-      <div class="fl">
-				<%= s.select :interval, options_for_select(@interval_options, resource.email_setting.interval) %>	
-      </div>
+    	<div class="fl"><span>Send me email of new Frugles from: </span></div>
+
       	<div class="clr"></div>
     </div>
-    <div class="marg-left">
-    	<div class="fl"><%= s.check_box :businesses_following %></div>
-      <div class="fl">Local businesses I'm following</div>
+    <div class="marg-left" style="margin-left:50px;">
+			<div class="fl">Local businesses I'm following:</div>
+    	<div class="fr" style="margin-right: 40px;"><%= s.select :businesses_following, options_for_select(@interval_options, resource.email_setting.businesses_following) %>	</div>
       	<div class="clr"></div>
     </div>
-    <div class="marg-left">
-    	<div class="fl"><%= s.check_box :categories_following %></div>
-      <div class="fl">Categories I'm following
-</div>
+    <div class="marg-left" style="margin-left:50px;">
+			<div class="fl">Categories I'm following:</div>
+    	<div class="fr" style="margin-right: 40px;"><%= s.select :categories_following, options_for_select(@interval_options, resource.email_setting.categories_following) %></div>
       	<div class="clr"></div>
     </div>
-    <div class="marg-left">
-    	<div class="fl"><%= s.check_box :recommendations %></div>
-      <div class="fl">Recommended for me	</div>
+    <div class="marg-left" style="margin-left:50px;">
+			<div class="fl">Recommended for me:</div>
+    	<div class="fr" style="margin-right: 40px;"><%= s.select :recommendations, options_for_select(@interval_options, resource.email_setting.recommendations) %></div>
       	<div class="clr"></div>
     </div>
 </div>

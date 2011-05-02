@@ -1,5 +1,9 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  layout "splash", :only => :new
+  layout "splash", :only => [:new, :index ]
+  
+  def index
+    redirect_to new_user_registration_path
+  end
 
   def create
     @user = User.new(params[:user])
@@ -8,27 +12,36 @@ class Users::RegistrationsController < Devise::RegistrationsController
       flash[:notice] = "Account successfully created. You are now logged in."
       sign_in_and_redirect(:user, @user)
     else
-      render :action => "new"
+      redirect_to new_user_registration_path, :notice => "Please completely fill out the form."
     end
   end
   
   def edit
-    @interval_options = [['As It Happens', 'instant'], ['Daily', 'daily'], ['Weekly', 'weekly'], ['Monthly', 'monthly']]
+    @interval_options = [['As It Happens', 'instant'], ['Daily', 'daily'], ['Weekly', 'weekly'], ['Monthly', 'monthly'], ['Never', 'never']]
     @facebook = UserToken.find_by_user_id(current_user.id)
     render :layout => "application"
   end
   
   def update
-    super
-    resource.neighborhood_id = params[:user][:neighborhood_id]
-    resource.email_setting.newsletter = params[:user][:email_setting_attributes][:newsletter]
-    resource.email_setting.new_frugles = params[:user][:email_setting_attributes][:new_frugles]
-    resource.email_setting.interval = params[:user][:email_setting_attributes][:interval]
-    resource.email_setting.businesses_following = params[:user][:email_setting_attributes][:businesses_following]
-    resource.email_setting.categories_following = params[:user][:email_setting_attributes][:categories_following]
-    resource.email_setting.recommendations = params[:user][:email_setting_attributes][:recommendations]
-    resource.email_setting.save!
-    resource.save!
+    unless resource.role == "business"
+      super
+      resource.neighborhood_id = params[:user][:neighborhood_id]
+      resource.email_setting.newsletter = params[:user][:email_setting_attributes][:newsletter]
+      resource.email_setting.businesses_following = params[:user][:email_setting_attributes][:businesses_following]
+      resource.email_setting.categories_following = params[:user][:email_setting_attributes][:categories_following]
+      resource.email_setting.recommendations = params[:user][:email_setting_attributes][:recommendations]
+      resource.email_setting.save!
+      resource.save!
+    else
+      super
+      resource.save!
+    end
+  end
+  
+  protected
+  
+  def after_inactive_sign_up_path_for(resource)
+    businesses_path
   end
 
 end

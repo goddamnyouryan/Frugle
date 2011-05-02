@@ -10,8 +10,32 @@ class Frugle < ActiveRecord::Base
   belongs_to :subcategory
   
   acts_as_taggable
+  
+  after_create :send_businesses_following_email, :send_category_following_email
+  
+  validates_presence_of :business_id, :type, :start, :end, :percentage, :product, :cost
 	
 	def to_param
   		"#{id}-#{cost.slice(0..40).gsub(/\W/, '-').downcase.gsub(/-{2,}/,'-')}"
-  	end
+  end
+  
+  def send_businesses_following_email
+    @users = User.find :all, :include => :email_setting, :conditions => ["email_settings.businesses_following = ?", "instant" ]
+    @users.each do |user|
+      if user.businesses.include?(self.business)
+        FrugleMailer.instant_businesses_following(self, user).deliver
+      end
+    end
+  end
+  
+  def send_category_following_email
+    @users = User.find :all, :include => :email_setting, :conditions => ["email_settings.categories_following = ?", "instant" ]
+    @users.each do |user|
+      if user.categories.include?(self.category)
+        FrugleMailer.instant_categories_following(self, user).deliver
+      end
+    end
+  end
+  
+  
 end

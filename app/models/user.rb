@@ -25,11 +25,21 @@ class User < ActiveRecord::Base
   
   attr_accessor :newsletter, :new_frugles, :businesses_following, :categories_following, :recommendations, :interval, :terms
   
-  after_create :create_email_setting
+  after_create :create_email_setting, :send_welcome_email
+  
+  validates_presence_of :email, :password, :password_confirmation, :first_name, :last_name, :sex, :birthday, :neighborhood_id, :on => :create
   
   def create_email_setting
     unless self.role == "business"
-      EmailSetting.create(:user_id => self.id, :newsletter => 1)
+      EmailSetting.create(:user_id => self.id, :newsletter => 1, :businesses_following => "monthly")
+    end
+  end
+  
+  def send_welcome_email
+    if self.role == "user"
+      FrugleMailer.new_user_registration(self).deliver
+    elsif self.role == "business"
+      FrugleMailer.new_merchant_registration(self).deliver
     end
   end
   

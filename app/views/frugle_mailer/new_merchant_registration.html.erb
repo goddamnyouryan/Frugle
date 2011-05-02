@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<link href="http://frugle.heroku.com/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1><a href="<%= root_url %>"><img src="http://frugle.heroku.com/images/title.png" alt="Frugle"></a></h1>
+    <p>
+      Dear <%= @user.business.name %>,
+    </p>
+
+		<p>Thank you for signing up for Frugle!  Your business is now listed.  You can edit your listing info anytime by clicking <%= link_to "here", edit_business_url(@user.business)%> and using this email address and password you chose at sign up.</p>
+
+		<p>Now that your business is listed, start attracting new customers right from your neighborhood by designing and creating your own frugles by clicking here.  You can control all aspects of the frugle – the type of discount, quantity and length of time they run.  And you can edit them anytime.</p>
+
+		<p>Why not try giving all new customers 5% off?  Click <%= link_to "here" new_frugle_url(:business_id => @user.business.id)%>here to give that frugle a try.</p>
+
+		<p>If you have any questions or feedback of any kind, send us an email to <a href="mailto:merchants@frugle.me">merchants@frugle.me</a>.
+
+		The Frugle Team
+		
+		<p>Happy Savings!<br />
+			The Frugle Team</p>
+
+  </body>
+</html>
+
