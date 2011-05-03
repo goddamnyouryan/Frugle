@@ -6,7 +6,7 @@ class Business < ActiveRecord::Base
   
   belongs_to :user
   belongs_to :neighborhood
-  attr_accessible :name, :address, :zip, :phone, :website, :info, :terms
+  attr_accessible :name, :address, :zip, :phone, :website, :info, :category_id, :subcategory_id, :hear_about, :contact_name, :contact_number, :role, :terms
   
   attr_accessor :area_code, :first_three_digits, :second_four_digits, :terms
   
@@ -19,6 +19,11 @@ class Business < ActiveRecord::Base
                       
   geocoded_by :full_address
   after_validation :geocode
+  #after_update :send_welcome_email
+  
+  def send_welcome_email
+    FrugleMailer.new_merchant_registration(self).deliver
+  end
   
 	def to_param
     "#{id}-#{name.slice(0..40).gsub(/\W/, '-').downcase.gsub(/-{2,}/,'-')}"

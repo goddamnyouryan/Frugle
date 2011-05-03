@@ -15,6 +15,7 @@
 	
 	<%= javascript_include_tag "jquery.fancybox-1.3.4.js" %>
 	<%= stylesheet_link_tag "fancybox/jquery.fancybox-1.3.4.css" %>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/ico" />
 	
 	<%= csrf_meta_tag %>
 	<script>
@@ -31,8 +32,30 @@
 	</script>
 	
   <%= yield(:head) %>
+	<% if user_signed_in? %>
+		<% unless current_user.role == "business" %>
+			<style type="text/css">
+				body {background-image:url(<%= current_user.neighborhood.background.url(:full) %>);}
+			</style>
+		<% else %>
+			<style type="text/css">
+				body {background-image:url(<%= current_user.business.neighborhood.background.url(:full) %>);}
+			</style>
+		<% end %>
+	<% else %>
+		<% if session[:neighborhood]%>
+			<% @neighborhood = Neighborhood.find session[:neighborhood] %>
+			<style type="text/css">
+				body {background-image:url(<%= @neighborhood.background.url(:full) %>);}
+			</style>
+		<% else %>
+			<style type="text/css">
+				body {background-image:url("http://s3.amazonaws.com/hearsay_development/2/original?1304405467");}
+			</style>
+		<% end %>
+	<% end %>
 </head>
-<body id="applicationbg">
+<body>
     	<div id="header">	
     		<h1 class="logo"><%= link_to "Frugle", root_path%></h1>
 
@@ -99,7 +122,7 @@
 	<ul>
 		<li><%= link_to "© #{Time.now.year} Frugle.me", root_path %></li>
 		<li><%= link_to "About Us", about_path %></li>
-		<li><%= link_to "Verify Frugle", verify_path, :class => 'iframe' %></li>
+		<li><%= link_to "Verify Frugle", verify_path %></li>
 		<li><%= link_to "Login", new_user_session_path %></li>
 		<li><%= link_to "Merchants", businesses_path %></li>
 		<li><a href="mailto:jobs@frugle.me">Jobs</a></li>

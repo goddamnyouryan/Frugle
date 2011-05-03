@@ -3,9 +3,9 @@
 
 body{
 	background:#b7e2fc;
-	font-family:Georgia, "Times New Roman", Times, serif;
+	font-family: "Trebuchet MS", sans-serif;
 	padding-bottom:50px;
-	color: #808080;
+	color: #0F0F0F;
 	}
 *{
 	margin:0px;
@@ -16,7 +16,8 @@ body{
 	
 .fr{
 	float:right;}
-	
+
+h1, h2, h3, h4, h5 { font-family:Georgia, "Times New Roman", Times, serif;}
 .clr{
 	clear:both;}
 #body_wraper{
@@ -36,7 +37,7 @@ body{
 	color:#000;
 	text-decoration:none;}
 
-a { color: #808080; text-decoration: none;}
+a { color: #0F0F0F; text-decoration: none;}
 a:hover { color: #990000;}
 
 
@@ -103,7 +104,7 @@ a:hover { color: #990000;}
 	background:#FFF;
 	border-radius:5px;
 	padding:25px 18px;
-	margin-top:60px;
+	margin-top:40px;
 	-moz-border-radius: 5px;
 	position:relative;
 }
@@ -453,7 +454,7 @@ ul#featured li {
 	padding:0 0px 7px 0px;}
 	
 .product_offer {
-	font-family: Tahoma,Geneva,Kalimati,sans-serif;
+	font-family: "Trebuchet MS", sans-serif;;
 	font-size: 12px;
 }
 	
@@ -485,7 +486,7 @@ ul#featured li {
 .offer_col_2{
 	background:url("../images/offer_bar_bg_1.png") no-repeat scroll left center transparent;
 	float:left;
-	font-family:Tahoma,Geneva,Kalimati,sans-serif;
+	font-family: "Trebuchet MS", sans-serif;
 	font-size:12px;
 	line-height:21px;
 	padding-left:10px;
@@ -888,7 +889,7 @@ input.button {
 }
 
 .frugle_business_point p {
-	font-family: Tahoma,Geneva,Kalimati,sans-serif;
+	font-family: "Trebuchet MS", sans-serif;
 	font-size: 12px;
 }
 
@@ -913,7 +914,7 @@ ul#new_business_signup_steps li h3 {
 }
 
 ul#new_business_signup_steps li p {
-	font-family: Tahoma,Geneva,Kalimati,sans-serif;
+	font-family: "Trebuchet MS", sans-serif;
 	font-size: 12px;
 }
 
@@ -971,7 +972,7 @@ form#new_frugle {
 #user_remember_me { margin-top: 9px;}
 
 p.about {
-	font-family:Tahoma,Geneva,Kalimati,sans-serif;
+	font-family: "Trebuchet MS", sans-serif;
 	font-size:14px;
 	margin: 13px auto;
 	width:600px;
@@ -980,7 +981,7 @@ p.about {
 footer { 
 	width: 800px; 
 	margin: 10px auto;
-	font-family:Tahoma,Geneva,Kalimati,sans-serif;
+	font-family: "Trebuchet MS", sans-serif;
 	font-size: 12px;
 }
 
@@ -998,7 +999,7 @@ footer ul li {
 #orange_bar_business_text {
 	float:left; 
 	width:250px;
-	font-family:Tahoma,Geneva,Kalimati,sans-serif;
+	font-family: "Trebuchet MS", sans-serif;
 	font-size: 14px;
 	letter-spacing: 2px;
 	line-height:20px;

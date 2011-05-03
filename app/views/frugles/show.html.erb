@@ -1,21 +1,26 @@
 <% title "#{@frugle.business.name}" %>
 
-<h2><%= @frugle.business.name %>
-	<span id="follow" class="hide_button">
+<p><span style="position:relative;top:10px;"><%= category_icon_business(@frugle.business) %></span><span style="margin-left:5px;"><%= @frugle.business.name %></span>
+	<div id="follow" class="hide_button" style="margin-top:15px;">
 		<%= render :partial => 'follow', :business => @business %>
-	</span>	
-</h2>
-
-
-
-<p style="margin: 25px 0;">
-  <%= @frugle.cost %>
+	</div>	
 </p>
 
+
+
+<h2 style="margin: 25px 0;">
+  <%= @frugle.cost %>
+</h2>
+
 <% if user_signed_in? %>
-	<p style="margin:0 0 25px 0;"><%= link_to "Print This Frugle", print_frugle_path(@frugle), :class => "big button" %></p>
+	<p style="margin:0 0 25px 0;"><%= link_to "Print This Frugle", print_frugle_path(@frugle), :class => "button" %>
+		<span class="save_<%= @frugle.id %>" style="margin: 15px 0;">
+		<%= render :partial => 'save', :frugle => @frugle %>
+		</span></p>
 <% else %>
-	<p style="margin:0 0 25px 0;"><%= link_to "Print This Frugle", new_user_session_path, :class => "big button", :target => "_parent" %></p>
+	<p style="margin:0 0 25px 0;"><%= link_to "Print This Frugle", new_user_session_path, :class => "button", :target => "_parent" %><span class="save_<%= @frugle.id %>" style="margin: 15px 0;">
+	<%= render :partial => 'save', :frugle => @frugle %>
+	</span></p>
 <% end %>
 
 <p>
@@ -64,7 +69,6 @@
 
 <p class="save_<%= @frugle.id %>" style="margin: 15px 0;">
 <%= render :partial => 'save', :frugle => @frugle %>
-
 </p>
 
 <p><%= link_to "View All Frugles from #{@frugle.business.name}", business_path(@frugle.business), :target => "_parent" %></p>
@@ -72,3 +76,5 @@
 <p><%= link_to "View All #{@frugle.category.title} Frugles", frugles_path(:search => "#{@frugle.category.title}"), :target => "_parent" %></p>
 
 <span style="float:left;margin:5px 0 0 200px;"><iframe src="http://www.facebook.com/plugins/like.php?href=<%= business_url(@frugle.business)%>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font&amp;colorscheme=light&amp;height=30" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:30px;" allowTransparency="true"></iframe></span>
+
+<div style="position: absolute; margin: -22px 0pt 0pt 40px; z-index: -9;"><%= image_tag "bottomgrass.png" %></div>

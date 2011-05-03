@@ -84,7 +84,7 @@ class FruglesController < ApplicationController
   end
   
   def verify
-    render :layout => "frugle_view"
+    render :layout => "splash"
   end
   
   def verified

@@ -23,10 +23,10 @@ class FrugleMailer < ActionMailer::Base
            :subject => "Welcome to Frugle, #{user.first_name}!", :from => "Frugle")
   end
   
-  def new_merchant_registration(user)
-        @user = user
-        mail(:to => "#{user.first_name} <#{user.email}>",
-             :subject => "Welcome to Frugle, #{user.business.name}!", :from => "Frugle")
+  def new_merchant_registration(business)
+        @user = business.user
+        mail(:to => "#{business.name} <#{business.user.email}>",
+             :subject => "Welcome to Frugle, #{business.name}!", :from => "Frugle")
     end
   
 end

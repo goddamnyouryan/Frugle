@@ -30,7 +30,11 @@ class BusinessesController < ApplicationController
     @frugle_hear_about_options = [['From a Local Frugle Rep', 'rep'], ['Spoke to another local business owner', 'owner'], ['Searching the Internet', 'internet'], ['Flyer or brochure', 'flyer'], ['Saw a window sticker', 'sticker'], ['Other', 'other']]
     @business_role_options = [['Store Owner', 'owner'], ['Store Employee', 'employee'], ['Other', 'other']]
     render :update do |page|
-			page.replace_html "business_form", :partial => "businesses/form", :locals => { :business => @business }
+      if @business.user.nil?
+			  page.replace_html "business_form", :partial => "businesses/form", :locals => { :business => @business }
+		  else
+		    page.replace_html "business_form", "<p style='width:500px;'>This business listing has already been claimed.  Try resetting your password #{link_to 'here', new_password_path(@business.user), :style => 'font-weight:bold'} and we’ll send you a new password to your email we have on file.  Otherwise, if you do own this business and don’t remember signing up, please contact <a href='mailto:merchants@frugle.me' style='font-weight:bold;'>merchants@frugle.me</a></p>"
+	    end
 	  end
   end
 
@@ -48,7 +52,7 @@ class BusinessesController < ApplicationController
           redirect_to root_path, :notice  => "Successfully updated business info."
         end
       else
-      @user = User.create(:email => params[:business][:email], :password => params[:business][:password], :role => "business")
+        @user = User.create(:email => params[:business][:email], :password => params[:business][:password], :password_confirmation => params[:business][:password], :role => "business", :sex => "Male", :birthday => Date.today, :neighborhood_id => @zipcode.neighborhood_id, :first_name => params[:business][:name], :last_name => params[:business][:name])
       if @business.update_attributes(params[:business])
         @business.user_id = @user.id
         @business.neighborhood_id = @zipcode.neighborhood.id

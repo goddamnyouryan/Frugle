@@ -1,8 +1,8 @@
 <% if user_signed_in? %>
 	<% if current_user.businesses.include?(@business) %>
-		<%= link_to "Unfollow", follow_path(current_user.id, :business_id => @business.id), :method => :delete, :remote => true %>
+		<%= link_to "Unfollow #{@business.name}", follow_path(current_user.id, :business_id => @business.id), :method => :delete, :remote => true %>
 	<% else %>
-		<%= link_to "Follow", new_follow_path(current_user.id, :business_id => @business.id), :remote => true %>
+		<%= link_to "Follow #{@business.name}", new_follow_path(current_user.id, :business_id => @business.id), :remote => true %>
 	<% end %>
 <% else %>
 <%= link_to new_user_session_path, :target => "_parent", :class => "button" do %>

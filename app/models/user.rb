@@ -38,8 +38,6 @@ class User < ActiveRecord::Base
   def send_welcome_email
     if self.role == "user"
       FrugleMailer.new_user_registration(self).deliver
-    elsif self.role == "business"
-      FrugleMailer.new_merchant_registration(self).deliver
     end
   end
   

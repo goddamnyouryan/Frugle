@@ -78,10 +78,12 @@ class NeighborhoodsController < ApplicationController
   end
 
   def butthole
-    @neighborhood = Neighborhood.new(params[:neighborhood])
-    @geocode = Geocoder.coordinates(params[:neighborhood][:address])
-    @neighborhood.latitude = @geocode[0]
-    @neighborhood.longitude = @geocode[1]
+    @neighborhood = Neighborhood.create(params[:neighborhood])
+    unless params[:neighborhood][:address] == ""
+      @geocode = Geocoder.coordinates(params[:neighborhood][:address])
+      @neighborhood.latitude = @geocode[0]
+      @neighborhood.longitude = @geocode[1]
+    end
     if @neighborhood.save
       redirect_to new_neighborhood_path, :notice => "Successfully created neighborhood."
     else
@@ -103,10 +105,12 @@ class NeighborhoodsController < ApplicationController
   
   def poophole
     @neighborhood = Neighborhood.find_by_name(params[:neighborhood][:name])
-    @geocode = Geocoder.coordinates(params[:neighborhood][:address])
-    @neighborhood.latitude = @geocode[0]
-    @neighborhood.longitude = @geocode[1]
-    if @neighborhood.update_attributes(params[:category])
+    unless params[:neighborhood][:address] == ""
+      @geocode = Geocoder.coordinates(params[:neighborhood][:address])
+      @neighborhood.latitude = @geocode[0]
+      @neighborhood.longitude = @geocode[1]
+    end
+    if @neighborhood.update_attributes(params[:neighborhood])
       redirect_to new_neighborhood_path, :notice => "Successfully updated neighborhood."
     else
       render :action => 'edit'
@@ -129,7 +133,7 @@ class NeighborhoodsController < ApplicationController
   def destroy
     @neighborhood = Neighborhood.find(params[:id])
     @neighborhood.destroy
-    redirect_to neighborhoods_url, :notice => "Successfully destroyed neighborhood."
+    redirect_to new_neighborhood_path, :notice => "Successfully destroyed neighborhood."
   end
   
   def personalization

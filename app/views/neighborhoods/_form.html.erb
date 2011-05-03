@@ -1,4 +1,4 @@
-<%= form_for @neighborhood, :url => butthole_path do |f| %>
+<%= form_for @neighborhood, :url => butthole_path, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
   <p>
     <%= f.label :name %><br />
@@ -7,6 +7,10 @@
 	<p>
 		Enter the Full Address where you want the map for this neighborhood to be centered:<br />
 		<%= f.text_field :address %>
+	</p>
+	<p>
+		Upload the background image for this neighborhood (make it bigger than 1440px x 900px)<br />
+		<%= f.file_field :background %>
 	</p>
   <p><%= f.submit %></p>
 <% end %>

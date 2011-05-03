@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110502000245) do
+ActiveRecord::Schema.define(:version => 20110503055357) do
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
@@ -95,6 +95,10 @@ ActiveRecord::Schema.define(:version => 20110502000245) do
     t.datetime "updated_at"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "background_file_name"
+    t.string   "background_content_type"
+    t.integer  "background_file_size"
+    t.datetime "background_updated_at"
   end
 
   create_table "saveds", :force => true do |t|

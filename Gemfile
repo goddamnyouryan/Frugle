@@ -14,6 +14,8 @@ gem 'nifty-generators'
 gem 'geocoder'
 gem "friendly_id", "~> 3.2.1"
 gem 'acts-as-taggable-on'
+gem 'paperclip'
+gem "aws-s3"
 
 # Use unicorn as the web server
 # gem 'unicorn'
