@@ -35,22 +35,22 @@
 	<% if user_signed_in? %>
 		<% unless current_user.role == "business" %>
 			<style type="text/css">
-				body {background-image:url(<%= current_user.neighborhood.background.url(:full) %>);}
+				body {background:url(<%= current_user.neighborhood.background.url(:full) %>) fixed center;}
 			</style>
 		<% else %>
 			<style type="text/css">
-				body {background-image:url(<%= current_user.business.neighborhood.background.url(:full) %>);}
+				body {background:url(<%= current_user.business.neighborhood.background.url(:full) %>) fixed center;}
 			</style>
 		<% end %>
 	<% else %>
 		<% if session[:neighborhood]%>
 			<% @neighborhood = Neighborhood.find session[:neighborhood] %>
 			<style type="text/css">
-				body {background-image:url(<%= @neighborhood.background.url(:full) %>);}
+				body {background:url(<%= @neighborhood.background.url(:full) %>) fixed center;}
 			</style>
 		<% else %>
 			<style type="text/css">
-				body {background-image:url("http://s3.amazonaws.com/hearsay_development/2/original?1304405467");}
+				body {background:url("http://s3.amazonaws.com/frugle_development/1/full") fixed center;}
 			</style>
 		<% end %>
 	<% end %>
