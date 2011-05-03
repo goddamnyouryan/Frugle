@@ -11,7 +11,7 @@ class Neighborhood < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode 
   
-  has_attached_file :background, :styles => { :full => "1440x900>" },
+  has_attached_file :background, :styles => { :full => "1440x900#" },
                     :storage => :s3, :s3_credentials => "#{RAILS_ROOT}/config/s3.yml", 
                     :path => ':id/:style', :bucket => "frugle_development"
 end
