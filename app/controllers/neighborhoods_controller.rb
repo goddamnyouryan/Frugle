@@ -48,7 +48,7 @@ class NeighborhoodsController < ApplicationController
       @session_id = request.session_options[:id]
       @user = User.find_by_logged_out("#{@session_id}")
       if @user == nil
-        @user = User.create(:email => "#{@session_id}@logged_out.com", :password => "logged_out")
+        @user = User.create(:email => "#{@session_id}@logged_out.com", :password => "logged_out", :password_confirmation => "logged_out", :first_name => "logged", :last_name => "out", :birthday => Time.now, :sex => "male")
         @user.logged_out = "#{@session_id}"
         @user.save
       end

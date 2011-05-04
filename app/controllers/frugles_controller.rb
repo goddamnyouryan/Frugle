@@ -12,7 +12,7 @@ class FruglesController < ApplicationController
                :include => [:category, :subcategory], 
                :conditions => ["LOWER(categories.title) LIKE ? OR LOWER(subcategories.title) LIKE ? OR LOWER(details) LIKE ? OR LOWER(cost) LIKE ?",
                "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%"]
-    if @frugles.empty?
+    if @frugles.empty? || params[:search] == ""
       @frugles = Frugle.all
     else
       @frugles = @frugles | Frugle.tagged_with(params[:search])
