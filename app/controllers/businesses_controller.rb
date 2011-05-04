@@ -28,7 +28,7 @@ class BusinessesController < ApplicationController
       @business.name = ""
     end
     @frugle_hear_about_options = [['From a Local Frugle Rep', 'rep'], ['Spoke to another local business owner', 'owner'], ['Searching the Internet', 'internet'], ['Flyer or brochure', 'flyer'], ['Saw a window sticker', 'sticker'], ['Other', 'other']]
-    @business_role_options = [['Store Owner', 'owner'], ['Store Employee', 'employee'], ['Other', 'other']]
+    @business_role_options = [['Store Owner', 'owner'], ['Store Manager', 'manager'], ['Store Employee', 'employee'], ['Other', 'other']]
     render :update do |page|
       if @business.user.nil?
 			  page.replace_html "business_form", :partial => "businesses/form", :locals => { :business => @business }

@@ -20,17 +20,19 @@
   	<%= f.radio_button :sex, "Male" %> Male
 	  <%= f.radio_button :sex, "Female" %> Female
   </div>
+	<label for="user[sex]" class="error" style="display:none;left:-71px;
+	position:relative;">***</label>
   <div class="clr"></div>
 </div>
 <div class="reg_row">
 	<div class="reg_col_left">Birth Day</div>
   <div class="reg_col_right">
-  	<div class="fl">
+  	<div class="fl" id="birthday">
     	<%= f.date_select :birthday, 
 						  :start_year => Time.now.year,
 						  :end_year => 1900,
 						  :include_blank => true,
-						  :order => [:month, :day, :year]											
+						  :order => [:month, :day, :year]
 		%>
     </div>
     <div class="clr"></div>
@@ -53,7 +55,7 @@
   <div class="clr"></div>
 </div>
 
-<p style="text-align:center;font-size: 14px;"><%= f.check_box :terms %> You agree to our <%= link_to "terms and service", terms_path, :style => "font-weight:bold;", :target => "_blank" %></p>
+<p style="text-align:center;font-size: 14px;"><label for="terms" class="error" style="display:none;position: relative; left: -5px; top: 1px;">***</label><%= check_box_tag :terms %> You agree to our <%= link_to "terms and service", terms_path, :style => "font-weight:bold;", :target => "_blank" %></p>
 
 <div class="hide_button"><%= f.submit "Sign up", :class => "orange_button" %></div>
 

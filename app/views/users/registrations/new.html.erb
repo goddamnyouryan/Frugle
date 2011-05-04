@@ -8,6 +8,59 @@
 				<% end %>
 				<p style="margin: 20px 0;font-size:14px;">Already have an Account? <%= link_to "Sign In!", new_user_session_path, :style => "font-weight:bold;" %></p>
       </div>
+
+			<script>
+				jQuery(document).ready(function(){
+					
+					    jQuery("#user_new").validate({
+						
+							groups: {
+								birthday: "user[birthday(2i)] user[birthday(3i)] user[birthday(1i)]"
+							},
+
+					    rules: {
+					    	"user[first_name]": "required",
+								"user[last_name]": "required",
+								"user[sex]": "required",
+					    	"user[email]": {
+					    		required: true,
+					    		email: true,
+					    	},
+					    	"user[password]": "required",
+								"user[password_confirmation]": {
+									required: true,
+									equalTo: "#user_password"
+								},
+								birthday: "required",
+								"user[birthday(2i)]": "required",
+								"user[birthday(3i)]": "required",
+								"user[birthday(1i)]": "required",
+								terms: "required"
+					    },
+						messages: {
+					    	"user[first_name]": "***",
+								"user[last_name]": "***",
+								"user[sex]": "***",
+								"user[password]": "***",
+					    	"user[email]": "***",
+								"user[password_confirmation]": "***",
+								"user[birthday(2i)]": "***",
+								"user[birthday(3i)]": "***",
+								"user[birthday(1i)]": "***",
+								terms: "***"
+					    },
+					
+							errorPlacement: function(error, element) {
+							     if (element.attr("name") == "user[birthday(2i)]" || element.attr("name") == "user[birthday(3i)]" || element.attr("name") == "user[birthday(1i)]")
+							       error.insertAfter("#birthday");
+							     else
+							       error.insertAfter(element);
+							   },
+
+					    });
+					
+				});
+			</script>
 		<div id="sign_up" style="display:none;">
 		<%= render :partial => 'sign_up' %>
 		</div>

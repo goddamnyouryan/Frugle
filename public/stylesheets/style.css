@@ -1017,3 +1017,11 @@ footer ul li {
 	margin-top:170px;
 	position:absolute;
 }
+
+label.error {
+	background: url(../images/red-x.png) no-repeat;
+	color:transparent;
+	left:5px;
+	position:relative;
+	top:4px;
+}
