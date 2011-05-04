@@ -111,6 +111,7 @@ a:hover { color: #990000;}
 
 #neighborhood {
 	margin:6px 0 0 10px;
+	font-family:Georgia, "Times New Roman", Times, serif;	
 }
 
 body#splashbg {
@@ -253,6 +254,7 @@ body#applicationbg {
 	font-size:20px;}
 .cat_box_row1{
 	text-align: center;
+	font-family:Georgia, "Times New Roman", Times, serif;	
 	}
 .cat_box_row1 li {
 	display: inline;
@@ -450,11 +452,12 @@ ul#featured li {
 	float:left;
 	width:160px;}
 .product_caption{
+	font-family:Georgia, "Times New Roman", Times, serif;	
 	font-size:18px;
 	padding:0 0px 7px 0px;}
 	
 .product_offer {
-	font-family: "Trebuchet MS", sans-serif;;
+	font-family: "Trebuchet MS", sans-serif;
 	font-size: 12px;
 }
 	
@@ -477,6 +480,7 @@ ul#featured li {
 	width:340px;
 }
 .offer_col_1{
+	font-family:Georgia, "Times New Roman", Times, serif;	
 	float:left;
 	font-size:16px;
 	font-weight:bold;
@@ -733,12 +737,16 @@ ul#featured li {
 .follwing_col{
 	float:left;
 	margin:5px 10px 5px 0px	;
-	width:145px;}
+	width:175px;
+	list-style:none;
+}
 	
 .follwing_col2{
 	float:left;
 	margin:5px 10px 5px 0px	;
-	width:220px;}
+	width:175px;
+	list-style:none;
+}
 .previuos_btn{
 	float:left;
 	margin-top:50px;

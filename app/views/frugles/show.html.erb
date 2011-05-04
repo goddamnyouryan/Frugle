@@ -12,6 +12,7 @@
   <%= @frugle.cost %>
 </h2>
 
+<div style="font-family: 'Trebuchet MS', sans-serif;">
 <% if user_signed_in? %>
 	<p style="margin:0 0 25px 0;"><%= link_to "Print This Frugle", print_frugle_path(@frugle), :class => "button" %>
 		<span class="save_<%= @frugle.id %>" style="margin: 15px 0;">
@@ -76,5 +77,5 @@
 <p><%= link_to "View All #{@frugle.category.title} Frugles", frugles_path(:search => "#{@frugle.category.title}"), :target => "_parent" %></p>
 
 <span style="float:left;margin:5px 0 0 200px;"><iframe src="http://www.facebook.com/plugins/like.php?href=<%= business_url(@frugle.business)%>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font&amp;colorscheme=light&amp;height=30" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:30px;" allowTransparency="true"></iframe></span>
-
+</div>
 <div style="position: absolute; margin: -22px 0pt 0pt 40px; z-index: -9;"><%= image_tag "bottomgrass.png" %></div>

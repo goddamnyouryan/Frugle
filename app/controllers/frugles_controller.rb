@@ -1,5 +1,5 @@
 class FruglesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :verified, :show, :verify, :toggle, :about, :terms, :contact]
+  before_filter :authenticate_user!, :except => [:index, :verified, :show, :verify, :toggle, :about, :terms, :contact, :send_message]
   after_filter :increase_prints, :only => :print
   after_filter :increase_views, :only => :show
   after_filter :decrease_quantity, :only => :print
@@ -13,7 +13,8 @@ class FruglesController < ApplicationController
                :conditions => ["LOWER(categories.title) LIKE ? OR LOWER(subcategories.title) LIKE ? OR LOWER(details) LIKE ? OR LOWER(cost) LIKE ?",
                "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%"]
     if @frugles.empty? || params[:search] == ""
-      @frugles = Frugle.all
+      @frugles = Frugle.find :all, :joins => :business, :conditions => [ "businesses.neighborhood_id IS NOT NULL" ]
+      @businesses = Business.find :all, :joins => :frugles, :conditions => ["frugles IS NOT NULL"]
     else
       @frugles = @frugles | Frugle.tagged_with(params[:search])
     end
@@ -29,6 +30,11 @@ class FruglesController < ApplicationController
       end
     end
     render :layout => "frugle_view"
+  end
+  
+  def send_message
+    FrugleMailer.send_contact_message(params[:name], params[:email], params[:subject], params[:message]).deliver!
+    redirect_to root_path, :notice => "Your message has been sent!"
   end
   
   def print

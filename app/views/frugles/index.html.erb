@@ -22,7 +22,10 @@
 					<% if business.address2? %>
 						<%= business.address2 %><br />
 					<% end %>
-					<%= business.neighborhood.name %>, <%= business.zip%><br />
+					<% unless business.neighborhood == nil %>
+					<%= business.neighborhood.name %>, 
+					<% end %>
+					<%= business.zip%><br />
 					<%= business.phone %>
 				</p>
 			</li>

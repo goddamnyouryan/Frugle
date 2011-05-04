@@ -27,6 +27,14 @@ class FrugleMailer < ActionMailer::Base
         @user = business.user
         mail(:to => "#{business.name} <#{business.user.email}>",
              :subject => "Welcome to Frugle, #{business.name}!", :from => "Frugle")
-    end
+  end
+  
+  def send_contact_message(name, email, subject, message)
+    @name = name
+    @email = email
+    @message = message
+    mail(:to => "Taylor Ballenger <taylor@frugle.me>",
+         :subject => "Frugle contact form message - #{subject}", :from => "Frugle")
+  end
   
 end
