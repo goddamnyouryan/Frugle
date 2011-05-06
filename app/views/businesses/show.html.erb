@@ -19,26 +19,26 @@
 		<% end %>
 		<%= @business.neighborhood.name %>, <%= @business.zip %><br />
 		<%= @business.phone %><br />
-  Web: <%= @business.website %> 
+  	<a href="<%= @business.website %>" target="_blank" style="font-weight:bold;"><%= @business.website %></a>
 	</p>
 </div>
 
 <div class="fr">
 	<% if user_signed_in? %>
 	<% unless current_user.role == "business" %>
-	<p id="follow" class="hide_button" style="float:right;margin-top:0;">
+	<p id="follow" class="hide_button" style="float:right;margin:0 0 10px;">
 		<%= render :partial => 'frugles/follow', :business => @business %>
 	</p>
 	<div class="clr"></div>
 	<% end %>
 	<% end %>
-<div class="hide_button" style="float:right;margin-top:0;"><%= link_to "Back to #{@business.neighborhood.name}", :controller => "neighborhoods", :action => "show", :id => @business.neighborhood.friendly_id %></div>
+<div class="hide_button" style="float:right;margin-top:0;"><%= link_to "Back to Neighborhood", :controller => "neighborhoods", :action => "show", :id => @business.neighborhood.friendly_id %></div>
 <div class="clr"></div>
 
 </div>
 					
 <div class="clr"></div>
-<div class="fl">
+<div class="fl" style="margin-top:15px;">
 <p> <%= @business.info %></p>
 </div>
 
@@ -54,8 +54,8 @@
 <div class="black_bar" style="margin-top:50px;">
 <div>Frugles - <%= @frugles.count %></div>
 </div>
-<ul class="frugles tag_box" style="float:left">
+<ul class="frugles tag_box" style="float:left;min-width:765px;">
 	<%= render :partial => 'neighborhoods/small_frugle', :collection => @frugles, :as => :frugle %>
 </ul>
 <div class="clr"></div>
-<div class="tag_border_bottom" style="position:relative;top:-6px;"><%= image_tag "tag_box_bottom.png" %></div>
+<div class="tag_border_bottom" style="position:relative;top:-9px;"><%= image_tag "tag_box_bottom.png" %></div>

@@ -11,10 +11,10 @@
 				</div>
 
 
-			<div class="hide_button"><%= f.submit "Send me Reset Instructions", :class => "orange_button" %></div>
+			<div class="hide_button"><%= f.submit "Send me reset instructions", :class => "orange_button" %></div>
 		<% end %>
 		<div class="form_row" style="text-align:center; font-size:14px;">
-			<%= link_to "Sign In", new_user_session_path %><br />
+			<%= link_to "Sign in", new_user_session_path %><br />
 			<%= render :partial => "users/shared/links" %>
 			Sign In With 
 			<%- resource_class.omniauth_providers.each do |provider| %>

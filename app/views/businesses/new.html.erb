@@ -1,5 +1,6 @@
 <% title "New Business" %>
 <% javascript 'dynamic' %>
+<% javascript "http://ajax.microsoft.com/ajax/jquery.validate/1.7/jquery.validate.min.js" %>
 
 <h2 class="yellow_strip">List Your Business In 3 Easy Steps:</h2>
 
@@ -43,6 +44,33 @@
 	    document.getElementById(nextFieldID).focus();
 	  }
 	}
+	</script>
+	
+	<script>
+
+			    jQuery("#new_business").validate({
+					groups: {
+						phone: "business[phone][area_code] business[phone][first_three_digits] business[phone][second_four_digits]"
+					},
+			    rules: {
+						phone: "required",
+						"business[phone][area_code]": "required",
+						"business[phone][first_three_digits]": "required",
+						"business[phone][second_four_digits]": "required",
+			    },
+				messages: {
+						"business[phone][area_code]": "***",
+						"business[phone][first_three_digits]": "***",
+						"business[phone][second_four_digits]": "***"
+			    },
+						errorPlacement: function(error, element) {
+						     if (element.attr("name") == "business[phone][area_code]" || element.attr("name") == "business[phone][first_three_digits]" || element.attr("name") == "business[phone][second_four_digits]")
+						       error.insertAfter("#business_submit");
+						     else
+						       error.insertAfter(element);
+						   },
+							success: "valid",
+			    });
 	</script>
   	<%= f.fields_for :phone do |phone| %>
 	  	<%= phone.text_field :area_code, :size => 3, :class => "reg_bar_phone", :maxlength => 3, :onkeyup => "moveOnMax(this,'business_phone_first_three_digits')"  %>

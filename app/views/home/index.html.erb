@@ -23,13 +23,15 @@
 		<% end %>
 		<%= @business.neighborhood.name %>, <%= @business.zip %><br />
 		<%= @business.phone %><br />
-  Web: <%= @business.website %> 
+  	<a href="<%= @business.website %>" target="_blank" style="font-weight:bold;"><%= @business.website %></a>
 	</p>
 </div>
 
 <div class="fr">
-<div class="hide_button"><%= link_to "Add New Frugle", new_frugle_path(:business_id => @business.id) %></div>
-<div class="clr"></div>
+<% unless @business.frugles.count > 20 %>
+	<div class="hide_button"><%= link_to "Add New Frugle", new_frugle_path(:business_id => @business.id) %></div>
+	<div class="clr"></div>
+<% end %>
 <div class="hide_button"><%= link_to "Verify a Frugle", verify_path %></div>
 <div class="clr"></div>
 <p style="margin-top:10px;font-size:12px;text-align:center;"><%= link_to "Edit Business Info", edit_business_path(current_user.business) %></p>
@@ -37,7 +39,7 @@
 </div>
 					
 <div class="clr"></div>
-<div class="fl">
+<div class="fl" style="margin-top:15px;">
 <p> <%= @business.info %></p>
 </div>
 

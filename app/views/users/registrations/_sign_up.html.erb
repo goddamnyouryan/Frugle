@@ -20,7 +20,7 @@
   	<%= f.radio_button :sex, "Male" %> Male
 	  <%= f.radio_button :sex, "Female" %> Female
   </div>
-	<label for="user[sex]" class="error" style="display:none;left:-71px;
+	<label for="user[sex]" class="error" style="display:none;left:-73px;
 	position:relative;">***</label>
   <div class="clr"></div>
 </div>
@@ -34,6 +34,7 @@
 						  :include_blank => true,
 						  :order => [:month, :day, :year]
 		%>
+		<label for="birthday" class="error" style="margin-left:5px;display:none;">***</label>
     </div>
     <div class="clr"></div>
   </div>
@@ -41,7 +42,7 @@
 </div>
 <div class="reg_row">
 	<div class="reg_col_left">Email</div>
-  <div class="reg_col_right"><%= f.email_field :email, :class => "reg_bar" %></div>
+  <div class="reg_col_right"><%= f.text_field :email, :class => "reg_bar" %></div>
   <div class="clr"></div>
 </div>
 <div class="reg_row">
@@ -63,10 +64,14 @@
 
 <% end %>
 <div class="form_row">
-Sign Up With 
+Sign up with 
 <%- resource_class.omniauth_providers.each do |provider| %>
 	<%= link_to image_tag("facebook.png"), omniauth_authorize_path(resource_name, provider), :style => "position:relative;top:10px;" %>
 <% end -%>
+</div>
+
+<div class="form_row">
+Already have an account? <%= link_to "Sign in", new_user_session_path, :style => "font-weight:bold;" %>
 </div>
 
 <div class="form_row">

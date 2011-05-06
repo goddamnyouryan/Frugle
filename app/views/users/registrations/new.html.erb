@@ -13,7 +13,6 @@
 				jQuery(document).ready(function(){
 					
 					    jQuery("#user_new").validate({
-						
 							groups: {
 								birthday: "user[birthday(2i)] user[birthday(3i)] user[birthday(1i)]"
 							},
@@ -56,7 +55,8 @@
 							     else
 							       error.insertAfter(element);
 							   },
-
+								success: "valid",
+								onkeyup: true
 					    });
 					
 				});

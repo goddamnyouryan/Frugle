@@ -48,9 +48,13 @@ class FruglesController < ApplicationController
   end
 
   def new
-    @frugle = Frugle.new
     @business = Business.find params[:business_id]
-    @frugle_discount_options = [['% Off', 'percent'], ['$ Off', 'dollar'], ['$ For', 'flat'], ['Free with Purchase Of', 'bonus'], ['Buy One Get One Free', 'bogo']]
+    if @business.frugles.count > 20
+      redirect_to root_path
+    else
+      @frugle = Frugle.new
+      @frugle_discount_options = [['% Off', 'percent'], ['$ Off', 'dollar'], ['$ For', 'flat'], ['Free with Purchase Of', 'bonus'], ['Buy One Get One Free', 'bogo']]
+    end
   end
   
   def update_cost
@@ -80,7 +84,8 @@ class FruglesController < ApplicationController
     if @frugle.save
       redirect_to root_path, :notice => "Successfully created frugle."
     else
-      render :action => 'new'
+      flash[:notice] = "Please fill out the form completely."
+      redirect_to :controller => "frugles", :action => 'new', :business_id => @frugle.business_id
     end
   end
 

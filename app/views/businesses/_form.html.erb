@@ -1,3 +1,59 @@
+<script>
+		
+		    jQuery(".edit_business").validate({
+					groups: {
+						contact_phone: "business[contact_number][contact_area_code] business[contact_number][contact_first_three_digits] business[contact_number][contact_second_four_digits]"
+					},
+
+		    rules: {
+		    	"business[name]": "required",
+					"business[address]": "required",
+					"business[zip]": "required",
+					"business[category_id]": "required",
+					"business[subcategory_id]": "required",
+		    	"business[website]": {
+		    		url: true
+		    	},
+					"business[hear_about]": "required",
+					"business[email]": {
+						email: true,
+						required: true
+					},
+					"business[password]": "required",
+					"business[password_confirmation]": {
+						required: true,
+						equalTo: "#business_password"
+					},
+					"business[contact_name]": "required",
+					contact_phone: "required",
+					"business[contact_number][contact_area_code]": "required",
+					"business[contact_number][contact_first_three_digits]": "required",
+					"business[contact_number][contact_second_four_digits]": "required",
+					"business[role]": "required", 
+					terms: "required",
+		    },
+			messages: {
+		    	"business[name]": "***",
+					"business[address]": "***",
+					"business[zip]": "***",
+					"business[category_id]": "***",
+					"business[subcategory_id]": "***",
+					"business[website]": "***",
+					"business[hear_about]": "***",
+					"business[email]": "***",
+					"business[password]": "***",
+					"business[password_confirmation]": "***",
+					"business[contact_name]": "***",
+					"business[contact_number][contact_area_code]": "***",
+					"business[contact_number][contact_first_three_digits]": "***",
+					"business[contact_number][contact_second_four_digits]": "***",
+					"business[role]": "***",
+					terms: "***"
+		    },
+					success: "valid"
+		    });
+</script>
+
 <%= form_for @business do |f| %>
   <%= f.error_messages %>
 <div class="new_business_box">
@@ -25,7 +81,7 @@
 	</div>
 	<div class="reg_row">
 		<div class="new_business_col_left">Website URL</div>
-	  <div class="fl"><%= f.url_field :website, :class => "reg_bar" %></div>
+	  <div class="fl"><%= f.text_field :website, :class => "reg_bar" %></div>
 	  	<div class="clr"></div>
 	</div>
 	<div class="reg_row">
@@ -64,7 +120,7 @@ $('business_category_id').observe("change",function(){
 
 	<div class="reg_row">
 		<div class="new_business_col_left">Email Address</div>
-	  <div class="fl"><%= f.email_field :email, :class => "reg_bar" %></div>
+	  <div class="fl"><%= f.text_field :email, :class => "reg_bar" %></div>
 	  	<div class="clr"></div>
 	</div>
 	
@@ -88,7 +144,7 @@ $('business_category_id').observe("change",function(){
 	
 	<div class="reg_row">
 		<div class="new_business_col_left" style="margin-top:20px;">Contact Phone Number</div>
-	  <div class="fl">
+	  <div class="fl" id="contact_phone">
 			<script>
 			function moveOnMax(field,nextFieldID){
 			  if(field.value.length >= field.maxLength){
@@ -101,6 +157,7 @@ $('business_category_id').observe("change",function(){
 				<%= phone.text_field :contact_first_three_digits, :size => 3, :class => "reg_bar_phone", :maxlength => 3, :onkeyup => "moveOnMax(this,'business_contact_number_contact_second_four_digits')" %>
 				<%= phone.text_field :contact_second_four_digits, :size => 4, :class => "reg_bar_phone", :maxlength => 4, :onkeyup => "moveOnMax(this,'business_role')" %>
 		  <% end %>
+		<label for="contact_phone" generated="true" class="error" style="display:none;"></label>
 	  </div>
 	  	<div class="clr"></div>
 	</div>
@@ -111,7 +168,7 @@ $('business_category_id').observe("change",function(){
 	  	<div class="clr"></div>
 	</div>
 	
-	<p style="text-align:center;font-size: 14px;"><%= f.check_box :terms %> You agree to our <%= link_to "terms and service", terms_path, :style => "font-weight:bold;", :target => "_blank" %></p>
+	<p style="text-align:center;font-size: 14px;"><label for="terms" class="error" style="display:none;position: relative; left: -5px; top: 1px;">***</label><%= check_box_tag :terms %>  You agree to our <%= link_to "terms and service", terms_path, :style => "font-weight:bold;", :target => "_blank" %></p>
 </div>
 <% end %>
   <p><%= f.submit "Sign Up!", :class => "button", :style => "margin-left:190px;" %></p>

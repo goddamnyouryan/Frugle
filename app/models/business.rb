@@ -14,12 +14,11 @@ class Business < ActiveRecord::Base
                       :message => "must be a valid telephone number.",
                       :with => /^[\(\)0-9\- \+\.]{10,20}$/
                       
-  validates_presence_of :phone, :on => :create  
-  validates_presence_of :name, :address, :zip, :category_id, :subcategory_id, :hear_about, :contact_name, :contact_number, :role, :terms, :on => :update                  
+  validates_presence_of :phone, :on => :create                   
                       
   geocoded_by :full_address
   after_validation :geocode
-  #after_update :send_welcome_email
+  after_update :send_welcome_email
   
   def send_welcome_email
     FrugleMailer.new_merchant_registration(self).deliver

@@ -54,7 +54,7 @@
 
 <div class="hide_button" id="show_subcategories"><%= link_to "Show Subcategories", subcategories_toggle_path, :remote => true %></div>
 
-<div class="tag_border_bottom" style="margin-top:-6px;"><img src="images/tag_box_bottom.png" alt="0" border="0" /></div>
+<div class="tag_border_bottom" style="margin-top:-2px;"><img src="images/tag_box_bottom.png" alt="0" border="0" /></div>
 
 
 <h2 class="yellow_strip" style="margin-top:25px; margin-bottom:0;">All Frugles</h2>
@@ -85,10 +85,10 @@
 <div id="map_toggle">
 <div class="map_box">
 	<%= raw(@map.div(:width => 735, :height => 490)) %>
-	<div class="hide_button"><%= link_to "Hide Map", map_toggle_path, :remote => true %></div>
+	<div class="hide_button" style="margin-bottom:5px;"><%= link_to "Hide Map", map_toggle_path, :remote => true %></div>
 </div>
 </div>
-<div class="hide_button" id="map_show" style="display:none;"><%= link_to "Show Map", map_toggle_path, :remote => true %></div>
+<div class="hide_button" id="map_show" style="display:none;margin-bottom:5px;"><%= link_to "Show Map", map_toggle_path, :remote => true %></div>
 <div class="tag_border_bottom" style="position:relative;top:-8px;"><img src="images/tag_box_bottom.png" alt="0" border="0" /></div>
 
 <div id="socialicons">

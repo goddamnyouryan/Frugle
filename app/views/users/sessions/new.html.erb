@@ -2,10 +2,42 @@
 	<div id="splash_main_signup">
 		<h2 class="scrollable_frugles_header" style="margin: 20px 0; text-align:center;">Enter Your Info to Login</h2>
       <div class="form_row">
+					<script>
+						jQuery(document).ready(function(){
+
+							    jQuery("#user_new").validate({
+
+							    rules: {
+								
+							    	"user[email]": {
+							    		required: true,
+							    		email: true,
+							    	},
+							    	"user[password]": "required",
+
+							    },
+								messages: {
+
+							    	"user[email]": "***",
+										"user[password]": "***",
+
+							    },
+
+									errorPlacement: function(error, element) {
+									     if (element.attr("name") == "user[birthday(2i)]" || element.attr("name") == "user[birthday(3i)]" || element.attr("name") == "user[birthday(1i)]")
+									       error.insertAfter("#birthday");
+									     else
+									       error.insertAfter(element);
+									   },
+										success: "valid"
+							    });
+
+						});
+					</script>
 			<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 				<div class="reg_row">
 					<div class="reg_col_left">Email</div>
-				  <div class="reg_col_right"><%= f.email_field :email, :class => "reg_bar" %></div>
+				  <div class="reg_col_right"><%= f.text_field :email, :class => "reg_bar" %></div>
 				  	<div class="clr"></div>
 				</div>
 				<div class="reg_row">
@@ -25,7 +57,7 @@
 		<% end %>
 		<div class="form_row" style="text-align:center; font-size:14px;">
 			<%= render :partial => "users/shared/links" %>
-			Sign In With 
+			Sign in with 
 			<%- resource_class.omniauth_providers.each do |provider| %>
 				<%= link_to image_tag("facebook.png"), omniauth_authorize_path(resource_name, provider), :style => "position:relative;top:10px;" %>
 			<% end -%>

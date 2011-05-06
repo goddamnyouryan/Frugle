@@ -53,8 +53,10 @@ class BusinessesController < ApplicationController
         end
       else
         @user = User.create(:email => params[:business][:email], :password => params[:business][:password], :password_confirmation => params[:business][:password], :role => "business", :sex => "Male", :birthday => Date.today, :neighborhood_id => @zipcode.neighborhood_id, :first_name => params[:business][:name], :last_name => params[:business][:name])
-      if @business.update_attributes(params[:business])
         @business.user_id = @user.id
+        @business.name = params[:business][:name]
+        @business.save!
+      if @business.update_attributes(params[:business])
         @business.neighborhood_id = @zipcode.neighborhood.id
         @business.category_id = params[:business][:category_id]
         @business.subcategory_id = params[:business][:subcategory_id]

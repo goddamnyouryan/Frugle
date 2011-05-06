@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   
   def create_email_setting
     unless self.role == "business"
-      EmailSetting.create(:user_id => self.id, :newsletter => 1, :businesses_following => "monthly")
+      EmailSetting.create(:user_id => self.id, :newsletter => 1, :businesses_following => "daily", :categories_following => "weekly", :recommendations => "weekly")
     end
   end
   
