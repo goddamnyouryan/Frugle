@@ -102,11 +102,38 @@ a:hover { color: #990000;}
 	
 #body_content{
 	background:#FFF;
-	border-radius:5px;
+	border-radius:10px;
 	padding:25px 18px;
 	margin-top:40px;
 	-moz-border-radius: 5px;
 	position:relative;
+	border: 3px solid #333;
+	position:relative;
+	z-index: 1;
+}
+
+#body_content:before {
+	border: 2px solid #fff;
+	content: '';
+	width: 790px;
+	position:absolute;
+	height: 99.5%;
+	margin:-25px -18px;
+	z-index: -9999;
+	border-radius:5px;
+}
+
+#body_content:after {
+	border: 1px solid #999;
+	content: '';
+	width: 788px;
+	position:absolute;
+	top: 0;
+	left: 0;
+	height: 99.25%;
+	margin: 2px 2px;
+	z-index: -9999;
+	border-radius:3px;
 }
 
 #neighborhood {
@@ -175,7 +202,7 @@ body#applicationbg {
 #business_info {
 	float:left;
 	margin-right:10px;
-	width:395px;
+	width:385px;
 }
 
 .splash_bottom_box h3 {
@@ -233,13 +260,16 @@ body#applicationbg {
 		border:none;
 		padding:0px 5px;}
 .black_bar{
-	margin-left:-24px;
+	margin-left:-28px;
 	background:url(../images/black_bar.png) no-repeat;
 	height:33px;
 	font-size:18px;
 	padding-left:18px;
 	padding-top:2px;
-	color:#fff;}
+	color:#fff;
+	position:relative;
+	z-index: 9999;
+}
 .black_bar .fl{
 	padding-left:5px;}
 	
@@ -1045,4 +1075,14 @@ select#neighborhood_id {
 #top_bar {
 	background:#333;
 	height:75px;
+}
+
+.skyline_bottom{
+	margin:0 0 -23px -15px;
+}
+
+img.corner {
+	position:absolute;
+	right:2px;
+	top:2px;
 }
