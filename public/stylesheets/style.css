@@ -110,6 +110,7 @@ a:hover { color: #990000;}
 	border: 3px solid #333;
 	position:relative;
 	z-index: 1;
+	height:100%;
 }
 
 #body_content:before {
@@ -130,7 +131,7 @@ a:hover { color: #990000;}
 	position:absolute;
 	top: 0;
 	left: 0;
-	height: 99.25%;
+	height: 99.75%;
 	margin: 2px 2px;
 	z-index: -9999;
 	border-radius:3px;
@@ -1078,7 +1079,7 @@ select#neighborhood_id {
 }
 
 .skyline_bottom{
-	margin:0 0 -23px -15px;
+	margin:0 0 -20px -15px;
 }
 
 img.corner {
