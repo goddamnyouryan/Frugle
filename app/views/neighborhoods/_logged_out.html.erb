@@ -5,7 +5,6 @@
 		<%= @frugle_count.count %> deals from<br />
 		<%= @business_count.count %> <%= @neighborhood.name %> stores<br />
 	</div>
-	<%= image_tag "picksomecategoriestobegin.png" %>
 </div>
 
 <% form_tag frugles_path, :method => 'get' do %>
@@ -70,7 +69,9 @@
 <div class="clr"></div>
 
 <div id="merchant_click_here">
-	<%= link_to image_tag("merchantclickhere.png"), businesses_path %>
+	<%= image_tag "littlearrow.png", :style => "position: absolute; margin: 42px 0pt 0pt -75px;" %>
+	<p style="margin-bottom:10px;">Business Owner?</p>
+	<p>List your business for <strong>free</strong>
 </div>
 
 <div id="frugle_results">

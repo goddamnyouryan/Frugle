@@ -224,8 +224,8 @@ body#applicationbg {
 #angled {
 	-webkit-transform: rotate(-20deg); 
 	-moz-transform: rotate(-20deg);
-	position:relative;
-	top:-15px;
+	position: relative; 
+	left:50px;
 }
 
 #control_how_often {
@@ -430,8 +430,12 @@ body#applicationbg {
 	.cycleElementsContainer li { width: 220px; float: left; } 
 	
 	#begin {
+		background: url(../images/angeled.png) no-repeat;
+		height:163px;
+		left:-222px;
+		margin-top:-20px;
 		position:absolute;
-		left:-135px;
+		width:250px;
 	}
 	
 	#view_frugles_here {
@@ -440,14 +444,26 @@ body#applicationbg {
 	}
 	
 	#merchant_click_here{
+		background:url("../images/right_bulge.png") no-repeat;
+		font-family:Georgia,serif;
+		height:143px;
+		margin-top:-159px;
+		padding:18px 0 0;
 		position:absolute;
-		right:-160px;
+		right:-107px;
+		text-align:center;
+		width:110px;
 	}
 	
 	#select_all_categories { 
-		left:-71px;
+		background:url("../images/left_bulge.png") no-repeat;
+		height:143px;
+		left:-107px;
+		margin-top:-28px;
+		padding:20px 0 0 0;
 		position:absolute;
 		text-align:right;
+		width:110px;
 	}
 	
 	h3#featured {
