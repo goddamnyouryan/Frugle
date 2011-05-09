@@ -24,9 +24,10 @@
 	<script>
 	jQuery(document).ready(function() {
 		jQuery(".iframe").fancybox({
-			height: 500,
+			height: 600,
 			width: 700,
-			hideOnContentClick: true
+			hideOnContentClick: true,
+			autoScale: false
 		});
 	});
 	</script>
@@ -107,7 +108,7 @@
 		<div id="body_content">
 			<%= image_tag "corner.png", :class => "corner" %>
       <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <%= content_tag :div, raw(msg), :id => "flash_#{name}" %>
       <% end %>
       <!--<%= content_tag :h2, yield(:title) if show_title? %> -->
       <%= yield %>

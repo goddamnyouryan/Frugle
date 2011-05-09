@@ -112,21 +112,20 @@
   <div class="clr"></div>
 
 <% if @facebook == nil %>
-	<%- if devise_mapping.omniauthable? %>
-		<ul id="social-icons">
-		  <%- resource_class.omniauth_providers.each do |provider| %>
-			<li><%= link_to "Connect Your Facebook Account", omniauth_authorize_path(resource_name, provider) %></li>
-		  <% end -%>
-		</ul>
-		<div class="clear"></div>
-	<% end -%>
+<div class="form_row" style="text-align:center;">
+Connect your
+<%- resource_class.omniauth_providers.each do |provider| %>
+	<%= link_to image_tag("facebook.png"), omniauth_authorize_path(resource_name, provider), :style => "position:relative;top:10px;" %> account
+<% end -%>
+</div>
 <% end %>
 
 	<!--Add some omniauth goodness:
 	
 	<%= render :partial => "devise/shared/links" %> -->
-
-	<%= link_to "Delete my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
+<div class="form_row" style="text-align: center; font-size: 10px; position: relative; top: 210px;">
+	<%= link_to "Delete my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>
+</div>
 
 <div class="skyline_bottom"><%= image_tag "skyline_bottom.png" %></div>
 

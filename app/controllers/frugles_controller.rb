@@ -7,14 +7,20 @@ class FruglesController < ApplicationController
   def index
     @businesses = Business.find :all,
                   :conditions => ["LOWER(name) LIKE ?","%#{params[:search].to_s.downcase}%"]
-                  
+    @count = @businesses.count
     @frugles = Frugle.find :all, 
                :include => [:category, :subcategory], 
                :conditions => ["LOWER(categories.title) LIKE ? OR LOWER(subcategories.title) LIKE ? OR LOWER(details) LIKE ? OR LOWER(cost) LIKE ?",
                "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%"]
-    if @frugles.empty? || params[:search] == ""
+    if params[:search] == ""
       @frugles = Frugle.find :all, :joins => :business, :conditions => [ "businesses.neighborhood_id IS NOT NULL" ]
-      @businesses = Business.find :all, :joins => :frugles, :conditions => ["frugles IS NOT NULL"]
+      @businesses = Business.all
+      @count = 0
+      @businesses.each do |business|
+        unless business.frugles.count == 0
+          @count = @count + 1
+        end
+      end
     else
       @frugles = @frugles | Frugle.tagged_with(params[:search])
     end
@@ -122,7 +128,7 @@ class FruglesController < ApplicationController
   def destroy
     @frugle = Frugle.find(params[:id])
     @frugle.destroy
-    redirect_to root_path, :notice => "Successfully destroyed frugle."
+    redirect_to root_path, :notice => "Successfully deleted frugle."
   end
   
   def toggle

@@ -53,23 +53,28 @@ class BusinessesController < ApplicationController
         end
       else
         @user = User.create(:email => params[:business][:email], :password => params[:business][:password], :password_confirmation => params[:business][:password], :role => "business", :sex => "Male", :birthday => Date.today, :neighborhood_id => @zipcode.neighborhood_id, :first_name => params[:business][:name], :last_name => params[:business][:name])
-        @business.user_id = @user.id
-        @business.name = params[:business][:name]
-        @business.save!
-      if @business.update_attributes(params[:business])
-        @business.neighborhood_id = @zipcode.neighborhood.id
-        @business.category_id = params[:business][:category_id]
-        @business.subcategory_id = params[:business][:subcategory_id]
-        @business.address2 = params[:business][:address2]
-        @business.hear_about = params[:business][:hear_about]
-        @business.contact_name = params[:business][:contact_name]
-        @business.contact_number = [params[:business][:contact_number][:contact_area_code], params[:business][:contact_number][:contact_first_three_digits], params[:business][:contact_number][:contact_second_four_digits]].reject(&:blank?).join('.')
-        @business.role = params[:business][:role]
-        @business.save!
-        sign_in_and_redirect(:user, @user)
-      else
-        render :action => 'edit'
-      end
+        if @user.valid?
+          @business.user_id = @user.id
+          @business.name = params[:business][:name]
+          @business.save!
+          if @business.update_attributes(params[:business])
+            @business.neighborhood_id = @zipcode.neighborhood.id
+            @business.category_id = params[:business][:category_id]
+            @business.subcategory_id = params[:business][:subcategory_id]
+            @business.address2 = params[:business][:address2]
+            @business.hear_about = params[:business][:hear_about]
+            @business.contact_name = params[:business][:contact_name]
+            @business.contact_number = [params[:business][:contact_number][:contact_area_code], params[:business][:contact_number][:contact_first_three_digits], params[:business][:contact_number][:contact_second_four_digits]].reject(&:blank?).join('.')
+            @business.role = params[:business][:role]
+            @business.save!
+            FrugleMailer.new_merchant_registration(@business).deliver
+            sign_in_and_redirect(:user, @user)  
+          else
+            render :action => 'edit'
+          end
+        else
+          redirect_to new_business_path, :notice => "This email address is already in use."
+        end
     end
     else
       @business = Business.find(params[:id])

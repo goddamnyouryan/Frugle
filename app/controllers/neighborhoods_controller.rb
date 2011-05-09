@@ -37,7 +37,7 @@ class NeighborhoodsController < ApplicationController
           for frugle in @results
             @overlay = Frugle.find :all, :conditions => ["business_id = ?", frugle.business.id], :limit => 5
             @map.overlay_init(GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", 
-                              :info_window => "#{frugle.business.name} <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}"))
+                              :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>"))
           end
         end
       end

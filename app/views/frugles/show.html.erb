@@ -68,14 +68,17 @@
 </p>
 <% end %>
 
-<p class="save_<%= @frugle.id %>" style="margin: 15px 0;">
-<%= render :partial => 'save', :frugle => @frugle %>
-</p>
-
 <p><%= link_to "View All Frugles from #{@frugle.business.name}", business_path(@frugle.business), :target => "_parent" %></p>
 
 <p><%= link_to "View All #{@frugle.category.title} Frugles", frugles_path(:search => "#{@frugle.category.title}"), :target => "_parent" %></p>
 
-<span style="float:left;margin:5px 0 0 200px;"><iframe src="http://www.facebook.com/plugins/like.php?href=<%= business_url(@frugle.business)%>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font&amp;colorscheme=light&amp;height=30" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:30px;" allowTransparency="true"></iframe></span>
+<div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="margin:25px 0 0 250px;">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
 </div>
-<div style="position: absolute; margin: 0 0pt 0pt 40px; z-index: -9;"><%= image_tag "bottomgrass.png" %></div>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dc7a34e1a9eeec0"></script>
+</div>
+<div style="position: absolute; margin: 0 0pt 0pt 40px; z-index: -9;bottom:0;"><%= image_tag "bottomgrass.png" %></div>

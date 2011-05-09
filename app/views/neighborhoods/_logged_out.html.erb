@@ -58,21 +58,19 @@
 
 <h2 class="yellow_strip" style="margin-top:25px; margin-bottom:0;">All Frugles</h2>
 
-<div id="view_frugles_here">
-	<%= image_tag "viewfrugleshere.png" %>
-</div>
-
 <h3 id="featured">Featured</h3>
 				<ul id="featured">
 					<%= render :partial => 'frugle', :collection => @featured, :as => :frugle %>
 				</ul>
 <div class="clr"></div>
 
+<%= link_to businesses_path do %>
 <div id="merchant_click_here">
 	<%= image_tag "littlearrow.png", :style => "position: absolute; margin: 42px 0pt 0pt -75px;" %>
 	<p style="margin-bottom:10px;">Business Owner?</p>
 	<p>List your business for <strong>free</strong>
 </div>
+<% end %>
 
 <div id="frugle_results">
 <ul id="frugles" style="float:left;">

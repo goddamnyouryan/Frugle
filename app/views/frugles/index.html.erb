@@ -12,11 +12,12 @@
 <% end %>
 
 <% unless @businesses.count == 0 %>
-	<h3 class="black_bar">Business - <%= pluralize(@businesses.count, "result") %></h3>
+	<h3 class="black_bar">Business - <%= pluralize(@count, "result") %></h3>
 	<ul>
 		<% @businesses.each do |business| %>
-			<li style="list-style-type:none; margin: 25px 0;">
-				<h4><%= link_to "#{business.name} - #{business.frugles.count} Frugles", business %></h4>
+			<% unless business.frugles.count == 0 %>
+			<li class="business_list">
+				<h4><%= link_to "#{business.name} - #{pluralize(business.frugles.count, "Frugle")}", business %></h4>
 				<p>
 					<%= business.address %><br />
 					<% if business.address2? %>
@@ -29,6 +30,7 @@
 					<%= business.phone %>
 				</p>
 			</li>
+			<% end %>
 		<% end %>
 	</ul>
 	<div class="clr"></div>

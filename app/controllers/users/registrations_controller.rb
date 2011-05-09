@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       flash[:notice] = "Account successfully created. You are now logged in."
       sign_in_and_redirect(:user, @user)
     else
-      redirect_to new_user_registration_path, :notice => "Please completely fill out the form."
+      redirect_to new_user_registration_path, :notice => "This email address is already registered. <a href='/users/password/new'>Forgot Password?</a>".html_safe
     end
   end
   

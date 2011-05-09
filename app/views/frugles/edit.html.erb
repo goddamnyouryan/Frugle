@@ -10,15 +10,6 @@
 <div class="new_frugle_form_item">
 	<%= image_tag "1_frugle.png" %>
 	<div>
-		<h3>Choose the discount type:</h3>
-		<%= f.select :discount, options_for_select(@frugle_discount_options) %>
-	</div>
-</div>
-<div class="clr"></div>
-
-<div class="new_frugle_form_item">
-	<%= image_tag "2_frugle.png" %>
-	<div>
 		<h3>Enter the details for this discount:<br /><span>(This Will Be The Headline)</span></h3>
 		<div id="cost_div"><%= f.text_field :percentage, :size => 3, :class => "reg_bar_phone" %> % Off <%= f.text_field :product, :size => 15, :class => "reg_bar_phone" %></div>
 	</div>
@@ -26,7 +17,7 @@
 <div class="clr"></div>
 
 <div class="new_frugle_form_item">
-	<%= image_tag "3_frugle.png" %>
+	<%= image_tag "2_frugle.png" %>
 	<div>
 		<h3>Add some details:<br /><span>(Explain the discount in your own words)</span></h3>
 		<%= f.text_area :details, :class => "reg_bar", :style => "height: 80px;width:205px;" %>
@@ -35,7 +26,7 @@
 <div class="clr"></div>
 
 <div class="new_frugle_form_item">
-	<%= image_tag "4_frugle.png" %>
+	<%= image_tag "3_frugle.png" %>
 	<div>
 		<h3>Who qualifies for this discount?</h3>
 		<%= f.radio_button :customers, "New" %> New Customers Only<br />
@@ -46,7 +37,7 @@
 <div class="clr"></div>
 
 <div class="new_frugle_form_item">
-	<%= image_tag "5_frugle.png" %>
+	<%= image_tag "4_frugle.png" %>
 	<div>
 		<h3>May customers present this<br /> Frugle on their phone?</h3>
 		<%= f.check_box :mobile %> Yes
@@ -55,7 +46,7 @@
 <div class="clr"></div>
 
 <div class="new_frugle_form_item">
-	<%= image_tag "6_frugle.png" %>
+	<%= image_tag "5_frugle.png" %>
 	<div>
 		<h3>Any Restrictions?</h3>
 		<p style="margin-bottom: 10px;"><%= f.text_field :quantity, :class => "reg_bar_phone", :size => 6 %> Quantity Allowed (Leave Blank if Unlimited)</p>
@@ -69,7 +60,7 @@
 <div class="clr"></div>
 
 <div class="new_frugle_form_item">
-	<%= image_tag "7_frugle.png" %>
+	<%= image_tag "6_frugle.png" %>
 	<div>
 		<h3>Tag this frugle:<br /><span>(ex: dry cleaning, coffee, DJ, etc...)</span></h3>
 		<%= f.text_field :tag_list, :class => "reg_bar" %>

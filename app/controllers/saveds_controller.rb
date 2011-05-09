@@ -1,4 +1,5 @@
 class SavedsController < ApplicationController
+  
   def new
     @follow = Saved.create(:user_id => current_user.id, :frugle_id => params[:frugle_id])
     @frugle = Frugle.find params[:frugle_id]

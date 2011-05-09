@@ -81,7 +81,7 @@
 	</div>
 	<div class="reg_row">
 		<div class="new_business_col_left">Website URL</div>
-	  <div class="fl"><%= f.text_field :website, :class => "reg_bar" %></div>
+	  <div class="fl"><%= f.text_field :website, :placeholder => "http://", :class => "reg_bar" %></div>
 	  	<div class="clr"></div>
 	</div>
 	<div class="reg_row">
@@ -108,7 +108,7 @@ $('business_category_id').observe("change",function(){
 
 <div class="reg_row">
 	<div class="new_business_col_left">How Did You Hear About Frugle?</div>
-  <div class="fl"><%= f.select :hear_about, options_for_select(@frugle_hear_about_options) %></div>
+  <div class="fl"><%= f.select :hear_about, options_for_select(@frugle_hear_about_options), :prompt => "Select One" %></div>
   	<div class="clr"></div>
 </div>
 
@@ -164,7 +164,7 @@ $('business_category_id').observe("change",function(){
 	
 	<div class="reg_row">
 		<div class="new_business_col_left">Your Role</div>
-	  <div class="fl"><%= f.select :role, options_for_select(@business_role_options) %></div>
+	  <div class="fl"><%= f.select :role, options_for_select(@business_role_options), :prompt => "Select One" %></div>
 	  	<div class="clr"></div>
 	</div>
 	
