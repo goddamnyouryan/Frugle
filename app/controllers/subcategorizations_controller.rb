@@ -12,8 +12,10 @@ class SubcategorizationsController < ApplicationController
     end
     @map = Variable.new("map")
     @markers = Array.new
+    map_marker
+    icon_variables
     for frugle in @results
-      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>")
+      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>", :icon => icon_name(frugle))
       @markers << @marker
     end
     respond_to do |format|
@@ -36,8 +38,10 @@ class SubcategorizationsController < ApplicationController
     end
     @map = Variable.new("map")
     @markers = Array.new
+    map_marker
+    icon_variables
     for frugle in @results
-      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>")
+      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>", :icon => icon_name(frugle))
       @markers << @marker
     end
     respond_to do |format|
@@ -59,8 +63,10 @@ class SubcategorizationsController < ApplicationController
     end
     @map = Variable.new("map")
     @markers = Array.new
+    map_marker
+    icon_variables
     for frugle in @results
-      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>")
+      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>", :icon => icon_name(frugle))
       @markers << @marker
     end
     respond_to do |format|
@@ -84,8 +90,10 @@ class SubcategorizationsController < ApplicationController
     end
     @map = Variable.new("map")
     @markers = Array.new
+    map_marker
+    icon_variables
     for frugle in @results
-      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>")
+      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>", :icon => icon_name(frugle))
       @markers << @marker
     end
     respond_to do |format|
@@ -116,8 +124,10 @@ class SubcategorizationsController < ApplicationController
     end
     @map = Variable.new("map")
     @markers = Array.new
+    map_marker
+    icon_variables
     for frugle in @results
-      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>")
+      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>", :icon => icon_name(frugle))
       @markers << @marker
     end
     respond_to do |format|
@@ -173,8 +183,10 @@ class SubcategorizationsController < ApplicationController
     end
     @map = Variable.new("map")
     @markers = Array.new
+    map_marker
+    icon_variables
     for frugle in @results
-      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>")
+      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>", :icon => icon_name(frugle))
       @markers << @marker
     end
     respond_to do |format|

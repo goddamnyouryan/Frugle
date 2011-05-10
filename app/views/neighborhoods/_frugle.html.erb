@@ -4,5 +4,6 @@
   	<div class="product_caption"><%= link_to frugle.business.name, business_path(frugle.business) %></div>
   </div>
 <div class="clr"></div>
-	<div class="product_offer"><%= link_to "#{frugle.cost}", business_frugle_path(frugle.business, frugle), :class => "iframe" %></div>
+	<div class="product_offer"><a href="<%= business_frugle_path(frugle.business, frugle) %>?iframe"><%= frugle.cost %></a>
+		</div>
 </li>

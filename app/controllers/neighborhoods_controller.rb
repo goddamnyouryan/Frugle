@@ -33,11 +33,18 @@ class NeighborhoodsController < ApplicationController
         @map = GMap.new("map_div")
         @map.control_init(:large_map => true,:map_type => true)
         @map.center_zoom_init([@neighborhood.latitude, @neighborhood.longitude],13)
+        map_marker
+        icon_variables
         unless @results == nil
           for frugle in @results
             @overlay = Frugle.find :all, :conditions => ["business_id = ?", frugle.business.id], :limit => 5
             @map.overlay_init(GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", 
-                              :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>"))
+                              :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> 
+                              #{frugle.business.address}<br />
+                              #{frugle.business.zip}<br />
+                              #{frugle.business.phone}<br />
+                              <a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>",
+                              :icon => icon_name(frugle)))
           end
         end
       end
@@ -64,9 +71,18 @@ class NeighborhoodsController < ApplicationController
       @map = GMap.new("map_div")
       @map.control_init(:large_map => true,:map_type => true)
       @map.center_zoom_init([34.0412085, -118.442596],15)
+      map_marker
+      icon_variables
       unless @results == nil
         for frugle in @results
-          @map.overlay_init(GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>"))
+          @map.overlay_init(GMarker.new([frugle.business.latitude,frugle.business.longitude],
+                            :title => "#{frugle.business.name}", 
+                            :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> 
+                            #{frugle.business.address}<br />
+                            #{frugle.business.zip}<br />
+                            #{frugle.business.phone}<br />
+                            <a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>",
+                            :icon => icon_name(frugle)))
         end
       end
     end
@@ -92,10 +108,11 @@ class NeighborhoodsController < ApplicationController
       @neighborhood.latitude = @geocode[0]
       @neighborhood.longitude = @geocode[1]
     end
+    @neighborhood.save!
     if @neighborhood.save
       redirect_to edit_neighborhood_path(@neighborhood), :notice => "Successfully created neighborhood."
     else
-      render :action => 'new'
+      redirect_to edit_neighborhood_path(@neighborhood), :error => "something went wrong"
     end
   end
 
