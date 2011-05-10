@@ -4,6 +4,6 @@
   	<div class="product_caption"><%= link_to frugle.business.name, business_path(frugle.business) %></div>
   </div>
 <div class="clr"></div>
-	<div class="product_offer"><a href="<%= business_frugle_path(frugle.business, frugle) %>?iframe"><%= frugle.cost %></a>
+	<div class="product_offer"><a href="<%= business_frugle_path(frugle.business, frugle) %>?iframe=true" class="iframe"><%= frugle.cost %></a>
 		</div>
 </li>
