@@ -19,7 +19,11 @@
 <% for frugle in @frugles %>	
 	<tr>
 		<td align="center" class="border-table"><%= frugle.id %></td>
-		<td align="center" class="border-table"><%= link_to frugle.business.name, frugle.business, :style => "font-weight:bold" %></td>
+		<% unless frugle.business.nil? %>
+			<td align="center" class="border-table"><%= link_to frugle.business.name, frugle.business, :style => "font-weight:bold" %></td>
+		<% else %>
+			<td align="center" class="border-table">nil</td>
+		<% end %>
 		<td align="center" class="border-table"><%= link_to frugle.cost, frugle, :class => "iframe", :style => "font-weight:bold" %></td>
 		<td align="center" class="border-table"><%= frugle.quantity %></td>
 		<td align="center" class="border-table"><%= frugle.views %></td>
