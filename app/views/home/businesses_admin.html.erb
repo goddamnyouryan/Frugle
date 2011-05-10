@@ -13,6 +13,7 @@
 		<td align="center" class="border-table bg-dark">Category</td>
 		<td align="center" class="border-table bg-dark">Subcategory</td>
 		<td align="center" class="border-table bg-dark"># Frugles</td>
+		<td align="center" class="border-table bg-dark">Email Address</td>
 		<td align="center" class="border-table bg-dark">&nbsp;</td>
   </tr>
 <% for business in @businesses %>	
@@ -35,6 +36,7 @@
 			<td align="center" class="border-table">nil</td>
 		<% end %>
 		<td align="center" class="border-table"><%= business.frugles.count %></td>
+		<td align="center" class="border-table"><%= business.user.email %></td>
 		<td align="center" class="border-table"><%= link_to "Delete", remove_business_path(:business_id => business.id), :method => :delete, :confirm => "Are you sure you want to delete this business?", :class => "link-blue" %></td>
   </tr>
 <% end %>
