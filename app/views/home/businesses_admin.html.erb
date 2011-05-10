@@ -7,7 +7,7 @@
 		<td align="center" class="border-table bg-dark">id</td>
 		<td align="center" class="border-table bg-dark">Name</td>
 		<td align="center" class="border-table bg-dark">Address</td>
-    <td align="center" class="border-table bg-dark">Zip</td>
+    <td align="center" class="border-table bg-dark">Neighborhood</td>
 		<td align="center" class="border-table bg-dark">Phone</td>
 		<td align="center" class="border-table bg-dark">Website</td>
 		<td align="center" class="border-table bg-dark">Category</td>
@@ -21,7 +21,7 @@
 		<td align="center" class="border-table"><%= business.id %></td>
 		<td align="center" class="border-table"><%= link_to business.name, business, :style => "font-weight:bold;" %></td>
 		<td align="center" class="border-table"><%= business.address %></td>
-		<td align="center" class="border-table"><%= business.zip %></td>
+		<td align="center" class="border-table"><%= business.neighborhood.name %></td>
 		<td align="center" class="border-table"><%= business.phone %></td>
 		<td align="center" class="border-table"><%= business.website %></td>
 		<% unless business.category_id.nil? %>
