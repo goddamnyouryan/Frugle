@@ -8,7 +8,7 @@ class ZipcodesController < ApplicationController
     @neighborhood = Neighborhood.find(params[:neighborhood_id].keys[0])
     @zipcode = @neighborhood.zipcodes.create(params[:zipcode])
     if @zipcode.save
-      redirect_to @neighborhood, :notice => "Successfully created zipcode."
+      redirect_to edit_neighborhood_path(@neighborhood), :notice => "Successfully created zipcode."
     else
       render :action => 'new'
     end
@@ -16,7 +16,8 @@ class ZipcodesController < ApplicationController
 
   def destroy
     @zipcode = Zipcode.find(params[:id])
+    @neighborhood = Neighborhood.find @zipcode.neighborhood_id
     @zipcode.destroy
-    redirect_to zipcodes_url, :notice => "Successfully destroyed zipcode."
+    redirect_to edit_neighborhood_path(@neighborhood), :notice => "Successfully destroyed zipcode."
   end
 end

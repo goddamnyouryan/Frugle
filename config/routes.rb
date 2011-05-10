@@ -42,6 +42,12 @@ OmniauthDeviseExample::Application.routes.draw do
   match 'select_none_subcategories', :to => "subcategorizations#select_none"
   match 'out_select_all_subcategories', :to => "subcategorizations#out_select_all"
   match 'out_select_none_subcategories', :to => "subcategorizations#out_select_none"
+  match 'users_admin', :to => "home#users_admin"
+  match 'businesses_admin', :to => "home#businesses_admin"
+  match 'frugles_admin', :to => "home#frugles_admin"
+  match 'remove_user', :to => "home#delete_user"
+  match 'remove_business', :to => "home#delete_business"
+  match 'remove_frugle', :to => "home#delete_frugle"
 
   resources :twilio
   resources :subcategories
@@ -58,8 +64,6 @@ OmniauthDeviseExample::Application.routes.draw do
   resource :saveds
   match '/:id' => "neighborhoods#show"
   resources :neighborhoods
-
-  
   
   get "home/index"
 

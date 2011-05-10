@@ -1,8 +1,11 @@
+<h3 class="black_bar" style="margin-top: 25px;">Add New Category</h3>
 <%= form_for @category do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p><%= f.submit %></p>
+
+	<div class="reg_row">
+		<div class="reg_col_left">Category</div>
+	  <div class="reg_col_right"><%= f.text_field :title, :class => "reg_bar" %></div>
+	  	<div class="clr"></div>
+	</div>
+  <p><%= f.submit "Create Category",:class => "hide_button", :style => "margin-left:225px;" %></p>
 <% end %>

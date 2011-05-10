@@ -1,18 +1,49 @@
 <% title "Edit Neighborhood" %>
+<h2 class="yellow_strip" style="margin-top:-15px; margin-bottom:0;">Edit <%= @neighborhood.name %></h2>
 
 <%= form_for @neighborhood, :url => poophole_path, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-	<p>
-		Enter the Full Address where you want the map for this neighborhood to be centered:<br />
-		<%= f.text_field :address %>
-	</p>
-	<p>
-		Upload the background image for this neighborhood (make it bigger than 1440px x 900px)<br />
-		<%= f.file_field :background %>
-	</p>
-  <p><%= f.submit %></p>
+	<div class="reg_row">
+		<div class="reg_col_left">Neighborhood Name</div>
+	  <div class="reg_col_right"><%= f.text_field :name, :class => "reg_bar" %></div>
+	  	<div class="clr"></div>
+	</div>
+	
+	<div class="reg_row">
+		<div class="reg_col_left">Enter the Full Address where you want the map for this neighborhood to be centered:</div>
+	  <div class="reg_col_right" style="margin-top:60px;"><%= f.text_field :address, :class => "reg_bar" %></div>
+	  	<div class="clr"></div>
+	</div>
+	
+	<div class="reg_row">
+		<div class="reg_col_left">Upload the background image for this neighborhood (make it bigger than 1440px x 900px):</div>
+	  <div class="reg_col_right" style="margin-top:80px;"><%= f.file_field :background, :class => "reg_bar" %></div>
+	  	<div class="clr"></div>
+	</div>
+	
+  <p><%= f.submit "Edit Neighborhood", :class => "hide_button", :style => "margin-left:225px;" %></p>
 <% end %>
+
+<h3 class="black_bar" style="margin-top:25px;">New Zipcode</h3>
+
+<%= form_for @zipcode do |f| %>
+  <%= f.error_messages %>
+	<%= hidden_field(:neighborhood_id, @neighborhood.id) %>
+	<div class="reg_row">
+		<div class="reg_col_left">New Zipcode</div>
+	  <div class="reg_col_right"><%= f.text_field :zip, :class => "reg_bar" %></div>
+	  	<div class="clr"></div>
+	</div>
+  <p><%= f.submit "New Zipcode", :class => "hide_button", :style => "margin-left:225px;" %></p>
+<% end %>
+
+<h3 class="black_bar" style="margin-top:25px;">Zipcodes</h3>
+<ul>
+	<% @neighborhood.zipcodes.each do |zipcode| %>
+		<li>
+			<%= zipcode.zip %> - <%= link_to "Delete", zipcode, :method => :delete, :confirm => "Are you sure you want to delete this zipcode?" %>
+		</li>
+	<% end %>
+</ul>
+
+<%= link_to "Back to Neighborhoods", new_neighborhood_path, :style => "float:right;" %>

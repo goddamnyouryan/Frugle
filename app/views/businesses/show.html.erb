@@ -59,3 +59,15 @@
 </ul>
 <div class="clr"></div>
 <div class="tag_border_bottom" style="position:relative;top:-9px;"><%= image_tag "tag_box_bottom.png" %></div>
+
+<% if user_signed_in? %>
+	<% if current_user.role == "admin" %>
+	
+		<div class="yellow_strip"><%= @business.name %> Admin Info</div>
+		<p><strong>How did you hear about frugle?:</strong> <%= @business.hear_about %></p>
+		<p><strong>Contact Name: </strong> <%= @business.contact_name %></p>
+		<p><strong>Contact Phone: </strong> <%= @business.contact_number %></p>
+		<p><strong>Contact Role: </strong> <%= @business.role %></p>
+	
+	<% end %>
+<% end %>

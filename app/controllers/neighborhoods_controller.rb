@@ -73,8 +73,16 @@ class NeighborhoodsController < ApplicationController
   end
 
   def new
-    @neighborhood = Neighborhood.new
-    @neighborhoods = Neighborhood.all
+    if user_signed_in?
+      if current_user.role == "admin"
+        @neighborhood = Neighborhood.new
+        @neighborhoods = Neighborhood.all
+      else
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   def butthole
@@ -85,7 +93,7 @@ class NeighborhoodsController < ApplicationController
       @neighborhood.longitude = @geocode[1]
     end
     if @neighborhood.save
-      redirect_to new_neighborhood_path, :notice => "Successfully created neighborhood."
+      redirect_to edit_neighborhood_path(@neighborhood), :notice => "Successfully created neighborhood."
     else
       render :action => 'new'
     end
@@ -100,7 +108,16 @@ class NeighborhoodsController < ApplicationController
   end
   
   def edit
-    @neighborhood = Neighborhood.find(params[:id])
+    if user_signed_in?
+      if current_user.role == "admin"
+        @neighborhood = Neighborhood.find(params[:id])
+        @zipcode = Zipcode.new
+      else
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
+    end
   end
   
   def poophole

@@ -1,34 +1,35 @@
-<% title "Category" %>
+<% title "#{@category.title} Subcategories" %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @category.title %>
-</p>
+<h2 class="yellow_strip" style="margin-top:-15px; margin-bottom:0;"><%= @category.title %> Subcategories</h2>
 
-<p>
-  <%= link_to "Edit", edit_category_path(@category) %> |
-  <%= link_to "Destroy", @category, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", categories_path %>
-</p>
-
-<h2>New Subcategory</h2>
+<h3 class="black_bar" style="margin-top:25px;">New Subcategory</h3>
 
 <%= form_for(@subcategory, :url => category_subcategories_path(@category)) do |f| %>
   <%= f.error_messages %>
   <%= hidden_field(:category_id, @category.id) %>
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p><%= f.submit %></p>
+
+	<div class="reg_row">
+		<div class="reg_col_left">Subcategory Name</div>
+	  <div class="reg_col_right"><%= f.text_field :title, :class => "reg_bar" %></div>
+	  	<div class="clr"></div>
+	</div>
+  <p><%= f.submit "Create Subcategory", :class => "hide_button", :style => "margin-left:225px;" %></p>
 <% end %>
 
-<ul>
+<h3 class="black_bar" style="margin-top:25px;">All Subcategories</h3>
+
+<div class="tag_box">
+<table width="98%" border="0" cellpadding="5" cellspacing="2" class="border-table" style="margin:auto">
+  <tr>
+    <td align="center" class="border-table bg-dark">Subcategory</td>
+		<td align="center" class="border-table bg-dark">&nbsp;</td>
+  </tr>
 <% for subcategory in @subcategories %>
-    <li>
-      <%= subcategory.title %> - 
-      <%= link_to "Show", category_subcategory_path(@category, subcategory) %> | 
-      <%= link_to "Delete", subcategory, :confirm => 'Are you sure?', :method => :delete %>
-    </tr>
+  <tr>
+    <td align="center" class="border-table"><%= subcategory.title %></td>
+		<td align="center" class="border-table"><%= link_to "Delete", subcategory, :method => :delete, :confirm => "Are you sure you want to delete this subcategory?", :class => "link-blue" %></td>
+  </tr>
 <% end %>
-</ul>
+</table>
+
+<%= link_to "Back to Categories", new_category_path, :style => "float:right;margin-top:25px;" %>

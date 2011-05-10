@@ -19,8 +19,9 @@ class SubcategoriesController < ApplicationController
 
   def destroy
     @subcategory = Subcategory.find(params[:id])
+    @category = @subcategory.category
     @subcategory.destroy
-    redirect_to root_url, :notice => "Successfully destroyed subcategory."
+    redirect_to @category, :notice => "Successfully destroyed subcategory."
   end
   
   def toggle

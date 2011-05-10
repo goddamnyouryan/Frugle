@@ -1,6 +1,10 @@
+<% if current_user.role == "admin" %>
+	<%= render :partial => "admin" %>
+<% end %>
 <% unless current_user.follows.count == 0 && current_user.frugles.count == 0 %>
 <% javascript "jquery.multipleelements.cycle.min" %>
 <div id="personalizations">
+
 	<h2 class="yellow_strip" style="margin-top:-15px; margin-bottom:0;">Your Frugles</h2>
 <% unless current_user.follows.count == 0 %>
 <h3 class="scrollable_frugles_header">Frugles from businesses you're following:</h3>

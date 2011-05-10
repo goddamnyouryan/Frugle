@@ -24,4 +24,38 @@ class HomeController < ApplicationController
     end
   end
   
+  def users_admin
+    @users = User.all
+  end
+  
+  def businesses_admin
+    @businesses = Business.all
+  end
+  
+  def frugles_admin
+    @frugles = Frugle.all
+  end
+  
+  def delete_user
+    @user = User.find params[:user_id]
+    @user.destroy
+    redirect_to users_admin_path, :notice => "Successfully Deleted User."
+  end
+  
+  def delete_business
+    @business = Business.find params[:business_id]
+    @user = @business.user
+    @business.destroy
+    unless @user.nil?
+      @user.destroy
+    end
+    redirect_to businesses_admin_path, :notice => "Successfully Deleted Business."
+  end
+  
+  def delete_frugle
+    @frugle = Frugle.find params[:frugle_id]
+    @frugle.destroy
+    redirect_to frugles_admin_path, :notice => "Successfully Deleted Frugle."
+  end
+  
 end

@@ -4,20 +4,36 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
-    @subcategories = @category.subcategories
-    @subcategory = @category.subcategories.new
+    if user_signed_in?
+      if current_user.role == "admin"
+        @category = Category.find(params[:id])
+        @subcategories = @category.subcategories
+        @subcategory = @category.subcategories.new
+      else
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   def new
-    @category = Category.new
-    @categories = Category.all
+    if user_signed_in?
+      if current_user.role == "admin"
+        @category = Category.new
+        @categories = Category.all
+      else
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   def create
     @category = Category.new(params[:category])
     if @category.save
-      redirect_to new_category_path, :notice => "Successfully created category."
+      redirect_to @category, :notice => "Successfully created category."
     else
       render :action => 'new'
     end
@@ -39,7 +55,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category = Category.find(params[:id])
     @category.destroy
-    redirect_to categories_url, :notice => "Successfully destroyed category."
+    redirect_to new_category_path, :notice => "Successfully destroyed category."
   end
   
 end

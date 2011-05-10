@@ -1,0 +1,54 @@
+<h2 class="yellow_strip" style="margin-top:-15px; margin-bottom:0;">Frugles Admin</h2>
+
+<div class="tag_box">
+<table width="98%" border="0" cellpadding="5" cellspacing="2" class="border-table" style="margin:auto;font-size:11px;">
+  <tr>
+		<td align="center" class="border-table bg-dark">id</td>
+		<td align="center" class="border-table bg-dark">Business</td>
+		<td align="center" class="border-table bg-dark">Deal</td>
+		<td align="center" class="border-table bg-dark">Quantity</td>
+		<td align="center" class="border-table bg-dark">Views</td>
+		<td align="center" class="border-table bg-dark">Prints</td>
+    <td align="center" class="border-table bg-dark">Start</td>
+		<td align="center" class="border-table bg-dark">End</td>
+		<td align="center" class="border-table bg-dark">Status</td>
+		<td align="center" class="border-table bg-dark">Category</td>
+		<td align="center" class="border-table bg-dark">Subcategory</td>
+		<td align="center" class="border-table bg-dark">&nbsp;</td>
+  </tr>
+<% for frugle in @frugles %>	
+	<tr>
+		<td align="center" class="border-table"><%= frugle.id %></td>
+		<td align="center" class="border-table"><%= link_to frugle.business.name, frugle.business, :style => "font-weight:bold" %></td>
+		<td align="center" class="border-table"><%= link_to frugle.cost, frugle, :class => "iframe", :style => "font-weight:bold" %></td>
+		<td align="center" class="border-table"><%= frugle.quantity %></td>
+		<td align="center" class="border-table"><%= frugle.views %></td>
+		<td align="center" class="border-table"><%= frugle.prints %></td>
+		<% unless frugle.start.nil? %>
+			<td align="center" class="border-table"><%= l frugle.start.to_date, :format => :default %></td>
+		<% else %>
+			<td align="center" class="border-table">nil</td>
+		<% end %>
+		<% unless frugle.end.nil? %>
+			<td align="center" class="border-table"><%= l frugle.end.to_date, :format => :default %></td>
+		<% else %>
+			<td align="center" class="border-table">nil</td>
+		<% end %>
+		<td align="center" class="border-table"><%= frugle.status %></td>
+		<% unless frugle.category_id.nil? %>
+			<td align="center" class="border-table"><%= frugle.category.title %></td>
+		<% else %>
+			<td align="center" class="border-table">nil</td>
+		<% end %>
+		<% unless frugle.subcategory_id.nil? %>
+			<td align="center" class="border-table"><%= frugle.subcategory.title %></td>
+		<% else %>
+			<td align="center" class="border-table">nil</td>
+		<% end %>
+
+		<td align="center" class="border-table"><%= link_to "Delete", remove_frugle_path(:frugle_id => frugle.id), :confirm => "Are you sure you want to delete this frugle?", :class => "link-blue" %></td>
+  </tr>
+<% end %>
+</table>
+
+<p><%= link_to "Back to Home", root_path %></p>
