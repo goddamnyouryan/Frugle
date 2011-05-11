@@ -11,7 +11,7 @@
 		<% end %>
 	<% end %>
 <% else %>
-	<%= link_to new_user_session_path, :class => "button", :target => "_parent" do %>
+	<%= link_to new_saveds_path(:frugle_id => @frugle.id), :target => "_parent", :class => "button" do %>
 		<span class="icon heart"></span>
 		Save this Frugle
 	<% end %>
