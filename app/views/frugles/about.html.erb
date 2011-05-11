@@ -4,32 +4,44 @@
 
 <div style="margin: -33px 0pt 0pt; z-index: -10;"><%= image_tag "topgrass.png" %></div>
 
-<span id="header_splash">
-	<h1 class="logo" style="margin-left:75px;"><%= link_to "Frugle", root_path %></h1>
-</span>
+<div class="clr"></div>
+
+<h3 class="about">Frugle <strong>isn’t</strong> another group buying, deal-a-day website.</h3>
+
+<%= image_tag "arrow.png", :style => "float:left;margin:-40px 0 0 25px;"%>
+<h4 class="about">We’re committed to providing neighborhood-centric, mom & pop driven, everyday deals to local communities.</h4>
 
 <div class="clr"></div>
 
-<p class="about">Frugle isn’t another deal-a-day site. We’re committed to providing
-neighborhood-centric, mom & pop driven, everyday deals to local
-communities.</p>
+<div class="about_box">
+	<h3>Local Businesses</h3>
+	<p>...are able to sign their business up and start posting
+	frugles directly to their neighborhood in as little as 60 seconds & 100% Free. If you’re
+	a business owner, you can get started <%= link_to "here.", businesses_path, :style => "font-weight:bold" %>
+	</p>
+</div>
 
-<p class="about">Local businesses are able to sign their business up and start posting
-frugles directly to their neighborhood in as little as 60 seconds. If you’re
-a business owner, you can get started <%= link_to "here.", businesses_path, :style => "font-weight:bold" %></p>
+<div class="about_box">
+	<h3>Local Shoppers</h3>
+	<p>...can browse their neighborhood’s frugles and redeem them at a
+	local store with a printout or with their mobile phone. Check out the frugles in your neighborhood <%= link_to "here.", root_path, :style => "font-weight:bold" %>
+	</p>
+</div>
 
-<p class="about">Users can browse their neighborhood’s frugles and redeem them at a
-local store with a printout or with their mobile phone.</p>
+<div class="clr"></div>
 
-<p class="about">We hope that Frugle can serve as a new way local mom & pops
+<div id="orange_bars">
+<%= image_tag "business_orange_bar.png", :style => "float:left" %>
+<p>We hope that Frugle can serve as a new way local mom & pops
 advertise their business to the people in their neighborhood, and that in
 turn, people can find out about great local stores near them.</p>
+<%= image_tag "business_orange_bar_right.png", :style => "float:left" %>
+</div>
 
-<p class="about">Feel free to drop us a line at <a href="mailto:contact@frugle.me" style="font-weight:bold;">contact@frugle.me</a> if you have any
-questions, comments or feedback.</p>
+<div class="clr"></div>
 
-<p class="about">Happy saving!</p>
+<h3 class="about"><%= link_to "Drop us a line", contact_path, :style => "font-weight:bold;" %>, we'd love to hear from you!
 
-<p class="about">The Frugle Team</p>
+<p class="about">The <%= image_tag "about_title.png", :style => "position:relative;top:8px;" %> Team</p>
 
-<div class="skyline_bottom"><%= image_tag "skyline_bottom.png" %></div>
+<div style="margin:0 0 -79px -15px;"><%= image_tag "skyline_bottom.png" %></div>

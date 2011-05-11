@@ -5,7 +5,7 @@
 <div style="margin: -33px 0pt 0pt; z-index: -10;"><%= image_tag "topgrass.png" %></div>
 
 
-<%= form_tag "/frugles/send_message" do %>
+<%= form_tag "/frugles/send_message", :id => "contact_us_form" do %>
 	<div class="reg_row">
 		<div class="new_business_col_left">Name</div>
 	  <div class="fl"><%= text_field_tag 'name', nil, :class => "reg_bar"  %></div>
@@ -30,5 +30,11 @@
   <%= submit_tag "Send Message", :class => "hide_button", :style => "margin-left:240px;" %>
 <% end %>
 
+<div id="contact_frills">
+<%= image_tag "business_orange_bar_right.png", :style => "float:left" %>
+<h3>Thanks for the message, we'll get back to you as soon as we can!</h3>
+</div>
+
+<div class="clr"></div>
 
 <div class="skyline_bottom"><%= image_tag "skyline_bottom.png" %></div>

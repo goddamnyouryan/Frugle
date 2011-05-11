@@ -44,7 +44,7 @@ module ApplicationHelper
     elsif frugle.business.category_id == 13
       link_to image_tag('professionalservices.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
     elsif frugle.business.category_id == 14
-      link_to image_tag('food.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
+      link_to image_tag('restaurant.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
     elsif frugle.business.category_id == 15
       link_to image_tag('schooling.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
     elsif frugle.business.category_id == 16
@@ -86,7 +86,7 @@ module ApplicationHelper
     elsif business.category_id == 13
       image_tag('professionalservices.png')
     elsif business.category_id == 14
-      image_tag('food.png')
+      image_tag('restaurant.png')
     elsif business.category_id == 15
       image_tag('schooling.png')
     elsif business.category_id == 16

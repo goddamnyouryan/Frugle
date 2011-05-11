@@ -1124,3 +1124,69 @@ li.business_list {
 	float:left;
 	width:350px;
 }
+
+h3.about {
+	font-size:24px;
+	font-weight:normal;
+	letter-spacing:3px;
+	margin:25px 0 50px;
+	text-align:center;
+}
+
+h4.about {
+	float:left;
+	font-weight:normal;
+	width:450px;
+	margin: 0 0 0 25px;
+}
+
+.about_box {
+	float:left;
+	margin:50px 14px 25px;
+	text-align:center;
+	width:350px;
+}
+
+.about_box h3 {
+	border-bottom:2px solid #D6D6D6;
+	font-size:18px;
+	font-weight:normal;
+	letter-spacing:2px;
+	margin-bottom:10px;
+	padding-bottom:5px;
+}
+
+.about_box p {
+	font-family: "Trebuchet MS", sans-serif;
+	font-size:15px;
+}
+
+#orange_bars { margin: 0 0 0 100px; } 
+
+#orange_bars p {
+	float:left;
+	font-family:Georgia,Serif;
+	font-size:21px;
+	line-height:27px;
+	margin:10px;
+	width:400px;
+}
+
+#contact_us_form {
+	width: 400px;
+	float:left;
+}
+
+#contact_frills {
+	width: 300px;
+	float:left;
+	margin-top:30px;
+}
+#contact_frills h3 {
+	float:left;
+	font-size:15px;
+	font-weight:normal;
+	letter-spacing:2px;
+	margin:50px 0 0 10px;
+	width:250px;
+}
