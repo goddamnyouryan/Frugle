@@ -6,12 +6,6 @@
 	<h2><%= @business.name %></h2>
 <div class="fl">
 	
-	<div style="margin: 15px 0;">
-		<span style="float:left;"><%= category_icon_business(@business) %></span>
-		<h3 style="float: left; font-size: 12px; margin-left: 5px;">Category: <br /><%= @business.category.title %></h3>
-	</div>
-	<div class="clr"></div>
-	
 	<p style="margin-top:15px;">
 		<%= @business.address %><br />
     <% unless @business.address2.nil? %>
