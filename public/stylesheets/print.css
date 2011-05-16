@@ -6,11 +6,11 @@
 }
 
 .logo{
-	background:url("../images/title.png") no-repeat;
+	background:url("../images/title_splash.png") no-repeat;
 	float:left;
-	height:53px;
+	height:55px;
 	text-indent:-99999px;
-	width:200px;
+	width:200px;}
 }
 
 .fr { 

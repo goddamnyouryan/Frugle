@@ -3,7 +3,7 @@
 <% for category in @user_categories %>
 <% @businesses = Business.find :all, :include => :frugles, :conditions => ["frugles.category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, current_user.neighborhood_id] %>
 <% @subcategories = @businesses.map(&:subcategory).uniq %>
-	<% for subcategory in @subcategories %>
+	<% @subcategories.each do |subcategory| %>
 		<li class="fl" id="subcategory_<%= subcategory.id %>">
 		<% @user_subcategories = current_user.subcategories %>
 		<% if @user_subcategories.include?(subcategory) %>
@@ -20,7 +20,7 @@
 <% for category in @user_categories %>
 <% @businesses = Business.find :all, :include => :frugles, :conditions => ["frugles.category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, session[:neighborhood]] %>
 <% @subcategories = @businesses.map(&:subcategory).uniq %>
-	<% for subcategory in @subcategories %>
+	<% @subcategories.each do |subcategory| %>
 		<li class="fl" id="subcategory_<%= subcategory.id %>">
 		<% @user_subcategories = @user.subcategories %>
 		<% if @user_subcategories.include?(subcategory) %>

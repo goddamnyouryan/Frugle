@@ -25,7 +25,7 @@
 		<% else %>
 			<td align="center" class="border-table">nil</td>
 		<% end %>
-		<td align="center" class="border-table"><%= link_to frugle.cost, frugle, :class => "iframe", :style => "font-weight:bold" %></td>
+		<td align="center" class="border-table"><%= link_to frugle.cost, business_frugle_path(frugle.business, frugle, :iframe => "true"), :class => "iframe", :style => "font-weight:bold;" %></td>
 		<td align="center" class="border-table"><%= frugle.quantity %></td>
 		<td align="center" class="border-table"><%= frugle.views %></td>
 		<td align="center" class="border-table"><%= frugle.prints %></td>
