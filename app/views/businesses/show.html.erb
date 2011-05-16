@@ -18,14 +18,14 @@
 </div>
 
 <div class="fr">
-	<% if user_signed_in? %>
-	<% unless current_user.role == "business" %>
 	<p id="follow" class="hide_button" style="float:right;margin:0 0 10px;">
-		<%= render :partial => 'frugles/follow', :business => @business %>
+		<% if user_signed_in? %>
+			<% unless current_user.role == "business" %>
+				<%= render :partial => 'frugles/follow', :business => @business %>
+				<% end %>
+		<% end %>
 	</p>
 	<div class="clr"></div>
-	<% end %>
-	<% end %>
 <div class="hide_button" style="float:right;margin-top:0;"><%= link_to "Back to Neighborhood", :controller => "neighborhoods", :action => "show", :id => @business.neighborhood.friendly_id %></div>
 <div class="clr"></div>
 
