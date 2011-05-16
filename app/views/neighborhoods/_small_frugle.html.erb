@@ -10,7 +10,7 @@
 	<span style="float:left;margin-right:5px;"><%= category_icon(frugle) %></span>
 	<div style="margin: 6px 0 0 0">
 		<div class="offer_col_1"><%= link_to truncate(frugle.business.name, :length => 12), business_path(frugle.business) %></div>
-  	<div class="offer_col_2"><%= link_to "#{truncate(frugle.cost, :length => 25)}", business_frugle_path(frugle.business, frugle), :class => "iframe" %></div>
+  	<div class="offer_col_2"><%= link_to "#{truncate(frugle.cost, :length => 25)}", business_frugle_path(frugle.business, frugle, :iframe => "true"), :class => "iframe" %></div>
 	</div>
   	<div class="clr"></div>
 </li>

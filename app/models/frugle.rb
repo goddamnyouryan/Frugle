@@ -13,7 +13,7 @@ class Frugle < ActiveRecord::Base
   
   after_create :send_businesses_following_email, :send_category_following_email
   
-  validates_presence_of :business_id, :type, :start, :end, :percentage, :product, :cost
+  validates_presence_of :business_id, :type, :start, :end, :percentage, :product, :cost, :category_id, :subcategory_id
 	
 	def to_param
   		"#{id}-#{cost.slice(0..40).gsub(/\W/, '-').downcase.gsub(/-{2,}/,'-')}"

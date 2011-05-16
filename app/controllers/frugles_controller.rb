@@ -35,7 +35,11 @@ class FruglesController < ApplicationController
         @follow = Follow.find_by_user_id_and_business_id(current_user.id, @business.id)
       end
     end
-    render :layout => "frugle_view"
+    if params[:iframe]
+      render :layout => "frugle_view"
+    else
+      render :no_iframe, :layout => "splash"
+    end
   end
   
   def send_message
@@ -72,8 +76,8 @@ class FruglesController < ApplicationController
     @frugle.verification = (0...6).map{ charset.to_a[rand(charset.size)] }.join
     @frugle.status = "active"
     @frugle.views = 0
-    @frugle.category_id = @frugle.business.category_id
-    @frugle.subcategory_id = @frugle.business.subcategory_id
+    @frugle.category_id = params[:frugle][:category_id]
+    @frugle.subcategory_id = params[:frugle][:subcategory_id]
     @frugle.discount = params[:frugle][:discount]
     if @frugle.discount == "percent"
       @frugle.cost = [params[:frugle][:percentage], params[:frugle][:product]].join(" % Off ")

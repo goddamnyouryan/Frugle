@@ -4,8 +4,8 @@ var subcategories = new Array();
 <% end %>
 
 function categorySelected() {
-  category_id = $('business_category_id').getValue();
-  options = $('business_subcategory_id').options;
+  category_id = $('frugle_category_id').getValue();
+  options = $('frugle_subcategory_id').options;
   options.length = 1;
   subcategories.each(function(subcategory) {
     if (subcategory[0] == category_id) {

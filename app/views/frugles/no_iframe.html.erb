@@ -1,3 +1,5 @@
+<% title "#{@frugle.business.name} | #{@frugle.cost}" %>
+
 <div style="text-align:center;">
 
 <p><span style="position:relative;top:10px;"><%= category_icon(@frugle) %></span><span style="margin-left:5px;"><%= @frugle.business.name %></span>
@@ -72,7 +74,7 @@
 
 <p><%= link_to "View All #{@frugle.category.title} Frugles", frugles_path(:search => "#{@frugle.category.title}"), :target => "_parent" %></p>
 
-<div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="margin:25px 0 0 250px;">
+<div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="margin:25px 0 0 200px;">
 <a class="addthis_button_preferred_1"></a>
 <a class="addthis_button_preferred_2"></a>
 <a class="addthis_button_preferred_3"></a>
@@ -86,4 +88,6 @@
 </div>
 
 </div>
-<div style="position: absolute; margin: 0 0pt 0pt 40px; z-index: -9;bottom:0;"><%= image_tag "bottomgrass.png" %></div>
+<div style="margin:0 0 -4px -10px;"><%= image_tag "bottomgrass.png" %></div>
+
+</div>

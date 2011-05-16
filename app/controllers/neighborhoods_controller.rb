@@ -27,7 +27,7 @@ class NeighborhoodsController < ApplicationController
         @user_subcategories = current_user.subcategories
         @results = Array.new
         @user_subcategories.each do |s|
-          @search = Frugle.find :all, :include => :business, :conditions => [ "businesses.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, current_user.neighborhood_id]
+          @search = Frugle.find :all, :include => :business, :conditions => [ "frugles.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, current_user.neighborhood_id]
           @results = @results | @search
         end
         @map = GMap.new("map_div")
@@ -65,7 +65,7 @@ class NeighborhoodsController < ApplicationController
       @user_subcategories = @user.subcategories
       @results = Array.new
       @user_subcategories.each do |s|
-        @search = Frugle.find :all, :include => :business, :conditions => [ "businesses.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, session[:neighborhood]]
+        @search = Frugle.find :all, :include => :business, :conditions => [ "frugles.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, session[:neighborhood]]
         @results = @results | @search
       end
       @map = GMap.new("map_div")

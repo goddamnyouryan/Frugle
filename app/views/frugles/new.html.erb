@@ -1,6 +1,7 @@
 <% title "New Frugle" %>
 <% javascript 'jquery.dimensions.pack' %>
 <% javascript 'poop' %>
+<% javascript 'dynamic' %>
 
 <h2 class="yellow_strip">Create A New Frugle</h2>
 
@@ -76,6 +77,24 @@
 	</div>
 </div>
 <div class="clr"></div>
+
+<script type="text/javascript">
+document.observe("dom:loaded", function() {
+	$('frugle_category_id').observe("change",function(){
+		categorySelected();
+	});
+});
+</script>
+
+<div class="new_frugle_form_item">
+	<%= image_tag "8_frugle.png" %>
+	<div>
+		<h3>Select a Category and Subcategory</h3>
+		<%= f.collection_select :category_id, Category.find(:all), :id, :title, :prompt => "Select a Category" %><br />
+		<%= f.collection_select :subcategory_id, Subcategory.find(:all), :id, :title, :prompt => "Select a Subcategory" %>
+	</div>
+</div>
+<div class="clr"></div>
 	
   <%= f.submit "Run This Frugle!", :class => "button", :style=> "margin:25px 0 0 50px;" %>
 <% end %>
@@ -85,8 +104,7 @@
 	<h2>Preview</h2>
 	<div id="preview_content">
 	<h3 id="discount" style="margin-bottom:20px;"><span id="percentage"></span>% Off <span id="product"></span></h3>
-	<span style="float:left"><%= category_icon_business(@business) %></span> <span style="float:left; margin: 5px 0 0 5px;"><%= @business.name %></span>
-	<div class="clr"></div>
+  <h3><%= @business.name %></h3>
 	<p id="details" style="margin:10px 0;"></p>
 	<p style="margin:10px 0;"><strong>Start Date:</strong> <span id="start"></span></p>
 	<p style="margin:10px 0;"><strong>End Date:</strong> <span id="end"></span></p>

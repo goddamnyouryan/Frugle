@@ -7,7 +7,7 @@ class SubcategorizationsController < ApplicationController
     @user_subcategories = current_user.subcategories
     @results = Array.new
     @user_subcategories.each do |s|
-      @search = Frugle.find :all, :include => :business, :conditions => [ "businesses.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, current_user.neighborhood_id]
+      @search = Frugle.find :all, :include => :business, :conditions => [ "frugles.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, current_user.neighborhood_id]
       @results = @results | @search
     end
     @map = Variable.new("map")
@@ -33,7 +33,7 @@ class SubcategorizationsController < ApplicationController
     @user_subcategories = @user.subcategories
     @results = Array.new
     @user_subcategories.each do |s|
-      @search = Frugle.find :all, :include => :business, :conditions => [ "businesses.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, session[:neighborhood]]
+      @search = Frugle.find :all, :conditions => [ "subcategory_id = ? AND neighborhood_id = ?", s.id, session[:neighborhood]]
       @results = @results | @search
     end
     @map = Variable.new("map")
@@ -58,7 +58,7 @@ class SubcategorizationsController < ApplicationController
     @user_subcategories = current_user.subcategories
     @results = Array.new
     @user_subcategories.each do |s|
-      @search = Frugle.find :all, :include => :business, :conditions => [ "businesses.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, current_user.neighborhood_id]
+      @search = Frugle.find :all, :include => :business, :conditions => [ "frugles.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, current_user.neighborhood_id]
       @results = @results | @search
     end
     @map = Variable.new("map")
@@ -85,7 +85,7 @@ class SubcategorizationsController < ApplicationController
     @user_subcategories = @user.subcategories
     @results = Array.new
     @user_subcategories.each do |s|
-      @search = Frugle.find :all, :include => :business, :conditions => [ "businesses.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, session[:neighborhood]]
+      @search = Frugle.find :all, :conditions => [ "subcategory_id = ? AND neighborhood_id = ?", s.id, session[:neighborhood]]
       @results = @results | @search
     end
     @map = Variable.new("map")
@@ -105,7 +105,7 @@ class SubcategorizationsController < ApplicationController
   def select_all
     @categories = current_user.categories
     @categories.each do |category|
-      @businesses = Business.find :all, :include => :frugles, :conditions => ["businesses.category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, current_user.neighborhood_id]
+      @businesses = Business.find :all, :include => :frugles, :conditions => ["frugles.category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, current_user.neighborhood_id]
       unless @businesses.empty?
         @subcategories = @businesses.map(&:subcategory).uniq - current_user.subcategories
         unless @subcategories == nil
@@ -119,7 +119,7 @@ class SubcategorizationsController < ApplicationController
     @user_subcategories = Subcategory.find :all, :include => :subcategorizations, :conditions => [ "subcategorizations.user_id = ?", current_user.id]
     @results = Array.new
     @user_subcategories.each do |s|
-      @search = Frugle.find :all, :include => :business, :conditions => [ "businesses.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, current_user.neighborhood_id]
+      @search = Frugle.find :all, :include => :business, :conditions => [ "frugles.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, current_user.neighborhood_id]
       @results = @results | @search
     end
     @map = Variable.new("map")
@@ -143,7 +143,7 @@ class SubcategorizationsController < ApplicationController
     @categories = current_user.categories
     @subcategories = Array.new
     @categories.each do |category|
-      @businesses = Business.find :all, :include => :frugles, :conditions => ["businesses.category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, current_user.neighborhood_id]
+      @businesses = Business.find :all, :include => :frugles, :conditions => ["frugles.category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, current_user.neighborhood_id]
       unless @businesses.empty?
         @farts = @businesses.map(&:subcategory).uniq - current_user.subcategories
         @subcategories = @subcategories | @farts
@@ -164,7 +164,7 @@ class SubcategorizationsController < ApplicationController
     @user = User.find_by_logged_out("#{@session_id}")
     @categories = @user.categories
     @categories.each do |category|
-      @businesses = Business.find :all, :include => :frugles, :conditions => ["businesses.category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, @user.neighborhood_id]
+      @businesses = Business.find :all, :include => :frugles, :conditions => ["frugles.category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, @user.neighborhood_id]
       unless @businesses.empty?
         @subcategories = @businesses.map(&:subcategory).uniq - @user.subcategories
         unless @subcategories == nil
@@ -178,7 +178,7 @@ class SubcategorizationsController < ApplicationController
     @user_subcategories = Subcategory.find :all, :include => :subcategorizations, :conditions => [ "subcategorizations.user_id = ?", @user.id]
     @results = Array.new
     @user_subcategories.each do |s|
-      @search = Frugle.find :all, :include => :business, :conditions => [ "businesses.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, @user.neighborhood_id]
+      @search = Frugle.find :all, :include => :business, :conditions => [ "frugles.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, @user.neighborhood_id]
       @results = @results | @search
     end
     @map = Variable.new("map")
@@ -204,7 +204,7 @@ class SubcategorizationsController < ApplicationController
     @categories = @user.categories
     @subcategories = Array.new
     @categories.each do |category|
-      @businesses = Business.find :all, :include => :frugles, :conditions => ["businesses.category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, @user.neighborhood_id]
+      @businesses = Business.find :all, :include => :frugles, :conditions => ["frugles.category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, @user.neighborhood_id]
       unless @businesses.empty?
         @farts = @businesses.map(&:subcategory).uniq - @user.subcategories
         @subcategories = @subcategories | @farts

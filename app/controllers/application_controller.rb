@@ -45,41 +45,41 @@ class ApplicationController < ActionController::Base
   end
   
   def icon_name(frugle)
-    if frugle.business.category_id == 1
+    if frugle.category_id == 1
       @auto
-    elsif frugle.business.category_id == 2
+    elsif frugle.category_id == 2
       @bodyandbeauty
-    elsif frugle.business.category_id == 3
+    elsif frugle.category_id == 3
       @cleaning
-    elsif frugle.business.category_id == 4
+    elsif frugle.category_id == 4
       @entertainment
-    elsif frugle.business.category_id == 5
+    elsif frugle.category_id == 5
       @family
-    elsif frugle.business.category_id == 6
+    elsif frugle.category_id == 6
       @financialservices
-    elsif frugle.business.category_id == 7
+    elsif frugle.category_id == 7
       @food
-    elsif frugle.business.category_id == 8
+    elsif frugle.category_id == 8
       @health
-    elsif frugle.business.category_id == 9
+    elsif frugle.category_id == 9
       @home
-    elsif frugle.business.category_id == 10
+    elsif frugle.category_id == 10
       @nightlife
-    elsif frugle.business.category_id == 11
+    elsif frugle.category_id == 11
       @partiesandevents
-    elsif frugle.business.category_id == 12
+    elsif frugle.category_id == 12
       @pets
-    elsif frugle.business.category_id == 13
+    elsif frugle.category_id == 13
       @professionalservices
-    elsif frugle.business.category_id == 14
+    elsif frugle.category_id == 14
       @restaurants
-    elsif frugle.business.category_id == 15
+    elsif frugle.category_id == 15
       @schooling
-    elsif frugle.business.category_id == 16
+    elsif frugle.category_id == 16
       @shopping
-    elsif frugle.business.category_id == 17
+    elsif frugle.category_id == 17
       @sports
-    elsif frugle.business.category_id == 18
+    elsif frugle.category_id == 18
       @travel
     else 
       @auto

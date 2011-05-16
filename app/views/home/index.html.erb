@@ -10,12 +10,6 @@
 <div class="fl">
 	<h2><%= @business.name %></h2>
 	
-	<div style="margin: 15px 0;">
-		<span style="float:left;"><%= category_icon_business(@business) %></span>
-		<h3 style="float: left; font-size: 12px; margin-left: 5px;">Category: <br /><%= @business.category.title %></h3>
-	</div>
-	<div class="clr"></div>
-	
 	<p style="margin-top:15px;">
 		<%= @business.address %><br />
     <% unless @business.address2.nil? %>
@@ -72,7 +66,7 @@
   <tr>
     <td align="center" class="border-table"><%= l frugle.start.to_date, :format => :default %></td>
     <td align="center" class="border-table"><%= l frugle.end.to_date, :format => :default %></td>
-    <td align="center" class="border-table"><%= link_to frugle.cost, frugle, :class => "iframe" %></td>
+    <td align="center" class="border-table"><%= link_to frugle.cost, business_frugle_path(frugle.business, frugle, :iframe => "true"), :class => "iframe", :style => "font-weight:bold;" %></td>
     <td align="center" class="border-table"><%= frugle.quantity %></td>
     <td align="center" class="border-table"><%= frugle.views %></td>
     <td align="center" class="border-table"><%= frugle.prints %></td>
