@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
 
 <% for category in @user_categories %>
-<% @businesses = Business.find :all, :include => :frugles, :conditions => ["frugles.category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, current_user.neighborhood_id] %>
+<% @businesses = Frugle.find :all, :include => :business, :conditions => ["frugles.category_id = ? AND businesses.neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, current_user.neighborhood_id] %>
 <% @subcategories = @businesses.map(&:subcategory).uniq %>
 	<% @subcategories.each do |subcategory| %>
 		<li class="fl" id="subcategory_<%= subcategory.id %>">
@@ -18,7 +18,7 @@
 <% else %>
 
 <% for category in @user_categories %>
-<% @businesses = Business.find :all, :include => :frugles, :conditions => ["frugles.category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, session[:neighborhood]] %>
+<% @businesses = Frugle.find :all, :include => :business, :conditions => ["frugles.category_id = ? AND businesses.neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, current_user.neighborhood_id] %>
 <% @subcategories = @businesses.map(&:subcategory).uniq %>
 	<% @subcategories.each do |subcategory| %>
 		<li class="fl" id="subcategory_<%= subcategory.id %>">
