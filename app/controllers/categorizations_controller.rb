@@ -47,7 +47,7 @@ class CategorizationsController < ApplicationController
     @user_subcategories = @user.subcategories
     @results = Array.new
     @user_subcategories.each do |s|
-      @search = Frugle.find :all, :conditions => [ "subcategory_id = ? AND neighborhood_id = ?", s.id, session[:neighborhood]]
+      @search = Frugle.find :all, :include => :business, :conditions => [ "frugles.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, session[:neighborhood]]
       @results = @results | @search
     end
     @map = Variable.new("map")
@@ -107,7 +107,7 @@ class CategorizationsController < ApplicationController
     @subcategories = @businesses.map(&:subcategory).uniq
     @subcategories.each do |s|
         @subcategorization = Subcategorization.find_by_user_id_and_subcategory_id(@user.id, s.id)
-        unless @subcategorization == nil
+        unless @subcategorization.nil?
           @subcategorization.destroy
         end
     end

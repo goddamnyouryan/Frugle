@@ -1,5 +1,5 @@
 class Frugle < ActiveRecord::Base
-  attr_accessible :business_id, :type, :details, :mobile, :quantity, :views, :start, :end, :verification, :status, :percentage, :product, :customers, :altered, :visit, :other_offer
+  attr_accessible :business_id, :type, :details, :mobile, :quantity, :views, :start, :end, :verification, :status, :percentage, :product, :customers, :altered, :visit, :other_offer, :cost, :category_id, :subcategory_id
   
   belongs_to :business
   
