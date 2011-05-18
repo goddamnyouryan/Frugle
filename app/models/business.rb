@@ -6,7 +6,7 @@ class Business < ActiveRecord::Base
   
   belongs_to :user
   belongs_to :neighborhood
-  attr_accessible :name, :address, :zip, :phone, :website, :info, :category_id, :subcategory_id, :hear_about, :contact_name, :contact_number, :role, :terms
+  attr_accessible :name, :address, :zip, :phone, :website, :info, :category_id, :subcategory_id, :hear_about, :contact_name, :contact_number, :role, :terms, :latitude, :longitude, :subcategory_name, :neighborhood_id
   
   attr_accessor :area_code, :first_three_digits, :second_four_digits, :terms
   
@@ -17,7 +17,7 @@ class Business < ActiveRecord::Base
   validates_presence_of :phone, :on => :create                   
                       
   geocoded_by :full_address
-  after_validation :geocode
+  #after_validation :geocode
   #after_update :send_welcome_email
   
   def send_welcome_email
