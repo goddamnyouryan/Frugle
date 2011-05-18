@@ -93,6 +93,7 @@ class NeighborhoodsController < ApplicationController
       if current_user.role == "admin"
         @neighborhood = Neighborhood.new
         @neighborhoods = Neighborhood.all
+        layout => "splash"
       else
         redirect_to root_path
       end
