@@ -4,6 +4,7 @@
 end
 page.replace_html "subcategories", :partial => 'neighborhoods/all_subcategories', :user_subcategories => @user_subcategories
 page.replace_html "frugles", :partial => 'neighborhoods/small_frugle', :collection => @results, :as => :frugle
+page.insert_html :bottom, 'frugles', :partial => 'neighborhoods/pagination'
 page << @map.clear_overlays
 for marker in @markers
   page << @map.add_overlay(marker)

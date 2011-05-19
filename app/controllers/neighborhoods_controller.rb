@@ -25,11 +25,7 @@ class NeighborhoodsController < ApplicationController
         @featured = Frugle.find :all, :order => "prints ASC", :limit => 3, :include => :business, :conditions => [ "businesses.neighborhood_id = ?", current_user.neighborhood_id]
         @user_categories = current_user.categories
         @user_subcategories = current_user.subcategories
-        @results = Array.new
-        @user_subcategories.each do |s|
-          @search = Frugle.find :all, :include => :business, :conditions => [ "frugles.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, current_user.neighborhood_id]
-          @results = @results | @search
-        end
+        @results = Frugle.paginate :all, :include => :business, :conditions => [ "frugles.subcategory_id IN (?) AND businesses.neighborhood_id = ?", @user_subcategories, current_user.neighborhood_id], :page => params[:page]
         @map = GMap.new("map_div")
         @map.control_init(:large_map => true,:map_type => true)
         @map.center_zoom_init([@neighborhood.latitude, @neighborhood.longitude],13)
@@ -63,11 +59,7 @@ class NeighborhoodsController < ApplicationController
       @featured = Frugle.find :all, :order => "views ASC", :limit => 3, :include => :business, :conditions => [ "businesses.neighborhood_id = ?", session[:neighborhood]]
       @user_categories = @user.categories
       @user_subcategories = @user.subcategories
-      @results = Array.new
-      @user_subcategories.each do |s|
-        @search = Frugle.find :all, :include => :business, :conditions => [ "frugles.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, session[:neighborhood]]
-        @results = @results | @search
-      end
+      @results = Frugle.paginate :all, :include => :business, :conditions => [ "frugles.subcategory_id IN (?) AND businesses.neighborhood_id = ?", @user_subcategories, session[:neighborhood]], :page => params[:page]
       @map = GMap.new("map_div")
       @map.control_init(:large_map => true,:map_type => true)
       @map.center_zoom_init([34.0412085, -118.442596],15)

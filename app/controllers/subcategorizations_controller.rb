@@ -4,12 +4,9 @@ class SubcategorizationsController < ApplicationController
     @subcategorization = Subcategorization.create(:user_id => current_user.id, :subcategory_id => params[:subcategory_id])
     @subcategory = Subcategory.find(params[:subcategory_id])
     @user_categories = current_user.categories
+    @neighborhood = Neighborhood.find current_user.neighborhood_id
     @user_subcategories = current_user.subcategories
-    @results = Array.new
-    @user_subcategories.each do |s|
-      @search = Frugle.find :all, :include => :business, :conditions => [ "frugles.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, current_user.neighborhood_id]
-      @results = @results | @search
-    end
+    @results = Frugle.paginate :all, :include => :business, :conditions => [ "frugles.subcategory_id IN (?) AND businesses.neighborhood_id = ?", @user_subcategories, current_user.neighborhood_id], :page => params[:page]
     @map = Variable.new("map")
     @markers = Array.new
     map_marker
@@ -26,16 +23,13 @@ class SubcategorizationsController < ApplicationController
   
   def out_new
     @session_id = request.session_options[:id]
+    @neighborhood = Neighborhood.find session[:neighborhood]
     @user = User.find_by_logged_out("#{@session_id}")
     @subcategorization = Subcategorization.create(:user_id => @user.id, :subcategory_id => params[:subcategory_id])
     @subcategory = Subcategory.find(params[:subcategory_id])
     @user_categories = @user.categories
     @user_subcategories = @user.subcategories
-    @results = Array.new
-    @user_subcategories.each do |s|
-      @search = Frugle.find :all, :conditions => [ "subcategory_id = ? AND neighborhood_id = ?", s.id, session[:neighborhood]]
-      @results = @results | @search
-    end
+    @results = Frugle.paginate :all, :include => :business, :conditions => [ "frugles.subcategory_id IN (?) AND businesses.neighborhood_id = ?", @user_subcategories, session[:neighborhood]], :page => params[:page]
     @map = Variable.new("map")
     @markers = Array.new
     map_marker
@@ -54,13 +48,10 @@ class SubcategorizationsController < ApplicationController
     @subcategorization = Subcategorization.find_by_user_id_and_subcategory_id(current_user.id, params[:subcategory_id])
     @subcategorization.destroy
     @subcategory = Subcategory.find(params[:subcategory_id])
+    @neighborhood = Neighborhood.find current_user.neighborhood_id
     @user_categories = current_user.categories
     @user_subcategories = current_user.subcategories
-    @results = Array.new
-    @user_subcategories.each do |s|
-      @search = Frugle.find :all, :include => :business, :conditions => [ "frugles.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, current_user.neighborhood_id]
-      @results = @results | @search
-    end
+    @results = Frugle.paginate :all, :include => :business, :conditions => [ "frugles.subcategory_id IN (?) AND businesses.neighborhood_id = ?", @user_subcategories, current_user.neighborhood_id], :page => params[:page]
     @map = Variable.new("map")
     @markers = Array.new
     map_marker
@@ -77,17 +68,14 @@ class SubcategorizationsController < ApplicationController
   
   def out_destroy
     @session_id = request.session_options[:id]
+    @neighborhood = Neighborhood.find session[:neighborhood]
     @user = User.find_by_logged_out("#{@session_id}")
     @subcategorization = Subcategorization.find_by_user_id_and_subcategory_id(@user.id, params[:subcategory_id])
     @subcategorization.destroy
     @subcategory = Subcategory.find(params[:subcategory_id])
     @user_categories = @user.categories
     @user_subcategories = @user.subcategories
-    @results = Array.new
-    @user_subcategories.each do |s|
-      @search = Frugle.find :all, :conditions => [ "subcategory_id = ? AND neighborhood_id = ?", s.id, session[:neighborhood]]
-      @results = @results | @search
-    end
+    @results = Frugle.paginate :all, :include => :business, :conditions => [ "frugles.subcategory_id IN (?) AND businesses.neighborhood_id = ?", @user_subcategories, session[:neighborhood]], :page => params[:page]
     @map = Variable.new("map")
     @markers = Array.new
     map_marker
@@ -103,6 +91,7 @@ class SubcategorizationsController < ApplicationController
   end  
   
   def select_all
+    @neighborhood = Neighborhood.find current_user.neighborhood_id
     @categories = current_user.categories
     @categories.each do |category|
       @businesses = Business.find :all, :include => :frugles, :conditions => ["frugles.category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, current_user.neighborhood_id]
@@ -117,11 +106,7 @@ class SubcategorizationsController < ApplicationController
     end
     @user_categories = current_user.categories
     @user_subcategories = Subcategory.find :all, :include => :subcategorizations, :conditions => [ "subcategorizations.user_id = ?", current_user.id]
-    @results = Array.new
-    @user_subcategories.each do |s|
-      @search = Frugle.find :all, :include => :business, :conditions => [ "frugles.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, current_user.neighborhood_id]
-      @results = @results | @search
-    end
+    @results = Frugle.paginate :all, :include => :business, :conditions => [ "frugles.subcategory_id IN (?) AND businesses.neighborhood_id = ?", @user_subcategories, current_user.neighborhood_id], :page => params[:page]
     @map = Variable.new("map")
     @markers = Array.new
     map_marker
@@ -137,6 +122,7 @@ class SubcategorizationsController < ApplicationController
   end
   
   def select_none
+    @neighborhood = Neighborhood.find current_user.neighborhood_id
     current_user.subcategorizations.each do |subcategorization|
       subcategorization.destroy
     end
@@ -160,6 +146,7 @@ class SubcategorizationsController < ApplicationController
   end
     
   def out_select_all
+    @neighborhood = Neighborhood.find session[:neighborhood]
     @session_id = request.session_options[:id]
     @user = User.find_by_logged_out("#{@session_id}")
     @categories = @user.categories
@@ -177,10 +164,7 @@ class SubcategorizationsController < ApplicationController
     @user_categories = @user.categories
     @user_subcategories = Subcategory.find :all, :include => :subcategorizations, :conditions => [ "subcategorizations.user_id = ?", @user.id]
     @results = Array.new
-    @user_subcategories.each do |s|
-      @search = Frugle.find :all, :include => :business, :conditions => [ "frugles.subcategory_id = ? AND businesses.neighborhood_id = ?", s.id, @user.neighborhood_id]
-      @results = @results | @search
-    end
+    @results = Frugle.paginate :all, :include => :business, :conditions => [ "frugles.subcategory_id IN (?) AND businesses.neighborhood_id = ?", @user_subcategories, session[:neighborhood]], :page => params[:page]
     @map = Variable.new("map")
     @markers = Array.new
     map_marker
@@ -196,6 +180,7 @@ class SubcategorizationsController < ApplicationController
   end
   
   def out_select_none
+    @neighborhood = Neighborhood.find session[:neighborhood]
     @session_id = request.session_options[:id]
     @user = User.find_by_logged_out("#{@session_id}")
     @user.subcategorizations.each do |subcategorization|

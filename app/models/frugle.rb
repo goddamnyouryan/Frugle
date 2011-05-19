@@ -1,6 +1,9 @@
 class Frugle < ActiveRecord::Base
   attr_accessible :business_id, :type, :details, :mobile, :quantity, :views, :start, :end, :verification, :status, :percentage, :product, :customers, :altered, :visit, :other_offer, :cost, :category_id, :subcategory_id
   
+  cattr_reader :per_page
+  @@per_page = 20
+  
   belongs_to :business
   
   has_many :saveds

@@ -145,6 +145,7 @@ GEM
     tzinfo (0.3.26)
     warden (1.0.1)
       rack (>= 1.0.0)
+    will_paginate (3.0.pre2)
     xml-simple (1.0.15)
 
 PLATFORMS
@@ -162,3 +163,4 @@ DEPENDENCIES
   paperclip
   pg
   rails (= 3.0.0)
+  will_paginate (~> 3.0.pre2)

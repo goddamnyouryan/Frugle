@@ -1,0 +1,8 @@
+<div id="paginator">
+	<% unless @results.current_page == 1 %>
+		<%= link_to "← Previous Frugles", :controller => "neighborhoods", :action => "show", :id => @neighborhood.friendly_id, :page => @results.current_page - 1 %> | 
+	<% end %>
+	<% unless @results.current_page >= @results.total_pages %>
+		<%= link_to "View More Frugles →", :controller => "neighborhoods", :action => "show", :id => @neighborhood.friendly_id, :page => @results.current_page + 1 %>
+	<% end %>
+</div>
