@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many :user_tokens
   belongs_to :neighborhood
   has_many :follows
-  has_one :business
+  has_one :business, :dependent => :destroy
   has_many :businesses, :through => :follows
   
   has_many :categorizations

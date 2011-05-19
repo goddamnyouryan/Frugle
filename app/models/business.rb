@@ -1,7 +1,7 @@
 class Business < ActiveRecord::Base
   belongs_to :category
   belongs_to :subcategory
-  has_many :frugles
+  has_many :frugles, :dependent => :destroy
   has_many :follows
   
   belongs_to :user
