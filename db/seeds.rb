@@ -11,7 +11,7 @@
 #end
 
 @frugles = Frugle.all
-@frugle.each do |frugle|
+@frugles.each do |frugle|
   frugle.update_attributes(:views => 0)
 end
 
