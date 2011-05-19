@@ -14,3 +14,9 @@
 @frugle.each do |frugle|
   frugle.update_attributes(:views => 0)
 end
+
+@businesses = Business.find :all, :conditions => ["zip = ?", "90025"]
+@businesses.each do |business|
+  business.destroy
+end
+
