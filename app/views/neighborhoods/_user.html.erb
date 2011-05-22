@@ -40,7 +40,7 @@
 <script type="text/javascript">
 	jQuery(document).ready(function() {
 		jQuery("#plainDemo-2").multipleElementsCycle({
-			showCount: 3,
+			start: 0,
 			prev: '#cycleElementsLeft-2',
 			next: '#cycleElementsRight-2'
 			});
@@ -137,10 +137,9 @@
 
 <div id="frugle_results">
 	
-<ul id="frugles" style="float:left;">
+<ul id="frugles" style="float:left;margin-left:60px;">
 	<%= render :partial => 'small_frugle', :collection => @results, :as => :frugle %>
 	<div class="clr"></div>
-	
 	<%= render :partial => 'pagination' %>
 	
 </ul>

@@ -546,20 +546,18 @@ ul#featured li {
 .offer_box{
 	float:left;
 	list-style-type:none;
-	margin:0 20px 15px;
-	width:339px;
+	margin:0 10px 15px -1px;
+	width:335px;
 }
 .offer_col_1{
 	font-family:Georgia, "Times New Roman", Times, serif;	
-	float:left;
 	font-size:16px;
 	font-weight:bold;
 	padding-right:10px;
+	width:290px;
 }
 	
 .offer_col_2{
-	background:url("../images/offer_bar_bg_1.png") no-repeat scroll left center transparent;
-	float:left;
 	font-family: "Trebuchet MS", sans-serif;
 	font-size:12px;
 	line-height:21px;
@@ -1202,7 +1200,8 @@ h4.about {
 
 #paginator {
 	text-align:center;
-	font-size: 12px;
+	font-size: 14px;
+	clear:both;
 }
 
 #loading {
