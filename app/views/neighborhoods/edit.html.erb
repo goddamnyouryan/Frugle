@@ -16,6 +16,12 @@
 	</div>
 	
 	<div class="reg_row">
+		<div class="reg_col_left">Choose the zoom level for the map:</div>
+	  <div class="reg_col_right"><%= f.select :zoom, options_for_select(@zoom_options) %></div>
+	  	<div class="clr"></div>
+	</div>
+	
+	<div class="reg_row">
 		<div class="reg_col_left">Upload the background image for this neighborhood (make it bigger than 1440px x 900px):</div>
 	  <div class="reg_col_right" style="margin-top:80px;"><%= f.file_field :background, :class => "reg_bar" %></div>
 	  	<div class="clr"></div>

@@ -28,7 +28,7 @@ class NeighborhoodsController < ApplicationController
         @results = Frugle.paginate :all, :include => :business, :conditions => [ "frugles.subcategory_id IN (?) AND businesses.neighborhood_id = ?", @user_subcategories, current_user.neighborhood_id], :page => params[:page]
         @map = GMap.new("map_div")
         @map.control_init(:large_map => true,:map_type => true)
-        @map.center_zoom_init([@neighborhood.latitude, @neighborhood.longitude],13)
+        @map.center_zoom_init([@neighborhood.latitude, @neighborhood.longitude],@neighborhood.zoom)
         map_marker
         icon_variables
         unless @results == nil
@@ -62,7 +62,7 @@ class NeighborhoodsController < ApplicationController
       @results = Frugle.paginate :all, :include => :business, :conditions => [ "frugles.subcategory_id IN (?) AND businesses.neighborhood_id = ?", @user_subcategories, session[:neighborhood]], :page => params[:page]
       @map = GMap.new("map_div")
       @map.control_init(:large_map => true,:map_type => true)
-      @map.center_zoom_init([@neighborhood.latitude, @neighborhood.longitude],13)
+      @map.center_zoom_init([@neighborhood.latitude, @neighborhood.longitude],@neighborhood.zoom)
       map_marker
       icon_variables
       unless @results == nil
@@ -85,6 +85,7 @@ class NeighborhoodsController < ApplicationController
       if current_user.role == "admin"
         @neighborhood = Neighborhood.new
         @neighborhoods = Neighborhood.all
+        @zoom_options = [[5,5],[6,6],[7,7],[8,8],[9,9], [10,10], [11,11], [12,12], [13,13], [14,14], [15,15]]
       else
         redirect_to root_path
       end
@@ -121,6 +122,7 @@ class NeighborhoodsController < ApplicationController
       if current_user.role == "admin"
         @neighborhood = Neighborhood.find(params[:id])
         @zipcode = Zipcode.new
+        @zoom_options = [[5,5],[6,6],[7,7],[8,8],[9,9], [10,10], [11,11], [12,12], [13,13], [14,14], [15,15]]
       else
         redirect_to root_path
       end
@@ -136,6 +138,7 @@ class NeighborhoodsController < ApplicationController
       @neighborhood.latitude = @geocode[0]
       @neighborhood.longitude = @geocode[1]
     end
+    @neighborhood.zoom = params[:neighborhood][:zoom]
     if @neighborhood.update_attributes(params[:neighborhood])
       redirect_to new_neighborhood_path, :notice => "Successfully updated neighborhood."
     else

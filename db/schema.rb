@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110522101552) do
+ActiveRecord::Schema.define(:version => 20110522205128) do
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20110522101552) do
     t.string   "background_content_type"
     t.integer  "background_file_size"
     t.datetime "background_updated_at"
+    t.integer  "zoom"
   end
 
   add_index "neighborhoods", ["id"], :name => "index_neighborhoods_on_id"
