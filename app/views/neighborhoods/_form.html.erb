@@ -15,7 +15,7 @@
 	
 	<div class="reg_row">
 		<div class="reg_col_left">Choose the zoom level for the map:</div>
-	  <div class="reg_col_right"><%= f.select :zoom, options_for_select(@zoom_options) %></div>
+	  <div class="reg_col_right"><%= f.select :zoom, options_for_select(@zoom_options), :prompt => "Zoom Level" %></div>
 	  	<div class="clr"></div>
 	</div>
 	
