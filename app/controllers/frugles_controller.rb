@@ -11,7 +11,7 @@ class FruglesController < ApplicationController
     @frugles = Frugle.find :all, 
                :include => [:category, :subcategory], 
                :conditions => ["LOWER(categories.title) LIKE ? OR LOWER(subcategories.title) LIKE ? OR LOWER(details) LIKE ? OR LOWER(cost) LIKE ?",
-               "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%"]
+               "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%"], :limit => 50
     if params[:search] == ""
       @frugles = Frugle.find :all, :joins => :business, :conditions => [ "businesses.neighborhood_id IS NOT NULL" ]
       @businesses = Business.all
