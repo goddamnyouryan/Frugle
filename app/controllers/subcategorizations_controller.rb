@@ -12,7 +12,7 @@ class SubcategorizationsController < ApplicationController
     map_marker
     icon_variables
     for frugle in @results
-      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>", :icon => icon_name(frugle))
+      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_frugle_url(frugle.business, frugle)}\" style=\"font-weight:bold\" class=\"iframe\">View Frugle</a>", :icon => icon_name(frugle))
       @markers << @marker
     end
     respond_to do |format|
@@ -35,7 +35,7 @@ class SubcategorizationsController < ApplicationController
     map_marker
     icon_variables
     for frugle in @results
-      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>", :icon => icon_name(frugle))
+      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_frugle_url(frugle.business, frugle)}\" style=\"font-weight:bold\" class=\"iframe\">View Frugle</a>", :icon => icon_name(frugle))
       @markers << @marker
     end
     respond_to do |format|
@@ -57,7 +57,7 @@ class SubcategorizationsController < ApplicationController
     map_marker
     icon_variables
     for frugle in @results
-      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>", :icon => icon_name(frugle))
+      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_frugle_url(frugle.business, frugle)}\" style=\"font-weight:bold\" class=\"iframe\">View Frugle</a>", :icon => icon_name(frugle))
       @markers << @marker
     end
     respond_to do |format|
@@ -81,7 +81,7 @@ class SubcategorizationsController < ApplicationController
     map_marker
     icon_variables
     for frugle in @results
-      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>", :icon => icon_name(frugle))
+      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_frugle_url(frugle.business, frugle)}\" style=\"font-weight:bold\" class=\"iframe\">View Frugle</a>", :icon => icon_name(frugle))
       @markers << @marker
     end
     respond_to do |format|
@@ -94,7 +94,7 @@ class SubcategorizationsController < ApplicationController
     @neighborhood = Neighborhood.find current_user.neighborhood_id
     @categories = current_user.categories
     @categories.each do |category|
-      @businesses = Business.find :all, :include => :frugles, :conditions => ["frugles.category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, current_user.neighborhood_id]
+      @businesses = Frugle.find :all, :include => :business, :conditions => ["frugles.category_id = ? AND businesses.neighborhood_id = ?", category.id, current_user.neighborhood_id]
       unless @businesses.empty?
         @subcategories = @businesses.map(&:subcategory).uniq - current_user.subcategories
         unless @subcategories == nil
@@ -112,7 +112,7 @@ class SubcategorizationsController < ApplicationController
     map_marker
     icon_variables
     for frugle in @results
-      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>", :icon => icon_name(frugle))
+      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_frugle_url(frugle.business, frugle)}\" style=\"font-weight:bold\" class=\"iframe\">View Frugle</a>", :icon => icon_name(frugle))
       @markers << @marker
     end
     respond_to do |format|
@@ -123,20 +123,11 @@ class SubcategorizationsController < ApplicationController
   
   def select_none
     @neighborhood = Neighborhood.find current_user.neighborhood_id
+    @subcategorizations = current_user.subcategorizations
+    @subcategories = @subcategorizations.map(&:subcategory).uniq
     current_user.subcategorizations.each do |subcategorization|
       subcategorization.destroy
     end
-    @categories = current_user.categories
-    @subcategories = Array.new
-    @categories.each do |category|
-      @businesses = Business.find :all, :include => :frugles, :conditions => ["frugles.category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, current_user.neighborhood_id]
-      unless @businesses.empty?
-        @farts = @businesses.map(&:subcategory).uniq - current_user.subcategories
-        @subcategories = @subcategories | @farts
-      end
-    end
-    @user_categories = current_user.categories
-    @user_subcategories = Subcategory.find :all, :include => :subcategorizations, :conditions => [ "subcategorizations.user_id = ?", current_user.id]
     @results = Array.new
     @map = Variable.new("map")
     respond_to do |format|
@@ -151,7 +142,7 @@ class SubcategorizationsController < ApplicationController
     @user = User.find_by_logged_out("#{@session_id}")
     @categories = @user.categories
     @categories.each do |category|
-      @businesses = Business.find :all, :include => :frugles, :conditions => ["frugles.category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, @user.neighborhood_id]
+      @businesses = Frugle.find :all, :include => :business, :conditions => ["frugles.category_id = ? AND businesses.neighborhood_id = ?", category.id, session[:neighborhood]]
       unless @businesses.empty?
         @subcategories = @businesses.map(&:subcategory).uniq - @user.subcategories
         unless @subcategories == nil
@@ -163,14 +154,13 @@ class SubcategorizationsController < ApplicationController
     end
     @user_categories = @user.categories
     @user_subcategories = Subcategory.find :all, :include => :subcategorizations, :conditions => [ "subcategorizations.user_id = ?", @user.id]
-    @results = Array.new
     @results = Frugle.paginate :all, :include => :business, :conditions => [ "frugles.subcategory_id IN (?) AND businesses.neighborhood_id = ?", @user_subcategories, session[:neighborhood]], :page => params[:page]
     @map = Variable.new("map")
     @markers = Array.new
     map_marker
     icon_variables
     for frugle in @results
-      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>", :icon => icon_name(frugle))
+      @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_frugle_url(frugle.business, frugle)}\" style=\"font-weight:bold\" class=\"iframe\">View Frugle</a>", :icon => icon_name(frugle))
       @markers << @marker
     end
     respond_to do |format|
@@ -183,20 +173,11 @@ class SubcategorizationsController < ApplicationController
     @neighborhood = Neighborhood.find session[:neighborhood]
     @session_id = request.session_options[:id]
     @user = User.find_by_logged_out("#{@session_id}")
+    @subcategorizations = @user.subcategorizations
+    @subcategories = @subcategorizations.map(&:subcategory).uniq
     @user.subcategorizations.each do |subcategorization|
       subcategorization.destroy
     end
-    @categories = @user.categories
-    @subcategories = Array.new
-    @categories.each do |category|
-      @businesses = Business.find :all, :include => :frugles, :conditions => ["frugles.category_id = ? AND neighborhood_id = ? AND frugles.id IS NOT NULL", category.id, @user.neighborhood_id]
-      unless @businesses.empty?
-        @farts = @businesses.map(&:subcategory).uniq - @user.subcategories
-        @subcategories = @subcategories | @farts
-      end
-    end
-    @user_categories = @user.categories
-    @user_subcategories = Subcategory.find :all, :include => :subcategorizations, :conditions => [ "subcategorizations.user_id = ?", @user.id]
     @results = Array.new
     @map = Variable.new("map")
     respond_to do |format|

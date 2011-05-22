@@ -24,6 +24,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
             if session[:neighborhood]
               user.neighborhood_id = session[:neighborhood]
             end
+            user.first_name = omniauth.recursive_find_by_key("first_name")
+            user.last_name = omniauth.recursive_find_by_key("last_name")
+            user.password = "facebook"
+            user.password_confirmation = "facebook"
+            user.sex = "male"
+            user.birthday = Date.today
           else
             user = User.new
           end
@@ -35,7 +41,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
             sign_in_and_redirect(:user, user)
           else
             session[:omniauth] = omniauth.except('extra')
-            redirect_to new_user_registration_url
+            redirect_to new_user_registration_url, :notice => "Something went wrong!"
           end
         end
       end

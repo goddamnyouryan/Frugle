@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110521212436) do
+ActiveRecord::Schema.define(:version => 20110522101552) do
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
@@ -35,11 +35,19 @@ ActiveRecord::Schema.define(:version => 20110521212436) do
     t.string   "subcategory_name"
   end
 
+  add_index "businesses", ["category_id"], :name => "index_businesses_on_category_id"
+  add_index "businesses", ["id"], :name => "index_businesses_on_id"
+  add_index "businesses", ["neighborhood_id"], :name => "index_businesses_on_neighborhood_id"
+  add_index "businesses", ["subcategory_id"], :name => "index_businesses_on_subcategory_id"
+  add_index "businesses", ["user_id"], :name => "index_businesses_on_user_id"
+
   create_table "categories", :force => true do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "categories", ["id"], :name => "index_categories_on_id"
 
   create_table "categorizations", :force => true do |t|
     t.integer  "user_id"
@@ -47,6 +55,10 @@ ActiveRecord::Schema.define(:version => 20110521212436) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "categorizations", ["category_id"], :name => "index_categorizations_on_category_id"
+  add_index "categorizations", ["id"], :name => "index_categorizations_on_id"
+  add_index "categorizations", ["user_id"], :name => "index_categorizations_on_user_id"
 
   create_table "email_settings", :force => true do |t|
     t.boolean  "newsletter"
@@ -58,12 +70,19 @@ ActiveRecord::Schema.define(:version => 20110521212436) do
     t.string   "categories_following"
   end
 
+  add_index "email_settings", ["id"], :name => "index_email_settings_on_id"
+  add_index "email_settings", ["user_id"], :name => "index_email_settings_on_user_id"
+
   create_table "follows", :force => true do |t|
     t.integer  "user_id"
     t.integer  "business_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "follows", ["business_id"], :name => "index_follows_on_business_id"
+  add_index "follows", ["id"], :name => "index_follows_on_id"
+  add_index "follows", ["user_id"], :name => "index_follows_on_user_id"
 
   create_table "frugles", :force => true do |t|
     t.integer  "business_id"
@@ -90,6 +109,12 @@ ActiveRecord::Schema.define(:version => 20110521212436) do
     t.integer  "prints",         :default => 0
   end
 
+  add_index "frugles", ["business_id"], :name => "index_frugles_on_business_id"
+  add_index "frugles", ["category_id"], :name => "index_frugles_on_category_id"
+  add_index "frugles", ["id"], :name => "index_frugles_on_id"
+  add_index "frugles", ["subcategory_id"], :name => "index_frugles_on_subcategory_id"
+  add_index "frugles", ["verification"], :name => "index_frugles_on_verification"
+
   create_table "neighborhoods", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -102,12 +127,19 @@ ActiveRecord::Schema.define(:version => 20110521212436) do
     t.datetime "background_updated_at"
   end
 
+  add_index "neighborhoods", ["id"], :name => "index_neighborhoods_on_id"
+  add_index "neighborhoods", ["name"], :name => "index_neighborhoods_on_name"
+
   create_table "saveds", :force => true do |t|
     t.integer  "user_id"
     t.integer  "frugle_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "saveds", ["frugle_id"], :name => "index_saveds_on_frugle_id"
+  add_index "saveds", ["id"], :name => "index_saveds_on_id"
+  add_index "saveds", ["user_id"], :name => "index_saveds_on_user_id"
 
   create_table "slugs", :force => true do |t|
     t.string   "name"
@@ -128,12 +160,19 @@ ActiveRecord::Schema.define(:version => 20110521212436) do
     t.datetime "updated_at"
   end
 
+  add_index "subcategories", ["category_id"], :name => "index_subcategories_on_category_id"
+  add_index "subcategories", ["id"], :name => "index_subcategories_on_id"
+
   create_table "subcategorizations", :force => true do |t|
     t.integer  "user_id"
     t.integer  "subcategory_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "subcategorizations", ["id"], :name => "index_subcategorizations_on_id"
+  add_index "subcategorizations", ["subcategory_id"], :name => "index_subcategorizations_on_subcategory_id"
+  add_index "subcategorizations", ["user_id"], :name => "index_subcategorizations_on_user_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
@@ -159,6 +198,9 @@ ActiveRecord::Schema.define(:version => 20110521212436) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "user_tokens", ["id"], :name => "index_user_tokens_on_id"
+  add_index "user_tokens", ["user_id"], :name => "index_user_tokens_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "",     :null => false
@@ -186,6 +228,8 @@ ActiveRecord::Schema.define(:version => 20110521212436) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["id"], :name => "index_users_on_id"
+  add_index "users", ["neighborhood_id"], :name => "index_users_on_neighborhood_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "zipcodes", :force => true do |t|
@@ -194,5 +238,9 @@ ActiveRecord::Schema.define(:version => 20110521212436) do
     t.datetime "updated_at"
     t.integer  "neighborhood_id"
   end
+
+  add_index "zipcodes", ["id"], :name => "index_zipcodes_on_id"
+  add_index "zipcodes", ["neighborhood_id"], :name => "index_zipcodes_on_neighborhood_id"
+  add_index "zipcodes", ["zip"], :name => "index_zipcodes_on_zip"
 
 end

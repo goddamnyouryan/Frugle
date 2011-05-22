@@ -1204,3 +1204,9 @@ h4.about {
 	text-align:center;
 	font-size: 12px;
 }
+
+#loading {
+	left:-10px;
+	position:relative;
+	top:35px;
+}

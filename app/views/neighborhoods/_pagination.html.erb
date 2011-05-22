@@ -1,3 +1,4 @@
+<% unless @results.total_pages == 1 %>
 <div id="paginator">
 	<% unless @results.current_page == 1 %>
 		<%= link_to "← Previous Frugles", paginate_path(:page => @results.current_page - 1), :remote => true %> | 
@@ -47,3 +48,4 @@
 		| <%= link_to "View More Frugles →", paginate_path(:page => @results.current_page + 1), :remote => true %>
 	<% end %>
 </div>
+<% end %>

@@ -21,12 +21,14 @@
 	</p>
 </div>
 
-<div class="fr">
+<div class="clr"></div>
+
+<div class="fl">
 <% unless @business.frugles.count > 20 %>
-	<div class="hide_button"><%= link_to "Add New Frugle", new_frugle_path(:business_id => @business.id) %></div>
+	<div class="hide_button" style="text-align:left;"><%= link_to "Add New Frugle", new_frugle_path(:business_id => @business.id) %></div>
 	<div class="clr"></div>
 <% end %>
-<div class="hide_button"><%= link_to "Verify a Frugle", verify_path %></div>
+<div class="hide_button" style="text-align:left;"><%= link_to "Verify a Frugle", verify_path %></div>
 <div class="clr"></div>
 <p style="margin-top:10px;font-size:12px;text-align:center;"><%= link_to "Edit Business Info", edit_business_path(current_user.business) %></p>
 

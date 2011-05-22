@@ -79,7 +79,10 @@
 	</div>
 	<div class="reg_row">
 		<div class="new_business_col_left">Website URL</div>
-	  <div class="fl"><%= f.text_field :website, :placeholder => "http://", :class => "reg_bar" %></div>
+	  <div class="fl">
+			<%= f.text_field :website, :placeholder => "http://", :class => "reg_bar" %>
+			<p style="font-size:12px;">ex: http://www.business.com/</p>
+		</div>
 	  	<div class="clr"></div>
 	</div>
 	<div class="reg_row">

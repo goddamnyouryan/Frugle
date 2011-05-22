@@ -8,7 +8,7 @@
 
 <% else %>
 
-<% for subcategory in @user_subcategories %>
+<% @user_subcategories.each do |subcategory| %>
 		<li class="fl" id="subcategory_<%= subcategory.id %>">
 			<%= link_to subcategory.title, out_destroy_subcategorization_path(:subcategory_id => subcategory.id), :remote => true, :style => "background:#FFBA5F;" %>
 		</li>

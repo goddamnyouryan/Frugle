@@ -39,7 +39,7 @@ class NeighborhoodsController < ApplicationController
                               #{frugle.business.address}<br />
                               #{frugle.business.zip}<br />
                               #{frugle.business.phone}<br />
-                              <a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>",
+                              <a href=\"#{business_frugle_url(frugle.business, frugle)}\" style=\"font-weight:bold\" class=\"iframe\">View Frugle</a>",
                               :icon => icon_name(frugle)))
           end
         end
@@ -51,7 +51,7 @@ class NeighborhoodsController < ApplicationController
       @session_id = request.session_options[:id]
       @user = User.find_by_logged_out("#{@session_id}")
       if @user == nil
-        @user = User.create(:email => "#{@session_id}@logged_out.com", :password => "logged_out", :password_confirmation => "logged_out", :first_name => "logged", :last_name => "out", :birthday => Time.now, :sex => "male", :role => "logged_out")
+        @user = User.create(:email => "#{@session_id}@logged_out.com", :password => "logged_out", :password_confirmation => "logged_out", :first_name => "logged", :last_name => "out", :birthday => Time.now, :sex => "male", :role => "logged_out", :neighborhood_id => session[:neighbhorhood])
         @user.logged_out = "#{@session_id}"
         @user.save
       end
@@ -73,7 +73,7 @@ class NeighborhoodsController < ApplicationController
                             #{frugle.business.address}<br />
                             #{frugle.business.zip}<br />
                             #{frugle.business.phone}<br />
-                            <a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>",
+                            <a href=\"#{business_frugle_url(frugle.business, frugle)}\" style=\"font-weight:bold\" class=\"iframe\">View Frugle</a>",
                             :icon => icon_name(frugle)))
         end
       end

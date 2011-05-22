@@ -1,5 +1,5 @@
 @categories.each do |category|
-  page.replace_html "category_#{category.id}", "#{link_to category.title, new_categorization_path(:category_id => category.id), :remote => true, :method => :post, :style => "background-color:white;"}"
+  page.replace_html "category_#{category.id}", "#{link_to category.title, out_new_categorization_path(:category_id => category.id), :remote => true, :method => :post, :style => "background-color:white;"}"
 end
 page.replace_html "subcategories", ""
 page.replace_html "frugles", :partial => 'neighborhoods/small_frugle', :collection => @results, :as => :frugle

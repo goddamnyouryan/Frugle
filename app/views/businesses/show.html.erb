@@ -17,8 +17,10 @@
 	</p>
 </div>
 
-<div class="fr">
-	<p id="follow" class="hide_button" style="float:right;margin:0 0 10px;">
+<div class="clr"></div>
+
+<div class="fl">
+	<p id="follow" class="hide_button" style="float:left;margin:10px 0 10px;">
 		<% if user_signed_in? %>
 			<% unless current_user.role == "business" %>
 				<%= render :partial => 'frugles/follow', :business => @business %>
@@ -26,10 +28,11 @@
 		<% end %>
 	</p>
 	<div class="clr"></div>
-<div class="hide_button" style="float:right;margin-top:0;"><%= link_to "Back to Neighborhood", :controller => "neighborhoods", :action => "show", :id => @business.neighborhood.friendly_id %></div>
-<div class="clr"></div>
+<div class="hide_button" style="float:left;margin-top:0;"><%= link_to "Back to Neighborhood", :controller => "neighborhoods", :action => "show", :id => @business.neighborhood.friendly_id %></div>
 
 </div>
+
+
 					
 <div class="clr"></div>
 <div class="fl" style="margin-top:15px;">
