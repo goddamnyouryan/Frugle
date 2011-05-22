@@ -13,8 +13,8 @@ class FruglesController < ApplicationController
                :conditions => ["LOWER(categories.title) LIKE ? OR LOWER(subcategories.title) LIKE ? OR LOWER(details) LIKE ? OR LOWER(cost) LIKE ?",
                "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%"], :limit => 50
     if params[:search] == ""
-      @frugles = Frugle.find :all, :joins => :business, :conditions => [ "businesses.neighborhood_id IS NOT NULL" ]
-      @businesses = Business.all
+      @frugles = Frugle.find :all, :joins => :business, :conditions => [ "businesses.neighborhood_id IS NOT NULL" ], :limit => 50
+      @businesses = Business.find :all, :limit => 50
       @count = 0
       @businesses.each do |business|
         unless business.frugles.count == 0
