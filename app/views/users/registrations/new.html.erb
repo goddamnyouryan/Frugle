@@ -1,7 +1,7 @@
 	<div id="splash_main_signup">
       <div id="box">
 			  <%= devise_error_messages! %>
-				<h2 class="scrollable_frugles_header" style="margin: 20px 0">Choose Your Neighborhood</h2>
+				<h2 class="scrollable_frugles_header" style="margin: 20px 0">1) Choose Your Neighborhood</h2>
 				<%= form_tag "/neighborhoods/initial", :remote => true do %>
 				  <%= select_tag(:neighborhood_id, options_from_collection_for_select(Neighborhood.order("name ASC"), "id", "name") ) %>
 				  <%= submit_tag "Choose Neighborhood", :class => "orange_button" %>

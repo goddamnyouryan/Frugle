@@ -28,7 +28,7 @@ class NeighborhoodsController < ApplicationController
         @results = Frugle.paginate :all, :include => :business, :conditions => [ "frugles.subcategory_id IN (?) AND businesses.neighborhood_id = ?", @user_subcategories, current_user.neighborhood_id], :page => params[:page]
         @map = GMap.new("map_div")
         @map.control_init(:large_map => true,:map_type => true)
-        @map.center_zoom_init([@neighborhood.latitude, @neighborhood.longitude],@neighborhood.zoom)
+        @map.center_zoom_init([@neighborhood.latitude, @neighborhood.longitude],@neighborhood.zoom.to_i)
         map_marker
         icon_variables
         unless @results == nil
@@ -62,7 +62,7 @@ class NeighborhoodsController < ApplicationController
       @results = Frugle.paginate :all, :include => :business, :conditions => [ "frugles.subcategory_id IN (?) AND businesses.neighborhood_id = ?", @user_subcategories, session[:neighborhood]], :page => params[:page]
       @map = GMap.new("map_div")
       @map.control_init(:large_map => true,:map_type => true)
-      @map.center_zoom_init([@neighborhood.latitude, @neighborhood.longitude],@neighborhood.zoom)
+      @map.center_zoom_init([@neighborhood.latitude, @neighborhood.longitude],@neighborhood.zoom.to_i)
       map_marker
       icon_variables
       unless @results == nil
