@@ -42,18 +42,5 @@
 		<%= render :partial => 'neighborhoods/small_frugle', :collection => @frugles, :as => :frugle %>
 </ul>
 <div class="clr"></div>
-<div id="paginator">
-	<% unless @frugles.current_page == 1 %>
-		<%= link_to "← Previous Frugles", paginate_path(:page => @frugles.current_page - 1), :remote => true %> | 
-	<% end %>
-	<% @page = 1 %>
-	<% while @page <= @frugles.total_pages %>
-		<%= link_to "#{@page}", paginate_path(:page => @page ), :remote => true %>
-		<% @page = @page + 1 %>
-	<% end %>
-	
-	<% unless @frugles.current_page >= @frugles.total_pages %>
-		| <%= link_to "View More Frugles →", paginate_path(:page => @frugles.current_page + 1), :remote => true %>
-	<% end %>
-</div>
+
 <% end %>

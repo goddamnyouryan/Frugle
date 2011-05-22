@@ -8,8 +8,8 @@ class FruglesController < ApplicationController
     @businesses = Business.find :all,
                   :conditions => ["LOWER(name) LIKE ?","%#{params[:search].to_s.downcase}%"]
     @count = @businesses.count
-    @frugles = Frugle.paginate :all, 
-               :include => [:category, :subcategory,], 
+    @frugles = Frugle.find :all, 
+               :include => [:category, :subcategory], 
                :conditions => ["LOWER(categories.title) LIKE ? OR LOWER(subcategories.title) LIKE ? OR LOWER(details) LIKE ? OR LOWER(cost) LIKE ?",
                "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%"], :page => params[:page]
     if params[:search] == ""

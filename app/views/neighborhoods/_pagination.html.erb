@@ -2,10 +2,22 @@
 	<% unless @results.current_page == 1 %>
 		<%= link_to "← Previous Frugles", paginate_path(:page => @results.current_page - 1), :remote => true %> | 
 	<% end %>
-	<% @page = 1 %>
-	<% while @page <= @results.total_pages %>
-		<%= link_to "#{@page}", paginate_path(:page => @page ), :remote => true %>
-		<% @page = @page + 1 %>
+	<% unless @results.total_pages > 10 %>
+		<% @page = 1 %>
+		<% while @page <= @results.total_pages %>
+			<%= link_to "#{@page}", paginate_path(:page => @page ), :remote => true %>
+			<% @page = @page + 1 %>
+		<% end %>
+	<% else %>
+		<%= link_to "1", paginate_path(:page => 1), :remote => true %>
+		...
+		<% @page = @results.current_page - 5 %>
+		<% while @page <= @results.current_page + 5 %>
+			<%= link_to "#{@page}", paginate_path(:page => @page) %>
+			<% @page = @page + 1 %>
+		<% end %>
+		...
+		<%= link_to "#{@results.total_pages}",paginate_path(:page => @results.total_pages), :remote => true %>
 	<% end %>
 	
 	<% unless @results.current_page >= @results.total_pages %>
