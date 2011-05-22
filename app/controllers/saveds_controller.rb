@@ -10,7 +10,7 @@ class SavedsController < ApplicationController
 	      end
 	    end
     else
-      session[:user_return_to] = business_path(@frugle.business)
+      session[:user_return_to] = business_frugle_path(@frugle.business, @frugle)
       redirect_to new_user_session_path, :notice => "You need to be logged in to do that"
     end
   end

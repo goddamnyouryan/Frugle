@@ -17,7 +17,7 @@
 		<% @businesses.each do |business| %>
 			<% unless business.frugles.count == 0 %>
 			<li class="business_list">
-				<h4><%= link_to "#{business.name} - #{pluralize(business.frugles.count, "Frugle")}", business %></h4>
+				<h4 style="width:200px;"><%= link_to "#{business.name} - #{pluralize(business.frugles.count, "Frugle")}", business %></h4>
 				<p>
 					<%= business.address %><br />
 					<% if business.address2? %>
@@ -42,4 +42,5 @@
 		<%= render :partial => 'neighborhoods/small_frugle', :collection => @frugles, :as => :frugle %>
 </ul>
 <div class="clr"></div>
+<%= render :partial => 'neighborhoods/pagination' %>
 <% end %>

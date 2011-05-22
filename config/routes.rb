@@ -1,5 +1,5 @@
 OmniauthDeviseExample::Application.routes.draw do
-  
+
   get "saves/new"
   get "saves/destroy"
   get "follows/create"
@@ -8,10 +8,11 @@ OmniauthDeviseExample::Application.routes.draw do
   get "category/destroy"
   
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations", :sessions => 'users/sessions', :passwords => "users/passwords" }
-
   resources :businesses do
     resources :frugles
   end
+  
+  match 'sitemap.xml' => 'sitemaps#sitemap'
 
   resources :categories do
     resources :subcategories
@@ -48,6 +49,7 @@ OmniauthDeviseExample::Application.routes.draw do
   match 'remove_user', :to => "home#delete_user"
   match 'remove_business', :to => "home#delete_business"
   match 'remove_frugle', :to => "home#delete_frugle"
+  match 'paginate', :to => "frugles#paginate"
 
   resources :twilio
   resources :subcategories

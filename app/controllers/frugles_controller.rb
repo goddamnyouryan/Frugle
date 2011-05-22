@@ -1,5 +1,5 @@
 class FruglesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :verified, :show, :verify, :toggle, :about, :terms, :contact, :send_message]
+  before_filter :authenticate_user!, :except => [:index, :verified, :show, :verify, :toggle, :about, :terms, :contact, :send_message, :paginate]
   after_filter :increase_prints, :only => :print
   after_filter :increase_views, :only => :show
   after_filter :decrease_quantity, :only => :print
@@ -8,10 +8,10 @@ class FruglesController < ApplicationController
     @businesses = Business.find :all,
                   :conditions => ["LOWER(name) LIKE ?","%#{params[:search].to_s.downcase}%"]
     @count = @businesses.count
-    @frugles = Frugle.find :all, 
-               :include => [:category, :subcategory], 
+    @frugles = Frugle.paginate :all, 
+               :include => [:category, :subcategory,], 
                :conditions => ["LOWER(categories.title) LIKE ? OR LOWER(subcategories.title) LIKE ? OR LOWER(details) LIKE ? OR LOWER(cost) LIKE ?",
-               "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%"]
+               "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%", "%#{params[:search].to_s.downcase}%"], :page => params[:page]
     if params[:search] == ""
       @frugles = Frugle.find :all, :joins => :business, :conditions => [ "businesses.neighborhood_id IS NOT NULL" ]
       @businesses = Business.all
@@ -139,6 +139,40 @@ class FruglesController < ApplicationController
     render :update do |page|
       page.visual_effect :toggle_blind, 'frugle_results'
       page.visual_effect :toggle_blind, 'frugles_show'
+    end
+  end
+  
+  def paginate
+    if user_signed_in?
+      @results = Frugle.paginate :all, :include => :business, :conditions => [ "frugles.subcategory_id IN (?) AND businesses.neighborhood_id = ?", current_user.subcategories, current_user.neighborhood_id], :page => params[:page]
+      @map = Variable.new("map")
+      @markers = Array.new
+      map_marker
+      icon_variables
+      for frugle in @results
+        @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>", :icon => icon_name(frugle))
+        @markers << @marker
+      end
+      respond_to do |format|
+      	format.html { redirect_to root_url }
+      	format.js
+      end
+    else
+      @session_id = request.session_options[:id]
+      @user = User.find_by_logged_out("#{@session_id}")
+      @results = Frugle.paginate :all, :include => :business, :conditions => [ "frugles.subcategory_id IN (?) AND businesses.neighborhood_id = ?", @user.subcategories, session[:neighborhood] ], :page => params[:page]
+      @map = Variable.new("map")
+      @markers = Array.new
+      map_marker
+      icon_variables
+      for frugle in @results
+        @marker = GMarker.new([frugle.business.latitude,frugle.business.longitude],:title => "#{frugle.business.name}", :info_window => "<a href=\"#{business_path(frugle.business)}\" style=\"font-weight:bold\">#{frugle.business.name}</a> <br /> #{frugle.business.address}<br />#{frugle.business.zip}<br />#{frugle.business.phone}<br /><a href=\"#{business_url(frugle.business)}\" style=\"font-weight:bold\">View Frugle</a>", :icon => icon_name(frugle))
+        @markers << @marker
+      end
+      respond_to do |format|
+      	format.html { redirect_to root_url }
+      	format.js
+      end
     end
   end
   

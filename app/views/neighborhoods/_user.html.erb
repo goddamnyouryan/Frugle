@@ -24,7 +24,7 @@
 			<div id="cycleElements">
 				<ul>
 				<% for follow in current_user.follows %>
-					<%= render :partial => 'frugle', :collection => follow.business.frugles, :as => :frugle %>
+					<%= render :partial => 'scrollable', :collection => follow.business.frugles.reverse, :as => :frugle %>
 				<% end %>
 				</ul>
 			</div>
@@ -40,8 +40,8 @@
 <script type="text/javascript">
 	jQuery(document).ready(function() {
 		jQuery("#plainDemo-2").multipleElementsCycle({
+			showCount: 3,
 			prev: '#cycleElementsLeft-2',
-			start: 0,	
 			next: '#cycleElementsRight-2'
 			});
 	});
@@ -52,7 +52,7 @@
 		<div class="cycleElementsContainer" id="plainDemo-2">
 			<div id="cycleElements">
 				<ul>
-					<%= render :partial => 'frugle', :collection => current_user.frugles, :as => :frugle %>
+					<%= render :partial => 'scrollable', :collection => current_user.frugles.reverse, :as => :frugle %>
 				</ul>
 			</div>
 		</div>

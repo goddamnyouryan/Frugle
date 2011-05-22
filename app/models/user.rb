@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :password, :password_confirmation, :first_name, :last_name, :sex, :birthday, :neighborhood_id, :on => :create
   
   def create_email_setting
-    unless self.role == "business"
+    if self.role == "user"
       EmailSetting.create(:user_id => self.id, :newsletter => 1, :businesses_following => "daily", :categories_following => "weekly", :recommendations => "weekly")
     end
   end

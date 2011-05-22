@@ -441,7 +441,13 @@ body#applicationbg {
 	
 	.cycle_nav { margin-top:40px; width:20px;}
 	
-	.cycleElementsContainer li { width: 220px; float: left; } 
+	.cycleElementsContainer li { width: 180px; float: left; } 
+	
+	.scrollable {
+		font-family:Georgia,"Times New Roman",Times,serif;
+		font-size:13px;
+		padding:0 0 7px;
+	}
 	
 	#begin {
 		background: url(../images/angeled.png) no-repeat;

@@ -51,7 +51,7 @@ class NeighborhoodsController < ApplicationController
       @session_id = request.session_options[:id]
       @user = User.find_by_logged_out("#{@session_id}")
       if @user == nil
-        @user = User.create(:email => "#{@session_id}@logged_out.com", :password => "logged_out", :password_confirmation => "logged_out", :first_name => "logged", :last_name => "out", :birthday => Time.now, :sex => "male")
+        @user = User.create(:email => "#{@session_id}@logged_out.com", :password => "logged_out", :password_confirmation => "logged_out", :first_name => "logged", :last_name => "out", :birthday => Time.now, :sex => "male", :role => "logged_out")
         @user.logged_out = "#{@session_id}"
         @user.save
       end
@@ -62,7 +62,7 @@ class NeighborhoodsController < ApplicationController
       @results = Frugle.paginate :all, :include => :business, :conditions => [ "frugles.subcategory_id IN (?) AND businesses.neighborhood_id = ?", @user_subcategories, session[:neighborhood]], :page => params[:page]
       @map = GMap.new("map_div")
       @map.control_init(:large_map => true,:map_type => true)
-      @map.center_zoom_init([34.0412085, -118.442596],15)
+      @map.center_zoom_init([@neighborhood.latitude, @neighborhood.longitude],13)
       map_marker
       icon_variables
       unless @results == nil

@@ -17,38 +17,38 @@ module ApplicationHelper
   end
   
   def category_icon(frugle)
-    if frugle.business.category_id == 1
-      link_to image_tag('icons/barsandclubs.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
+    if frugle.category_id == 1
+      link_to image_tag('icons/barsandclubs.png'), business_frugle_path(frugle.business, frugle, :iframe => "true"), :class => 'iframe'
     elsif frugle.category_id == 2
-      link_to image_tag('icons/bodyandbeauty.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
+      link_to image_tag('icons/bodyandbeauty.png'), business_frugle_path(frugle.business, frugle, :iframe => "true"), :class => 'iframe'
     elsif frugle.category_id == 3
-      link_to image_tag('icons/businessandprofessionalservic.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
+      link_to image_tag('icons/businessandprofessionalservic.png'), business_frugle_path(frugle.business, frugle, :iframe => "true"), :class => 'iframe'
     elsif frugle.category_id == 4
-      link_to image_tag('icons/car.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
+      link_to image_tag('icons/car.png'), business_frugle_path(frugle.business, frugle, :iframe => "true"), :class => 'iframe'
     elsif frugle.category_id == 5
-      link_to image_tag('icons/cleanersandfixers.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
+      link_to image_tag('icons/cleanersandfixers.png'), business_frugle_path(frugle.business, frugle, :iframe => "true"), :class => 'iframe'
     elsif frugle.category_id == 6
-      link_to image_tag('icons/clothing.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
+      link_to image_tag('icons/clothing.png'), business_frugle_path(frugle.business, frugle, :iframe => "true"), :class => 'iframe'
     elsif frugle.category_id == 7
-      link_to image_tag('icons/foodandcafes.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
+      link_to image_tag('icons/foodandcafes.png'), business_frugle_path(frugle.business, frugle, :iframe => "true"), :class => 'iframe'
     elsif frugle.category_id == 8
-      link_to image_tag('icons/health.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
+      link_to image_tag('icons/health.png'), business_frugle_path(frugle.business, frugle, :iframe => "true"), :class => 'iframe'
     elsif frugle.category_id == 9
-      link_to image_tag('icons/homeandoffice.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
+      link_to image_tag('icons/homeandoffice.png'), business_frugle_path(frugle.business, frugle, :iframe => "true"), :class => 'iframe'
     elsif frugle.category_id == 10
-      link_to image_tag('icons/partiesandfunevents.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
+      link_to image_tag('icons/partiesandfunevents.png'), business_frugle_path(frugle.business, frugle, :iframe => "true"), :class => 'iframe'
     elsif frugle.category_id == 11
-      link_to image_tag('icons/pets.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
+      link_to image_tag('icons/pets.png'), business_frugle_path(frugle.business, frugle, :iframe => "true"), :class => 'iframe'
     elsif frugle.category_id == 12
-      link_to image_tag('icons/placestogo.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
+      link_to image_tag('icons/placestogo.png'), business_frugle_path(frugle.business, frugle, :iframe => "true"), :class => 'iframe'
     elsif frugle.category_id == 13
-      link_to image_tag('icons/restaurants.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
+      link_to image_tag('icons/restaurants.png'), business_frugle_path(frugle.business, frugle, :iframe => "true"), :class => 'iframe'
     elsif frugle.category_id == 14
-      link_to image_tag('icons/shopping.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
+      link_to image_tag('icons/shopping.png'), business_frugle_path(frugle.business, frugle, :iframe => "true"), :class => 'iframe'
     elsif frugle.category_id == 15
-      link_to image_tag('icons/travel.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
+      link_to image_tag('icons/travel.png'), business_frugle_path(frugle.business, frugle, :iframe => "true"), :class => 'iframe'
     else
-      link_to image_tag('icons/barsandclubs.png'), business_frugle_path(frugle.business, frugle), :class => 'iframe'
+      link_to image_tag('icons/barsandclubs.png'), business_frugle_path(frugle.business, frugle, :iframe => "true"), :class => 'iframe'
     end
   end
   
