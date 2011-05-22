@@ -13,6 +13,6 @@
 
 s = Subcategory.find :all, :conditions => ["title LIKE (?)", "%&%"]
 s.each do |r| 
-  r.title.gsub!(/&/,"and") 
+  r.title = r.title.gsub(/&/,"and") 
   r.save 
 end
