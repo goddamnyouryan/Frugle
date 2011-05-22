@@ -1,4 +1,4 @@
-page.replace_html "subcategory_#{params[:subcategory_id]}", "#{link_to "#{@subcategory.title}", out_new_subcategorization_path(:subcategory_id => @subcategory.id), :remote => true, :style => "background:#FFBA5F;"}"
+page.replace_html "subcategory_#{params[:subcategory_id]}", "#{link_to "#{@subcategory.title}", out_new_subcategorization_path(:subcategory_id => @subcategory.id), :remote => true, :style => "background:#F3F3F3;"}"
 page.replace_html "frugles", :partial => 'neighborhoods/small_frugle', :collection => @results, :as => :frugle
 page.insert_html :bottom, 'frugles', :partial => 'neighborhoods/pagination'
 page << @map.clear_overlays
