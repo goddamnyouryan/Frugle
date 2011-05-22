@@ -94,4 +94,40 @@ module ApplicationHelper
     end
   end
   
+  def category_icon_nolink(frugle)
+    if frugle.category_id == 1
+      image_tag('icons/barsandclubs.png')
+    elsif frugle.category_id == 2
+      image_tag('icons/bodyandbeauty.png')
+    elsif frugle.category_id == 3
+      image_tag('icons/businessandprofessionalservic.png')
+    elsif frugle.category_id == 4
+      image_tag('icons/car.png')
+    elsif frugle.category_id == 5
+      image_tag('icons/cleanersandfixers.png')
+    elsif frugle.category_id == 6
+      image_tag('icons/clothing.png')
+    elsif frugle.category_id == 7
+      image_tag('icons/foodandcafes.png')
+    elsif frugle.category_id == 8
+      image_tag('icons/health.png')
+    elsif frugle.category_id == 9
+      image_tag('icons/homeandoffice.png')
+    elsif frugle.category_id == 10
+      image_tag('icons/partiesandfunevents.png')
+    elsif frugle.category_id == 11
+      image_tag('icons/pets.png')
+    elsif frugle.category_id == 12
+      image_tag('icons/placestogo.png')
+    elsif frugle.category_id == 13
+      image_tag('icons/restaurants.png')
+    elsif frugle.category_id == 14
+      image_tag('icons/shopping.png')
+    elsif frugle.category_id == 15
+      image_tag('icons/travel.png')
+    else
+      image_tag('icons/barsandclubs.png')
+    end
+  end
+  
 end

@@ -1,6 +1,6 @@
 <div style="text-align:center;">
 
-<p><span style="position:relative;top:10px;"><%= category_icon(@frugle) %></span><span style="margin-left:5px;"><%= @frugle.business.name %></span>
+<p><span style="position:relative;top:10px;"><%= category_icon_nolink(@frugle) %></span><span style="margin-left:5px;"><%= @frugle.business.name %></span>
 	<div id="follow" class="hide_button" style="margin-top:15px;">
 		<%= render :partial => 'follow', :business => @business %>
 	</div>	
@@ -43,14 +43,21 @@
   <strong>Details:</strong>
   <%= @frugle.details %>
 </p>
+<% unless @frugle.mobile.nil? %>
 <p>
-  <strong>Mobile:</strong>
-  <%= @frugle.mobile %>
+	We will accept this Frugle printed out or on a phone.
 </p>
+<% else %>
+<p>
+	We will only accept this Frugle when it is printed out.
+</p>
+<% end %>
+<% unless @frugle.quantity.nil? %>
 <p>
   <strong>Quantity:</strong>
   <%= @frugle.quantity %>
 </p>
+<% end %>
 <p>
   <strong>Expires:</strong>
 	<%= l @frugle.end.to_date, :format => :default %>
