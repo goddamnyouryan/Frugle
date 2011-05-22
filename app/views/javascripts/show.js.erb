@@ -9,7 +9,7 @@ function categorySelected() {
   options.length = 1;
   subcategories.each(function(subcategory) {
     if (subcategory[0] == category_id) {
-      options[options.length] = new Option(subcategory[1], subcategory[2]);
+      options[options.length] = new Option(subcategory[unescape(1)], subcategory[2]);
     }
   });
   if (options.length == 1) {

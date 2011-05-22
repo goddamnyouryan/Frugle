@@ -1,6 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
 
+img {border:none;}
+
 body{
 	background:#b7e2fc;
 	font-family: "Trebuchet MS", sans-serif;

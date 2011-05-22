@@ -13,7 +13,7 @@
 		...
 		<% @page = @results.current_page - 5 %>
 		<% while @page <= @results.current_page + 5 %>
-			<%= link_to "#{@page}", paginate_path(:page => @page) %>
+			<%= link_to "#{@page}", paginate_path(:page => @page), :remote => true %>
 			<% @page = @page + 1 %>
 		<% end %>
 		...

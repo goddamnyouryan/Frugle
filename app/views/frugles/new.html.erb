@@ -91,7 +91,7 @@ document.observe("dom:loaded", function() {
 	<div>
 		<h3>Select a Category and Subcategory</h3>
 		<%= f.collection_select :category_id, Category.find(:all), :id, :title, :prompt => "Select a Category" %><br />
-		<%= f.collection_select :subcategory_id, Subcategory.find(:all), :id, :title, :prompt => "Select a Subcategory" %>
+		<%= h f.collection_select :subcategory_id, Subcategory.find(:all), :id, :title, :prompt => "Select a Subcategory" %>
 	</div>
 </div>
 <div class="clr"></div>

@@ -106,7 +106,6 @@
 
 	<div id="body_container">
 		<div id="body_content">
-			<%= image_tag "corner.png", :class => "corner" %>
       <% flash.each do |name, msg| %>
         <%= content_tag :div, raw(msg), :id => "flash_#{name}" %>
       <% end %>

@@ -3,7 +3,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: omniauth_dev
+  database: frugle_dev_2
   pool: 5
   username: ryan
   password: postgres
@@ -14,7 +14,7 @@ development:
 test:
     adapter: postgresql
     encoding: unicode
-    database: omniauth_test
+    database: frugle_test_2
     pool: 5
     username: ryan
     password: postgres
