@@ -810,9 +810,9 @@ ul#featured li {
 	
 .follwing_col2{
 	float:left;
-	margin:5px 10px 5px 0px	;
-	width:175px;
-	list-style:none;
+	list-style:none outside none;
+	margin:5px 6px;
+	width:225px;
 }
 .previuos_btn{
 	float:left;
@@ -1128,7 +1128,7 @@ li.business_list {
 	list-style-type:none; 
 	margin: 25px 0;
 	float:left;
-	width:350px;
+	width:375px;
 }
 
 h3.about {

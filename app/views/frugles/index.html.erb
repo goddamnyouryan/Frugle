@@ -17,7 +17,7 @@
 		<% @businesses.each do |business| %>
 			<% unless business.frugles.count == 0 %>
 			<li class="business_list">
-				<h4 style="width:200px;"><%= link_to "#{business.name} - #{pluralize(business.frugles.count, "Frugle")}", business %></h4>
+				<h4 style="width:350px;"><%= link_to "#{truncate(business.name, :length => 30)} - #{pluralize(business.frugles.count, "Frugle")}", business %></h4>
 				<p>
 					<%= business.address %><br />
 					<% if business.address2? %>
