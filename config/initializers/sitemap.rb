@@ -14,7 +14,9 @@ Sitemap::Map.draw do
   new_page!
   
   Business.all.each do |business|
-    url business_url(business), :last_mod => business.updated_at, :change_freq => 'monthly', :priority => 0.8
+    unless business.name.nil?
+      url business_url(business), :last_mod => business.updated_at, :change_freq => 'monthly', :priority => 0.8
+    end
   end
                 
   # new_page!
