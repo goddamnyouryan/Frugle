@@ -1,6 +1,6 @@
 <% title "Print Frugle" %>
 
-<h1 class="logo"><%= link_to "Frugle", root_path %></h1>
+<h1 style="float:left"><%= image_tag "title_print.png"%></h1>
 
 <div style="float: right; text-align: right; line-height: 5px;">
 	<h2>000<%= @frugle.prints %></h2>
@@ -10,8 +10,7 @@
 
 <div class="clr"></div>
 
-
-<h2 style="font-size:32px;"><%= category_icon(@frugle) %><%= @frugle.cost %></h2>
+<h2 style="font-size:32px;clear:both;"><%= category_icon(@frugle) %><%= @frugle.cost %></h2>
 
 <h3 style="margin: 0;"><%= @frugle.business.name %></h3>
 
@@ -28,10 +27,6 @@
 	<strong>Expires:
 	<%= l @frugle.end.to_date, :format => :default %></strong>
 </p>
-
-<%= raw(@map.to_html) %>
-
-<%= raw(@map.div(:width => 600, :height => 400)) %>
 
 <p>
 	<% if @frugle.other_offer %>
@@ -53,3 +48,6 @@
 <% if @frugle.mobile %>
 	<p>You may present this frugle on your phone to redeem it.</p>
 <% end %>
+
+<%= raw(@map.to_html) %>
+<%= raw(@map.div(:width => 600, :height => 400)) %>

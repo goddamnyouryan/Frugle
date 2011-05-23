@@ -1,4 +1,5 @@
 OmniauthDeviseExample::Application.routes.draw do
+  match 'sitemap.xml' => 'sitemaps#sitemap'
 
   get "saves/new"
   get "saves/destroy"
@@ -11,8 +12,6 @@ OmniauthDeviseExample::Application.routes.draw do
   resources :businesses do
     resources :frugles
   end
-  
-  match 'sitemap.xml' => 'sitemaps#sitemap'
 
   resources :categories do
     resources :subcategories
