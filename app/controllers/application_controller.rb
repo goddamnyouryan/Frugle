@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
+  before_filter :check_uri
   protect_from_forgery
   layout "application"
+  
+  def check_uri
+    redirect_to request.protocol + "www." + request.host_with_port + request.request_uri if !/^www/.match(request.host) if Rails.env == 'production'
+  end
   
   def map_marker
     @map.icon_global_init( GIcon.new(:image => "images/icons/barsandclubs.png",:icon_size => GSize.new(30,30),:icon_anchor => GPoint.new(9,32),:info_window_anchor => GPoint.new(9,2), :info_shadow_anchor => GPoint.new(18,25)), "auto")
