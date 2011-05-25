@@ -17,7 +17,7 @@ class Business < ActiveRecord::Base
   validates_presence_of :phone, :on => :create                   
                       
   geocoded_by :full_address
-  after_validation :geocode
+  #after_validation :geocode
   #after_update :send_welcome_email
   
   def send_welcome_email

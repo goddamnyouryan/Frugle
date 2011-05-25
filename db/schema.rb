@@ -23,8 +23,6 @@ ActiveRecord::Schema.define(:version => 20110522205128) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "neighborhood_id"
-    t.integer  "category_id"
-    t.integer  "subcategory_id"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "address2"
@@ -32,13 +30,10 @@ ActiveRecord::Schema.define(:version => 20110522205128) do
     t.string   "contact_name"
     t.string   "contact_number"
     t.string   "role"
-    t.string   "subcategory_name"
   end
 
-  add_index "businesses", ["category_id"], :name => "index_businesses_on_category_id"
   add_index "businesses", ["id"], :name => "index_businesses_on_id"
   add_index "businesses", ["neighborhood_id"], :name => "index_businesses_on_neighborhood_id"
-  add_index "businesses", ["subcategory_id"], :name => "index_businesses_on_subcategory_id"
   add_index "businesses", ["user_id"], :name => "index_businesses_on_user_id"
 
   create_table "categories", :force => true do |t|
@@ -125,7 +120,7 @@ ActiveRecord::Schema.define(:version => 20110522205128) do
     t.string   "background_content_type"
     t.integer  "background_file_size"
     t.datetime "background_updated_at"
-    t.integer  "zoom"
+    t.integer  "zoom",                    :default => 13, :null => false
   end
 
   add_index "neighborhoods", ["id"], :name => "index_neighborhoods_on_id"

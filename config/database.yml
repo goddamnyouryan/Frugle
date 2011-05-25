@@ -3,7 +3,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: frugle_dev_2
+  database: frugle_seed_dev_3
   pool: 5
   username: ryan
   password: postgres
@@ -14,7 +14,7 @@ development:
 test:
     adapter: postgresql
     encoding: unicode
-    database: frugle_test_2
+    database: frugle_seed_test_3
     pool: 5
     username: ryan
     password: postgres

@@ -24,10 +24,8 @@ class AddIndexes < ActiveRecord::Migration
       add_index :frugles, :subcategory_id
       add_index :frugles, :business_id
       add_index :frugles, :category_id
-      add_index :businesses, :subcategory_id
       add_index :businesses, :neighborhood_id
       add_index :businesses, :user_id
-      add_index :businesses, :category_id
       add_index :email_settings, :user_id
       add_index :subcategories, :category_id
       add_index :users, :neighborhood_id
@@ -63,10 +61,8 @@ class AddIndexes < ActiveRecord::Migration
       remove_index :frugles, :subcategory_id
       remove_index :frugles, :business_id
       remove_index :frugles, :category_id
-      remove_index :businesses, :subcategory_id
       remove_index :businesses, :neighborhood_id
       remove_index :businesses, :user_id
-      remove_index :businesses, :category_id
       remove_index :email_settings, :user_id
       remove_index :subcategories, :category_id
       remove_index :users, :neighborhood_id

@@ -79,17 +79,6 @@ class FruglesController < ApplicationController
     @frugle.category_id = params[:frugle][:category_id]
     @frugle.subcategory_id = params[:frugle][:subcategory_id]
     @frugle.discount = params[:frugle][:discount]
-    if @frugle.discount == "percent"
-      @frugle.cost = [params[:frugle][:percentage], params[:frugle][:product]].join(" % Off ")
-    elsif @frugle.discount == "dollar"
-      @frugle.cost = ["$#{params[:frugle][:percentage]}", params[:frugle][:product]].join(" Off ")
-    elsif @frugle.discount == "flat"
-      @frugle.cost = "$#{params[:frugle][:percentage]} For #{params[:frugle][:product]}"
-    elsif @frugle.discount == "bonus"
-      @frugle.cost = "Free #{params[:frugle][:percentage]} With Purchase Of #{params[:frugle][:product]}"
-    elsif @frugle.discount == "bogo"
-      @frugle.cost = "Buy One #{params[:frugle][:percentage]} Get One #{params[:frugle][:product]} Free"
-    end
     @frugle.tag_list = params[:frugle][:tag_list]
     if @frugle.save
       redirect_to root_path, :notice => "Successfully created frugle."
