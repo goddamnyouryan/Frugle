@@ -238,11 +238,9 @@ body#applicationbg {
 }
 
 #angled {
-	-webkit-transform: rotate(-12deg); 
-	-moz-transform: rotate(-12deg);
 	position: relative; 
 	left:50px;
-	top:8px;
+	top:17px;
 }
 
 #control_how_often {
