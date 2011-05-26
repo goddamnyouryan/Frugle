@@ -1,0 +1,10 @@
+<li class="product_box3">
+	<div class="product_col_left"><%= category_icon(frugle) %></div>
+  <div class="product_col_right">
+  	<div class="product_caption"><%= link_to frugle.business.name, business_path(frugle.business) %></div>
+  </div>
+<div class="clr"></div>
+	<div class="product_offer">
+		<%= link_to frugle.cost, business_frugle_path(frugle.business, frugle) %>
+		</div>
+</li>

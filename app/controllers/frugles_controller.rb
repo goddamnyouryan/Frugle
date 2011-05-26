@@ -104,7 +104,7 @@ class FruglesController < ApplicationController
         page.replace_html "status", "This frugle doesn’t exist.  Either the code you entered is wrong, or the merchant canceled this frugle."
       else
         page.replace_html "status", "This frugle is #{@frugle.status}."
-        page.replace_html "details", :partial => "neighborhoods/frugle", :locals => { :frugle => @frugle }
+        page.replace_html "details", :partial => "verify", :locals => { :frugle => @frugle }
       end
     end
   end
