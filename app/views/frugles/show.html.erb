@@ -1,7 +1,9 @@
 <% title "#{@frugle.business.name} - #{@frugle.cost}"%>
 <div style="text-align:center;">
 
-<p><span style="position:relative;top:10px;"><%= category_icon_nolink(@frugle) %></span><span style="margin-left:5px;"><%= @frugle.business.name %></span>
+<p>
+	<span style="position:relative;top:10px;"><%= category_icon_nolink(@frugle) %></span>
+	<span style="margin-left:5px;"><%= @frugle.business.name %></span>
 	<div id="follow" class="hide_button" style="margin-top:15px;">
 		<%= render :partial => 'follow', :business => @business %>
 	</div>	
@@ -15,14 +17,19 @@
 
 <div style="font-family: 'Trebuchet MS', sans-serif;">
 <% if user_signed_in? %>
-	<p style="margin:0 0 25px 0;"><%= link_to "Print This Frugle", print_frugle_path(@frugle), :class => "button" %>
+	<p style="margin:0 0 25px 0;">
+		<%= link_to "Print This Frugle", print_frugle_path(@frugle), :class => "button" %>
 		<span class="save_<%= @frugle.id %>" style="margin: 15px 0;">
-		<%= render :partial => 'save', :frugle => @frugle %>
-		</span></p>
+			<%= render :partial => 'save', :frugle => @frugle %>
+		</span>
+	</p>
 <% else %>
-	<p style="margin:0 0 25px 0;"><%= link_to "Print This Frugle", new_user_session_path, :class => "button", :target => "_parent" %><span class="save_<%= @frugle.id %>" style="margin: 15px 0;">
-	<%= render :partial => 'save', :frugle => @frugle %>
-	</span></p>
+	<p style="margin:0 0 25px 0;">
+		<%= link_to "Print This Frugle", new_user_session_path, :class => "button", :target => "_parent" %>
+		<span class="save_<%= @frugle.id %>" style="margin: 15px 0;">
+			<%= render :partial => 'save', :frugle => @frugle %>
+		</span>
+	</p>
 <% end %>
 
 <p>

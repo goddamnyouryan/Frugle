@@ -2,6 +2,9 @@
 <html>
 <head>
   <title>Frugle | <%= content_for?(:title) ? yield(:title) : "" %></title>
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
   <%= stylesheet_link_tag "style" %>
 	<%= stylesheet_link_tag "css3buttons" %>
   <%= javascript_include_tag :defaults %>
@@ -11,6 +14,17 @@
 		jQuery.noConflict();
 	</script>
   <%= yield(:head) %>
+<%= javascript_include_tag "jquery.fancybox-1.3.4.js" %>
+<script>
+jQuery(document).ready(function() {
+	jQuery(".iframe").fancybox({
+		height: 600,
+		width: 700,
+		hideOnContentClick: true,
+		autoScale: false
+	});
+});
+</script>
 <link rel="shortcut icon" href="/favicon.ico" type="image/ico" />
 </head>
 <body id="splashbg">
@@ -49,7 +63,7 @@
 		
 		<div class="clr"></div>
 		
-		<footer style="width:600px;">
+		<div id="footer" style="width:600px;">
 			<ul>
 				<li><%= link_to "© #{Time.now.year} Frugle.me", root_path %></li>
 				<li><%= link_to "About Us", about_path %></li>
@@ -60,7 +74,7 @@
 				<li><%= link_to "Terms", terms_path %></li>
 				<li><%= link_to "Contact", contact_path %></li>
 			</ul>
-		</footer>
+		</div>
 		
 	
 	<script type="text/javascript">

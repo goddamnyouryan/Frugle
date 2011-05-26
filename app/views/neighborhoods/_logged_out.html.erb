@@ -43,7 +43,7 @@
 
 
 <div class="tag_box" style="display:none;" id="toggle_subcategories">
-	<div class="select_tag"><span> <%= link_to "All", out_select_all_subcategories_path, :remote => true %><span> | <span class="active"><%= link_to "None", out_select_none_subcategories_path, :remote => true %></span></div>
+	<div class="select_tag"><span> <%= link_to "All", out_select_all_subcategories_path, :remote => true %></span> | <span><%= link_to "None", out_select_none_subcategories_path, :remote => true %></span></div>
   <ul class="tag_row1" id="subcategories">    
 		<%= render 'subcategories', :user_categories => @user_categories %>
 	</ul>

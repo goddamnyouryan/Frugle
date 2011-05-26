@@ -78,6 +78,8 @@ class BusinessesController < ApplicationController
     end
     else
       @business = Business.find(params[:id])
+      @user = Business.user
+      FrugleMailer.new_neighborhood_attempt(@business, @user)
       @business.destroy
       redirect_to root_url, :notice => "We're sorry, we are currently not offering our services in your neighborhood."
     end

@@ -803,7 +803,7 @@ ul#featured li {
 	font-size:12px;}
 .follwing_col{
 	float:left;
-	margin:5px 10px 5px 0px	;
+	margin:5px 24px;
 	width:175px;
 	list-style:none;
 }
@@ -811,8 +811,8 @@ ul#featured li {
 .follwing_col2{
 	float:left;
 	list-style:none outside none;
-	margin:5px 6px;
-	width:225px;
+	margin:5px 24px;
+	width:175px;
 }
 .previuos_btn{
 	float:left;
@@ -1053,20 +1053,20 @@ p.about {
 	width:600px;
 }
 
-footer { 
+div#footer { 
 	width: 800px; 
 	margin: 10px auto;
 	font-family: "Trebuchet MS", sans-serif;
 	font-size: 12px;
 }
 
-footer a { color: #fff;}
+div#footer a { color: #fff;}
 
-footer ul {
+div#footer ul {
 		text-align: right;
 }
 
-footer ul li {
+div#footer ul li {
 	display:inline;
 	margin-left: 10px;
 }

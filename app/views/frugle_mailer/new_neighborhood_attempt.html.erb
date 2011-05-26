@@ -7,11 +7,17 @@
   <body>
     <h1><a href="http://www.frugle.me/"><img src="http://frugle.heroku.com/images/title_splash.png" alt="Frugle"></a></h1>
     <p>
-      Dear <%= @user.first_name %>,
+      Hello,
     </p>
     <p>
-      Thank you for signing up for Frugle.me! You can now take advantage of frugles from all the local stores in your neighborhood.  It’s 100% free for you to redeem frugles at local businesses, and it always will be. 
+      Someone has attempted to create a business listing in a currently non-supported neighborhood.
     </p>
+
+
+		<p><strong>User:</strong> <%= @user.email %></p>
+		<p><strong>Business Name:</strong> <%= @business.name %></p>
+		<p><strong>Zip Code:</strong> <br /><%= @business.zip %></p>
+
 	
 		<p><%= link_to "Visit the Site", root_url %></p>
 		

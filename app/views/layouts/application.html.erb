@@ -2,6 +2,9 @@
 <html>
 <head>
   <title>Frugle | <%= content_for?(:title) ? yield(:title) : "" %></title>
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 	<% if (params[:controller] == "businesses" && params[:action] == "show") || (params[:controller] == "neighborhoods" && params[:action] == "show") || (params[:controller] == "home" && params[:action] == "index") || (params[:controller] == "frugles" && params[:action] == "print")  %>
 			<%= raw(GMap.header) %>
 			<%= raw(@map.to_html) %>
@@ -116,10 +119,10 @@
     </div>
 <div class="clr"></div>
 
-</div>
+
 <div class="clr"></div>
 
-<footer>
+<div id="footer">
 	<ul>
 		<li><%= link_to "© #{Time.now.year} Frugle.me", root_path %></li>
 		<li><%= link_to "About Us", about_path %></li>
@@ -130,7 +133,7 @@
 		<li><%= link_to "Terms", terms_path %></li>
 		<li><%= link_to "Contact", contact_path %></li>
 	</ul>
-</footer>
+</div>
 	
 	<script type="text/javascript">
 

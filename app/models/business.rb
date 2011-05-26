@@ -18,7 +18,7 @@ class Business < ActiveRecord::Base
                       
   geocoded_by :full_address
   after_validation :geocode
-  after_update :send_welcome_email
+  #after_update :send_welcome_email
   
   def send_welcome_email
     FrugleMailer.new_merchant_registration(self).deliver

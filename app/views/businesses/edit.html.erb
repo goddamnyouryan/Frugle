@@ -40,21 +40,6 @@
 	  <div class="fl"><%= f.text_area :info, :class => "reg_bar", :style => "height: 80px;width:205px;" %></div>
 	  	<div class="clr"></div>
 	</div>
-<script type="text/javascript">
-$('business_category_id').observe("change",function(){
-	categorySelected();
-});
-</script>
-<div class="reg_row">
-	<div class="new_business_col_left">Category</div>
-  <div class="fl"><%= f.collection_select :category_id, Category.find(:all), :id, :title, :prompt => "Select a Category" %></div>
-  	<div class="clr"></div>
-</div>
-
-<div class="reg_row">
-	<div class="new_business_col_left">Subcategory</div>
-  <div class="fl" id="subcategory_field"><%= f.collection_select :subcategory_id, Subcategory.find(:all), :id, :title, :prompt => "Select a Subcategory" %></div>
-  	<div class="clr"></div>
 </div>
 <p><%= f.submit "Edit Business Info", :class => "button", :style => "margin-left:160px;" %></p>
 </div>
