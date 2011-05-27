@@ -358,7 +358,8 @@ body#applicationbg {
 .tag_row1 .fl{
 	list-style-type:none;
 	padding:15px 6px 0px 5px;
-	font-size:13px;}	
+	font-size:13px;
+	white-space:nowrap;}	
 
 .tag_row1 .fl a{
 	text-decoration:none;
@@ -1205,4 +1206,9 @@ h4.about {
 	left:-10px;
 	position:relative;
 	top:35px;
+}
+
+.business_skyline_bottom {
+	z-index: 1; 
+	margin: -19px 0pt -25px -17px;
 }

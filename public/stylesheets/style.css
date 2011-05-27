@@ -1206,3 +1206,8 @@ h4.about {
 	position:relative;
 	top:35px;
 }
+.business_skyline_bottom {
+	position: absolute; 
+	z-index: 1; 
+	margin: -19px 0pt -28px -17px;
+}
