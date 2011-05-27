@@ -96,3 +96,10 @@
 							height:30px;
 							width:300px;
 							}
+							
+							.frugle-bottom-grass {
+								position: absolute; 
+								margin: 0 0 0 -40px; 
+								z-index: -9;
+								bottom:0;
+							}
