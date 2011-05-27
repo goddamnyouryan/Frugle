@@ -27,7 +27,7 @@
 			background:#F3F3F3;
 			text-align:center;
 			padding: 15px 0 0 0;
-			overflow-y:hidden;
+			overflow-x:hidden;
 			}
 		*{
 			margin:0px;
@@ -102,5 +102,5 @@
 								position: relative; 
 								z-index: -9;
 								bottom:0;
-								margin: 40px 0 0 0;
+								margin: 55px 0 0 0;
 							}
