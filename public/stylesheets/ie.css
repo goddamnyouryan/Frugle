@@ -265,13 +265,13 @@ body#applicationbg {
 	width:588px;
 	float:left;}
 .search_bar{
-		width:550px;
-		height:46px;
-		margin-left:18px;
-		margin-top:10px;
+		width:552px;
+		height:33px;
+		margin-left:-7px;
+		margin-top:9px;
 		font-size:20px;
 		border:none;
-		padding:0px 5px;}
+		padding:10px 5px 0 5px;}
 .black_bar{
 	margin-left:-28px;
 	background:url(../images/black_bar.png) no-repeat;
@@ -826,6 +826,8 @@ ul#featured li {
 	text-indent:-9999px;
 	width:127px;
 	cursor:pointer;
+	display: block;
+	margin: -2px 0 0 -1px;
 }
 
 /************ Pop up***********/
