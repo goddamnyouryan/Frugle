@@ -6,7 +6,7 @@ class NeighborhoodsController < ApplicationController
   def initial
     session[:neighborhood] = params[:neighborhood_id]
     respond_to do |format|
-    	format.js
+    	format.js { render :content_type => 'text/javascript' }
     end
   end
 
