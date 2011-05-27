@@ -5,12 +5,10 @@ class NeighborhoodsController < ApplicationController
   
   def initial
     session[:neighborhood] = params[:neighborhood_id]
-    render :update do |page|
-	    page.visual_effect :fade, "box", :duration=>0.25
-	    page.delay(0.5) do
-	      page.visual_effect :appear, "sign_up", :duration=>0.25
-      end
-	  end
+    respond_to do |format|
+    	format.html { redirect_to root_url }
+    	format.js
+    end
   end
 
   def show
