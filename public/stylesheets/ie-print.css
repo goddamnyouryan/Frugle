@@ -1,0 +1,32 @@
+#container {
+	text-align:center;
+	width:6.25in;
+	margin: 0 auto;
+	font-family:Georgia;
+}
+
+.logo{
+	background:url("../images/title_splash.png") no-repeat;
+	float:left;
+	height:55px;
+	text-indent:-99999px;
+	width:200px;}
+}
+
+.fr { 
+	float: right; 
+	text-align:right;
+	width: 2in;
+}
+
+.fr h2 { line-height: 3px;}
+
+.fr p { font-size: 12px;}
+
+.clr { clear: both; }
+
+h2 img {
+	margin:0 5px 0 0;
+	position:relative;
+	top:6px;
+}

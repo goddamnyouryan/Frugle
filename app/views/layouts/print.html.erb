@@ -5,14 +5,16 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	<!--[if lt IE 8]>
-	        <%= stylesheet_link_tag 'ie' %>
+	        <%= stylesheet_link_tag 'ie-print' %>
 	<![endif]-->
   <title>Frugle | <%= content_for?(:title) ? yield(:title) : "" %></title>
 	<% if params[:controller] == "frugles" && params[:action] == "print" %>
 			<%= raw(GMap.header) %>
 			<%= raw(@map.to_html) %>
 	<% end %>
-  <%= stylesheet_link_tag "print" %>
+	<!--[if !IE]><!-->
+	        <%= stylesheet_link_tag "print" %>
+	 <!--<![endif]-->
   <%= javascript_include_tag :defaults %>
 	<%= csrf_meta_tag %>
   <%= yield(:head) %>
