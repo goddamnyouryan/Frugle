@@ -1211,3 +1211,9 @@ h4.about {
 	z-index: 1; 
 	margin: -19px 0pt -28px -17px;
 }
+
+.new_user_bottom {
+	margin:0 0 -4px;
+}
+
+.login_bottom { margin: 0 0 -14px -10px; }

@@ -5,7 +5,7 @@
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	<!--[if lt IE 8]>
+	<!--[if lte IE 7]>
 	        <%= stylesheet_link_tag 'ie' %>
 	<![endif]-->
 	<% if (params[:controller] == "businesses" && params[:action] == "show") || (params[:controller] == "neighborhoods" && params[:action] == "show") || (params[:controller] == "home" && params[:action] == "index") || (params[:controller] == "frugles" && params[:action] == "print")  %>

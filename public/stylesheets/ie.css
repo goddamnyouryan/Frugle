@@ -1215,3 +1215,5 @@ h4.about {
 .new_user_bottom {
 	margin: 0 0 0 -10px;
 }
+span#percentage { padding-right: 5px; }
+.login_bottom { margin: 0 0 0 -10px; }

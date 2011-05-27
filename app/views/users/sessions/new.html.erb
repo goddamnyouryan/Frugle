@@ -8,19 +8,16 @@
 							    jQuery("#user_new").validate({
 
 							    rules: {
-								
 							    	"user[email]": {
 							    		required: true,
-							    		email: true,
+							    		email: true
 							    	},
-							    	"user[password]": "required",
-
+							    	"user[password]": "required"
 							    },
 								messages: {
 
 							    	"user[email]": "***",
-										"user[password]": "***",
-
+										"user[password]": "***"
 							    },
 
 									errorPlacement: function(error, element) {
@@ -63,7 +60,7 @@
 			<% end -%>
 		</div>
 
-<div style="margin: 0 0 -14px -10px;"><%= image_tag "bottomgrass.png" %></div>
+<div class="login_bottom"><%= image_tag "bottomgrass.png" %></div>
 </div>
 
 </div>
