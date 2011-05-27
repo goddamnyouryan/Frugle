@@ -6,7 +6,6 @@ class NeighborhoodsController < ApplicationController
   def initial
     session[:neighborhood] = params[:neighborhood_id]
     respond_to do |format|
-    	format.html { redirect_to root_url }
     	format.js
     end
   end
