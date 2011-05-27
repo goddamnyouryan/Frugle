@@ -828,6 +828,7 @@ ul#featured li {
 	cursor:pointer;
 	display: block;
 	margin: 0 0 0 -25px;
+	padding-left: 9999px;
 }
 
 /************ Pop up***********/
