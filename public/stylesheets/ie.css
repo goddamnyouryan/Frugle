@@ -823,11 +823,11 @@ ul#featured li {
 	background: url(../images/search_btn.png);
 	border:medium none;
 	height:66px;
-	text-indent:-9999px;
+	line-height: 0;
 	width:127px;
 	cursor:pointer;
 	display: block;
-	margin: -2px 0 0 -1px;
+	margin: 0 0 0 -25px;
 }
 
 /************ Pop up***********/
