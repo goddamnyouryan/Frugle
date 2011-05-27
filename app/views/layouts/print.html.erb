@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<!--[if lt IE 8]>
+	        <%= stylesheet_link_tag 'ie' %>
+	<![endif]-->
   <title>Frugle | <%= content_for?(:title) ? yield(:title) : "" %></title>
 	<% if params[:controller] == "frugles" && params[:action] == "print" %>
 			<%= raw(GMap.header) %>

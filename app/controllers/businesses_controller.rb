@@ -59,8 +59,6 @@ class BusinessesController < ApplicationController
           @business.save!
           if @business.update_attributes(params[:business])
             @business.neighborhood_id = @zipcode.neighborhood.id
-            @business.category_id = params[:business][:category_id]
-            @business.subcategory_id = params[:business][:subcategory_id]
             @business.address2 = params[:business][:address2]
             @business.hear_about = params[:business][:hear_about]
             @business.contact_name = params[:business][:contact_name]
@@ -78,10 +76,10 @@ class BusinessesController < ApplicationController
     end
     else
       @business = Business.find(params[:id])
-      @user = Business.user
-      FrugleMailer.new_neighborhood_attempt(@business, @user)
+      FrugleMailer.new_neighborhood_attempt(params[:business][:name], params[:business][:zip], params[:business][:email]).deliver
       @business.destroy
-      redirect_to root_url, :notice => "We're sorry, we are currently not offering our services in your neighborhood."
+      flash[:notice] = "We're sorry, we are currently not offering our services in your neighborhood."
+      redirect_to businesses_path, :notice => "We're sorry, we are currently not offering our services in your neighborhood."
     end
   end
 

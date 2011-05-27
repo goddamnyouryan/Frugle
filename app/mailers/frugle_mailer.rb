@@ -37,8 +37,10 @@ class FrugleMailer < ActionMailer::Base
          :subject => "Frugle contact form message - #{subject}", :from => "Frugle")
   end
   
-  def new_neighborhood_attempt(business, user)
-    @business = business
+  def new_neighborhood_attempt(name, zip, email)
+    @name = name
+    @zip = zip
+    @email = email
     mail(:to => "merchants@frugle.me",
          :subject => "Someone attempted to create a business in a non-supported neighborhood", :from => "Frugle")
   end

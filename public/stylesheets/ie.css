@@ -1,0 +1,8 @@
+.orange_button {
+	background: #ffba5f;
+	border: none;
+	color: #fff;
+	padding:5px 0;
+	text-align:center;
+	cursor: pointer;
+}

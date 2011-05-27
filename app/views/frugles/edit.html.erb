@@ -11,7 +11,18 @@
 	<%= image_tag "1_frugle.png" %>
 	<div>
 		<h3>Enter the details for this discount:<br /><span>(This Will Be The Headline)</span></h3>
-		<div id="cost_div"><%= f.text_field :percentage, :size => 3, :class => "reg_bar_phone" %> % Off <%= f.text_field :product, :size => 15, :class => "reg_bar_phone" %></div>
+
+		<% if @frugle.discount == "percent" %>
+			 <div id="cost_div"><%= @frugle.percentage %>% Off <%= f.text_field :product, :size => 15, :class => "reg_bar_phone" %></div>
+		<% elsif @frugle.discount == "dollar" %>
+			<div id="cost_div">$<%= @frugle.percentage %> Off <%= f.text_field :product, :size => 15, :class => "reg_bar_phone" %></div>
+		<% elsif @frugle.discount == "flat" %>
+			<div id="cost_div">$<%= @frugle.percentage %> For <%= f.text_field :product, :size => 15, :class => "reg_bar_phone" %></div>
+		<% elsif @frugle.discount == "bonus" %>
+			<div id="cost_div">Free <%= @frugle.percentage %> With Purchase Of <%= f.text_field :product, :size => 15, :class => "reg_bar_phone" %></div>
+		<% elsif @frugle.discount == "bogo" %>
+			<div id="cost_div">Buy One <%= @frugle.percentage %> Get One <%= f.text_field :product, :size => 15, :class => "reg_bar_phone" %> Free </div> 
+		<% end %>
 	</div>
 </div>
 <div class="clr"></div>

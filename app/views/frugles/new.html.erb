@@ -89,8 +89,8 @@ document.observe("dom:loaded", function() {
 <div class="new_frugle_form_item">
 	<%= image_tag "8_frugle.png" %>
 	<div>
-		<h3>Select a Category and Subcategory</h3>
-		<%= f.collection_select :category_id, Category.find(:all), :id, :title, :prompt => "Select a Category" %><br />
+		<h3>Pick which categories to run Frugle in:</h3>
+		<%= f.collection_select :category_id, Category.find(:all), :id, :title, :prompt => "Select a Category" %><br /><br />
 		<%= h f.collection_select :subcategory_id, Subcategory.find(:all), :id, :title, :prompt => "Select a Subcategory" %>
 	</div>
 </div>

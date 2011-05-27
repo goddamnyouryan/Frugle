@@ -5,7 +5,9 @@
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<!--[if lt IE 8]>
+	        <%= stylesheet_link_tag 'ie' %>
+	<![endif]-->
 	<% if (params[:controller] == "businesses" && params[:action] == "show") || (params[:controller] == "neighborhoods" && params[:action] == "show") || (params[:controller] == "home" && params[:action] == "index") || (params[:controller] == "frugles" && params[:action] == "print")  %>
 			<%= raw(GMap.header) %>
 			<%= raw(@map.to_html) %>

@@ -61,18 +61,18 @@
 <div class="hide_button"><%= f.submit "Sign up", :class => "orange_button" %></div>
 
 <% end %>
-<div class="form_row">
+<div class="form_row" style="text-align:center;">
 Sign up with 
 <%- resource_class.omniauth_providers.each do |provider| %>
 	<%= link_to image_tag("facebook.png"), omniauth_authorize_path(resource_name, provider), :style => "position:relative;top:10px;" %>
 <% end -%>
 </div>
 
-<div class="form_row">
+<div class="form_row" style="text-align:center;">
 Already have an account? <%= link_to "Sign in", new_user_session_path, :style => "font-weight:bold;" %>
 </div>
 
-<div class="form_row">
+<div class="form_row" style="text-align:center;">
 <%= link_to "Skip this for Now", root_path, :style => "font-weight:bold;" %>
 </div>
 
