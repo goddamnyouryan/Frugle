@@ -30,3 +30,9 @@ h2 img {
 	position:relative;
 	top:6px;
 }
+
+.upper_right {
+	float: right; 
+	text-align: right; 
+	line-height: 5px;
+}
