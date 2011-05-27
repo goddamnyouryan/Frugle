@@ -54,7 +54,7 @@
 						phone: "required",
 						"business[phone][area_code]": "required",
 						"business[phone][first_three_digits]": "required",
-						"business[phone][second_four_digits]": "required",
+						"business[phone][second_four_digits]": "required"
 			    },
 				messages: {
 						"business[phone][area_code]": "***",
@@ -67,7 +67,7 @@
 						     else
 						       error.insertAfter(element);
 						   },
-							success: "valid",
+							success: "valid"
 			    });
 	</script>
   	<%= f.fields_for :phone do |phone| %>
