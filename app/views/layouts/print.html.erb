@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
   <title>Frugle | <%= content_for?(:title) ? yield(:title) : "" %></title>
 	<% if params[:controller] == "frugles" && params[:action] == "print" %>
 			<%= raw(GMap.header) %>
