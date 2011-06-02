@@ -29,11 +29,11 @@ class HomeController < ApplicationController
   end
   
   def businesses_admin
-    @businesses = Business.all
+    @businesses = Business.paginate :all, :page => params[:page]
   end
   
   def frugles_admin
-    @frugles = Frugle.all
+    @frugles = Frugle.paginate :all, :page => params[:page], :per_page => 100
   end
   
   def delete_user

@@ -4,6 +4,9 @@ class Business < ActiveRecord::Base
   has_many :frugles, :dependent => :destroy
   has_many :follows
   
+  cattr_reader :per_page
+  @@per_page = 100
+  
   belongs_to :user
   belongs_to :neighborhood
   attr_accessible :name, :address, :zip, :phone, :website, :info, :category_id, :subcategory_id, :hear_about, :contact_name, :contact_number, :role, :terms, :latitude, :longitude, :subcategory_name, :neighborhood_id

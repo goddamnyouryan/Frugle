@@ -10,14 +10,12 @@
     <td align="center" class="border-table bg-dark">Neighborhood</td>
 		<td align="center" class="border-table bg-dark">Phone</td>
 		<td align="center" class="border-table bg-dark">Website</td>
-		<td align="center" class="border-table bg-dark">Category</td>
-		<td align="center" class="border-table bg-dark">Subcategory</td>
 		<td align="center" class="border-table bg-dark"># Frugles</td>
 		<td align="center" class="border-table bg-dark">Email Address</td>
 		<td align="center" class="border-table bg-dark">&nbsp;</td>
   </tr>
 <% for business in @businesses %>	
-<% unless business.user.nil? %>
+	<% unless business.name.nil? %>
 	<tr>
 		<td align="center" class="border-table"><%= business.id %></td>
 		<td align="center" class="border-table"><%= link_to business.name, business, :style => "font-weight:bold;" %></td>
@@ -25,22 +23,18 @@
 		<td align="center" class="border-table"><%= business.neighborhood.name %></td>
 		<td align="center" class="border-table"><%= business.phone %></td>
 		<td align="center" class="border-table"><%= business.website %></td>
-		<% unless business.category_id.nil? %>
-			<td align="center" class="border-table"><%= business.category.title %></td>
-		<% else %>
-			<td align="center" class="border-table">nil</td>
-		<% end %>
-		<% unless business.subcategory_id.nil? %>
-			<td align="center" class="border-table"><%= business.subcategory.title %></td>
-		<% else %>
-			<td align="center" class="border-table">nil</td>
-		<% end %>
 		<td align="center" class="border-table"><%= business.frugles.count %></td>
-		<td align="center" class="border-table"><%= business.user.email %></td>
+		<% unless business.user.nil? %>
+			<td align="center" class="border-table"><%= business.user.email %></td>
+		<% else %>
+			<td align="center" class="border-table">nil</td>
+		<% end %>
 		<td align="center" class="border-table"><%= link_to "Delete", remove_business_path(:business_id => business.id), :method => :delete, :confirm => "Are you sure you want to delete this business?", :class => "link-blue" %></td>
   </tr>
 <% end %>
 <% end %>
 </table>
 
-<p><%= link_to "Back to Home", root_path %></p>
+<p>
+<%= will_paginate @businesses %><br />
+<%= link_to "Back to Home", root_path %></p>

@@ -56,4 +56,6 @@
 <% end %>
 </table>
 
-<p><%= link_to "Back to Home", root_path %></p>
+<p>
+<%= will_paginate @frugles %><br />
+<%= link_to "Back to Home", root_path %></p>
