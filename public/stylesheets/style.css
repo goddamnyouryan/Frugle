@@ -442,7 +442,13 @@ body#applicationbg {
 	
 	.cycle_nav { margin-top:40px; width:20px;}
 	
-	.cycleElementsContainer li { width: 180px; float: left; } 
+	.cycleElementsContainer li { 
+		float:left;
+		margin-right:8px;
+		outline:1px solid grey;
+		padding:5px;
+		width:160px;
+		} 
 	
 	.scrollable {
 		font-family:Georgia,"Times New Roman",Times,serif;
@@ -1044,12 +1050,14 @@ form#new_frugle {
 
 #user_remember_me { margin-top: 9px;}
 
-p.about {
+p.about, ul.about {
 	font-family: "Trebuchet MS", sans-serif;
 	font-size:14px;
 	margin: 13px auto;
 	width:600px;
 }
+
+ul.about { width: 550px;}
 
 div#footer { 
 	width: 800px; 

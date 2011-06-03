@@ -18,7 +18,12 @@ class BusinessesController < ApplicationController
   end
 
   def new
-    @business = Business.new
+    if user_signed_in?
+      flash[:notice] = "We're sorry but you need to log out first to create a business account."
+      redirect_to root_path, :notice => "We're sorry but you need to log out first to create a business account"
+    else
+      @business = Business.new
+    end
   end
 
   def create

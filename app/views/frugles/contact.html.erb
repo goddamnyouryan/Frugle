@@ -1,9 +1,27 @@
 <% title "Contact Frugle" %>
+<% javascript "http://ajax.microsoft.com/ajax/jquery.validate/1.7/jquery.validate.min.js" %>
 
 <h2 class="yellow_strip">Contact Us</h2>
 
 <div style="margin: -33px 0pt 0pt; z-index: -10;"><%= image_tag "topgrass.png" %></div>
 
+<script>
+jQuery(document).ready(function() {
+		    jQuery("#contact_us_form").validate({
+		    rules: {
+					name: "required",
+					email: { required: true, email: true },
+					message: "required"
+		    },
+			messages: {
+					name: "***",
+					email: "***",
+					message: "***"
+		    },
+						success: "valid"
+		    });
+		});
+</script>
 
 <%= form_tag "/frugles/send_message", :id => "contact_us_form" do %>
 	<div class="reg_row">
@@ -13,7 +31,7 @@
 	</div>
 	<div class="reg_row">
 		<div class="new_business_col_left">Email Address</div>
-	  <div class="fl"><%= email_field_tag 'email', nil, :class => "reg_bar" %></div>
+	  <div class="fl"><%= text_field_tag 'email', nil, :class => "reg_bar" %></div>
 	  	<div class="clr"></div>
 	</div>
 	<div class="reg_row">

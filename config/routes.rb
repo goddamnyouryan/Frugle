@@ -19,6 +19,7 @@ OmniauthDeviseExample::Application.routes.draw do
 
   match 'about', :to => 'frugles#about'
   match 'terms', :to => 'frugles#terms'
+  match 'privacy', :to => 'frugles#privacy'
   match 'contact', :to => 'frugles#contact'
   match 'subcategories_toggle', :to => 'subcategories#toggle'
   match 'map_toggle', :to => 'neighborhoods#map_toggle'

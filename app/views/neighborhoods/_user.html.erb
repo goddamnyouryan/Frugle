@@ -113,8 +113,11 @@
 </div>
 <div class="clr"></div>
 
-
-<div class="tag_box" style="display:none;" id="toggle_subcategories">
+<% if current_user.sign_in_count > 1 %>
+	<div class="tag_box" id="toggle_subcategories">
+<% else %>
+	<div class="tag_box" style="display:none;" id="toggle_subcategories">
+<% end %>
 	<div class="select_tag"><span> <%= link_to "All", select_all_subcategories_path, :remote => true %></span> | <span><%= link_to "None", select_none_subcategories_path, :remote => true %></span></div>
   <ul class="tag_row1" id="subcategories">    
 		<%= render 'subcategories', :user_categories => @user_categories %>
@@ -123,8 +126,11 @@
 
 <div class="hide_button"><%= link_to "Hide Subcategories", subcategories_toggle_path, :remote => true %></div>
 </div>
-
-<div class="hide_button" id="show_subcategories"><%= link_to "Show Subcategories", subcategories_toggle_path, :remote => true %></div>
+<% if current_user.sign_in_count > 1 %>
+	<div class="hide_button" id="show_subcategories" style="display:none;"><%= link_to "Show Subcategories", subcategories_toggle_path, :remote => true %></div>
+<% else %>
+	<div class="hide_button" id="show_subcategories"><%= link_to "Show Subcategories", subcategories_toggle_path, :remote => true %></div>
+<% end %>
 <div class="tag_border_bottom" style="margin-top:-2px;"><img src="images/tag_box_bottom.png" alt="0" border="0" /></div>
 
 <h2 class="yellow_strip" style="margin-top:10px; margin-bottom:0;">All Frugles</h2>
