@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110522205128) do
+ActiveRecord::Schema.define(:version => 20110607061716) do
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20110522205128) do
     t.string   "contact_name"
     t.string   "contact_number"
     t.string   "role"
+    t.string   "verification"
   end
 
   add_index "businesses", ["id"], :name => "index_businesses_on_id"

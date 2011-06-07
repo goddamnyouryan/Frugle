@@ -17,16 +17,12 @@ class TwilioController < ApplicationController
 
      # Use the Twilio REST API to initiate an outgoing call
      def makecall
-       if !params['number']
-         redirect_to({ :action => '.', 'msg' => 'Invalid phone number' })
-         return
-       end
-
+        @business = Business.find_by_phone(params[:business_phone])
          # parameters sent to Twilio REST API
          d = {
              'From' => CALLER_ID,
-             'To' => params['number'],
-             'Url' => BASE_URL + '/confirm',
+             'To' => params[:business_phone],
+             'Url' => BASE_URL + "/confirm?business_id=#{@business.id}",
          }
          begin
              account = Twilio::RestAccount.new(ACCOUNT_SID, ACCOUNT_TOKEN)
@@ -45,6 +41,7 @@ class TwilioController < ApplicationController
      end
      
      def confirm
+       @business = Business.find params[:business_id]
        @postto = BASE_URL + '/directions'
        render :content-type => 'application/xml'
      end

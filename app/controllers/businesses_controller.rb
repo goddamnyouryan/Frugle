@@ -29,6 +29,9 @@ class BusinessesController < ApplicationController
   def create
     @phone_number = [params[:business][:phone][:area_code], params[:business][:phone][:first_three_digits], params[:business][:phone][:second_four_digits]].reject(&:blank?).join('.')
     @business = Business.find_or_create_by_phone("#{@phone_number}")
+    charset = %w{ 0 1 2 3 4 5 6 7 8 9 0 }
+    @business.verification = (0...4).map{ charset.to_a[rand(charset.size)] }.join
+    @business.save!
     if @business.name == nil
       @business.name = ""
     end

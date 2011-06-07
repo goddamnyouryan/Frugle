@@ -11,7 +11,7 @@ class Business < ActiveRecord::Base
   belongs_to :neighborhood
   attr_accessible :name, :address, :zip, :phone, :website, :info, :category_id, :subcategory_id, :hear_about, :contact_name, :contact_number, :role, :terms, :latitude, :longitude, :subcategory_name, :neighborhood_id
   
-  attr_accessor :area_code, :first_three_digits, :second_four_digits, :terms
+  attr_accessor :area_code, :first_three_digits, :second_four_digits, :terms, :verify
   
   validates_format_of :phone,
                       :message => "must be a valid telephone number.",
