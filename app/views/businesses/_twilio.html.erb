@@ -1,7 +1,7 @@
 <h2 style="color: #ff0000"><%= params['msg'] %></h2>
 <h3>Enter your phone number to receive an automated reminder</h3>
 
-<%= form_tag "/twilio/makecall" do %>
-	<%= text_field_tag(:number) %>
+<%= form_tag makecall_path, :remote => true do %>
+	<%= text_field_tag(:number) %> <span id="message"></span>
 	<%= submit_tag "Verify" %>
 <% end %>

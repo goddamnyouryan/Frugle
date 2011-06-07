@@ -1,5 +1,7 @@
 class TwilioController < ApplicationController
   
+  require "twiliolib.rb"
+  
   # your Twilio authentication credentials
   ACCOUNT_SID = 'ACad8d4b4fdf2dbc4d131e6b8138df76a7'
   ACCOUNT_TOKEN = 'cefef731afed334a944b518bc2475726'
@@ -8,17 +10,17 @@ class TwilioController < ApplicationController
   API_VERSION = '2010-04-01'
 
   # base URL of this application
-  BASE_URL = "http://localhost:3000/twilio"
+  BASE_URL = "http://www.frugle.me/twilio"
 
   # Outgoing Caller ID you have previously validated with Twilio
   CALLER_ID = '4242473970'
 
      # Use the Twilio REST API to initiate an outgoing call
      def makecall
-         if !params['number']
-             redirect_to({ :action => '.', 'msg' => 'Invalid phone number' })
-             return
-         end
+       if !params['number']
+         redirect_to({ :action => '.', 'msg' => 'Invalid phone number' })
+         return
+       end
 
          # parameters sent to Twilio REST API
          d = {
@@ -37,17 +39,32 @@ class TwilioController < ApplicationController
              return
          end
 
-         redirect_to({ :action => '', 
-             'msg' => "Calling #{ params['number'] }..." })
+         respond_to do |format|
+             format.js
+         end
      end
      
      def confirm
-         @postto = BASE_URL + '/directions'
-
-         respond_to do |format|
-             format.xml { @postto }
-         end
+       @postto = BASE_URL + '/directions'
+       render :content-type => 'application/xml'
      end
+     
+     def directions
+            if params['Digits'] == '3'
+                redirect_to :action => 'goodbye'
+                return
+            end
+
+            if !params['Digits'] or params['Digits'] != '2'
+                redirect_to :action => 'reminder'
+                return
+            end
+
+            @redirectto = BASE_URL + '/reminder',
+            respond_to do |format|
+                format.xml { @redirectto }
+            end
+        end
   
   
 end

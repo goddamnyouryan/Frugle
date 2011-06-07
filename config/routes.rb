@@ -1,5 +1,7 @@
 OmniauthDeviseExample::Application.routes.draw do
   match 'sitemap.xml' => 'sitemaps#sitemap'
+  
+  match ':controller(/:action(/:id(.:format)))'
 
   get "saves/new"
   get "saves/destroy"
@@ -50,6 +52,8 @@ OmniauthDeviseExample::Application.routes.draw do
   match 'remove_business', :to => "home#delete_business"
   match 'remove_frugle', :to => "home#delete_frugle"
   match 'paginate', :to => "frugles#paginate"
+  match 'makecall', :to => 'twilio#makecall'
+  match 'confirm', :to => 'twilio#confirm'
 
   resources :twilio
   resources :subcategories
@@ -126,5 +130,5 @@ OmniauthDeviseExample::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  match ':controller(/:action(/:id(.:format)))'
+  
 end
