@@ -1,4 +1,5 @@
 class TwilioController < ApplicationController
+  protect_from_forgery :only => [:create, :update, :destroy] 
   
   require "twiliolib.rb"
   
