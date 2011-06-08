@@ -23,7 +23,7 @@ class TwilioController < ApplicationController
          d = {
              'From' => CALLER_ID,
              'To' => params[:business_phone],
-             'Url' => BASE_URL + "/confirm?business_id=#{@business.id}",
+             'Url' => BASE_URL + "/confirm.xml?business_id=#{@business.id}",
          }
          begin
              account = Twilio::RestAccount.new(ACCOUNT_SID, ACCOUNT_TOKEN)
