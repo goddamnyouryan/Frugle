@@ -44,7 +44,9 @@ class TwilioController < ApplicationController
      def confirm
        @business = Business.find params[:business_id]
        @postto = BASE_URL + '/directions'
-       render :xml => @business
+       respond_to do |format|
+           format.xml { @postto }
+       end
      end
      
      def directions
