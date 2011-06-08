@@ -1,0 +1,1 @@
+page.replace_html "verify_button", "Calling..."

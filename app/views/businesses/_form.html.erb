@@ -158,7 +158,7 @@
 	<p style="font-size:12px;">When you click verify below our automated system will call the phone number you entered above to verify your ownership of the business. The phone call will tell you a 4-digit verification code.  Enter it below.</p>
 	
 	<div class="reg_row">
-		<div class="new_business_col_left hide_button"><%= link_to "Click To Verify", makecall_path(:business_phone => @business.phone), :remote => true %> <span id="message"></span></div>
+		<div class="new_business_col_left hide_button"><%= link_to "Click to Verify", makecall_path(:business_phone => @business.phone), :remote => true, :id => "verify_button" %> <span id="message"></span></div>
 	  <div class="fl" style="margin-top:20px;"><%= f.text_field :verify, :class => "reg_bar", :placeholder => "Enter verification code here." %></div>
 	  	<div class="clr"></div>
 	</div>
