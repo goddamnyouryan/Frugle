@@ -27,7 +27,8 @@
 					"business[contact_number][contact_area_code]": "required",
 					"business[contact_number][contact_first_three_digits]": "required",
 					"business[contact_number][contact_second_four_digits]": "required",
-					"business[role]": "required", 
+					"business[role]": "required",
+					"business[verify]": {required: true, remote:"/twilio/validate_verification?business_id=<%= @business.id %>" },
 					terms: "required",
 		    },
 			messages: {
@@ -46,7 +47,8 @@
 					"business[contact_number][contact_first_three_digits]": "***",
 					"business[contact_number][contact_second_four_digits]": "***",
 					"business[role]": "***",
-					terms: "***"
+					terms: "***",
+					"business[verify]": "***"
 		    },
 					success: "valid"
 		    });

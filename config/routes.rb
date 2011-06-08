@@ -52,6 +52,7 @@ OmniauthDeviseExample::Application.routes.draw do
   match 'paginate', :to => "frugles#paginate"
   match 'makecall', :to => 'twilio#makecall'
   match 'twilio/confirm', :to => 'twilio#confirm'
+  match 'twilio/validate_verification', :to => 'twilio#validate_verification'
 
   resources :twilio
   resources :subcategories

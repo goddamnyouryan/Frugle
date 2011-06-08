@@ -17,54 +17,56 @@ class TwilioController < ApplicationController
   CALLER_ID = '2136329639'
 
      # Use the Twilio REST API to initiate an outgoing call
-     def makecall
-        @business = Business.find_by_phone(params[:business_phone])
-         # parameters sent to Twilio REST API
-         d = {
-             'From' => CALLER_ID,
-             'To' => params[:business_phone],
-             'Url' => BASE_URL + "/confirm.xml?business_id=#{@business.id}",
-         }
-         begin
-             account = Twilio::RestAccount.new(ACCOUNT_SID, ACCOUNT_TOKEN)
-             resp = account.request(
-                 "/#{API_VERSION}/Accounts/#{ACCOUNT_SID}/Calls",
-                 'POST', d)
-             resp.error! unless resp.kind_of? Net::HTTPSuccess
-         rescue StandardError => bang
-             redirect_to({ :action => '.', 'msg' => "Error #{ bang }" })
-             return
-         end
-
-         respond_to do |format|
-             format.js
-         end
-     end
+  def makecall
+    @business = Business.find_by_phone(params[:business_phone])
+    # parameters sent to Twilio REST API
+    d = {
+      'From' => CALLER_ID,
+      'To' => params[:business_phone],
+      'Url' => BASE_URL + "/confirm.xml?business_id=#{@business.id}",
+    }
+    begin
+      account = Twilio::RestAccount.new(ACCOUNT_SID, ACCOUNT_TOKEN)
+      resp = account.request("/#{API_VERSION}/Accounts/#{ACCOUNT_SID}/Calls", 'POST', d)
+      resp.error! unless resp.kind_of? Net::HTTPSuccess
+    rescue StandardError => bang
+      redirect_to({ :action => '.', 'msg' => "Error #{ bang }" })
+      return
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
      
-     def confirm
-       @business = Business.find params[:business_id]
-       @postto = BASE_URL + '/directions'
-       respond_to do |format|
-           format.xml { @postto }
-       end
-     end
+  def confirm
+    @business = Business.find params[:business_id]
+    @postto = BASE_URL + '/directions'
+    respond_to do |format|
+        format.xml { @postto }
+    end
+  end
      
-     def directions
-            if params['Digits'] == '3'
-                redirect_to :action => 'goodbye'
-                return
-            end
-
-            if !params['Digits'] or params['Digits'] != '2'
-                redirect_to :action => 'reminder'
-                return
-            end
-
-            @redirectto = BASE_URL + '/reminder',
-            respond_to do |format|
-                format.xml { @redirectto }
-            end
-        end
+  def directions
+    if params['Digits'] == '3'
+      redirect_to :action => 'goodbye'
+      return
+    end
+    if !params['Digits'] or params['Digits'] != '2'
+      redirect_to :action => 'reminder'
+      return
+    end
+    @redirectto = BASE_URL + '/reminder',
+    respond_to do |format|
+      format.xml { @redirectto }
+    end
+  end
+     
+  def validate_verification
+    @business = Business.find params[:business_id]
+    respond_to do |format|
+      format.json { render :json => @business.verification == "#{params[:business][:verify]}" }
+    end
+  end   
   
   
 end
