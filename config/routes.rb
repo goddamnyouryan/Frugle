@@ -51,7 +51,7 @@ OmniauthDeviseExample::Application.routes.draw do
   match 'remove_frugle', :to => "home#delete_frugle"
   match 'paginate', :to => "frugles#paginate"
   match 'makecall', :to => 'twilio#makecall'
-  match 'confirm', :to => 'twilio#confirm'
+  match 'twilio/confirm', :to => 'twilio#confirm'
 
   resources :twilio
   resources :subcategories
