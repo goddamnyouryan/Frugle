@@ -45,7 +45,7 @@ class FrugleMailer < ActionMailer::Base
          :subject => "Someone attempted to create a business in a non-supported neighborhood", :from => "Frugle")
   end
   
-  def rep_signup(name, email)
+  def rep_signup(email, name)
     @name = name
     @email = email
     mail(:to => email, :subject => "Thank you for signing up for Frugle with our Rep", :from => "Frugle")
