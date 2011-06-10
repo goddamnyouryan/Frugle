@@ -103,3 +103,13 @@
 								z-index: -9;
 								bottom:0;
 							}
+							
+							.border-table{
+								border:1px solid #CCCCCC;
+								border-collapse:collapse;
+								padding:3px;}
+								
+								.bg-dark{
+									background-color:#333333;
+									color:#FFFFFF;
+									padding:3px 0px;}

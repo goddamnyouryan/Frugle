@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   has_one :business, :dependent => :destroy
   has_many :businesses, :through => :follows
   
+  has_many :assignments
+  has_many :zipcodes, :through => :assignments
+  
   has_many :categorizations
   has_many :categories, :through => :categorizations
   
@@ -27,7 +30,7 @@ class User < ActiveRecord::Base
   
   after_create :create_email_setting, :send_welcome_email
   
-  validates_presence_of :email, :password, :password_confirmation, :first_name, :last_name, :sex, :birthday, :neighborhood_id, :on => :create
+  #validates_presence_of :email, :password, :password_confirmation, :first_name, :last_name, :sex, :birthday, :neighborhood_id, :on => :create, :unless => :skip_validation_for_reps
   
   def create_email_setting
     if self.role == "user"
@@ -78,6 +81,8 @@ class User < ActiveRecord::Base
     update_attributes(params) 
   end
   
-  
+  def skip_validation_for_reps
+    params[:controller] == "reps" && params[:action] == "activate"
+  end
   
 end

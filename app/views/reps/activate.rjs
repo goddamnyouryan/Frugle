@@ -1,0 +1,4 @@
+page.replace_html "#{@rep.id}_email", "#{@user.email}"
+page.replace_html "#{@rep.id}_contact_name", "#{@user.first_name}"
+page.replace_html "#{@rep.id}_activate", "active"
+page.replace_html "#{@rep.id}_contacted", "yes"

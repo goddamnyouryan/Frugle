@@ -1,6 +1,7 @@
 class Neighborhood < ActiveRecord::Base
   has_many :zipcodes
   has_many :users
+  has_many :reps
   
   attr_accessible :name, :background
   

@@ -43,13 +43,23 @@
   <p><%= f.submit "New Zipcode", :class => "hide_button", :style => "margin-left:225px;" %></p>
 <% end %>
 
-<h3 class="black_bar" style="margin-top:25px;">Zipcodes</h3>
-<ul>
-	<% @neighborhood.zipcodes.each do |zipcode| %>
-		<li>
-			<%= zipcode.zip %> - <%= link_to "Delete", zipcode, :method => :delete, :confirm => "Are you sure you want to delete this zipcode?" %>
-		</li>
-	<% end %>
-</ul>
+<h3 class="black_bar" style="margin-top:25px;">All Zipcodes</h3>
+
+<div class="tag_box">
+<table width="98%" border="0" cellpadding="5" cellspacing="2" class="border-table" style="margin:auto">
+  <tr>
+    <td align="center" class="border-table bg-dark">Zipcode</td>
+		<td align="center" class="border-table bg-dark">&nbsp;</td>
+		<td align="center" class="border-table bg-dark">&nbsp;</td>
+  </tr>
+<% for zip in @neighborhood.zipcodes %>
+  <tr>
+    <td align="center" class="border-table"><%= zip.zip %></td>
+		<td align="center" class="border-table"><%= link_to "Rep Assignments", zip, :class => "link-blue" %></td>
+		<td align="center" class="border-table"><%= link_to "Delete", zip, :method => :delete, :confirm => "Are you sure you want to delete this subcategory?", :class => "link-blue" %></td>
+  </tr>
+<% end %>
+</table>
+
 
 <%= link_to "Back to Neighborhoods", new_neighborhood_path, :style => "float:right;" %>

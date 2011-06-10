@@ -1,4 +1,14 @@
 OmniauthDeviseExample::Application.routes.draw do
+  get "assignments/create"
+
+  get "assignments/destroy"
+
+  get "reps/index"
+
+  get "reps/create"
+
+  get "reps/destroy"
+
   match 'sitemap.xml' => 'sitemaps#sitemap'
 
   get "saves/new"
@@ -55,12 +65,19 @@ OmniauthDeviseExample::Application.routes.draw do
   match 'twilio/validate_verification', :to => 'twilio#validate_verification'
 
   resources :twilio
+  resources :reps do
+    member do
+      post 'activate'
+      post 'save'
+    end
+  end
   resources :subcategories
   resources :frugles do
     member do
       get 'print'
     end
   end
+  resources :assignments
   resources :categorizations
   resources :subcategorizations
   resources :zipcodes

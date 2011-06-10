@@ -1,0 +1,11 @@
+<% title "#{@zip.zip} - Rep Assignments" %>
+<h2>Rep Assignments for <%= @zip.zip %></h2>
+
+<%= form_tag assignments_path(:zip_id => @zip.id), :method => :post do %>
+	<%= text_field_tag :email, nil, :placeholder => "put the users email address that you want to make into a rep", :size => 50 %><br />
+	<%= submit_tag "Add Rep" %>
+<% end %>
+
+<ul id="assignments" style="margin:25px;">
+	<%= render :partial => "assignment", :collection => @assignments %>
+</li>

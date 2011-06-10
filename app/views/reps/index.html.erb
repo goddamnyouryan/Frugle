@@ -1,0 +1,62 @@
+<% title "All Reps" %>
+
+<h2 class="yellow_strip" style="margin-top:-15px; margin-bottom:0;">Reps Admin</h2>
+
+<div class="tag_box">
+<table width="98%" border="0" cellpadding="5" cellspacing="2" class="border-table" style="margin:auto;font-size:11px;">
+  <tr>
+		<td align="center" class="border-table bg-dark">id</td>
+		<td align="center" class="border-table bg-dark">Name</td>
+		<td align="center" class="border-table bg-dark">Address</td>
+		<td align="center" class="border-table bg-dark">Zip</td>
+    <td align="center" class="border-table bg-dark">Neighborhood</td>
+ 		<td align="center" class="border-table bg-dark">Phone</td>
+		<td align="center" class="border-table bg-dark">Contacted?</td>
+		<td align="center" class="border-table bg-dark">Contact</td>
+		<td align="center" class="border-table bg-dark">&nbsp;</td>
+		<td align="center" class="border-table bg-dark">Notes</td>
+		<td align="center" class="border-table bg-dark">&nbsp;</td>
+  </tr>
+<% @reps.each do |rep| %>	
+	<tr>
+		<td align="center" class="border-table"><%= rep.id %></td>
+		<td align="center" class="border-table"><%= rep.name %></td>
+		<td align="center" class="border-table"><%= rep.address %></td>
+		<td align="center" class="border-table"><%= rep.zip %></td>
+		<td align="center" class="border-table"><%= rep.neighborhood.name %></td>
+		<td align="center" class="border-table"><%= rep.phone %></td>
+		<% if rep.contacted? %>
+			<td align="center" class="border-table" id="<%= rep.id %>_contacted">yes</td>
+		<% else %>
+			<td align="center" class="border-table" id="<%= rep.id %>_contacted">no</td>
+		<% end %>
+		<% if rep.status == "inactive" %>
+			<td align="center" class="border-table">
+				<%= form_tag activate_rep_path(rep.id), :remote => true do %>
+				<span id="<%= rep.id %>_email"><%= text_field_tag "email", nil, :placeholder => "email" %></span> - 
+				<span id="<%= rep.id %>_contact_name"><%= text_field_tag "name", nil, :placeholder => "contact name" %></span>
+			<td align="center" class="border-table" id="<%= rep.id %>_activate">
+				<%= submit_tag "Activate" %>
+				<% end %>
+			</td>
+		<% else %>
+			<td align="center" class="border-table">
+				<span id="<%= rep.id %>_email"><%= rep.email %></span> - 
+				<span id="<%= rep.id %>_contact_name"><%= rep.contact_name %></span>
+			</td>
+			<td align="center" class="border-table" id="<%= rep.id %>_activate">
+				Active
+			</td>
+		<% end %>
+		<td align="center" class="border-table">
+			<%= form_tag save_rep_path(rep.id), :remote => true do %>
+				<%= text_area_tag "notes", rep.notes, :placeholder => "notes" %>
+			<%= select_tag :frugle, options_for_select(@frugle_options) %>
+		</td>
+		<td align="center" class="border-table" id="<%= rep.id %>_save">
+			<%= submit_tag "Save" %>
+			<% end %>
+		</td>
+  </tr>
+<% end %>
+</table>

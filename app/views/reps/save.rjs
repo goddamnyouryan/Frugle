@@ -1,0 +1,4 @@
+page.replace_html "#{@rep.id}_save", "saved"
+if params[:frugle] == "manual"
+  page.redirect_to "#{new_frugle_url(:business_id => @rep.business_id)}"
+end

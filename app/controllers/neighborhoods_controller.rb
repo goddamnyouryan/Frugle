@@ -17,6 +17,8 @@ class NeighborhoodsController < ApplicationController
     if user_signed_in?
       if current_user.role == "business"
         redirect_to home_path
+      elsif current_user.role == "rep"
+        redirect_to reps_path
       else
         @categories = Category.find :all, :order => "title ASC"
         @featured = Frugle.find :all, :order => "prints ASC", :limit => 3, :include => :business, :conditions => [ "businesses.neighborhood_id = ?", current_user.neighborhood_id]

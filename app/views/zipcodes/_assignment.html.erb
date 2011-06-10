@@ -1,0 +1,3 @@
+<li>
+	<%= assignment.email %> - <%= link_to "Delete", assignment_path(:user_id => assignment.id, :zipcode_id => @zip.id), :method => :delete, :confirm => "Are you Sure you want to delete this assignment?" %>
+</li>

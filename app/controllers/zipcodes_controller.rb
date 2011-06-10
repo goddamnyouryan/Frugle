@@ -20,4 +20,10 @@ class ZipcodesController < ApplicationController
     @zipcode.destroy
     redirect_to edit_neighborhood_path(@neighborhood), :notice => "Successfully destroyed zipcode."
   end
+  
+  def show
+    @zip = Zipcode.find params[:id]
+    @assignments = @zip.users
+  end
+  
 end

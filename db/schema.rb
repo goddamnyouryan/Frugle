@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110607061716) do
+ActiveRecord::Schema.define(:version => 20110610075436) do
+
+  create_table "assignments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "zipcode_id"
+    t.string   "zip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
@@ -126,6 +134,24 @@ ActiveRecord::Schema.define(:version => 20110607061716) do
 
   add_index "neighborhoods", ["id"], :name => "index_neighborhoods_on_id"
   add_index "neighborhoods", ["name"], :name => "index_neighborhoods_on_name"
+
+  create_table "reps", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "zip"
+    t.string   "phone"
+    t.integer  "neighborhood_id"
+    t.string   "subcategory_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "status",           :default => "inactive", :null => false
+    t.text     "notes"
+    t.string   "frugle"
+    t.string   "contact_name"
+    t.boolean  "contacted",        :default => false,      :null => false
+    t.string   "email"
+    t.integer  "business_id"
+  end
 
   create_table "saveds", :force => true do |t|
     t.integer  "user_id"
