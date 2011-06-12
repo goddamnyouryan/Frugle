@@ -17,7 +17,6 @@ gem 'acts-as-taggable-on'
 gem 'paperclip'
 gem "aws-s3"
 gem "will_paginate", "~> 3.0.pre2"
-gem "builder", "~> 3.0.0"
 
 # Use unicorn as the web server
 # gem 'unicorn'
