@@ -1,6 +1,6 @@
 xml.instruct!
-xml.AddDealRequest(
-    'xmlns:xsi'.to_sym => "http://www.w3.org/2001/XMLSchema-instance",
+xml.tag!("AddDealRequest",
+    'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
     'xmlns:xsd' => "http://www.w3.org/2001/XMLSchema") do
   xml.ID "#{@frugle.id}"
   xml.Title "#{@frugle.cost}"
@@ -32,5 +32,5 @@ xml.AddDealRequest(
   xml.VendorId  
   xml.DealSource
   xml.Affiliation  
-  xml.PostalCode "#{@frugle.business.zip}"
+  xml.PostalCode "#{@frugle.business.zip}" 
 end
