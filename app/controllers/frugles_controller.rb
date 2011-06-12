@@ -165,6 +165,14 @@ class FruglesController < ApplicationController
     end
   end
   
+  def dealmap
+    @frugle = Frugle.find params[:id]
+    @postto = 'http://api.thedealmap.com/deals/?key=0-2304664-634434226955110000'
+    respond_to do |format|
+        format.xml { @postto }
+    end
+  end
+  
   private
   
   def increase_prints

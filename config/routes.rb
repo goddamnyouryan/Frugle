@@ -75,6 +75,7 @@ OmniauthDeviseExample::Application.routes.draw do
   resources :frugles do
     member do
       get 'print'
+      get 'dealmap'
     end
   end
   resources :assignments
