@@ -13,7 +13,7 @@ xml.AddDealRequest(
   xml.FirstName ""
   xml.LastName ""
   xml.IsOwner "false"
-  xml.AddedBy "#{current_user.first_name} #{current_user.last_name}"
+  xml.AddedBy "Taylor Ballenger"
   xml.SocialNetworkID ""  
   xml.DailyDealsEmailOK "false"
   xml.StreetAddress "#{@frugle.business.address}"
