@@ -1,7 +1,7 @@
 xml.instruct!
 xml.AddDealRequest(
     'xmlns:xsi'.to_sym => "http://www.w3.org/2001/XMLSchema-instance",
-    :'xmlns:xsd' => "http://www.w3.org/2001/XMLSchema") do
+    'xmlns:xsd' => "http://www.w3.org/2001/XMLSchema") do
   xml.ID "#{@frugle.id}"
   xml.Title "#{@frugle.cost}"
   xml.Details "#{@frugle.details}"

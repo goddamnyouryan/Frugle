@@ -154,6 +154,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on
   aws-s3
+  builder
   devise!
   friendly_id (~> 3.2.1)
   geocoder
