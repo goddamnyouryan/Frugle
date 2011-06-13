@@ -38,6 +38,10 @@ class User < ActiveRecord::Base
     end
   end
   
+  def self.find_for_database_authentication(conditions = {})
+    self.where("LOWER(email) = LOWER(?)", conditions[:email]).first || super
+  end
+  
   def send_welcome_email
     if self.role == "user"
       FrugleMailer.new_user_registration(self).deliver
