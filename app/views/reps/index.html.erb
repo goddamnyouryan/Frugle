@@ -1,4 +1,6 @@
 <% title "All Reps" %>
+<% javascript 'rep_states' %>
+
 <%= link_to "Sign out", destroy_user_session_path, :style => "float:right;" %>
 
 <h2 class="yellow_strip" style="margin-top:-15px; margin-bottom:0;">Reps Admin</h2>
@@ -18,6 +20,47 @@
 		<td align="center" class="border-table bg-dark">Notes</td>
 		<td align="center" class="border-table bg-dark">&nbsp;</td>
   </tr>
+
+	<script type="text/javascript">
+	document.observe("dom:loaded", function() {
+		$('rep_category_id').observe("change",function(){
+			categorySelected();
+		});
+	});
+	</script>
+	
+	<% form_for @rep do |f| %>
+	<tr>
+		<td align="center" class="border-table">&nbsp;</td>
+		<td align="center" class="border-table">
+			<%= f.label "New Business Name" %><br />
+			<%= f.text_field :name, :placeholder => "name", :size => 15 %>
+		</td>
+		<td align="center" class="border-table">
+			<%= f.label "New Business Address" %><br />
+			<%= f.text_field :address, :placeholder => "address", :size => 15 %>
+		</td>
+		<td align="center" class="border-table">
+			<%= f.label "New Business Zipcode" %><br />
+			<%= f.text_field :zip, :placeholder => "zipcode", :size => 15 %>
+		</td>
+		<td align="center" class="border-table">&nbsp;</td>
+		<td align="center" class="border-table">
+			<%= f.label "Phone (ex: 555.555.5555)" %><br />
+			<%= f.text_field :phone, :placeholder => "ex: 555.555.5555", :size => 15 %>
+		</td>
+		<td align="center" class="border-table">&nbsp;</td>
+		<td align="center" class="border-table">
+			<%= f.collection_select :category_id, Category.find(:all), :id, :title, :prompt => "Select a Category" %>
+		</td>
+		<td align="center" class="border-table">
+			<%= h f.collection_select :subcategory_id, Subcategory.find(:all), :id, :title, :prompt => "Select a Subcategory" %>
+		</td>
+		<td align="center" class="border-table"><%= f.submit "Create" %></td>
+		<td align="center" class="border-table">&nbsp;</td>
+	</tr>
+	<% end %>
+
 <% @reps.each do |rep| %>	
 	<tr>
 		<td align="center" class="border-table"><%= rep.id %></td>
@@ -34,7 +77,9 @@
 		<% if rep.status == "inactive" %>
 			<td align="center" class="border-table">
 				<%= form_tag activate_rep_path(rep.id), :remote => true do %>
-				<span id="<%= rep.id %>_email"><%= text_field_tag "email", nil, :placeholder => "email" %></span> - 
+				<%= label_tag "Contact Email" %><br />
+				<span id="<%= rep.id %>_email"><%= text_field_tag "email", nil, :placeholder => "email" %></span><br />
+				<%= label_tag "Contact Name" %><br />
 				<span id="<%= rep.id %>_contact_name"><%= text_field_tag "name", nil, :placeholder => "contact name" %></span>
 			<td align="center" class="border-table" id="<%= rep.id %>_activate">
 				<%= submit_tag "Activate" %>
@@ -51,7 +96,8 @@
 		<% end %>
 		<td align="center" class="border-table">
 			<%= form_tag save_rep_path(rep.id), :remote => true do %>
-				<%= text_area_tag "notes", rep.notes, :placeholder => "notes" %>
+				<%= label_tag "Sales Rep Notes" %><br />
+				<%= text_area_tag "sales rep notes", rep.notes, :placeholder => "notes" %>
 			<%= select_tag :frugle, options_for_select(@frugle_options) %>
 		</td>
 		<td align="center" class="border-table" id="<%= rep.id %>_save">

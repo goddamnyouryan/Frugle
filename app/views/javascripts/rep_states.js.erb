@@ -1,0 +1,20 @@
+var subcategories = new Array();
+<% for subcategory in @subcategories %>
+  subcategories.push(new Array(<%= subcategory.category_id %>, '<%=h subcategory.title %>', <%= subcategory.id %>));
+<% end %>
+
+function categorySelected() {
+  category_id = $('rep_category_id').getValue();
+  options = $('rep_subcategory_id').options;
+  options.length = 1;
+  subcategories.each(function(subcategory) {
+    if (subcategory[0] == category_id) {
+      options[options.length] = new Option(subcategory[unescape(1)], subcategory[2]);
+    }
+  });
+  if (options.length == 1) {
+    $('subcategory_field').hide();
+  } else {
+    $('subcategory_field').show();
+  }
+}

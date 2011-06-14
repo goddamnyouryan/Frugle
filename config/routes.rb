@@ -63,6 +63,7 @@ OmniauthDeviseExample::Application.routes.draw do
   match 'makecall', :to => 'twilio#makecall'
   match 'twilio/confirm', :to => 'twilio#confirm'
   match 'twilio/validate_verification', :to => 'twilio#validate_verification'
+  match 'javascripts/rep_states', :to => 'javascripts#rep_states'
 
   resources :twilio
   resources :reps do

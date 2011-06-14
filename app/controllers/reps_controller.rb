@@ -5,7 +5,7 @@ class RepsController < ApplicationController
       @rep = Rep.new
       @reps = Array.new
       @zips.each do |zip|
-        @results = Rep.find :all, :conditions => ["zip = ?", zip]
+        @results = Rep.find :all, :conditions => ["zip = ?", zip], :order => "created_at DESC"
         @results.each do |result|
           @reps << result
         end
@@ -26,6 +26,19 @@ class RepsController < ApplicationController
   end
 
   def create
+    @rep = Rep.create(params[:rep])
+    @subcategory = Subcategory.find params[:rep][:subcategory_id]
+    @rep.subcategory_name = @subcategory.title
+    @zip = Zipcode.find_by_zip(@rep.zip)
+    if @zip == nil
+      redirect_to root_path, :notice => "Sorry that's not a valid zip code"
+    end
+    @rep.neighborhood_id = @zip.neighborhood.id
+    if @rep.save
+      redirect_to root_path, :notice => "New Entry Added"
+    else
+      redirect_to root_path, :notice => "An error occured.  Please try again and fill out all fields properly."
+    end
   end
 
   def destroy
