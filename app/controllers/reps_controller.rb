@@ -36,10 +36,14 @@ class RepsController < ApplicationController
   
   def activate
     @rep = Rep.find params[:id]
-    @business = Business.create(:name => @rep.name, :address => @rep.address, :zip => @rep.zip, :neighborhood_id => @rep.neighborhood_id, :phone => @rep.phone, :hear_about => "rep", :contact_name => params[:name])
+    @business = Business.find_by_name_and_zip(@rep.name, @rep.zip)
+    if @business == nil
+      @business = Business.create(:name => @rep.name, :address => @rep.address, :zip => @rep.zip, :neighborhood_id => @rep.neighborhood_id, :phone => @rep.phone, :hear_about => "rep", :contact_name => params[:name])
+    end
     @user = User.create(:email => params[:email], :password => "frugle", :password_confirmation => "frugle", :role => "business", :first_name => params[:name])
-    @business.update_attributes(:user_id => @user.id)
     if @user.save
+      @business.user_id = @user.id
+      @business.save
       @rep.update_attributes(:contacted => true, :status => "active", :contact_name => params[:name], :email => params[:email], :business_id => @business.id)
       FrugleMailer.rep_signup(@user.email, @user.first_name).deliver
       respond_to do |format|
