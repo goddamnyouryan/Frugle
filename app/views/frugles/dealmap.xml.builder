@@ -27,7 +27,7 @@ xml.tag!("AddDealRequest",
   xml.PhotoType  
   xml.PhotoContent  
   xml.Tags "#{@frugle.tag_list}"
-  xml.Category "#{@frugle.category.title}"
+  xml.Category "#{@frugle.subcategory.title}"
   xml.Styles
   xml.VendorId  
   xml.DealSource
