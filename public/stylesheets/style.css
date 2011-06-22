@@ -1225,3 +1225,17 @@ h4.about {
 }
 
 .login_bottom { margin: 0 0 -14px -10px; }
+
+h2#listmybusiness {
+	text-align:center;
+	margin: 25px 0;
+}
+
+h2#listmybusiness a {
+	text-indent: -9999px;
+	background: url(../images/listmybusiness.png) no-repeat;
+	width: 332px;
+	height:56px;
+	display:block;
+	margin: 0 auto;
+}
