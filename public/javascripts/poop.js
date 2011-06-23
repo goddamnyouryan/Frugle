@@ -48,7 +48,7 @@ document.observe('dom:loaded', function() {
 	
 	$("frugle_quantity").observe('change', function() {
 		value = $("frugle_quantity").getValue();
-		$("quantity").innerHTML = "Quantity: " + value
+		$("quantity").innerHTML = "<strong>Quantity:</strong> " + value
 	});
 	
 	$("frugle_other_offer").observe('change', function() {
