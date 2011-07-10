@@ -29,7 +29,7 @@ class HomeController < ApplicationController
   end
   
   def businesses_admin
-    @businesses = Business.paginate :all, :page => params[:page]
+    @businesses = Business.paginate :all, :page => params[:page], :order => "created_at DESC"
   end
   
   def frugles_admin

@@ -64,6 +64,8 @@ OmniauthDeviseExample::Application.routes.draw do
   match 'twilio/confirm', :to => 'twilio#confirm'
   match 'twilio/validate_verification', :to => 'twilio#validate_verification'
   match 'javascripts/rep_states', :to => 'javascripts#rep_states'
+  match 'couponmap', :to => 'businesses#couponmap'
+  match "add_to_couponmap", :to => 'businesses#add_to_couponmap'
 
   resources :twilio
   resources :reps do

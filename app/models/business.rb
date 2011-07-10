@@ -9,7 +9,7 @@ class Business < ActiveRecord::Base
   
   belongs_to :user
   belongs_to :neighborhood
-  attr_accessible :name, :address, :zip, :phone, :website, :info, :category_id, :subcategory_id, :hear_about, :contact_name, :contact_number, :role, :terms, :latitude, :longitude, :subcategory_name, :neighborhood_id
+  attr_accessible :name, :address, :zip, :phone, :website, :info, :category_id, :subcategory_id, :hear_about, :contact_name, :contact_number, :role, :terms, :latitude, :longitude, :subcategory_name, :neighborhood_id, :status
   
   attr_accessor :area_code, :first_three_digits, :second_four_digits, :terms, :verify
   
@@ -25,6 +25,10 @@ class Business < ActiveRecord::Base
   
   def send_welcome_email
     FrugleMailer.new_merchant_registration(self).deliver
+  end
+  
+  def add_to_couponmap
+    self.update_attributes( :status => "couponmap")
   end
   
 	def to_param

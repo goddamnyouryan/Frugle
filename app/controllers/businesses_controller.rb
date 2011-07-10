@@ -90,6 +90,21 @@ class BusinessesController < ApplicationController
       redirect_to businesses_path, :notice => "We're sorry, we are currently not offering our services in your neighborhood."
     end
   end
+  
+  def couponmap
+    @businesses = Business.find :all, :conditions => ["status = ?", "couponmap"]
+    respond_to do |format|
+        format.xml
+    end
+  end
+  
+  def add_to_couponmap
+    @business = Business.find params[:business_id]
+    @business.add_to_couponmap
+    render :update do |page|
+		  page.replace_html "couponmap_#{@business.id}", "Added"
+	  end
+  end
 
   def destroy
     @business = Business.find(params[:id])

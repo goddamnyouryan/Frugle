@@ -6,3 +6,4 @@ en:
   date:
     formats:
       default: "%m/%d/%Y"
+      couponmap: "%m-%d-%Y"

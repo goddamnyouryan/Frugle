@@ -130,4 +130,64 @@ module ApplicationHelper
     end
   end
   
+  def couponmap_category(business)
+    if business.frugles.first.nil? || business.frugles.first.category_id.nil?
+      "Other"
+    elsif business.frugles.first.category_id == 1
+      "Restaurants"
+    elsif business.frugles.first.category_id == 2
+      "Health & Beauty"
+    elsif business.frugles.first.category_id == 3
+      "Finance"
+    elsif business.frugles.first.category_id == 4
+      "Tools & Automotive"
+    elsif business.frugles.first.category_id == 5
+      "Home & Garden"
+    elsif business.frugles.first.category_id == 6
+      "Apparel"
+    elsif business.frugles.first.category_id == 7
+      "Restaurants"
+    elsif business.frugles.first.category_id == 8
+      "Health & Beauty"
+    elsif business.frugles.first.category_id == 9
+      "Office Supplies"
+    elsif business.frugles.first.category_id == 10
+      "Events"
+    elsif business.frugles.first.category_id == 11
+      "Pet Supplies"
+    elsif business.frugles.first.category_id == 12
+      "Sports & Recreation"
+    elsif business.frugles.first.category_id == 13
+      "Restaurants"
+    elsif business.frugles.first.category_id == 14
+      "Department Stores"
+    elsif business.frugles.first.category_id == 15
+      "Travel & Luggage"
+    else
+      "Other"
+    end
+  end
+  
+  def frugle_details(frugle)
+    if frugle.other_offer
+  		"Not valid with any other offer." + " "
+  	end
+  	if frugle.visit
+  		"Limit one per visit." + " "
+  	end
+  	if frugle.altered
+  		"Coupon void if altered."  + " "
+  	end
+  	if frugle.customers == "New"
+  		"New customers only." + " "
+  	elsif frugle.customers == "Returning"
+  		"Returning customers only."  + " "
+  	end
+    unless frugle.mobile.nil?
+  	  "We will accept this Frugle printed out or on a phone."
+    else
+  	  "We will only accept this Frugle when it is printed out."
+    end
+  end
+  
 end
