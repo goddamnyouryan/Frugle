@@ -30,6 +30,7 @@ class HomeController < ApplicationController
   
   def businesses_admin
     @businesses = Business.paginate :all, :page => params[:page], :order => "created_at DESC"
+    render :layout => "frugle_view"
   end
   
   def frugles_admin
