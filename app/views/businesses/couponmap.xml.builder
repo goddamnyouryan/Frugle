@@ -8,7 +8,7 @@ xml.tag!("localcoupons") do
       xml.address2 "#{business.address2}"
       xml.city "Los Angeles"
       xml.state "CA"
-      xml.zip "#{business.zip}"
+      xml.zipcode "#{business.zip}"
       xml.phone "#{business.phone}"
       xml.latitude "#{business.latitude}"
       xml.longitude "#{business.longitude}"
